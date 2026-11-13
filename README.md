@@ -50,7 +50,7 @@ print(result.partition.labels)
 - `examples/`：无需网络或模型下载的最小端到端示例。
 - `docs/`：静态评测看板、逐种子公开结果、调用与评测说明。
 - `datasets/`：数据集出处、下载入口及引用，不附数据。
-- `references/`：82 篇参考工作的来源和 BibTeX，不附论文 PDF。
+- `references/`：83 篇参考工作的来源和 BibTeX，不附论文 PDF。
 - `tests/`：公共 API 离线验收与看板浏览器回归。
 - `scripts/`：看板启动与发布审核。
 

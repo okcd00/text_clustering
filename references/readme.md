@@ -84,3 +84,5 @@ Upstream papers and citation records; PDFs are not bundled.
 - [Out-of-Distribution Detection with Deep Nearest Neighbors](sun2022knnood/readme.md)
 - [Ellipsoid-Based Decision Boundaries for Open Intent Classification](zou2026elidecide/readme.md)
 - [A Framework for Clustering Evolving Data Streams](aggarwal2003clustream/readme.md)
+
+- [TabClustPFN: A Prior-data Fitted Network for Tabular Data Clustering](zhao2026tabclustpfn/readme.md) · [proposed comparison](zhao2026tabclustpfn/comparison.md)
