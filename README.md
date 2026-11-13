@@ -61,3 +61,7 @@ print(result.partition.labels)
 只在此公开仓库中提交可公开代码和汇总结果。内部数据、派生向量、逐条预测、内部服务配置和工作历史不得同步。发布流程见[公开发布约定](docs/publication.md)。参考论文与第三方代码遵循各自权利和许可证；此版本不额外授予整个项目的统一开源许可证。
 
 安装验收与浏览器检查状态见[验证记录](docs/verification.md)。
+
+### 路由、层级与持续更新结果
+
+[场景评测看板](https://dian.host/text_clustering/scenarios.html) 新增 18 个独立比较组：原型与 NLI 路由、层级归属、冻结/更新流式方案、BIRCH 容量维护。与批量聚类合计 68 个方法/视图配置；按协议分别查看，不作跨任务总榜。[分组、指标与限制](docs/scenario-protocols.md)。
