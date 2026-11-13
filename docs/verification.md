@@ -9,3 +9,9 @@
 - Optional dependency combinations are not part of the clean core installation acceptance.
 
 A CI template is supplied in `docs/ci-example.yml`. The current publishing credential does not grant workflow modification scope, so no GitHub Actions workflow is installed. Linux CI verification remains pending.
+
+## Hosting check
+
+GitHub Pages built the first publication successfully from `main:/docs`. This account already uses a custom Pages domain, so the canonical URL is https://dian.host/text_clustering/ and HTTPS enforcement is enabled. The generic github.io address inherits the account's domain redirect.
+
+The current verification network blocks that custom domain by policy. The deployment status is confirmed through GitHub, but a live-site HTTP/content check and browser inspection are still pending from an allowed network. No account-wide domain or DNS configuration was changed.

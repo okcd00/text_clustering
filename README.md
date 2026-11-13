@@ -2,7 +2,7 @@
 
 **从文本集合到可维护的类别体系：可切换的算法工具 + 同协议评测。**
 
-[打开能力与效果看板](https://okcd00.github.io/text_clustering/) · [API 与选型](docs/usage.md) · [评测口径](docs/protocols.md) · [参考文献](references/readme.md)
+[打开能力与效果看板](https://dian.host/text_clustering/) · [API 与选型](docs/usage.md) · [评测口径](docs/protocols.md) · [参考文献](references/readme.md)
 
 | 需求 | 起步方案 | 选择要点 |
 |---|---|---|
