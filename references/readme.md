@@ -86,3 +86,21 @@ Upstream papers and citation records; PDFs are not bundled.
 - [A Framework for Clustering Evolving Data Streams](aggarwal2003clustream/readme.md)
 
 - [TabClustPFN: A Prior-data Fitted Network for Tabular Data Clustering](zhao2026tabclustpfn/readme.md) · [proposed comparison](zhao2026tabclustpfn/comparison.md)
+
+## Additional recent conference references (reviewed 2026-11-13)
+
+- [TopicMerge: A Divide and Conquer Approach to Topic Modeling](raffel2026topicmerge/readme.md)
+- [SPARROW: Scalable Taxonomy Induction via Structure-Preserving Partitioning and Constraint-Guided Merging](zhang2026sparrow/readme.md)
+- [Dial-In LLM: Human-Aligned LLM-in-the-loop Intent Clustering for Customer Service Dialogues](hong2025dialin/readme.md)
+- [Peeling the Matryoshka: Extracting Ontological Structure from Retrieval Embeddings](kim2026peel/readme.md)
+- [Neural Topic Modeling with Large Language Models in the Loop](yang2025llmitl/readme.md)
+
+## Established software and practical topic-model additions
+
+- [Top2Vec: Distributed Representations of Topics](angelov2020top2vec/readme.md)
+- [Topic Modeling: Contextual Token Embeddings Are All You Need](angelov2024contextualtop2vec/readme.md)
+- [Pre-training is a Hot Topic: Contextualized Document Embeddings Improve Topic Coherence](bianchi2021ctm/readme.md)
+- [Towards the TopMost: A Topic Modeling System Toolkit](wu2024topmost/readme.md)
+- [FASTopic: Pretrained Transformer is a Fast, Adaptive, Stable, and Transferable Topic Model](wu2024fastopic/readme.md)
+
+See [ecosystem snapshot and prioritized comparison plan](ecosystem_2026-11-13.md) for software popularity, task distinctions and research priorities.
