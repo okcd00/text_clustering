@@ -21,3 +21,7 @@ The current verification network blocks that custom domain by policy. The deploy
 Added 18 independently grouped historical comparisons, 51 configurations and 185 seed records, plus 10 single-replay view/configuration rows within those 51. These are not 10 independent chronological experiments. Every exported numeric summary and seed projection was checked against its source snapshot during export; no experiment or paid call was rerun. Retained source digests, fixed settings, denominators and applicable caveats. Internal run names, service identities, file paths and text-level outputs were excluded.
 
 The expanded five-test offline suite passed in the clean core environment; JavaScript syntax and public-content audit passed. Browser visual acceptance remains pending; this update does not change that status. The new scenario page separates comparison groups and does not grant cross-method comparability merely because dataset names match.
+
+## Homepage selection summary
+
+The homepage now renders five scenario recommendation cards directly from `scenarios.json`, with dataset/protocol scope, quality and cost alongside each choice. Each detail link selects its exact evidence group. The Node DOM-stub test (`node tests/test_home.cjs`) checks five rendered cards, expected evidence values and deep links; this is functional rendering verification, not browser visual acceptance. No experimental results were changed or rerun.
