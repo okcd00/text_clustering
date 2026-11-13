@@ -33,3 +33,11 @@ Chrome successfully loaded the public tree through a local HTTP server. Checked 
 At 390px, the scenario selector originally widened the document to 1282px. Constrained filter labels/selects and wrapped long protocol/data identifiers; added a stylesheet revision to both pages to prevent stale cached CSS. Recheck: document width 390px, selector 358px, table content remains horizontally scrollable inside its 356px container. At 320px, the capacity detail document and homepage remain 320px wide; the KMeans dialog opens at 288px width with 16px margins and closes successfully. Homepage tabs, detail navigation and rendered radar were exercised; screenshots were requested, with DOM geometry used for explicit overflow checks. The temporary viewport override was reset.
 
 This supersedes the earlier browser-automation timeout for local interaction/layout checks. Production-domain visual acceptance remains pending: the browser reaches a network security interstitial, not the dashboard. No security bypass was attempted. Local checks do not certify live CDN content or exhaustive device/pixel-level visual correctness.
+
+## Automated dashboard regression (2026-11-14)
+
+Added Playwright browser regression covering 320px, 390px and 1280px viewports: five homepage recommendation destinations, selected task/group, evidence-derived table values, return navigation, document overflow, keyboard table scrolling, radar SVG/text bounds, and opening/closing algorithm dialogs for both batch protocols. The tests own a local HTTP server and retain screenshots/traces on failure; they do not call models or change evidence. See [test instructions](../tests/browser/readme.md).
+
+Local validation uses the installed Google Chrome channel in fresh headless contexts. The bundled Chromium download was slow and stopped; the bundled-browser/Linux CI path is documented but not claimed as executed. The GitHub Actions example now includes the browser job; activation still requires workflow-write authorization. This is local browser regression against the public source, not a new live-domain or Safari/physical-device acceptance.
+
+Result: all 6 browser cases passed (2 flows × 3 widths, 12.7 seconds); all 5 Python unit tests and the existing homepage rendering check passed. Public-content audit and whitespace checks passed. No experimental numbers were changed.

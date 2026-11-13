@@ -51,7 +51,7 @@ print(result.partition.labels)
 - `docs/`：静态评测看板、逐种子公开结果、调用与评测说明。
 - `datasets/`：数据集出处、下载入口及引用，不附数据。
 - `references/`：82 篇参考工作的来源和 BibTeX，不附论文 PDF。
-- `tests/`：公共 API 的离线验收。
+- `tests/`：公共 API 离线验收与看板浏览器回归。
 - `scripts/`：看板启动与发布审核。
 
 论文原方法、核心改编和工程基线需区别解读，例如 `bertopic_pipeline` 是降维与聚类核心，**不包含完整 BERTopic 主题表示产品**。当前公开结果使用的历史编码器未提供可下载 checkpoint，数值复现条件见[评测说明](docs/protocols.md)。
@@ -60,7 +60,7 @@ print(result.partition.labels)
 
 只在此公开仓库中提交可公开代码和汇总结果。内部数据、派生向量、逐条预测、内部服务配置和工作历史不得同步。发布流程见[公开发布约定](docs/publication.md)。参考论文与第三方代码遵循各自权利和许可证；此版本不额外授予整个项目的统一开源许可证。
 
-安装验收与浏览器检查状态见[验证记录](docs/verification.md)。
+安装验收与浏览器检查状态见[验证记录](docs/verification.md)。更新看板后运行 `npm ci && npx playwright install chromium && npm run test:dashboard`；[移动端布局与详情跳转回归说明](tests/browser/readme.md)。
 
 ### 路由、层级与持续更新结果
 

@@ -15,3 +15,7 @@ outputs/
 *.pdf
 *.parquet
 *.jsonl
+
+node_modules/
+test-results/
+playwright-report/
