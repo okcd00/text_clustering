@@ -25,3 +25,11 @@ The expanded five-test offline suite passed in the clean core environment; JavaS
 ## Homepage selection summary
 
 The homepage now renders five scenario recommendation cards directly from `scenarios.json`, with dataset/protocol scope, quality and cost alongside each choice. Each detail link selects its exact evidence group. The Node DOM-stub test (`node tests/test_home.cjs`) checks five rendered cards, expected evidence values and deep links; this is functional rendering verification, not browser visual acceptance. No experimental results were changed or rerun.
+
+## Browser layout and interaction check (2026-11-14)
+
+Chrome successfully loaded the public tree through a local HTTP server. Checked the five homepage cards and their exact scenario-01/02/06/11/18 destinations against rendered detail values (including quality, time, RSS and terminal state). Protocol groups remain separate; no result was rerun or altered.
+
+At 390px, the scenario selector originally widened the document to 1282px. Constrained filter labels/selects and wrapped long protocol/data identifiers; added a stylesheet revision to both pages to prevent stale cached CSS. Recheck: document width 390px, selector 358px, table content remains horizontally scrollable inside its 356px container. At 320px, the capacity detail document and homepage remain 320px wide; the KMeans dialog opens at 288px width with 16px margins and closes successfully. Homepage tabs, detail navigation and rendered radar were exercised; screenshots were requested, with DOM geometry used for explicit overflow checks. The temporary viewport override was reset.
+
+This supersedes the earlier browser-automation timeout for local interaction/layout checks. Production-domain visual acceptance remains pending: the browser reaches a network security interstitial, not the dashboard. No security bypass was attempted. Local checks do not certify live CDN content or exhaustive device/pixel-level visual correctness.
