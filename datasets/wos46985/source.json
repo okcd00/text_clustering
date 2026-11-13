@@ -1,0 +1,20 @@
+{
+  "name": "Web of Science WOS-46985",
+  "source_url": "https://data.mendeley.com/datasets/9rw3vkcfy4/2",
+  "revision": "2",
+  "license": "CC-BY-4.0 on landing page; permission notice also preserved",
+  "license_note": "Source declaration recorded, not a redistribution clearance.",
+  "distribution": "source links only; no dataset payloads",
+  "files": [
+    {
+      "url": "https://data.mendeley.com/public-files/datasets/9rw3vkcfy4/files/e0ed118e-529c-4e94-921e-9cdaeae7b7f8/file_downloaded",
+      "sha256": "6da4ab1e624c4ef61c46600d727770f873ff4db3c15541fb481e7af8a715c0ec",
+      "bytes": 2587
+    },
+    {
+      "url": "https://data.mendeley.com/public-files/datasets/9rw3vkcfy4/files/4ed4e75a-a656-4e55-9cb2-f5638b4de00a/file_downloaded",
+      "sha256": "b787d484bff88b0dcdb3fa291d06ec9d2f025dc2a67ce1045d0c688cd96ccf8a",
+      "bytes": 60222421
+    }
+  ]
+}

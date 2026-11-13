@@ -1,0 +1,20 @@
+{
+  "name": "CLINC150 / OOS full",
+  "source_url": "https://github.com/clinc/oos-eval",
+  "revision": "828f8093932c8fe6ca7936c3d2e52903b1c523de",
+  "license": "CC-BY-3.0",
+  "license_note": "Source declaration recorded, not a redistribution clearance.",
+  "distribution": "source links only; no dataset payloads",
+  "files": [
+    {
+      "url": "https://raw.githubusercontent.com/clinc/oos-eval/828f8093932c8fe6ca7936c3d2e52903b1c523de/data/data_full.json",
+      "sha256": "36923c3705a59e08fe9c3883d8bc2dd966ef93e22cb78ac41171782a698d56e0",
+      "bytes": 2495390
+    },
+    {
+      "url": "https://raw.githubusercontent.com/clinc/oos-eval/828f8093932c8fe6ca7936c3d2e52903b1c523de/data/domains.json",
+      "sha256": "b947b579d3b8e74b06f93b01083d8efaff2888b43a3e362533bd88a6e1211b3a",
+      "bytes": 3818
+    }
+  ]
+}

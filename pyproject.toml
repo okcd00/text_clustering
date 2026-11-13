@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "text-clustering-lab"
+version = "0.1.0"
+description = "Composable coldstart, open-set routing and hierarchy experiments"
+requires-python = ">=3.9"
+dependencies = ["numpy>=1.24,<3", "scikit-learn==1.6.1", "scipy>=1.9,<2"]
+
+[project.optional-dependencies]
+finch = ["finch-clust==0.2.3"]
+classix = ["classixclustering==1.5.3"]
+fast-density = ["fast-hdbscan==0.3.4; python_version >= '3.10'", "umap-learn==0.5.9.post2"]
+streaming = ["river==0.26.1; python_version >= '3.11'"]
+parc = ["numpy==1.26.4", "scipy==1.13.1", "parc==0.40", "hnswlib==0.8.0", "leidenalg==0.12.0", "igraph==1.0.0", "umap-learn==0.5.9.post2", "pandas==3.0.6"]
+graph = ["leidenalg==0.12.0", "igraph==1.0.0"]
+discovery = ["umap-learn==0.5.9.post2", "hdbscan==0.8.40", "evoc==0.3.2"]
+data = ["openpyxl>=3.1,<4"]
+test = ["pytest>=8,<9"]
+nli = ["torch==2.8.0", "transformers==4.57.1", "sentencepiece==0.2.1"]
+models = ["sentence-transformers>=5.1,<6"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

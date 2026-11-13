@@ -1,0 +1,3243 @@
+{
+  "schema_version": 1,
+  "scope": "First public snapshot: two audited batch partitioning cohorts. Other workflows are available in code, but their evaluations are not yet included in this public snapshot.",
+  "encoder": "Historical self-hosted text encoder, 1024 dimensions. Checkpoint revision and vectors are not distributed; exact numerical reproduction is not currently available.",
+  "cost": "Reported wall time excludes encoding; RSS is process peak, not incremental algorithm memory. Monetary cost is unknown.",
+  "records": [
+    {
+      "run": "known-k-001",
+      "view": "banking77-intent",
+      "algorithm": "kmeans",
+      "summary": {
+        "view": "banking77-intent",
+        "algorithm": "kmeans",
+        "n_seeds": 5,
+        "acc_assigned": {
+          "mean": 0.6581818181818182,
+          "sd": 0.025318847148204655
+        },
+        "nmi_assigned": {
+          "mean": 0.8172520645158279,
+          "sd": 0.007300925414877133
+        },
+        "ari_assigned": {
+          "mean": 0.5527311223333926,
+          "sd": 0.02028108845807687
+        },
+        "ri_assigned": {
+          "mean": 0.9877242147264882,
+          "sd": 0.0007845817412244551
+        },
+        "fit_predict_seconds": {
+          "mean": 6.181512166799999,
+          "sd": 0.12717828059033562
+        },
+        "cpu_seconds": {
+          "mean": 9.0846774,
+          "sd": 0.05233023250282752
+        },
+        "process_peak_rss_bytes": {
+          "mean": 223277875.2,
+          "sd": 10908018.833200611
+        }
+      },
+      "seeds": [
+        {
+          "seed": 0,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 3080,
+            "n_assigned": 3080,
+            "coverage": 1.0,
+            "n_clusters": 77,
+            "noise_count": 0,
+            "acc_assigned": 0.675974025974026,
+            "acc_all_noise_error": 0.675974025974026,
+            "ari_assigned": 0.5694131533336759,
+            "nmi_assigned": 0.8221428277250715,
+            "ri_assigned": 0.9883987886098962
+          },
+          "fit_predict_seconds": 6.3238580419999995,
+          "cpu_seconds": 9.11096,
+          "process_peak_rss_bytes": 211173376,
+          "params": {
+            "algorithm": "lloyd",
+            "copy_x": true,
+            "init": "k-means++",
+            "max_iter": 300,
+            "n_clusters": 77,
+            "n_init": 10,
+            "random_state": 0,
+            "tol": 0.0001,
+            "verbose": 0
+          }
+        },
+        {
+          "seed": 1,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 3080,
+            "n_assigned": 3080,
+            "coverage": 1.0,
+            "n_clusters": 77,
+            "noise_count": 0,
+            "acc_assigned": 0.6311688311688312,
+            "acc_all_noise_error": 0.6311688311688312,
+            "ari_assigned": 0.5226029227578135,
+            "nmi_assigned": 0.8080446450134131,
+            "ri_assigned": 0.9865205434383739
+          },
+          "fit_predict_seconds": 5.988176833,
+          "cpu_seconds": 9.005658,
+          "process_peak_rss_bytes": 214892544,
+          "params": {
+            "algorithm": "lloyd",
+            "copy_x": true,
+            "init": "k-means++",
+            "max_iter": 300,
+            "n_clusters": 77,
+            "n_init": 10,
+            "random_state": 1,
+            "tol": 0.0001,
+            "verbose": 0
+          }
+        },
+        {
+          "seed": 2,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 3080,
+            "n_assigned": 3080,
+            "coverage": 1.0,
+            "n_clusters": 77,
+            "noise_count": 0,
+            "acc_assigned": 0.6681818181818182,
+            "acc_all_noise_error": 0.6681818181818182,
+            "ari_assigned": 0.5629635462584042,
+            "nmi_assigned": 0.8246395848669699,
+            "ri_assigned": 0.9879211077976912
+          },
+          "fit_predict_seconds": 6.137660792,
+          "cpu_seconds": 9.147575,
+          "process_peak_rss_bytes": 236355584,
+          "params": {
+            "algorithm": "lloyd",
+            "copy_x": true,
+            "init": "k-means++",
+            "max_iter": 300,
+            "n_clusters": 77,
+            "n_init": 10,
+            "random_state": 2,
+            "tol": 0.0001,
+            "verbose": 0
+          }
+        },
+        {
+          "seed": 3,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 3080,
+            "n_assigned": 3080,
+            "coverage": 1.0,
+            "n_clusters": 77,
+            "noise_count": 0,
+            "acc_assigned": 0.6311688311688312,
+            "acc_all_noise_error": 0.6311688311688312,
+            "ari_assigned": 0.5411201080744915,
+            "nmi_assigned": 0.8109612487472139,
+            "ri_assigned": 0.9874084181489183
+          },
+          "fit_predict_seconds": 6.2467654999999995,
+          "cpu_seconds": 9.077226,
+          "process_peak_rss_bytes": 221478912,
+          "params": {
+            "algorithm": "lloyd",
+            "copy_x": true,
+            "init": "k-means++",
+            "max_iter": 300,
+            "n_clusters": 77,
+            "n_init": 10,
+            "random_state": 3,
+            "tol": 0.0001,
+            "verbose": 0
+          }
+        },
+        {
+          "seed": 4,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 3080,
+            "n_assigned": 3080,
+            "coverage": 1.0,
+            "n_clusters": 77,
+            "noise_count": 0,
+            "acc_assigned": 0.6844155844155844,
+            "acc_all_noise_error": 0.6844155844155844,
+            "ari_assigned": 0.5675558812425777,
+            "nmi_assigned": 0.8204720162264715,
+            "ri_assigned": 0.9883722156375615
+          },
+          "fit_predict_seconds": 6.211099667,
+          "cpu_seconds": 9.081968,
+          "process_peak_rss_bytes": 232488960,
+          "params": {
+            "algorithm": "lloyd",
+            "copy_x": true,
+            "init": "k-means++",
+            "max_iter": 300,
+            "n_clusters": 77,
+            "n_init": 10,
+            "random_state": 4,
+            "tol": 0.0001,
+            "verbose": 0
+          }
+        }
+      ],
+      "vector_sha256": "5b46b7ea8456e2fe55bcb8ac8bafd95e49622bfd4dd6c23e7cddac2916011692"
+    },
+    {
+      "run": "known-k-001",
+      "view": "banking77-intent",
+      "algorithm": "minibatch_kmeans",
+      "summary": {
+        "view": "banking77-intent",
+        "algorithm": "minibatch_kmeans",
+        "n_seeds": 5,
+        "acc_assigned": {
+          "mean": 0.6311038961038962,
+          "sd": 0.006784859823167864
+        },
+        "nmi_assigned": {
+          "mean": 0.8045170932562815,
+          "sd": 0.004191668461031969
+        },
+        "ari_assigned": {
+          "mean": 0.5224414141726494,
+          "sd": 0.006059785455520514
+        },
+        "ri_assigned": {
+          "mean": 0.9866445928219232,
+          "sd": 0.0001187190925425049
+        },
+        "fit_predict_seconds": {
+          "mean": 4.931852483199999,
+          "sd": 0.2720475183550142
+        },
+        "cpu_seconds": {
+          "mean": 7.699987999999999,
+          "sd": 0.1351560331561268
+        },
+        "process_peak_rss_bytes": {
+          "mean": 259378380.8,
+          "sd": 11198924.827972515
+        }
+      },
+      "seeds": [
+        {
+          "seed": 0,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 3080,
+            "n_assigned": 3080,
+            "coverage": 1.0,
+            "n_clusters": 77,
+            "noise_count": 0,
+            "acc_assigned": 0.6376623376623377,
+            "acc_all_noise_error": 0.6376623376623377,
+            "ari_assigned": 0.5162141912848679,
+            "nmi_assigned": 0.8010807247887073,
+            "ri_assigned": 0.9865310882686654
+          },
+          "fit_predict_seconds": 4.742681,
+          "cpu_seconds": 7.598325,
+          "process_peak_rss_bytes": 268795904,
+          "params": {
+            "batch_size": 1024,
+            "compute_labels": true,
+            "init": "k-means++",
+            "init_size": null,
+            "max_iter": 100,
+            "max_no_improvement": 10,
+            "n_clusters": 77,
+            "n_init": 10,
+            "random_state": 0,
+            "reassignment_ratio": 0.01,
+            "tol": 0.0,
+            "verbose": 0
+          }
+        },
+        {
+          "seed": 1,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 3080,
+            "n_assigned": 3080,
+            "coverage": 1.0,
+            "n_clusters": 77,
+            "noise_count": 0,
+            "acc_assigned": 0.625,
+            "acc_all_noise_error": 0.625,
+            "ari_assigned": 0.5248567061200847,
+            "nmi_assigned": 0.8054195052124469,
+            "ri_assigned": 0.9865331972347237
+          },
+          "fit_predict_seconds": 4.721158417,
+          "cpu_seconds": 7.704006000000001,
+          "process_peak_rss_bytes": 261029888,
+          "params": {
+            "batch_size": 1024,
+            "compute_labels": true,
+            "init": "k-means++",
+            "init_size": null,
+            "max_iter": 100,
+            "max_no_improvement": 10,
+            "n_clusters": 77,
+            "n_init": 10,
+            "random_state": 1,
+            "reassignment_ratio": 0.01,
+            "tol": 0.0,
+            "verbose": 0
+          }
+        },
+        {
+          "seed": 2,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 3080,
+            "n_assigned": 3080,
+            "coverage": 1.0,
+            "n_clusters": 77,
+            "noise_count": 0,
+            "acc_assigned": 0.6243506493506493,
+            "acc_all_noise_error": 0.6243506493506493,
+            "ari_assigned": 0.5177991130520201,
+            "nmi_assigned": 0.7994263762162447,
+            "ri_assigned": 0.986622195602384
+          },
+          "fit_predict_seconds": 4.797819958,
+          "cpu_seconds": 7.696178999999999,
+          "process_peak_rss_bytes": 255672320,
+          "params": {
+            "batch_size": 1024,
+            "compute_labels": true,
+            "init": "k-means++",
+            "init_size": null,
+            "max_iter": 100,
+            "max_no_improvement": 10,
+            "n_clusters": 77,
+            "n_init": 10,
+            "random_state": 2,
+            "reassignment_ratio": 0.01,
+            "tol": 0.0,
+            "verbose": 0
+          }
+        },
+        {
+          "seed": 3,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 3080,
+            "n_assigned": 3080,
+            "coverage": 1.0,
+            "n_clusters": 77,
+            "noise_count": 0,
+            "acc_assigned": 0.6386363636363637,
+            "acc_all_noise_error": 0.6386363636363637,
+            "ari_assigned": 0.5219259528754979,
+            "nmi_assigned": 0.8071731128176357,
+            "ri_assigned": 0.9867666597773775
+          },
+          "fit_predict_seconds": 5.365194541,
+          "cpu_seconds": 7.581073999999999,
+          "process_peak_rss_bytes": 242106368,
+          "params": {
+            "batch_size": 1024,
+            "compute_labels": true,
+            "init": "k-means++",
+            "init_size": null,
+            "max_iter": 100,
+            "max_no_improvement": 10,
+            "n_clusters": 77,
+            "n_init": 10,
+            "random_state": 3,
+            "reassignment_ratio": 0.01,
+            "tol": 0.0,
+            "verbose": 0
+          }
+        },
+        {
+          "seed": 4,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 3080,
+            "n_assigned": 3080,
+            "coverage": 1.0,
+            "n_clusters": 77,
+            "noise_count": 0,
+            "acc_assigned": 0.6298701298701299,
+            "acc_all_noise_error": 0.6298701298701299,
+            "ari_assigned": 0.531411107530777,
+            "nmi_assigned": 0.8094857472463732,
+            "ri_assigned": 0.986769823226465
+          },
+          "fit_predict_seconds": 5.0324085,
+          "cpu_seconds": 7.920356,
+          "process_peak_rss_bytes": 269287424,
+          "params": {
+            "batch_size": 1024,
+            "compute_labels": true,
+            "init": "k-means++",
+            "init_size": null,
+            "max_iter": 100,
+            "max_no_improvement": 10,
+            "n_clusters": 77,
+            "n_init": 10,
+            "random_state": 4,
+            "reassignment_ratio": 0.01,
+            "tol": 0.0,
+            "verbose": 0
+          }
+        }
+      ],
+      "vector_sha256": "5b46b7ea8456e2fe55bcb8ac8bafd95e49622bfd4dd6c23e7cddac2916011692"
+    },
+    {
+      "run": "known-k-001",
+      "view": "clinc150-intent",
+      "algorithm": "kmeans",
+      "summary": {
+        "view": "clinc150-intent",
+        "algorithm": "kmeans",
+        "n_seeds": 5,
+        "acc_assigned": {
+          "mean": 0.758888888888889,
+          "sd": 0.008431276282573502
+        },
+        "nmi_assigned": {
+          "mean": 0.9081413418676382,
+          "sd": 0.002601827817671748
+        },
+        "ari_assigned": {
+          "mean": 0.6981052143676111,
+          "sd": 0.005468450345491428
+        },
+        "ri_assigned": {
+          "mean": 0.9957824701785581,
+          "sd": 7.717666048619126e-05
+        },
+        "fit_predict_seconds": {
+          "mean": 17.112566241800003,
+          "sd": 0.4880192342464294
+        },
+        "cpu_seconds": {
+          "mean": 19.997618199999998,
+          "sd": 0.4055139517435862
+        },
+        "process_peak_rss_bytes": {
+          "mean": 271256780.8,
+          "sd": 3945422.3278471977
+        }
+      },
+      "seeds": [
+        {
+          "seed": 0,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 4500,
+            "coverage": 1.0,
+            "n_clusters": 150,
+            "noise_count": 0,
+            "acc_assigned": 0.7464444444444445,
+            "acc_all_noise_error": 0.7464444444444445,
+            "ari_assigned": 0.6934815124675014,
+            "nmi_assigned": 0.9075220342048869,
+            "ri_assigned": 0.9956689634733644
+          },
+          "fit_predict_seconds": 17.748626209,
+          "cpu_seconds": 20.564172,
+          "process_peak_rss_bytes": 265469952,
+          "params": {
+            "algorithm": "lloyd",
+            "copy_x": true,
+            "init": "k-means++",
+            "max_iter": 300,
+            "n_clusters": 150,
+            "n_init": 10,
+            "random_state": 0,
+            "tol": 0.0001,
+            "verbose": 0
+          }
+        },
+        {
+          "seed": 1,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 4500,
+            "coverage": 1.0,
+            "n_clusters": 150,
+            "noise_count": 0,
+            "acc_assigned": 0.7593333333333333,
+            "acc_all_noise_error": 0.7593333333333333,
+            "ari_assigned": 0.7053003336393417,
+            "nmi_assigned": 0.9111872731774614,
+            "ri_assigned": 0.9958317650835988
+          },
+          "fit_predict_seconds": 16.710795334,
+          "cpu_seconds": 19.727776000000002,
+          "process_peak_rss_bytes": 275333120,
+          "params": {
+            "algorithm": "lloyd",
+            "copy_x": true,
+            "init": "k-means++",
+            "max_iter": 300,
+            "n_clusters": 150,
+            "n_init": 10,
+            "random_state": 1,
+            "tol": 0.0001,
+            "verbose": 0
+          }
+        },
+        {
+          "seed": 2,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 4500,
+            "coverage": 1.0,
+            "n_clusters": 150,
+            "noise_count": 0,
+            "acc_assigned": 0.7586666666666667,
+            "acc_all_noise_error": 0.7586666666666667,
+            "ari_assigned": 0.6968579450213379,
+            "nmi_assigned": 0.9091448307950893,
+            "ri_assigned": 0.9957799017065521
+          },
+          "fit_predict_seconds": 17.529590208,
+          "cpu_seconds": 20.285479000000002,
+          "process_peak_rss_bytes": 270680064,
+          "params": {
+            "algorithm": "lloyd",
+            "copy_x": true,
+            "init": "k-means++",
+            "max_iter": 300,
+            "n_clusters": 150,
+            "n_init": 10,
+            "random_state": 2,
+            "tol": 0.0001,
+            "verbose": 0
+          }
+        },
+        {
+          "seed": 3,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 4500,
+            "coverage": 1.0,
+            "n_clusters": 150,
+            "noise_count": 0,
+            "acc_assigned": 0.7702222222222223,
+            "acc_all_noise_error": 0.7702222222222223,
+            "ari_assigned": 0.7021354250495314,
+            "nmi_assigned": 0.9087205138037098,
+            "ri_assigned": 0.9958718727618483
+          },
+          "fit_predict_seconds": 16.804876791999998,
+          "cpu_seconds": 19.776892999999998,
+          "process_peak_rss_bytes": 270254080,
+          "params": {
+            "algorithm": "lloyd",
+            "copy_x": true,
+            "init": "k-means++",
+            "max_iter": 300,
+            "n_clusters": 150,
+            "n_init": 10,
+            "random_state": 3,
+            "tol": 0.0001,
+            "verbose": 0
+          }
+        },
+        {
+          "seed": 4,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 4500,
+            "coverage": 1.0,
+            "n_clusters": 150,
+            "noise_count": 0,
+            "acc_assigned": 0.7597777777777778,
+            "acc_all_noise_error": 0.7597777777777778,
+            "ari_assigned": 0.6927508556603431,
+            "nmi_assigned": 0.9041320573570443,
+            "ri_assigned": 0.9957598478674273
+          },
+          "fit_predict_seconds": 16.768942666,
+          "cpu_seconds": 19.633771000000003,
+          "process_peak_rss_bytes": 274546688,
+          "params": {
+            "algorithm": "lloyd",
+            "copy_x": true,
+            "init": "k-means++",
+            "max_iter": 300,
+            "n_clusters": 150,
+            "n_init": 10,
+            "random_state": 4,
+            "tol": 0.0001,
+            "verbose": 0
+          }
+        }
+      ],
+      "vector_sha256": "e00bfb74a0e435c27f09ee68096f739ff797a9da2d485e139a5aa05265fddbc6"
+    },
+    {
+      "run": "known-k-001",
+      "view": "clinc150-intent",
+      "algorithm": "minibatch_kmeans",
+      "summary": {
+        "view": "clinc150-intent",
+        "algorithm": "minibatch_kmeans",
+        "n_seeds": 5,
+        "acc_assigned": {
+          "mean": 0.7145333333333334,
+          "sd": 0.00564942912007185
+        },
+        "nmi_assigned": {
+          "mean": 0.8934554798477954,
+          "sd": 0.004263122267538403
+        },
+        "ari_assigned": {
+          "mean": 0.6497587311015313,
+          "sd": 0.007658717654870942
+        },
+        "ri_assigned": {
+          "mean": 0.9948876738040553,
+          "sd": 0.00015079635273651035
+        },
+        "fit_predict_seconds": {
+          "mean": 9.892610049799998,
+          "sd": 0.13856475472212576
+        },
+        "cpu_seconds": {
+          "mean": 12.734766400000002,
+          "sd": 0.11840046928031975
+        },
+        "process_peak_rss_bytes": {
+          "mean": 272089088.0,
+          "sd": 3231928.2887885985
+        }
+      },
+      "seeds": [
+        {
+          "seed": 0,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 4500,
+            "coverage": 1.0,
+            "n_clusters": 150,
+            "noise_count": 0,
+            "acc_assigned": 0.7188888888888889,
+            "acc_all_noise_error": 0.7188888888888889,
+            "ari_assigned": 0.6559526849311995,
+            "nmi_assigned": 0.8948851361657013,
+            "ri_assigned": 0.9950237830629028
+          },
+          "fit_predict_seconds": 9.863898875,
+          "cpu_seconds": 12.844569,
+          "process_peak_rss_bytes": 275333120,
+          "params": {
+            "batch_size": 1024,
+            "compute_labels": true,
+            "init": "k-means++",
+            "init_size": null,
+            "max_iter": 100,
+            "max_no_improvement": 10,
+            "n_clusters": 150,
+            "n_init": 10,
+            "random_state": 0,
+            "reassignment_ratio": 0.01,
+            "tol": 0.0,
+            "verbose": 0
+          }
+        },
+        {
+          "seed": 1,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 4500,
+            "coverage": 1.0,
+            "n_clusters": 150,
+            "noise_count": 0,
+            "acc_assigned": 0.7137777777777777,
+            "acc_all_noise_error": 0.7137777777777777,
+            "ari_assigned": 0.6407713912809078,
+            "nmi_assigned": 0.8933741418194246,
+            "ri_assigned": 0.9946406855844508
+          },
+          "fit_predict_seconds": 9.958836667,
+          "cpu_seconds": 12.847673,
+          "process_peak_rss_bytes": 274726912,
+          "params": {
+            "batch_size": 1024,
+            "compute_labels": true,
+            "init": "k-means++",
+            "init_size": null,
+            "max_iter": 100,
+            "max_no_improvement": 10,
+            "n_clusters": 150,
+            "n_init": 10,
+            "random_state": 1,
+            "reassignment_ratio": 0.01,
+            "tol": 0.0,
+            "verbose": 0
+          }
+        },
+        {
+          "seed": 2,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 4500,
+            "coverage": 1.0,
+            "n_clusters": 150,
+            "noise_count": 0,
+            "acc_assigned": 0.7146666666666667,
+            "acc_all_noise_error": 0.7146666666666667,
+            "ari_assigned": 0.6454759786999494,
+            "nmi_assigned": 0.8879643156253675,
+            "ri_assigned": 0.9948901237311996
+          },
+          "fit_predict_seconds": 10.085875290999999,
+          "cpu_seconds": 12.728055000000001,
+          "process_peak_rss_bytes": 271351808,
+          "params": {
+            "batch_size": 1024,
+            "compute_labels": true,
+            "init": "k-means++",
+            "init_size": null,
+            "max_iter": 100,
+            "max_no_improvement": 10,
+            "n_clusters": 150,
+            "n_init": 10,
+            "random_state": 2,
+            "reassignment_ratio": 0.01,
+            "tol": 0.0,
+            "verbose": 0
+          }
+        },
+        {
+          "seed": 3,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 4500,
+            "coverage": 1.0,
+            "n_clusters": 150,
+            "noise_count": 0,
+            "acc_assigned": 0.7197777777777777,
+            "acc_all_noise_error": 0.7197777777777777,
+            "ari_assigned": 0.6593013255897889,
+            "nmi_assigned": 0.8995213891441861,
+            "ri_assigned": 0.994994541996987
+          },
+          "fit_predict_seconds": 9.715538458000001,
+          "cpu_seconds": 12.563928,
+          "process_peak_rss_bytes": 267223040,
+          "params": {
+            "batch_size": 1024,
+            "compute_labels": true,
+            "init": "k-means++",
+            "init_size": null,
+            "max_iter": 100,
+            "max_no_improvement": 10,
+            "n_clusters": 150,
+            "n_init": 10,
+            "random_state": 3,
+            "reassignment_ratio": 0.01,
+            "tol": 0.0,
+            "verbose": 0
+          }
+        },
+        {
+          "seed": 4,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 4500,
+            "coverage": 1.0,
+            "n_clusters": 150,
+            "noise_count": 0,
+            "acc_assigned": 0.7055555555555556,
+            "acc_all_noise_error": 0.7055555555555556,
+            "ari_assigned": 0.6472922750058101,
+            "nmi_assigned": 0.8915324164842975,
+            "ri_assigned": 0.9948892346447359
+          },
+          "fit_predict_seconds": 9.838900958,
+          "cpu_seconds": 12.689607,
+          "process_peak_rss_bytes": 271810560,
+          "params": {
+            "batch_size": 1024,
+            "compute_labels": true,
+            "init": "k-means++",
+            "init_size": null,
+            "max_iter": 100,
+            "max_no_improvement": 10,
+            "n_clusters": 150,
+            "n_init": 10,
+            "random_state": 4,
+            "reassignment_ratio": 0.01,
+            "tol": 0.0,
+            "verbose": 0
+          }
+        }
+      ],
+      "vector_sha256": "e00bfb74a0e435c27f09ee68096f739ff797a9da2d485e139a5aa05265fddbc6"
+    },
+    {
+      "run": "known-k-001",
+      "view": "clinc150-domain",
+      "algorithm": "kmeans",
+      "summary": {
+        "view": "clinc150-domain",
+        "algorithm": "kmeans",
+        "n_seeds": 5,
+        "acc_assigned": {
+          "mean": 0.5972,
+          "sd": 0.021836994321280886
+        },
+        "nmi_assigned": {
+          "mean": 0.5789373335966501,
+          "sd": 0.013924825359788501
+        },
+        "ari_assigned": {
+          "mean": 0.42318486249803683,
+          "sd": 0.013063603503251711
+        },
+        "ri_assigned": {
+          "mean": 0.8895597342619348,
+          "sd": 0.003118372112911325
+        },
+        "fit_predict_seconds": {
+          "mean": 2.6290982582,
+          "sd": 0.22685481317224437
+        },
+        "cpu_seconds": {
+          "mean": 5.4873368000000005,
+          "sd": 0.158150377069421
+        },
+        "process_peak_rss_bytes": {
+          "mean": 246251520.0,
+          "sd": 14445662.32789788
+        }
+      },
+      "seeds": [
+        {
+          "seed": 0,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 4500,
+            "coverage": 1.0,
+            "n_clusters": 10,
+            "noise_count": 0,
+            "acc_assigned": 0.5677777777777778,
+            "acc_all_noise_error": 0.5677777777777778,
+            "ari_assigned": 0.40223006158599045,
+            "nmi_assigned": 0.563090416485915,
+            "ri_assigned": 0.8846602948803438
+          },
+          "fit_predict_seconds": 2.343881041,
+          "cpu_seconds": 5.268201,
+          "process_peak_rss_bytes": 251510784,
+          "params": {
+            "algorithm": "lloyd",
+            "copy_x": true,
+            "init": "k-means++",
+            "max_iter": 300,
+            "n_clusters": 10,
+            "n_init": 10,
+            "random_state": 0,
+            "tol": 0.0001,
+            "verbose": 0
+          }
+        },
+        {
+          "seed": 1,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 4500,
+            "coverage": 1.0,
+            "n_clusters": 10,
+            "noise_count": 0,
+            "acc_assigned": 0.5944444444444444,
+            "acc_all_noise_error": 0.5944444444444444,
+            "ari_assigned": 0.4261906155264252,
+            "nmi_assigned": 0.5711634066615461,
+            "ri_assigned": 0.8898159097083302
+          },
+          "fit_predict_seconds": 2.444955125,
+          "cpu_seconds": 5.431837000000001,
+          "process_peak_rss_bytes": 241451008,
+          "params": {
+            "algorithm": "lloyd",
+            "copy_x": true,
+            "init": "k-means++",
+            "max_iter": 300,
+            "n_clusters": 10,
+            "n_init": 10,
+            "random_state": 1,
+            "tol": 0.0001,
+            "verbose": 0
+          }
+        },
+        {
+          "seed": 2,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 4500,
+            "coverage": 1.0,
+            "n_clusters": 10,
+            "noise_count": 0,
+            "acc_assigned": 0.6084444444444445,
+            "acc_all_noise_error": 0.6084444444444445,
+            "ari_assigned": 0.43810000771980007,
+            "nmi_assigned": 0.6003773148076054,
+            "ri_assigned": 0.8912809266256699
+          },
+          "fit_predict_seconds": 2.83112275,
+          "cpu_seconds": 5.651294000000001,
+          "process_peak_rss_bytes": 225558528,
+          "params": {
+            "algorithm": "lloyd",
+            "copy_x": true,
+            "init": "k-means++",
+            "max_iter": 300,
+            "n_clusters": 10,
+            "n_init": 10,
+            "random_state": 2,
+            "tol": 0.0001,
+            "verbose": 0
+          }
+        },
+        {
+          "seed": 3,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 4500,
+            "coverage": 1.0,
+            "n_clusters": 10,
+            "noise_count": 0,
+            "acc_assigned": 0.5891111111111111,
+            "acc_all_noise_error": 0.5891111111111111,
+            "ari_assigned": 0.4227745263877466,
+            "nmi_assigned": 0.5810261255745075,
+            "ri_assigned": 0.8890720407004026
+          },
+          "fit_predict_seconds": 2.6789606249999998,
+          "cpu_seconds": 5.453404999999999,
+          "process_peak_rss_bytes": 265060352,
+          "params": {
+            "algorithm": "lloyd",
+            "copy_x": true,
+            "init": "k-means++",
+            "max_iter": 300,
+            "n_clusters": 10,
+            "n_init": 10,
+            "random_state": 3,
+            "tol": 0.0001,
+            "verbose": 0
+          }
+        },
+        {
+          "seed": 4,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 4500,
+            "coverage": 1.0,
+            "n_clusters": 10,
+            "noise_count": 0,
+            "acc_assigned": 0.6262222222222222,
+            "acc_all_noise_error": 0.6262222222222222,
+            "ari_assigned": 0.42662910127022163,
+            "nmi_assigned": 0.5790294044536766,
+            "ri_assigned": 0.8929694993949273
+          },
+          "fit_predict_seconds": 2.84657175,
+          "cpu_seconds": 5.631947,
+          "process_peak_rss_bytes": 247676928,
+          "params": {
+            "algorithm": "lloyd",
+            "copy_x": true,
+            "init": "k-means++",
+            "max_iter": 300,
+            "n_clusters": 10,
+            "n_init": 10,
+            "random_state": 4,
+            "tol": 0.0001,
+            "verbose": 0
+          }
+        }
+      ],
+      "vector_sha256": "e00bfb74a0e435c27f09ee68096f739ff797a9da2d485e139a5aa05265fddbc6"
+    },
+    {
+      "run": "known-k-001",
+      "view": "clinc150-domain",
+      "algorithm": "minibatch_kmeans",
+      "summary": {
+        "view": "clinc150-domain",
+        "algorithm": "minibatch_kmeans",
+        "n_seeds": 5,
+        "acc_assigned": {
+          "mean": 0.5400888888888888,
+          "sd": 0.03314040464075668
+        },
+        "nmi_assigned": {
+          "mean": 0.5187865072387284,
+          "sd": 0.025623481330995165
+        },
+        "ari_assigned": {
+          "mean": 0.35052165462644724,
+          "sd": 0.028683765216615375
+        },
+        "ri_assigned": {
+          "mean": 0.8733188906176681,
+          "sd": 0.004145094319514958
+        },
+        "fit_predict_seconds": {
+          "mean": 0.8644700084,
+          "sd": 0.018693658749954063
+        },
+        "cpu_seconds": {
+          "mean": 3.7786226,
+          "sd": 0.07008597051336275
+        },
+        "process_peak_rss_bytes": {
+          "mean": 246929817.6,
+          "sd": 9950940.791129088
+        }
+      },
+      "seeds": [
+        {
+          "seed": 0,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 4500,
+            "coverage": 1.0,
+            "n_clusters": 10,
+            "noise_count": 0,
+            "acc_assigned": 0.504,
+            "acc_all_noise_error": 0.504,
+            "ari_assigned": 0.3154593565410327,
+            "nmi_assigned": 0.48572538814879695,
+            "ri_assigned": 0.8688434466918574
+          },
+          "fit_predict_seconds": 0.846372,
+          "cpu_seconds": 3.7373910000000006,
+          "process_peak_rss_bytes": 249511936,
+          "params": {
+            "batch_size": 1024,
+            "compute_labels": true,
+            "init": "k-means++",
+            "init_size": null,
+            "max_iter": 100,
+            "max_no_improvement": 10,
+            "n_clusters": 10,
+            "n_init": 10,
+            "random_state": 0,
+            "reassignment_ratio": 0.01,
+            "tol": 0.0,
+            "verbose": 0
+          }
+        },
+        {
+          "seed": 1,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 4500,
+            "coverage": 1.0,
+            "n_clusters": 10,
+            "noise_count": 0,
+            "acc_assigned": 0.5611111111111111,
+            "acc_all_noise_error": 0.5611111111111111,
+            "ari_assigned": 0.36695872100142246,
+            "nmi_assigned": 0.5385246509382677,
+            "ri_assigned": 0.8765890691758662
+          },
+          "fit_predict_seconds": 0.8876440419999999,
+          "cpu_seconds": 3.784795999999999,
+          "process_peak_rss_bytes": 257441792,
+          "params": {
+            "batch_size": 1024,
+            "compute_labels": true,
+            "init": "k-means++",
+            "init_size": null,
+            "max_iter": 100,
+            "max_no_improvement": 10,
+            "n_clusters": 10,
+            "n_init": 10,
+            "random_state": 1,
+            "reassignment_ratio": 0.01,
+            "tol": 0.0,
+            "verbose": 0
+          }
+        },
+        {
+          "seed": 2,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 4500,
+            "coverage": 1.0,
+            "n_clusters": 10,
+            "noise_count": 0,
+            "acc_assigned": 0.5853333333333334,
+            "acc_all_noise_error": 0.5853333333333334,
+            "ari_assigned": 0.39014827132085206,
+            "nmi_assigned": 0.549607613974787,
+            "ri_assigned": 0.8786176681237806
+          },
+          "fit_predict_seconds": 0.8443484579999999,
+          "cpu_seconds": 3.8896759999999997,
+          "process_peak_rss_bytes": 253607936,
+          "params": {
+            "batch_size": 1024,
+            "compute_labels": true,
+            "init": "k-means++",
+            "init_size": null,
+            "max_iter": 100,
+            "max_no_improvement": 10,
+            "n_clusters": 10,
+            "n_init": 10,
+            "random_state": 2,
+            "reassignment_ratio": 0.01,
+            "tol": 0.0,
+            "verbose": 0
+          }
+        },
+        {
+          "seed": 3,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 4500,
+            "coverage": 1.0,
+            "n_clusters": 10,
+            "noise_count": 0,
+            "acc_assigned": 0.5164444444444445,
+            "acc_all_noise_error": 0.5164444444444445,
+            "ari_assigned": 0.34060995011999384,
+            "nmi_assigned": 0.5055326469442435,
+            "ri_assigned": 0.8703923340989356
+          },
+          "fit_predict_seconds": 0.869238042,
+          "cpu_seconds": 3.7772959999999998,
+          "process_peak_rss_bytes": 232636416,
+          "params": {
+            "batch_size": 1024,
+            "compute_labels": true,
+            "init": "k-means++",
+            "init_size": null,
+            "max_iter": 100,
+            "max_no_improvement": 10,
+            "n_clusters": 10,
+            "n_init": 10,
+            "random_state": 3,
+            "reassignment_ratio": 0.01,
+            "tol": 0.0,
+            "verbose": 0
+          }
+        },
+        {
+          "seed": 4,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 4500,
+            "coverage": 1.0,
+            "n_clusters": 10,
+            "noise_count": 0,
+            "acc_assigned": 0.5335555555555556,
+            "acc_all_noise_error": 0.5335555555555556,
+            "ari_assigned": 0.3394319741489349,
+            "nmi_assigned": 0.5145422361875467,
+            "ri_assigned": 0.8721519349979008
+          },
+          "fit_predict_seconds": 0.8747474999999999,
+          "cpu_seconds": 3.7039540000000004,
+          "process_peak_rss_bytes": 241451008,
+          "params": {
+            "batch_size": 1024,
+            "compute_labels": true,
+            "init": "k-means++",
+            "init_size": null,
+            "max_iter": 100,
+            "max_no_improvement": 10,
+            "n_clusters": 10,
+            "n_init": 10,
+            "random_state": 4,
+            "reassignment_ratio": 0.01,
+            "tol": 0.0,
+            "verbose": 0
+          }
+        }
+      ],
+      "vector_sha256": "e00bfb74a0e435c27f09ee68096f739ff797a9da2d485e139a5aa05265fddbc6"
+    },
+    {
+      "run": "known-k-001",
+      "view": "wos46985-path",
+      "algorithm": "kmeans",
+      "summary": {
+        "view": "wos46985-path",
+        "algorithm": "kmeans",
+        "n_seeds": 5,
+        "acc_assigned": {
+          "mean": 0.45533614678070905,
+          "sd": 0.009010085852118991
+        },
+        "nmi_assigned": {
+          "mean": 0.5835414770558497,
+          "sd": 0.0018709439099526815
+        },
+        "ari_assigned": {
+          "mean": 0.2945997435689126,
+          "sd": 0.005926113103008111
+        },
+        "ri_assigned": {
+          "mean": 0.9877942611383977,
+          "sd": 0.0001583297139578199
+        },
+        "fit_predict_seconds": {
+          "mean": 262.454124775,
+          "sd": 14.100545859662578
+        },
+        "cpu_seconds": {
+          "mean": 262.4695404,
+          "sd": 15.051853037676718
+        },
+        "process_peak_rss_bytes": {
+          "mean": 587703910.4,
+          "sd": 106131724.40297966
+        }
+      },
+      "seeds": [
+        {
+          "seed": 0,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 44311,
+            "n_assigned": 44311,
+            "coverage": 1.0,
+            "n_clusters": 126,
+            "noise_count": 0,
+            "acc_assigned": 0.4632484033310013,
+            "acc_all_noise_error": 0.4632484033310013,
+            "ari_assigned": 0.2979371640701344,
+            "nmi_assigned": 0.5837936588355209,
+            "ri_assigned": 0.987928877646739
+          },
+          "fit_predict_seconds": 257.16962612500004,
+          "cpu_seconds": 255.64339899999996,
+          "process_peak_rss_bytes": 626819072,
+          "params": {
+            "algorithm": "lloyd",
+            "copy_x": true,
+            "init": "k-means++",
+            "max_iter": 300,
+            "n_clusters": 126,
+            "n_init": 10,
+            "random_state": 0,
+            "tol": 0.0001,
+            "verbose": 0
+          }
+        },
+        {
+          "seed": 1,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 44311,
+            "n_assigned": 44311,
+            "coverage": 1.0,
+            "n_clusters": 126,
+            "noise_count": 0,
+            "acc_assigned": 0.44128997314436597,
+            "acc_all_noise_error": 0.44128997314436597,
+            "ari_assigned": 0.286515211361709,
+            "nmi_assigned": 0.5804084661149633,
+            "ri_assigned": 0.987675823335258
+          },
+          "fit_predict_seconds": 249.755518625,
+          "cpu_seconds": 248.981295,
+          "process_peak_rss_bytes": 400015360,
+          "params": {
+            "algorithm": "lloyd",
+            "copy_x": true,
+            "init": "k-means++",
+            "max_iter": 300,
+            "n_clusters": 126,
+            "n_init": 10,
+            "random_state": 1,
+            "tol": 0.0001,
+            "verbose": 0
+          }
+        },
+        {
+          "seed": 2,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 44311,
+            "n_assigned": 44311,
+            "coverage": 1.0,
+            "n_clusters": 126,
+            "noise_count": 0,
+            "acc_assigned": 0.45613955902597547,
+            "acc_all_noise_error": 0.45613955902597547,
+            "ari_assigned": 0.29299144906199315,
+            "nmi_assigned": 0.5843913063593058,
+            "ri_assigned": 0.9876950622103393
+          },
+          "fit_predict_seconds": 255.852745666,
+          "cpu_seconds": 256.26011900000003,
+          "process_peak_rss_bytes": 612188160,
+          "params": {
+            "algorithm": "lloyd",
+            "copy_x": true,
+            "init": "k-means++",
+            "max_iter": 300,
+            "n_clusters": 126,
+            "n_init": 10,
+            "random_state": 2,
+            "tol": 0.0001,
+            "verbose": 0
+          }
+        },
+        {
+          "seed": 3,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 44311,
+            "n_assigned": 44311,
+            "coverage": 1.0,
+            "n_clusters": 126,
+            "noise_count": 0,
+            "acc_assigned": 0.45300264042788474,
+            "acc_all_noise_error": 0.45300264042788474,
+            "ari_assigned": 0.2932389984746669,
+            "nmi_assigned": 0.5837391502320113,
+            "ri_assigned": 0.987670185215198
+          },
+          "fit_predict_seconds": 263.337063084,
+          "cpu_seconds": 263.74413799999996,
+          "process_peak_rss_bytes": 650100736,
+          "params": {
+            "algorithm": "lloyd",
+            "copy_x": true,
+            "init": "k-means++",
+            "max_iter": 300,
+            "n_clusters": 126,
+            "n_init": 10,
+            "random_state": 3,
+            "tol": 0.0001,
+            "verbose": 0
+          }
+        },
+        {
+          "seed": 4,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 44311,
+            "n_assigned": 44311,
+            "coverage": 1.0,
+            "n_clusters": 126,
+            "noise_count": 0,
+            "acc_assigned": 0.46300015797431787,
+            "acc_all_noise_error": 0.46300015797431787,
+            "ari_assigned": 0.30231589487605975,
+            "nmi_assigned": 0.5853748037374473,
+            "ri_assigned": 0.9880013572844544
+          },
+          "fit_predict_seconds": 286.155670375,
+          "cpu_seconds": 287.718751,
+          "process_peak_rss_bytes": 649396224,
+          "params": {
+            "algorithm": "lloyd",
+            "copy_x": true,
+            "init": "k-means++",
+            "max_iter": 300,
+            "n_clusters": 126,
+            "n_init": 10,
+            "random_state": 4,
+            "tol": 0.0001,
+            "verbose": 0
+          }
+        }
+      ],
+      "vector_sha256": "15b2130ddedbd4de0332c70423b1f3e7a77c90111aa7c25321b7ab3999dfbcd7"
+    },
+    {
+      "run": "known-k-001",
+      "view": "wos46985-path",
+      "algorithm": "minibatch_kmeans",
+      "summary": {
+        "view": "wos46985-path",
+        "algorithm": "minibatch_kmeans",
+        "n_seeds": 5,
+        "acc_assigned": {
+          "mean": 0.4230371691002234,
+          "sd": 0.007366297913883358
+        },
+        "nmi_assigned": {
+          "mean": 0.5689035656600564,
+          "sd": 0.0037707305979104116
+        },
+        "ari_assigned": {
+          "mean": 0.2743534032211415,
+          "sd": 0.00532035476208508
+        },
+        "ri_assigned": {
+          "mean": 0.9868526749194789,
+          "sd": 0.00019163686256014586
+        },
+        "fit_predict_seconds": {
+          "mean": 8.956755225,
+          "sd": 0.4255916257269084
+        },
+        "cpu_seconds": {
+          "mean": 11.713009,
+          "sd": 0.33373325361506867
+        },
+        "process_peak_rss_bytes": {
+          "mean": 406480486.4,
+          "sd": 23812103.943991106
+        }
+      },
+      "seeds": [
+        {
+          "seed": 0,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 44311,
+            "n_assigned": 44311,
+            "coverage": 1.0,
+            "n_clusters": 126,
+            "noise_count": 0,
+            "acc_assigned": 0.413373654397328,
+            "acc_all_noise_error": 0.413373654397328,
+            "ari_assigned": 0.2658396338035608,
+            "nmi_assigned": 0.5644234331656804,
+            "ri_assigned": 0.9866237929145292
+          },
+          "fit_predict_seconds": 9.669518875,
+          "cpu_seconds": 12.227419999999999,
+          "process_peak_rss_bytes": 397410304,
+          "params": {
+            "batch_size": 1024,
+            "compute_labels": true,
+            "init": "k-means++",
+            "init_size": null,
+            "max_iter": 100,
+            "max_no_improvement": 10,
+            "n_clusters": 126,
+            "n_init": 10,
+            "random_state": 0,
+            "reassignment_ratio": 0.01,
+            "tol": 0.0,
+            "verbose": 0
+          }
+        },
+        {
+          "seed": 1,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 44311,
+            "n_assigned": 44311,
+            "coverage": 1.0,
+            "n_clusters": 126,
+            "noise_count": 0,
+            "acc_assigned": 0.43233057254406354,
+            "acc_all_noise_error": 0.43233057254406354,
+            "ari_assigned": 0.28022195432637576,
+            "nmi_assigned": 0.5727037524502012,
+            "ri_assigned": 0.9869569176985381
+          },
+          "fit_predict_seconds": 9.033147459,
+          "cpu_seconds": 11.852391,
+          "process_peak_rss_bytes": 421806080,
+          "params": {
+            "batch_size": 1024,
+            "compute_labels": true,
+            "init": "k-means++",
+            "init_size": null,
+            "max_iter": 100,
+            "max_no_improvement": 10,
+            "n_clusters": 126,
+            "n_init": 10,
+            "random_state": 1,
+            "reassignment_ratio": 0.01,
+            "tol": 0.0,
+            "verbose": 0
+          }
+        },
+        {
+          "seed": 2,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 44311,
+            "n_assigned": 44311,
+            "coverage": 1.0,
+            "n_clusters": 126,
+            "noise_count": 0,
+            "acc_assigned": 0.4183836970503938,
+            "acc_all_noise_error": 0.4183836970503938,
+            "ari_assigned": 0.27483157322654245,
+            "nmi_assigned": 0.5674086223056971,
+            "ri_assigned": 0.9868233579175231
+          },
+          "fit_predict_seconds": 8.688200833,
+          "cpu_seconds": 11.493656999999999,
+          "process_peak_rss_bytes": 371851264,
+          "params": {
+            "batch_size": 1024,
+            "compute_labels": true,
+            "init": "k-means++",
+            "init_size": null,
+            "max_iter": 100,
+            "max_no_improvement": 10,
+            "n_clusters": 126,
+            "n_init": 10,
+            "random_state": 2,
+            "reassignment_ratio": 0.01,
+            "tol": 0.0,
+            "verbose": 0
+          }
+        },
+        {
+          "seed": 3,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 44311,
+            "n_assigned": 44311,
+            "coverage": 1.0,
+            "n_clusters": 126,
+            "noise_count": 0,
+            "acc_assigned": 0.42431901785109793,
+            "acc_all_noise_error": 0.42431901785109793,
+            "ari_assigned": 0.27407240517418946,
+            "nmi_assigned": 0.5670110183001357,
+            "ri_assigned": 0.9871179805042365
+          },
+          "fit_predict_seconds": 8.657655541,
+          "cpu_seconds": 11.39837,
+          "process_peak_rss_bytes": 407453696,
+          "params": {
+            "batch_size": 1024,
+            "compute_labels": true,
+            "init": "k-means++",
+            "init_size": null,
+            "max_iter": 100,
+            "max_no_improvement": 10,
+            "n_clusters": 126,
+            "n_init": 10,
+            "random_state": 3,
+            "reassignment_ratio": 0.01,
+            "tol": 0.0,
+            "verbose": 0
+          }
+        },
+        {
+          "seed": 4,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 44311,
+            "n_assigned": 44311,
+            "coverage": 1.0,
+            "n_clusters": 126,
+            "noise_count": 0,
+            "acc_assigned": 0.42677890365823384,
+            "acc_all_noise_error": 0.42677890365823384,
+            "ari_assigned": 0.276801449575039,
+            "nmi_assigned": 0.5729710020785675,
+            "ri_assigned": 0.9867413255625677
+          },
+          "fit_predict_seconds": 8.735253417,
+          "cpu_seconds": 11.593207000000001,
+          "process_peak_rss_bytes": 433881088,
+          "params": {
+            "batch_size": 1024,
+            "compute_labels": true,
+            "init": "k-means++",
+            "init_size": null,
+            "max_iter": 100,
+            "max_no_improvement": 10,
+            "n_clusters": 126,
+            "n_init": 10,
+            "random_state": 4,
+            "reassignment_ratio": 0.01,
+            "tol": 0.0,
+            "verbose": 0
+          }
+        }
+      ],
+      "vector_sha256": "15b2130ddedbd4de0332c70423b1f3e7a77c90111aa7c25321b7ab3999dfbcd7"
+    },
+    {
+      "run": "unknown-k-001",
+      "view": "banking77-intent",
+      "algorithm": "hdbscan",
+      "summary": {
+        "view": "banking77-intent",
+        "algorithm": "hdbscan",
+        "n_seeds": 5,
+        "acc_all_noise_error": {
+          "mean": 0.3464285714285714,
+          "sd": 0.0,
+          "n_valid": 5
+        },
+        "coverage": {
+          "mean": 0.5506493506493506,
+          "sd": 0.0,
+          "n_valid": 5
+        },
+        "acc_assigned": {
+          "mean": 0.629127358490566,
+          "sd": 0.0,
+          "n_valid": 5
+        },
+        "nmi_assigned": {
+          "mean": 0.8893409551204663,
+          "sd": 0.0,
+          "n_valid": 5
+        },
+        "ari_assigned": {
+          "mean": 0.547406196447533,
+          "sd": 0.0,
+          "n_valid": 5
+        },
+        "ri_assigned": {
+          "mean": 0.9773299660488673,
+          "sd": 0.0,
+          "n_valid": 5
+        },
+        "n_clusters": {
+          "mean": 44.0,
+          "sd": 0.0,
+          "n_valid": 5
+        },
+        "noise_count": {
+          "mean": 1384.0,
+          "sd": 0.0,
+          "n_valid": 5
+        },
+        "fit_predict_seconds": {
+          "mean": 14.66443539998727,
+          "sd": 0.06065606556173484,
+          "n_valid": 5
+        },
+        "cpu_seconds": {
+          "mean": 14.498688000000001,
+          "sd": 0.05368071780444026,
+          "n_valid": 5
+        },
+        "process_peak_rss_bytes": {
+          "mean": 151280025.6,
+          "sd": 1354908.2612829548,
+          "n_valid": 5
+        }
+      },
+      "seeds": [
+        {
+          "seed": 0,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 3080,
+            "n_assigned": 1696,
+            "coverage": 0.5506493506493506,
+            "n_clusters": 44,
+            "noise_count": 1384,
+            "acc_assigned": 0.629127358490566,
+            "acc_all_noise_error": 0.3464285714285714,
+            "ari_assigned": 0.547406196447533,
+            "nmi_assigned": 0.8893409551204663,
+            "ri_assigned": 0.9773299660488673
+          },
+          "fit_predict_seconds": 14.665706540981773,
+          "cpu_seconds": 14.537821,
+          "process_peak_rss_bytes": 151994368,
+          "params": {
+            "name": "hdbscan",
+            "preset": "eom-mcs15-ms5-v1"
+          }
+        },
+        {
+          "seed": 1,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 3080,
+            "n_assigned": 1696,
+            "coverage": 0.5506493506493506,
+            "n_clusters": 44,
+            "noise_count": 1384,
+            "acc_assigned": 0.629127358490566,
+            "acc_all_noise_error": 0.3464285714285714,
+            "ari_assigned": 0.547406196447533,
+            "nmi_assigned": 0.8893409551204663,
+            "ri_assigned": 0.9773299660488673
+          },
+          "fit_predict_seconds": 14.756965334003326,
+          "cpu_seconds": 14.566042,
+          "process_peak_rss_bytes": 149733376,
+          "params": {
+            "name": "hdbscan",
+            "preset": "eom-mcs15-ms5-v1"
+          }
+        },
+        {
+          "seed": 2,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 3080,
+            "n_assigned": 1696,
+            "coverage": 0.5506493506493506,
+            "n_clusters": 44,
+            "noise_count": 1384,
+            "acc_assigned": 0.629127358490566,
+            "acc_all_noise_error": 0.3464285714285714,
+            "ari_assigned": 0.547406196447533,
+            "nmi_assigned": 0.8893409551204663,
+            "ri_assigned": 0.9773299660488673
+          },
+          "fit_predict_seconds": 14.593971957976464,
+          "cpu_seconds": 14.441447,
+          "process_peak_rss_bytes": 152715264,
+          "params": {
+            "name": "hdbscan",
+            "preset": "eom-mcs15-ms5-v1"
+          }
+        },
+        {
+          "seed": 3,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 3080,
+            "n_assigned": 1696,
+            "coverage": 0.5506493506493506,
+            "n_clusters": 44,
+            "noise_count": 1384,
+            "acc_assigned": 0.629127358490566,
+            "acc_all_noise_error": 0.3464285714285714,
+            "ari_assigned": 0.547406196447533,
+            "nmi_assigned": 0.8893409551204663,
+            "ri_assigned": 0.9773299660488673
+          },
+          "fit_predict_seconds": 14.631367874972057,
+          "cpu_seconds": 14.496081,
+          "process_peak_rss_bytes": 149929984,
+          "params": {
+            "name": "hdbscan",
+            "preset": "eom-mcs15-ms5-v1"
+          }
+        },
+        {
+          "seed": 4,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 3080,
+            "n_assigned": 1696,
+            "coverage": 0.5506493506493506,
+            "n_clusters": 44,
+            "noise_count": 1384,
+            "acc_assigned": 0.629127358490566,
+            "acc_all_noise_error": 0.3464285714285714,
+            "ari_assigned": 0.547406196447533,
+            "nmi_assigned": 0.8893409551204663,
+            "ri_assigned": 0.9773299660488673
+          },
+          "fit_predict_seconds": 14.674165292002726,
+          "cpu_seconds": 14.452049,
+          "process_peak_rss_bytes": 152027136,
+          "params": {
+            "name": "hdbscan",
+            "preset": "eom-mcs15-ms5-v1"
+          }
+        }
+      ],
+      "vector_sha256": "5b46b7ea8456e2fe55bcb8ac8bafd95e49622bfd4dd6c23e7cddac2916011692"
+    },
+    {
+      "run": "unknown-k-001",
+      "view": "banking77-intent",
+      "algorithm": "bertopic_pipeline",
+      "summary": {
+        "view": "banking77-intent",
+        "algorithm": "bertopic_pipeline",
+        "n_seeds": 5,
+        "acc_all_noise_error": {
+          "mean": 0.657077922077922,
+          "sd": 0.012385416807780252,
+          "n_valid": 5
+        },
+        "coverage": {
+          "mean": 0.9342857142857144,
+          "sd": 0.007511867262692119,
+          "n_valid": 5
+        },
+        "acc_assigned": {
+          "mean": 0.7033554089759416,
+          "sd": 0.015798214939462523,
+          "n_valid": 5
+        },
+        "nmi_assigned": {
+          "mean": 0.861158946088932,
+          "sd": 0.0029842799602280475,
+          "n_valid": 5
+        },
+        "ari_assigned": {
+          "mean": 0.638042680957034,
+          "sd": 0.016379962945818255,
+          "n_valid": 5
+        },
+        "ri_assigned": {
+          "mean": 0.9906347616071525,
+          "sd": 0.000710783372813619,
+          "n_valid": 5
+        },
+        "n_clusters": {
+          "mean": 88.2,
+          "sd": 1.7888543819998317,
+          "n_valid": 5
+        },
+        "noise_count": {
+          "mean": 202.4,
+          "sd": 23.13655116909173,
+          "n_valid": 5
+        },
+        "fit_predict_seconds": {
+          "mean": 20.263366049795877,
+          "sd": 0.17845323709025968,
+          "n_valid": 5
+        },
+        "cpu_seconds": {
+          "mean": 19.7884222,
+          "sd": 0.13054756823166033,
+          "n_valid": 5
+        },
+        "process_peak_rss_bytes": {
+          "mean": 488338227.2,
+          "sd": 20405357.408970498,
+          "n_valid": 5
+        }
+      },
+      "seeds": [
+        {
+          "seed": 0,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 3080,
+            "n_assigned": 2850,
+            "coverage": 0.9253246753246753,
+            "n_clusters": 90,
+            "noise_count": 230,
+            "acc_assigned": 0.720701754385965,
+            "acc_all_noise_error": 0.6668831168831169,
+            "ari_assigned": 0.6583983365815488,
+            "nmi_assigned": 0.8653338346839419,
+            "ri_assigned": 0.9914318966950546
+          },
+          "fit_predict_seconds": 20.48821916698944,
+          "cpu_seconds": 19.784824,
+          "process_peak_rss_bytes": 522436608,
+          "params": {
+            "name": "bertopic_pipeline",
+            "seed": 0
+          }
+        },
+        {
+          "seed": 1,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 3080,
+            "n_assigned": 2861,
+            "coverage": 0.9288961038961039,
+            "n_clusters": 90,
+            "noise_count": 219,
+            "acc_assigned": 0.7022020272631947,
+            "acc_all_noise_error": 0.6522727272727272,
+            "ari_assigned": 0.6359241356895595,
+            "nmi_assigned": 0.8587722415075372,
+            "ri_assigned": 0.9908250086159908
+          },
+          "fit_predict_seconds": 20.16057012497913,
+          "cpu_seconds": 19.732437,
+          "process_peak_rss_bytes": 489406464,
+          "params": {
+            "name": "bertopic_pipeline",
+            "seed": 1
+          }
+        },
+        {
+          "seed": 2,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 3080,
+            "n_assigned": 2875,
+            "coverage": 0.9334415584415584,
+            "n_clusters": 88,
+            "noise_count": 205,
+            "acc_assigned": 0.7060869565217391,
+            "acc_all_noise_error": 0.6590909090909091,
+            "ari_assigned": 0.6414464999165997,
+            "nmi_assigned": 0.8606271401939642,
+            "ri_assigned": 0.9907798251187558
+          },
+          "fit_predict_seconds": 20.424730958009604,
+          "cpu_seconds": 20.014056,
+          "process_peak_rss_bytes": 470892544,
+          "params": {
+            "name": "bertopic_pipeline",
+            "seed": 2
+          }
+        },
+        {
+          "seed": 3,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 3080,
+            "n_assigned": 2902,
+            "coverage": 0.9422077922077922,
+            "n_clusters": 87,
+            "noise_count": 178,
+            "acc_assigned": 0.709855272226051,
+            "acc_all_noise_error": 0.6688311688311688,
+            "ari_assigned": 0.6415159369500985,
+            "nmi_assigned": 0.8629209027873033,
+            "ri_assigned": 0.9906546163529723
+          },
+          "fit_predict_seconds": 20.126833208021708,
+          "cpu_seconds": 19.692622,
+          "process_peak_rss_bytes": 483966976,
+          "params": {
+            "name": "bertopic_pipeline",
+            "seed": 3
+          }
+        },
+        {
+          "seed": 4,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 3080,
+            "n_assigned": 2900,
+            "coverage": 0.9415584415584416,
+            "n_clusters": 86,
+            "noise_count": 180,
+            "acc_assigned": 0.6779310344827586,
+            "acc_all_noise_error": 0.6383116883116883,
+            "ari_assigned": 0.6129284956473633,
+            "nmi_assigned": 0.8581406112719141,
+            "ri_assigned": 0.9894824612529886
+          },
+          "fit_predict_seconds": 20.116476790979505,
+          "cpu_seconds": 19.718172,
+          "process_peak_rss_bytes": 474988544,
+          "params": {
+            "name": "bertopic_pipeline",
+            "seed": 4
+          }
+        }
+      ],
+      "vector_sha256": "5b46b7ea8456e2fe55bcb8ac8bafd95e49622bfd4dd6c23e7cddac2916011692"
+    },
+    {
+      "run": "unknown-k-001",
+      "view": "banking77-intent",
+      "algorithm": "evoc",
+      "summary": {
+        "view": "banking77-intent",
+        "algorithm": "evoc",
+        "n_seeds": 5,
+        "acc_all_noise_error": {
+          "mean": 0.6346103896103897,
+          "sd": 0.011626369055415238,
+          "n_valid": 5
+        },
+        "coverage": {
+          "mean": 0.8735714285714286,
+          "sd": 0.009695785912591596,
+          "n_valid": 5
+        },
+        "acc_assigned": {
+          "mean": 0.7264327178921544,
+          "sd": 0.00848235741893406,
+          "n_valid": 5
+        },
+        "nmi_assigned": {
+          "mean": 0.8761445481214164,
+          "sd": 0.003066673658170104,
+          "n_valid": 5
+        },
+        "ari_assigned": {
+          "mean": 0.6728314846906798,
+          "sd": 0.0032271362609137605,
+          "n_valid": 5
+        },
+        "ri_assigned": {
+          "mean": 0.9918007760882765,
+          "sd": 0.00014581486489447055,
+          "n_valid": 5
+        },
+        "n_clusters": {
+          "mean": 93.8,
+          "sd": 4.147288270665544,
+          "n_valid": 5
+        },
+        "noise_count": {
+          "mean": 389.4,
+          "sd": 29.863020610782158,
+          "n_valid": 5
+        },
+        "fit_predict_seconds": {
+          "mean": 46.542599783593325,
+          "sd": 0.4399730914883518,
+          "n_valid": 5
+        },
+        "cpu_seconds": {
+          "mean": 45.6127564,
+          "sd": 0.3959415446051342,
+          "n_valid": 5
+        },
+        "process_peak_rss_bytes": {
+          "mean": 573413785.6,
+          "sd": 28229633.426349353,
+          "n_valid": 5
+        }
+      },
+      "seeds": [
+        {
+          "seed": 0,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 3080,
+            "n_assigned": 2660,
+            "coverage": 0.8636363636363636,
+            "n_clusters": 96,
+            "noise_count": 420,
+            "acc_assigned": 0.7315789473684211,
+            "acc_all_noise_error": 0.631818181818182,
+            "ari_assigned": 0.6762349731633509,
+            "nmi_assigned": 0.8770334470658643,
+            "ri_assigned": 0.9919900352611503
+          },
+          "fit_predict_seconds": 47.02484058396658,
+          "cpu_seconds": 46.090621,
+          "process_peak_rss_bytes": 534315008,
+          "params": {
+            "name": "evoc",
+            "seed": 0
+          }
+        },
+        {
+          "seed": 1,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 3080,
+            "n_assigned": 2700,
+            "coverage": 0.8766233766233766,
+            "n_clusters": 98,
+            "noise_count": 380,
+            "acc_assigned": 0.7196296296296296,
+            "acc_all_noise_error": 0.6308441558441559,
+            "ari_assigned": 0.6698363164603509,
+            "nmi_assigned": 0.8753035196279015,
+            "ri_assigned": 0.9918820413596257
+          },
+          "fit_predict_seconds": 46.9304304170073,
+          "cpu_seconds": 45.957488,
+          "process_peak_rss_bytes": 581025792,
+          "params": {
+            "name": "evoc",
+            "seed": 1
+          }
+        },
+        {
+          "seed": 2,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 3080,
+            "n_assigned": 2705,
+            "coverage": 0.8782467532467533,
+            "n_clusters": 88,
+            "noise_count": 375,
+            "acc_assigned": 0.7367837338262477,
+            "acc_all_noise_error": 0.6470779220779221,
+            "ari_assigned": 0.6737041273953169,
+            "nmi_assigned": 0.8760204262239228,
+            "ri_assigned": 0.9916779686970217
+          },
+          "fit_predict_seconds": 46.54056799999671,
+          "cpu_seconds": 45.500422,
+          "process_peak_rss_bytes": 558399488,
+          "params": {
+            "name": "evoc",
+            "seed": 2
+          }
+        },
+        {
+          "seed": 3,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 3080,
+            "n_assigned": 2660,
+            "coverage": 0.8636363636363636,
+            "n_clusters": 96,
+            "noise_count": 420,
+            "acc_assigned": 0.7161654135338346,
+            "acc_all_noise_error": 0.6185064935064936,
+            "ari_assigned": 0.675315177423978,
+            "nmi_assigned": 0.8804313304356394,
+            "ri_assigned": 0.9918181124115291
+          },
+          "fit_predict_seconds": 46.19397887500236,
+          "cpu_seconds": 45.344313,
+          "process_peak_rss_bytes": 584531968,
+          "params": {
+            "name": "evoc",
+            "seed": 3
+          }
+        },
+        {
+          "seed": 4,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 3080,
+            "n_assigned": 2728,
+            "coverage": 0.8857142857142857,
+            "n_clusters": 91,
+            "noise_count": 352,
+            "acc_assigned": 0.7280058651026393,
+            "acc_all_noise_error": 0.6448051948051948,
+            "ari_assigned": 0.6690668290104022,
+            "nmi_assigned": 0.8719340172537536,
+            "ri_assigned": 0.9916357227120561
+          },
+          "fit_predict_seconds": 46.023181041993666,
+          "cpu_seconds": 45.170938,
+          "process_peak_rss_bytes": 608796672,
+          "params": {
+            "name": "evoc",
+            "seed": 4
+          }
+        }
+      ],
+      "vector_sha256": "5b46b7ea8456e2fe55bcb8ac8bafd95e49622bfd4dd6c23e7cddac2916011692"
+    },
+    {
+      "run": "unknown-k-001",
+      "view": "clinc150-intent",
+      "algorithm": "hdbscan",
+      "summary": {
+        "view": "clinc150-intent",
+        "algorithm": "hdbscan",
+        "n_seeds": 5,
+        "acc_all_noise_error": {
+          "mean": 0.3695555555555556,
+          "sd": 0.0,
+          "n_valid": 5
+        },
+        "coverage": {
+          "mean": 0.546,
+          "sd": 0.0,
+          "n_valid": 5
+        },
+        "acc_assigned": {
+          "mean": 0.6768416768416768,
+          "sd": 0.0,
+          "n_valid": 5
+        },
+        "nmi_assigned": {
+          "mean": 0.92226988168456,
+          "sd": 0.0,
+          "n_valid": 5
+        },
+        "ari_assigned": {
+          "mean": 0.6211882032520829,
+          "sd": 0.0,
+          "n_valid": 5
+        },
+        "ri_assigned": {
+          "mean": 0.9900016439104388,
+          "sd": 1.2412670766236366e-16,
+          "n_valid": 5
+        },
+        "n_clusters": {
+          "mean": 75.0,
+          "sd": 0.0,
+          "n_valid": 5
+        },
+        "noise_count": {
+          "mean": 2043.0,
+          "sd": 0.0,
+          "n_valid": 5
+        },
+        "fit_predict_seconds": {
+          "mean": 30.347418349795042,
+          "sd": 0.03679242880529978,
+          "n_valid": 5
+        },
+        "cpu_seconds": {
+          "mean": 29.980677200000002,
+          "sd": 0.05362873645444292,
+          "n_valid": 5
+        },
+        "process_peak_rss_bytes": {
+          "mean": 169738240.0,
+          "sd": 1096137.3550135037,
+          "n_valid": 5
+        }
+      },
+      "seeds": [
+        {
+          "seed": 0,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 2457,
+            "coverage": 0.546,
+            "n_clusters": 75,
+            "noise_count": 2043,
+            "acc_assigned": 0.6768416768416768,
+            "acc_all_noise_error": 0.3695555555555556,
+            "ari_assigned": 0.6211882032520829,
+            "nmi_assigned": 0.92226988168456,
+            "ri_assigned": 0.9900016439104387
+          },
+          "fit_predict_seconds": 30.361763041000813,
+          "cpu_seconds": 29.982824,
+          "process_peak_rss_bytes": 168542208,
+          "params": {
+            "name": "hdbscan",
+            "preset": "eom-mcs15-ms5-v1"
+          }
+        },
+        {
+          "seed": 1,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 2457,
+            "coverage": 0.546,
+            "n_clusters": 75,
+            "noise_count": 2043,
+            "acc_assigned": 0.6768416768416768,
+            "acc_all_noise_error": 0.3695555555555556,
+            "ari_assigned": 0.6211882032520829,
+            "nmi_assigned": 0.92226988168456,
+            "ri_assigned": 0.9900016439104387
+          },
+          "fit_predict_seconds": 30.322054417047184,
+          "cpu_seconds": 29.923773999999998,
+          "process_peak_rss_bytes": 170803200,
+          "params": {
+            "name": "hdbscan",
+            "preset": "eom-mcs15-ms5-v1"
+          }
+        },
+        {
+          "seed": 2,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 2457,
+            "coverage": 0.546,
+            "n_clusters": 75,
+            "noise_count": 2043,
+            "acc_assigned": 0.6768416768416768,
+            "acc_all_noise_error": 0.3695555555555556,
+            "ari_assigned": 0.6211882032520829,
+            "nmi_assigned": 0.92226988168456,
+            "ri_assigned": 0.9900016439104387
+          },
+          "fit_predict_seconds": 30.36726837500464,
+          "cpu_seconds": 30.008485,
+          "process_peak_rss_bytes": 170819584,
+          "params": {
+            "name": "hdbscan",
+            "preset": "eom-mcs15-ms5-v1"
+          }
+        },
+        {
+          "seed": 3,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 2457,
+            "coverage": 0.546,
+            "n_clusters": 75,
+            "noise_count": 2043,
+            "acc_assigned": 0.6768416768416768,
+            "acc_all_noise_error": 0.3695555555555556,
+            "ari_assigned": 0.6211882032520829,
+            "nmi_assigned": 0.92226988168456,
+            "ri_assigned": 0.9900016439104387
+          },
+          "fit_predict_seconds": 30.297546290967148,
+          "cpu_seconds": 29.934464,
+          "process_peak_rss_bytes": 169820160,
+          "params": {
+            "name": "hdbscan",
+            "preset": "eom-mcs15-ms5-v1"
+          }
+        },
+        {
+          "seed": 4,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 2457,
+            "coverage": 0.546,
+            "n_clusters": 75,
+            "noise_count": 2043,
+            "acc_assigned": 0.6768416768416768,
+            "acc_all_noise_error": 0.3695555555555556,
+            "ari_assigned": 0.6211882032520829,
+            "nmi_assigned": 0.92226988168456,
+            "ri_assigned": 0.9900016439104387
+          },
+          "fit_predict_seconds": 30.38845962495543,
+          "cpu_seconds": 30.053839,
+          "process_peak_rss_bytes": 168706048,
+          "params": {
+            "name": "hdbscan",
+            "preset": "eom-mcs15-ms5-v1"
+          }
+        }
+      ],
+      "vector_sha256": "e00bfb74a0e435c27f09ee68096f739ff797a9da2d485e139a5aa05265fddbc6"
+    },
+    {
+      "run": "unknown-k-001",
+      "view": "clinc150-intent",
+      "algorithm": "bertopic_pipeline",
+      "summary": {
+        "view": "clinc150-intent",
+        "algorithm": "bertopic_pipeline",
+        "n_seeds": 5,
+        "acc_all_noise_error": {
+          "mean": 0.8007555555555556,
+          "sd": 0.0027152973145077265,
+          "n_valid": 5
+        },
+        "coverage": {
+          "mean": 0.9472888888888888,
+          "sd": 0.004243804489277252,
+          "n_valid": 5
+        },
+        "acc_assigned": {
+          "mean": 0.8453178386623519,
+          "sd": 0.0020581428288802494,
+          "n_valid": 5
+        },
+        "nmi_assigned": {
+          "mean": 0.9381228915162169,
+          "sd": 0.00054497679001148,
+          "n_valid": 5
+        },
+        "ari_assigned": {
+          "mean": 0.7932692567852172,
+          "sd": 0.0028031578595811135,
+          "n_valid": 5
+        },
+        "ri_assigned": {
+          "mean": 0.997099879560559,
+          "sd": 6.453555246312084e-05,
+          "n_valid": 5
+        },
+        "n_clusters": {
+          "mean": 139.4,
+          "sd": 2.073644135332772,
+          "n_valid": 5
+        },
+        "noise_count": {
+          "mean": 237.2,
+          "sd": 19.097120201747696,
+          "n_valid": 5
+        },
+        "fit_predict_seconds": {
+          "mean": 28.156022950203624,
+          "sd": 0.19019018035547183,
+          "n_valid": 5
+        },
+        "cpu_seconds": {
+          "mean": 27.4743852,
+          "sd": 0.19653614618741236,
+          "n_valid": 5
+        },
+        "process_peak_rss_bytes": {
+          "mean": 522662707.2,
+          "sd": 25682444.962034963,
+          "n_valid": 5
+        }
+      },
+      "seeds": [
+        {
+          "seed": 0,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 4262,
+            "coverage": 0.9471111111111111,
+            "n_clusters": 138,
+            "noise_count": 238,
+            "acc_assigned": 0.8442045987799155,
+            "acc_all_noise_error": 0.7995555555555556,
+            "ari_assigned": 0.7964023154637613,
+            "nmi_assigned": 0.938843022276819,
+            "ri_assigned": 0.9971459851450262
+          },
+          "fit_predict_seconds": 28.24178329197457,
+          "cpu_seconds": 27.39057,
+          "process_peak_rss_bytes": 567640064,
+          "params": {
+            "name": "bertopic_pipeline",
+            "seed": 0
+          }
+        },
+        {
+          "seed": 1,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 4245,
+            "coverage": 0.9433333333333334,
+            "n_clusters": 139,
+            "noise_count": 255,
+            "acc_assigned": 0.8482921083627798,
+            "acc_all_noise_error": 0.8002222222222223,
+            "ari_assigned": 0.7890222328654384,
+            "nmi_assigned": 0.9385372996587746,
+            "ri_assigned": 0.9970088444685714
+          },
+          "fit_predict_seconds": 28.153013917035423,
+          "cpu_seconds": 27.512445,
+          "process_peak_rss_bytes": 503955456,
+          "params": {
+            "name": "bertopic_pipeline",
+            "seed": 1
+          }
+        },
+        {
+          "seed": 2,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 4248,
+            "coverage": 0.944,
+            "n_clusters": 137,
+            "noise_count": 252,
+            "acc_assigned": 0.8465160075329566,
+            "acc_all_noise_error": 0.7991111111111111,
+            "ari_assigned": 0.7924784706913485,
+            "nmi_assigned": 0.9376376714133583,
+            "ri_assigned": 0.9970581870796579
+          },
+          "fit_predict_seconds": 28.21698079199996,
+          "cpu_seconds": 27.570429,
+          "process_peak_rss_bytes": 517603328,
+          "params": {
+            "name": "bertopic_pipeline",
+            "seed": 2
+          }
+        },
+        {
+          "seed": 3,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 4293,
+            "coverage": 0.954,
+            "n_clusters": 142,
+            "noise_count": 207,
+            "acc_assigned": 0.8443978569764733,
+            "acc_all_noise_error": 0.8055555555555556,
+            "ari_assigned": 0.7949759949697348,
+            "nmi_assigned": 0.9376378725432455,
+            "ri_assigned": 0.9971626365033435
+          },
+          "fit_predict_seconds": 28.332445750012994,
+          "cpu_seconds": 27.709571,
+          "process_peak_rss_bytes": 509329408,
+          "params": {
+            "name": "bertopic_pipeline",
+            "seed": 3
+          }
+        },
+        {
+          "seed": 4,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 4266,
+            "coverage": 0.948,
+            "n_clusters": 141,
+            "noise_count": 234,
+            "acc_assigned": 0.8431786216596343,
+            "acc_all_noise_error": 0.7993333333333333,
+            "ari_assigned": 0.7934672699358032,
+            "nmi_assigned": 0.9379585916888861,
+            "ri_assigned": 0.9971237446061967
+          },
+          "fit_predict_seconds": 27.835890999995172,
+          "cpu_seconds": 27.188911,
+          "process_peak_rss_bytes": 514785280,
+          "params": {
+            "name": "bertopic_pipeline",
+            "seed": 4
+          }
+        }
+      ],
+      "vector_sha256": "e00bfb74a0e435c27f09ee68096f739ff797a9da2d485e139a5aa05265fddbc6"
+    },
+    {
+      "run": "unknown-k-001",
+      "view": "clinc150-intent",
+      "algorithm": "evoc",
+      "summary": {
+        "view": "clinc150-intent",
+        "algorithm": "evoc",
+        "n_seeds": 5,
+        "acc_all_noise_error": {
+          "mean": 0.7449333333333333,
+          "sd": 0.01160608610031398,
+          "n_valid": 5
+        },
+        "coverage": {
+          "mean": 0.9132,
+          "sd": 0.019450856085764856,
+          "n_valid": 5
+        },
+        "acc_assigned": {
+          "mean": 0.8159691051876183,
+          "sd": 0.01808037177568289,
+          "n_valid": 5
+        },
+        "nmi_assigned": {
+          "mean": 0.9392062502593888,
+          "sd": 0.003954467758926508,
+          "n_valid": 5
+        },
+        "ari_assigned": {
+          "mean": 0.7793851723056201,
+          "sd": 0.024637193953244915,
+          "n_valid": 5
+        },
+        "ri_assigned": {
+          "mean": 0.996758937561461,
+          "sd": 0.0005096694333785568,
+          "n_valid": 5
+        },
+        "n_clusters": {
+          "mean": 136.2,
+          "sd": 15.594870951694341,
+          "n_valid": 5
+        },
+        "noise_count": {
+          "mean": 390.6,
+          "sd": 87.52885238594186,
+          "n_valid": 5
+        },
+        "fit_predict_seconds": {
+          "mean": 45.596290983597285,
+          "sd": 1.1249636292665195,
+          "n_valid": 5
+        },
+        "cpu_seconds": {
+          "mean": 44.658048799999996,
+          "sd": 1.088540449320649,
+          "n_valid": 5
+        },
+        "process_peak_rss_bytes": {
+          "mean": 667425177.6,
+          "sd": 55438980.47941023,
+          "n_valid": 5
+        }
+      },
+      "seeds": [
+        {
+          "seed": 0,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 3990,
+            "coverage": 0.8866666666666667,
+            "n_clusters": 162,
+            "noise_count": 510,
+            "acc_assigned": 0.8225563909774436,
+            "acc_all_noise_error": 0.7293333333333333,
+            "ari_assigned": 0.7952706255716385,
+            "nmi_assigned": 0.9399909137771679,
+            "ri_assigned": 0.9972304790554979
+          },
+          "fit_predict_seconds": 43.87742224999238,
+          "cpu_seconds": 43.108478,
+          "process_peak_rss_bytes": 707182592,
+          "params": {
+            "name": "evoc",
+            "seed": 0
+          }
+        },
+        {
+          "seed": 1,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 4105,
+            "coverage": 0.9122222222222223,
+            "n_clusters": 127,
+            "noise_count": 395,
+            "acc_assigned": 0.8282582216808769,
+            "acc_all_noise_error": 0.7555555555555555,
+            "ari_assigned": 0.7945914046900131,
+            "nmi_assigned": 0.944233541665003,
+            "ri_assigned": 0.9969301213515587
+          },
+          "fit_predict_seconds": 45.84822483395692,
+          "cpu_seconds": 44.772986,
+          "process_peak_rss_bytes": 598474752,
+          "params": {
+            "name": "evoc",
+            "seed": 1
+          }
+        },
+        {
+          "seed": 2,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 4220,
+            "coverage": 0.9377777777777778,
+            "n_clusters": 126,
+            "noise_count": 280,
+            "acc_assigned": 0.7964454976303318,
+            "acc_all_noise_error": 0.7468888888888889,
+            "ari_assigned": 0.7427749177188835,
+            "nmi_assigned": 0.9341559042495735,
+            "ri_assigned": 0.9960358747215542
+          },
+          "fit_predict_seconds": 45.15033208299428,
+          "cpu_seconds": 44.090876,
+          "process_peak_rss_bytes": 617840640,
+          "params": {
+            "name": "evoc",
+            "seed": 2
+          }
+        },
+        {
+          "seed": 3,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 4071,
+            "coverage": 0.9046666666666666,
+            "n_clusters": 140,
+            "noise_count": 429,
+            "acc_assigned": 0.8354212724146401,
+            "acc_all_noise_error": 0.7557777777777778,
+            "ari_assigned": 0.799303275676989,
+            "nmi_assigned": 0.9411563132832795,
+            "ri_assigned": 0.9971605959815245
+          },
+          "fit_predict_seconds": 46.641427292022854,
+          "cpu_seconds": 45.659846,
+          "process_peak_rss_bytes": 720912384,
+          "params": {
+            "name": "evoc",
+            "seed": 3
+          }
+        },
+        {
+          "seed": 4,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 4161,
+            "coverage": 0.9246666666666666,
+            "n_clusters": 126,
+            "noise_count": 339,
+            "acc_assigned": 0.7971641432347993,
+            "acc_all_noise_error": 0.7371111111111112,
+            "ari_assigned": 0.7649856378705765,
+            "nmi_assigned": 0.9364945783219195,
+            "ri_assigned": 0.9964376166971697
+          },
+          "fit_predict_seconds": 46.46404845901998,
+          "cpu_seconds": 45.658058,
+          "process_peak_rss_bytes": 692715520,
+          "params": {
+            "name": "evoc",
+            "seed": 4
+          }
+        }
+      ],
+      "vector_sha256": "e00bfb74a0e435c27f09ee68096f739ff797a9da2d485e139a5aa05265fddbc6"
+    },
+    {
+      "run": "unknown-k-001",
+      "view": "clinc150-domain",
+      "algorithm": "hdbscan",
+      "summary": {
+        "view": "clinc150-domain",
+        "algorithm": "hdbscan",
+        "n_seeds": 5,
+        "acc_all_noise_error": {
+          "mean": 0.1431111111111111,
+          "sd": 0.0,
+          "n_valid": 5
+        },
+        "coverage": {
+          "mean": 0.546,
+          "sd": 0.0,
+          "n_valid": 5
+        },
+        "acc_assigned": {
+          "mean": 0.2621082621082621,
+          "sd": 0.0,
+          "n_valid": 5
+        },
+        "nmi_assigned": {
+          "mean": 0.6752894219627167,
+          "sd": 0.0,
+          "n_valid": 5
+        },
+        "ari_assigned": {
+          "mean": 0.25077180618755235,
+          "sd": 0.0,
+          "n_valid": 5
+        },
+        "ri_assigned": {
+          "mean": 0.9123762592817968,
+          "sd": 0.0,
+          "n_valid": 5
+        },
+        "n_clusters": {
+          "mean": 75.0,
+          "sd": 0.0,
+          "n_valid": 5
+        },
+        "noise_count": {
+          "mean": 2043.0,
+          "sd": 0.0,
+          "n_valid": 5
+        },
+        "fit_predict_seconds": {
+          "mean": 30.75979336660821,
+          "sd": 0.3136470734494751,
+          "n_valid": 5
+        },
+        "cpu_seconds": {
+          "mean": 30.3901994,
+          "sd": 0.24669664437482697,
+          "n_valid": 5
+        },
+        "process_peak_rss_bytes": {
+          "mean": 169911910.4,
+          "sd": 1280134.6693956852,
+          "n_valid": 5
+        }
+      },
+      "seeds": [
+        {
+          "seed": 0,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 2457,
+            "coverage": 0.546,
+            "n_clusters": 75,
+            "noise_count": 2043,
+            "acc_assigned": 0.2621082621082621,
+            "acc_all_noise_error": 0.1431111111111111,
+            "ari_assigned": 0.25077180618755235,
+            "nmi_assigned": 0.6752894219627167,
+            "ri_assigned": 0.9123762592817968
+          },
+          "fit_predict_seconds": 30.549204125010874,
+          "cpu_seconds": 30.212789,
+          "process_peak_rss_bytes": 169017344,
+          "params": {
+            "name": "hdbscan",
+            "preset": "eom-mcs15-ms5-v1"
+          }
+        },
+        {
+          "seed": 1,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 2457,
+            "coverage": 0.546,
+            "n_clusters": 75,
+            "noise_count": 2043,
+            "acc_assigned": 0.2621082621082621,
+            "acc_all_noise_error": 0.1431111111111111,
+            "ari_assigned": 0.25077180618755235,
+            "nmi_assigned": 0.6752894219627167,
+            "ri_assigned": 0.9123762592817968
+          },
+          "fit_predict_seconds": 30.434867915988434,
+          "cpu_seconds": 30.135640000000002,
+          "process_peak_rss_bytes": 170115072,
+          "params": {
+            "name": "hdbscan",
+            "preset": "eom-mcs15-ms5-v1"
+          }
+        },
+        {
+          "seed": 2,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 2457,
+            "coverage": 0.546,
+            "n_clusters": 75,
+            "noise_count": 2043,
+            "acc_assigned": 0.2621082621082621,
+            "acc_all_noise_error": 0.1431111111111111,
+            "ari_assigned": 0.25077180618755235,
+            "nmi_assigned": 0.6752894219627167,
+            "ri_assigned": 0.9123762592817968
+          },
+          "fit_predict_seconds": 31.102303833991755,
+          "cpu_seconds": 30.684004,
+          "process_peak_rss_bytes": 171442176,
+          "params": {
+            "name": "hdbscan",
+            "preset": "eom-mcs15-ms5-v1"
+          }
+        },
+        {
+          "seed": 3,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 2457,
+            "coverage": 0.546,
+            "n_clusters": 75,
+            "noise_count": 2043,
+            "acc_assigned": 0.2621082621082621,
+            "acc_all_noise_error": 0.1431111111111111,
+            "ari_assigned": 0.25077180618755235,
+            "nmi_assigned": 0.6752894219627167,
+            "ri_assigned": 0.9123762592817968
+          },
+          "fit_predict_seconds": 30.62430966703687,
+          "cpu_seconds": 30.299132,
+          "process_peak_rss_bytes": 168263680,
+          "params": {
+            "name": "hdbscan",
+            "preset": "eom-mcs15-ms5-v1"
+          }
+        },
+        {
+          "seed": 4,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 2457,
+            "coverage": 0.546,
+            "n_clusters": 75,
+            "noise_count": 2043,
+            "acc_assigned": 0.2621082621082621,
+            "acc_all_noise_error": 0.1431111111111111,
+            "ari_assigned": 0.25077180618755235,
+            "nmi_assigned": 0.6752894219627167,
+            "ri_assigned": 0.9123762592817968
+          },
+          "fit_predict_seconds": 31.088281291013118,
+          "cpu_seconds": 30.619432,
+          "process_peak_rss_bytes": 170721280,
+          "params": {
+            "name": "hdbscan",
+            "preset": "eom-mcs15-ms5-v1"
+          }
+        }
+      ],
+      "vector_sha256": "e00bfb74a0e435c27f09ee68096f739ff797a9da2d485e139a5aa05265fddbc6"
+    },
+    {
+      "run": "unknown-k-001",
+      "view": "clinc150-domain",
+      "algorithm": "bertopic_pipeline",
+      "summary": {
+        "view": "clinc150-domain",
+        "algorithm": "bertopic_pipeline",
+        "n_seeds": 5,
+        "acc_all_noise_error": {
+          "mean": 0.10311111111111111,
+          "sd": 0.004721895413527948,
+          "n_valid": 5
+        },
+        "coverage": {
+          "mean": 0.9472888888888888,
+          "sd": 0.004243804489277252,
+          "n_valid": 5
+        },
+        "acc_assigned": {
+          "mean": 0.1088631324943475,
+          "sd": 0.005351925951835084,
+          "n_valid": 5
+        },
+        "nmi_assigned": {
+          "mean": 0.6059177263535306,
+          "sd": 0.002039377609815682,
+          "n_valid": 5
+        },
+        "ari_assigned": {
+          "mean": 0.11642031334626865,
+          "sd": 0.001670042719501996,
+          "n_valid": 5
+        },
+        "ri_assigned": {
+          "mean": 0.906332103014778,
+          "sd": 0.00013646043226448205,
+          "n_valid": 5
+        },
+        "n_clusters": {
+          "mean": 139.4,
+          "sd": 2.073644135332772,
+          "n_valid": 5
+        },
+        "noise_count": {
+          "mean": 237.2,
+          "sd": 19.097120201747696,
+          "n_valid": 5
+        },
+        "fit_predict_seconds": {
+          "mean": 29.05962841679575,
+          "sd": 0.46747463814100565,
+          "n_valid": 5
+        },
+        "cpu_seconds": {
+          "mean": 28.351509399999998,
+          "sd": 0.38202483486718425,
+          "n_valid": 5
+        },
+        "process_peak_rss_bytes": {
+          "mean": 533217280.0,
+          "sd": 26501121.26615144,
+          "n_valid": 5
+        }
+      },
+      "seeds": [
+        {
+          "seed": 0,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 4262,
+            "coverage": 0.9471111111111111,
+            "n_clusters": 138,
+            "noise_count": 238,
+            "acc_assigned": 0.10558423275457532,
+            "acc_all_noise_error": 0.1,
+            "ari_assigned": 0.11609385287044251,
+            "nmi_assigned": 0.6072915217983326,
+            "ri_assigned": 0.9062971252476958
+          },
+          "fit_predict_seconds": 29.56570079200901,
+          "cpu_seconds": 28.524274,
+          "process_peak_rss_bytes": 547962880,
+          "params": {
+            "name": "bertopic_pipeline",
+            "seed": 0
+          }
+        },
+        {
+          "seed": 1,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 4245,
+            "coverage": 0.9433333333333334,
+            "n_clusters": 139,
+            "noise_count": 255,
+            "acc_assigned": 0.11778563015312132,
+            "acc_all_noise_error": 0.1111111111111111,
+            "ari_assigned": 0.1190404218741194,
+            "nmi_assigned": 0.6079620148236728,
+            "ri_assigned": 0.906416041936569
+          },
+          "fit_predict_seconds": 28.923694207973313,
+          "cpu_seconds": 28.162648,
+          "process_peak_rss_bytes": 559464448,
+          "params": {
+            "name": "bertopic_pipeline",
+            "seed": 1
+          }
+        },
+        {
+          "seed": 2,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 4248,
+            "coverage": 0.944,
+            "n_clusters": 137,
+            "noise_count": 252,
+            "acc_assigned": 0.10922787193973635,
+            "acc_all_noise_error": 0.10311111111111111,
+            "ari_assigned": 0.11553716462778744,
+            "nmi_assigned": 0.6028247280684138,
+            "ri_assigned": 0.9061460022517279
+          },
+          "fit_predict_seconds": 28.371671749977395,
+          "cpu_seconds": 27.805443,
+          "process_peak_rss_bytes": 540475392,
+          "params": {
+            "name": "bertopic_pipeline",
+            "seed": 2
+          }
+        },
+        {
+          "seed": 3,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 4293,
+            "coverage": 0.954,
+            "n_clusters": 142,
+            "noise_count": 207,
+            "acc_assigned": 0.10412299091544375,
+            "acc_all_noise_error": 0.09933333333333333,
+            "ari_assigned": 0.114617357034729,
+            "nmi_assigned": 0.6050658591798207,
+            "ri_assigned": 0.9062953649811164
+          },
+          "fit_predict_seconds": 29.413157959003,
+          "cpu_seconds": 28.808735,
+          "process_peak_rss_bytes": 490569728,
+          "params": {
+            "name": "bertopic_pipeline",
+            "seed": 3
+          }
+        },
+        {
+          "seed": 4,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 4266,
+            "coverage": 0.948,
+            "n_clusters": 141,
+            "noise_count": 234,
+            "acc_assigned": 0.10759493670886076,
+            "acc_all_noise_error": 0.102,
+            "ari_assigned": 0.11681277032426497,
+            "nmi_assigned": 0.6064445078974129,
+            "ri_assigned": 0.9065059806567812
+          },
+          "fit_predict_seconds": 29.023917375016026,
+          "cpu_seconds": 28.456447,
+          "process_peak_rss_bytes": 527613952,
+          "params": {
+            "name": "bertopic_pipeline",
+            "seed": 4
+          }
+        }
+      ],
+      "vector_sha256": "e00bfb74a0e435c27f09ee68096f739ff797a9da2d485e139a5aa05265fddbc6"
+    },
+    {
+      "run": "unknown-k-001",
+      "view": "clinc150-domain",
+      "algorithm": "evoc",
+      "summary": {
+        "view": "clinc150-domain",
+        "algorithm": "evoc",
+        "n_seeds": 5,
+        "acc_all_noise_error": {
+          "mean": 0.10666666666666666,
+          "sd": 0.015605475455670382,
+          "n_valid": 5
+        },
+        "coverage": {
+          "mean": 0.9132,
+          "sd": 0.019450856085764856,
+          "n_valid": 5
+        },
+        "acc_assigned": {
+          "mean": 0.11657025043797045,
+          "sd": 0.014661522439222325,
+          "n_valid": 5
+        },
+        "nmi_assigned": {
+          "mean": 0.6114318195630035,
+          "sd": 0.004513630701964589,
+          "n_valid": 5
+        },
+        "ari_assigned": {
+          "mean": 0.12362198439100883,
+          "sd": 0.01035963386061172,
+          "n_valid": 5
+        },
+        "ri_assigned": {
+          "mean": 0.9064876609615278,
+          "sd": 0.0006417007421000224,
+          "n_valid": 5
+        },
+        "n_clusters": {
+          "mean": 136.2,
+          "sd": 15.594870951694341,
+          "n_valid": 5
+        },
+        "noise_count": {
+          "mean": 390.6,
+          "sd": 87.52885238594186,
+          "n_valid": 5
+        },
+        "fit_predict_seconds": {
+          "mean": 47.12395209998358,
+          "sd": 0.5379611988744485,
+          "n_valid": 5
+        },
+        "cpu_seconds": {
+          "mean": 46.164608199999996,
+          "sd": 0.6790563213082548,
+          "n_valid": 5
+        },
+        "process_peak_rss_bytes": {
+          "mean": 558225817.6,
+          "sd": 30147620.934374984,
+          "n_valid": 5
+        }
+      },
+      "seeds": [
+        {
+          "seed": 0,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 3990,
+            "coverage": 0.8866666666666667,
+            "n_clusters": 162,
+            "noise_count": 510,
+            "acc_assigned": 0.10275689223057644,
+            "acc_all_noise_error": 0.09111111111111111,
+            "ari_assigned": 0.10912131790554871,
+            "nmi_assigned": 0.6041538644270121,
+            "ri_assigned": 0.9055877346914541
+          },
+          "fit_predict_seconds": 47.604147541977,
+          "cpu_seconds": 46.714792,
+          "process_peak_rss_bytes": 544538624,
+          "params": {
+            "name": "evoc",
+            "seed": 0
+          }
+        },
+        {
+          "seed": 1,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 4105,
+            "coverage": 0.9122222222222223,
+            "n_clusters": 127,
+            "noise_count": 395,
+            "acc_assigned": 0.11644336175395859,
+            "acc_all_noise_error": 0.10622222222222222,
+            "ari_assigned": 0.1281240494042943,
+            "nmi_assigned": 0.6141462542162256,
+            "ri_assigned": 0.9068359082847192
+          },
+          "fit_predict_seconds": 47.45040258299559,
+          "cpu_seconds": 46.569077,
+          "process_peak_rss_bytes": 556597248,
+          "params": {
+            "name": "evoc",
+            "seed": 1
+          }
+        },
+        {
+          "seed": 2,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 4220,
+            "coverage": 0.9377777777777778,
+            "n_clusters": 126,
+            "noise_count": 280,
+            "acc_assigned": 0.1367298578199052,
+            "acc_all_noise_error": 0.1282222222222222,
+            "ari_assigned": 0.1334227637889356,
+            "nmi_assigned": 0.6139766602979256,
+            "ri_assigned": 0.907093502761711
+          },
+          "fit_predict_seconds": 46.282190249999985,
+          "cpu_seconds": 45.077109,
+          "process_peak_rss_bytes": 526401536,
+          "params": {
+            "name": "evoc",
+            "seed": 2
+          }
+        },
+        {
+          "seed": 3,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 4071,
+            "coverage": 0.9046666666666666,
+            "n_clusters": 140,
+            "noise_count": 429,
+            "acc_assigned": 0.10243183492999262,
+            "acc_all_noise_error": 0.09266666666666666,
+            "ari_assigned": 0.11655586600028038,
+            "nmi_assigned": 0.6099271075601306,
+            "ri_assigned": 0.9060437673554844
+          },
+          "fit_predict_seconds": 47.377382749982644,
+          "cpu_seconds": 46.536559,
+          "process_peak_rss_bytes": 556089344,
+          "params": {
+            "name": "evoc",
+            "seed": 3
+          }
+        },
+        {
+          "seed": 4,
+          "metrics": {
+            "metric_protocol": "partition-v2-arithmetic-nmi",
+            "n": 4500,
+            "n_assigned": 4161,
+            "coverage": 0.9246666666666666,
+            "n_clusters": 126,
+            "noise_count": 339,
+            "acc_assigned": 0.12448930545541936,
+            "acc_all_noise_error": 0.11511111111111111,
+            "ari_assigned": 0.13088592485598508,
+            "nmi_assigned": 0.6149552113137239,
+            "ri_assigned": 0.9068773917142698
+          },
+          "fit_predict_seconds": 46.90563737496268,
+          "cpu_seconds": 45.925504000000004,
+          "process_peak_rss_bytes": 607502336,
+          "params": {
+            "name": "evoc",
+            "seed": 4
+          }
+        }
+      ],
+      "vector_sha256": "e00bfb74a0e435c27f09ee68096f739ff797a9da2d485e139a5aa05265fddbc6"
+    }
+  ]
+}

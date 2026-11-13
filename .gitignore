@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.env*
+private/
+internal_data/
+outputs/
+*.npy
+*.npz
+*.pkl
+*.pdf
+*.parquet
+*.jsonl
