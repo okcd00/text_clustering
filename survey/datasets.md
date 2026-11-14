@@ -2,7 +2,7 @@
 
 [Survey 首页](README.md) · [方法地图](methods.md) · [数据源目录](../datasets/readme.md)
 
-核对日期：2026-11-14。下表区分**官方数据规格**、**仓库历史使用子集**与**计划协议**；本节选型规格来自官方；2026-11-14 对 BANKING77/MASSIVE zh-CN 另做了实际下载与本地聚合审计，结果见末节；未运行模型。规模是出处中的规格，不冒充本轮 artifact 计数。数据不随仓库分发。原始文本、逐样本预测和缓存不进入公开仓库。
+核对日期：2026-11-14。下表区分**官方数据规格**、**仓库实测**与**计划协议**；规模来自官方规格。BANKING77 和 MASSIVE zh-CN 的本地聚合审计与后续实测分别列出。规模是出处中的规格，不冒充本轮 artifact 计数。数据不随仓库分发。原始文本、逐样本预测和缓存不进入公开仓库。
 
 ## 1. 可优先进入新基准的数据
 
@@ -14,13 +14,16 @@
 | [MASSIVE zh-CN](https://github.com/alexa/massive) / [数据卡](https://huggingface.co/datasets/AmazonScience/massive) | 中文；60 intents / 18 scenarios；卡中 train11,514 / validation2,033 / test2,974 | CC BY 4.0；冻结 release/commit 与 locale。官方 1.1 增加 Catalan，其他语言不变 | 优先补中文语义意图；保留原始划分，用 `utt` 而非带 slot 标记的 `annot_utt`。跨语言按对齐 utterance ID 分组，防翻译泄漏。常规三 split 合计16,521；19,521口径另含竞赛3,000条/locale holdout，不能混入本基准。不是自然中文电商行为 |
 | [UCI News Aggregator](https://archive.ics.uci.edu/dataset/359/news+aggregator) | 英文新闻标题；422,937；4 大类及 STORY 聚合标识；2014-03-10 至 08-10 | CC BY 4.0；冻结下载版本/hash；TIMESTAMP 是 approximate publication time | 可做时间戳 silver-label 回放，不是人工金标意图漂移；story 标签与 4 大类是两任务。转载/重复 URL/标题及时间边界重复故事需单列；2pageSessions 不等于完整真实用户行为流 |
 
-MASSIVE 已完成固定版本与解析/数据审计，尚未进行聚类适配与模型评测。BANKING、CLINC、WOS 原有出处文件位于 `datasets/`，历史结果保持不动。
+**BANKING77 与 MASSIVE zh-CN 已实测。** 两者都有[全量官方 test 词面基线](../results/lexical-v1/README.md)、[同样本词面与 E5 小对照](../results/semantic-pilot-v1/README.md)、[统一静态评估](../results/unified-static-v1/README.md)和[开放集路由](../results/routing-v2/README.md)。全量词面、512 条静态语义与带标签支持集的路由是不同协议，不能直接混排；这两套数据均未用于真实时间流评估。CLINC 和 WOS 的历史结果不动。
 
 ## 2. 暂不承诺开箱可复现的覆盖候选
 
 - **中文新闻主题**：[C-MTEB](https://github.com/FlagOpen/FlagEmbedding/tree/master/C_MTEB)、[ThuNewsClusteringP2P.v2](https://huggingface.co/datasets/mteb/ThuNewsClusteringP2P.v2)。它们补中文 topic，不替代中文 intent；原版嵌套任务行数不能当文档数，v2 不是同一协议。数据卡许可 unknown 时，不能套用框架许可证。先核对实际数据权利与 task revision，再纳入。
 - **人工标注新闻流**：[Miranda et al., EMNLP 2018](https://aclanthology.org/D18-1483/)、[官方代码](https://github.com/Priberam/news-clustering)。旧 FTP 数据入口当前可用性未验证；官方说明原始部分组件专有，公开的是复刻/预提取特征等。BSD-3 软件许可不等于新闻文本许可。列为待准入，不宣称可完整复现。
 - **COSID 分阶段意图**：[论文及官方实现](../references/chen2026cosid/readme.md)。这是在 BANKING/CLINC 上构造的协议，不是新自然流数据集；随机、语义调度、旧类复现率/Zipf 不平衡分别记录。借 split 的低成本实验与完整 CIDA 复现分开。
+
+- **EB-NeRD 新闻曝光流（仅作协议参考）**：[官方字段](https://recsys.eb.dk/dataset/)给出 impression 时间、会话、记录为可见的文章 ID 与点击 ID；可见列表已打乱，不能恢复排位；公开说明中的 test 不含点击 ID，有标签的 train/dev 才适合上述回放。它来自筛选过的活跃读者，不是商品意图金标，也不能用点击缺失推断用户已无兴趣。仅在非商业推荐研究、符合[原许可](https://recsys.eb.dk/assets/pdf/general_license_terms.pdf)并走官方申请后考虑；许可还限制用途、存放与使用期限。本仓库未申请、下载或运行，也不将它纳入默认一键评估。
+  - 可证伪的问题：以预先固定的主题分组和观察窗，区分「无可见访问信号」「观察到访问但无同主题曝光」「有同主题曝光但未点击」。下一窗口仅在确有同主题曝光的机会中，比对时间衰减和基于机会的衰减对点击的预测，配平上次互动间隔、既往活跃度和曝光次数。比较是观察性的，不是去偏的策略因果估计。特征在当前截点冻结；排除未来阅读、滚动及含未来的文章统计，文章快照可能有后续编辑，不能验证时点版本时不把正文当作时点可见输入。默认文本聚类时间回放仍先选 UCI。
 
 ## 3. 固定六条实验轨道，禁止总榜
 
@@ -63,11 +66,11 @@ budget: tuning trials, labeled support, LLM tokens/calls, hardware
 6. **同一成本边界**：区分 encoder、fit、校准、预测、LLM 生成、维护、模型加载；报告峰值内存、吞吐/延迟及硬件。无法观测的账单写未知，不写零。
 7. **留出盲测**：旧 test 已被反复查看，只能做描述性配对；新改进须留新验证/测试或预登记配置。已有历史 checkpoint 不可获取时，建立新 pinned encoder 基线，不回填旧分数。
 
-## 5. 建议第一轮（未执行）
+## 5. 仍待补齐的协议
 
-先用 BANKING77、CLINC150、MASSIVE zh-CN 建立英文细粒度/跨域/中文意图三格；每格相同 frozen encoder 下做 KMeans 与一种 unknown-K 基线，已知 K 和未知 K 独立。CLINC 同时设原生 OOS 与 held-out intents 两个拒识组。层级先解决 WOS 重建和标签一致性，再跑；流式先借 COSID split 测旧新类干扰，再进入 UCI 时间回放。
+BANKING77 与 MASSIVE zh-CN 已分别给出英文细粒度与中文意图小样本结果。跨域的 CLINC150 可补相同 frozen encoder 下的静态聚类对照，并将原生 OOS 与 held-out intents 分设两个拒识组。层级先解决 WOS 重建和标签一致性，再跑；流式先借 COSID split 测旧新类干扰，再进入 UCI 时间回放。
 
-这轮目标是验证数据与协议可重复、找到稳定差异，不追求一次跑完所有论文，更不以英文分类标签上的 ARI 推断真实电商推荐增益。
+后续目标是验证新增数据与协议可重复、找到稳定差异，不追求一次跑完所有论文，更不以英文分类标签上的 ARI 推断真实电商推荐增益。
 
 ## 6. 数据准备实证：先把比较的地基做实
 

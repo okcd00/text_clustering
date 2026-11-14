@@ -131,7 +131,7 @@
 <p class="list-item">- <strong>论文附属代码</strong>：区分 README 存在、完整代码/权重可获取、许可明确、成功运行、完整复现五个等级。缺失许可不是默认许可。</p>
 <h2 id="methods-4">4. 当前本地证据对选型的约束 <a class="permalink" href="#methods-4" aria-label="链接到此节">#</a></h2>
 <p>既有 WOS 单次配对里 top-1 NLI 把 hidden false accept 从 64.00% 提到 69.85%，known accuracy 仅 58.62%→58.96%；不能默认“加一次 LLM/NLI 就更准”。见<a href="https://github.com/okcd00/text_clustering/blob/main/docs/scenario-protocols.md">完整口径</a>。先找模型成本可控且能改善失败 case 的方案，再扩大离线 seed/数据范围；只有明确离线增量，才讨论下游小流量验证。</p></section><section id="datasets" class="survey-panel" aria-label="数据与协议"><div class="section-heading"><span>RESEARCH NOTE / 03</span><a href="https://github.com/okcd00/text_clustering/blob/main/survey/datasets.md">Markdown 原文 ↗</a></div><p><a href="https://github.com/okcd00/text_clustering/blob/main/survey/README.md">Survey 首页</a> · <a href="https://github.com/okcd00/text_clustering/blob/main/survey/methods.md">方法地图</a> · <a href="https://github.com/okcd00/text_clustering/blob/main/datasets/readme.md">数据源目录</a></p>
-<p>核对日期：2026-11-14。下表区分<strong>官方数据规格</strong>、<strong>仓库历史使用子集</strong>与<strong>计划协议</strong>；本节选型规格来自官方；2026-11-14 对 BANKING77/MASSIVE zh-CN 另做了实际下载与本地聚合审计，结果见末节；未运行模型。规模是出处中的规格，不冒充本轮 artifact 计数。数据不随仓库分发。原始文本、逐样本预测和缓存不进入公开仓库。</p>
+<p>核对日期：2026-11-14。下表区分<strong>官方数据规格</strong>、<strong>仓库实测</strong>与<strong>计划协议</strong>；规模来自官方规格。BANKING77 和 MASSIVE zh-CN 的本地聚合审计与后续实测分别列出。规模是出处中的规格，不冒充本轮 artifact 计数。数据不随仓库分发。原始文本、逐样本预测和缓存不进入公开仓库。</p>
 <h2 id="datasets-1">1. 可优先进入新基准的数据 <a class="permalink" href="#datasets-1" aria-label="链接到此节">#</a></h2>
 <div class="survey-grid">
 <article class="evidence-card"><h3><a href="https://github.com/PolyAI-LDN/task-specific-datasets">BANKING77</a></h3><dl>
@@ -160,11 +160,13 @@
 <dt>适合的公平比较 / 主要陷阱</dt><dd>可做时间戳 silver-label 回放，不是人工金标意图漂移；story 标签与 4 大类是两任务。转载/重复 URL/标题及时间边界重复故事需单列；2pageSessions 不等于完整真实用户行为流</dd>
 </dl></article>
 </div>
-<p>MASSIVE 已完成固定版本与解析/数据审计，尚未进行聚类适配与模型评测。BANKING、CLINC、WOS 原有出处文件位于 <code>datasets/</code>，历史结果保持不动。</p>
+<p><strong>BANKING77 与 MASSIVE zh-CN 已实测。</strong> 两者都有<a href="https://github.com/okcd00/text_clustering/blob/main/results/lexical-v1/README.md">全量官方 test 词面基线</a>、<a href="https://github.com/okcd00/text_clustering/blob/main/results/semantic-pilot-v1/README.md">同样本词面与 E5 小对照</a>、<a href="https://github.com/okcd00/text_clustering/blob/main/results/unified-static-v1/README.md">统一静态评估</a>和<a href="https://github.com/okcd00/text_clustering/blob/main/results/routing-v2/README.md">开放集路由</a>。全量词面、512 条静态语义与带标签支持集的路由是不同协议，不能直接混排；这两套数据均未用于真实时间流评估。CLINC 和 WOS 的历史结果不动。</p>
 <h2 id="datasets-2">2. 暂不承诺开箱可复现的覆盖候选 <a class="permalink" href="#datasets-2" aria-label="链接到此节">#</a></h2>
 <p class="list-item">- <strong>中文新闻主题</strong>：<a href="https://github.com/FlagOpen/FlagEmbedding/tree/master/C_MTEB">C-MTEB</a>、<a href="https://huggingface.co/datasets/mteb/ThuNewsClusteringP2P.v2">ThuNewsClusteringP2P.v2</a>。它们补中文 topic，不替代中文 intent；原版嵌套任务行数不能当文档数，v2 不是同一协议。数据卡许可 unknown 时，不能套用框架许可证。先核对实际数据权利与 task revision，再纳入。</p>
 <p class="list-item">- <strong>人工标注新闻流</strong>：<a href="https://aclanthology.org/D18-1483/">Miranda et al., EMNLP 2018</a>、<a href="https://github.com/Priberam/news-clustering">官方代码</a>。旧 FTP 数据入口当前可用性未验证；官方说明原始部分组件专有，公开的是复刻/预提取特征等。BSD-3 软件许可不等于新闻文本许可。列为待准入，不宣称可完整复现。</p>
 <p class="list-item">- <strong>COSID 分阶段意图</strong>：<a href="https://github.com/okcd00/text_clustering/blob/main/references/chen2026cosid/readme.md">论文及官方实现</a>。这是在 BANKING/CLINC 上构造的协议，不是新自然流数据集；随机、语义调度、旧类复现率/Zipf 不平衡分别记录。借 split 的低成本实验与完整 CIDA 复现分开。</p>
+<p class="list-item">- <strong>EB-NeRD 新闻曝光流（仅作协议参考）</strong>：<a href="https://recsys.eb.dk/dataset/">官方字段</a>给出 impression 时间、会话、记录为可见的文章 ID 与点击 ID；可见列表已打乱，不能恢复排位；公开说明中的 test 不含点击 ID，有标签的 train/dev 才适合上述回放。它来自筛选过的活跃读者，不是商品意图金标，也不能用点击缺失推断用户已无兴趣。仅在非商业推荐研究、符合<a href="https://recsys.eb.dk/assets/pdf/general_license_terms.pdf">原许可</a>并走官方申请后考虑；许可还限制用途、存放与使用期限。本仓库未申请、下载或运行，也不将它纳入默认一键评估。</p>
+<p>  - 可证伪的问题：以预先固定的主题分组和观察窗，区分「无可见访问信号」「观察到访问但无同主题曝光」「有同主题曝光但未点击」。下一窗口仅在确有同主题曝光的机会中，比对时间衰减和基于机会的衰减对点击的预测，配平上次互动间隔、既往活跃度和曝光次数。比较是观察性的，不是去偏的策略因果估计。特征在当前截点冻结；排除未来阅读、滚动及含未来的文章统计，文章快照可能有后续编辑，不能验证时点版本时不把正文当作时点可见输入。默认文本聚类时间回放仍先选 UCI。</p>
 <h2 id="datasets-3">3. 固定六条实验轨道，禁止总榜 <a class="permalink" href="#datasets-3" aria-label="链接到此节">#</a></h2>
 <div class="survey-grid">
 <article class="evidence-card"><h3>B-K：批量已知 K</h3><dl>
@@ -222,9 +224,9 @@ budget: tuning trials, labeled support, LLM tokens/calls, hardware</pre>
 <p class="list-item">5. <strong>同一统计单位</strong>：种子配对；报告均值/SD、逐 seed 与样本数。共享向量的 CLINC domain/intent 不是独立训练；窗口不是独立数据集。仅单次结果不附伪造方差/显著性。</p>
 <p class="list-item">6. <strong>同一成本边界</strong>：区分 encoder、fit、校准、预测、LLM 生成、维护、模型加载；报告峰值内存、吞吐/延迟及硬件。无法观测的账单写未知，不写零。</p>
 <p class="list-item">7. <strong>留出盲测</strong>：旧 test 已被反复查看，只能做描述性配对；新改进须留新验证/测试或预登记配置。已有历史 checkpoint 不可获取时，建立新 pinned encoder 基线，不回填旧分数。</p>
-<h2 id="datasets-5">5. 建议第一轮（未执行） <a class="permalink" href="#datasets-5" aria-label="链接到此节">#</a></h2>
-<p>先用 BANKING77、CLINC150、MASSIVE zh-CN 建立英文细粒度/跨域/中文意图三格；每格相同 frozen encoder 下做 KMeans 与一种 unknown-K 基线，已知 K 和未知 K 独立。CLINC 同时设原生 OOS 与 held-out intents 两个拒识组。层级先解决 WOS 重建和标签一致性，再跑；流式先借 COSID split 测旧新类干扰，再进入 UCI 时间回放。</p>
-<p>这轮目标是验证数据与协议可重复、找到稳定差异，不追求一次跑完所有论文，更不以英文分类标签上的 ARI 推断真实电商推荐增益。</p>
+<h2 id="datasets-5">5. 仍待补齐的协议 <a class="permalink" href="#datasets-5" aria-label="链接到此节">#</a></h2>
+<p>BANKING77 与 MASSIVE zh-CN 已分别给出英文细粒度与中文意图小样本结果。跨域的 CLINC150 可补相同 frozen encoder 下的静态聚类对照，并将原生 OOS 与 held-out intents 分设两个拒识组。层级先解决 WOS 重建和标签一致性，再跑；流式先借 COSID split 测旧新类干扰，再进入 UCI 时间回放。</p>
+<p>后续目标是验证新增数据与协议可重复、找到稳定差异，不追求一次跑完所有论文，更不以英文分类标签上的 ARI 推断真实电商推荐增益。</p>
 <h2 id="datasets-6">6. 数据准备实证：先把比较的地基做实 <a class="permalink" href="#datasets-6" aria-label="链接到此节">#</a></h2>
 <p><a href="https://github.com/okcd00/text_clustering/blob/main/datasets/preparation.md">可执行准备流程与完整审计口径</a>。数据只下载到仓库外；没有模型调用，也没有向外部服务发送文本。旧榜单不变。</p>
 <div class="survey-grid">
