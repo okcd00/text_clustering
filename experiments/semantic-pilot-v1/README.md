@@ -1,12 +1,23 @@
-# Semantic pilot v1 — prepared, NOT executed
+# Semantic pilot v1 — execution protocol
 
-**Status:** data preparation and dependency preflight executed; no encoder, embeddings, clustering scores or semantic/lexical comparison executed. This is a bounded next experiment, not a new leaderboard. Existing lexical-v1 and historical results remain untouched.
+**Status:** now executed after the owner approved installation of an isolated CPU environment. [Measured results](../../results/semantic-pilot-v1/README.md) are separate from historical full-test lexical-v1. The original `preflight.json` is retained as the earlier preparation-only snapshot, not current runtime status.
 
-## Verified blocker
+## Isolated installation and reproduction
 
-The current isolated executor lacks **torch, transformers, tokenizers and safetensors**; it also has no sentence-transformers or ONNX runtime. With existing model/runtime packages only, local embedding inference is unavailable. No model runtime was installed, no weights were downloaded, no remote model code was executed, and no dataset text was sent to an inference API. Installing packages is not silently treated as an executed experiment.
+Tested CPython 3.12.14 on Linux x86-64. Do not install all project extras: `parc` and `streaming` have incompatible NumPy/SciPy constraints. This standalone pilot intentionally uses the lexical-v1 versions, not the package's scikit-learn 1.6.1 pin. No dependency in the shared interpreter was changed.
 
-`preflight.json` records the actual module presence and aggregate prepared sample counts. Module availability alone would not prove that compatible versions, cached model files, memory or inference work. Before running, use an existing trusted CPU model environment and record exact dependency versions; dependency resolution and model loading remain unverified here.
+```bash
+python -m venv /tmp/semantic-pilot-env
+/tmp/semantic-pilot-env/bin/pip install --index-url https://download.pytorch.org/whl/cpu torch==2.8.0
+/tmp/semantic-pilot-env/bin/pip install -r experiments/semantic-pilot-v1/environment-lock.txt
+/tmp/semantic-pilot-env/bin/pip check
+/tmp/semantic-pilot-env/bin/python scripts/prepare_datasets.py banking77 --cache /tmp/semantic-data/banking77 --report /tmp/semantic-data/banking-audit.json --download
+/tmp/semantic-pilot-env/bin/python scripts/prepare_datasets.py massive_zh_cn --cache /tmp/semantic-data/massive_zh_cn --report /tmp/semantic-data/massive-audit.json --download
+/tmp/semantic-pilot-env/bin/python scripts/prepare_semantic_model.py --model-dir /tmp/semantic-e5-model --download
+OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /tmp/semantic-pilot-env/bin/python scripts/benchmark_semantic_pilot.py --cache /tmp/semantic-data --model-dir /tmp/semantic-e5-model --output /tmp/semantic-data/pilot.json
+```
+
+Downloads contain only version-pinned public artifacts and do not send dataset texts. The runner sets Hugging Face offline flags, requires local files and safetensors, verifies the committed model-artifact manifest, and never falls back to remote code or an inference API. Raw texts, model weights, vectors, sample IDs and predictions stay outside Git. Only aggregate measurements are published. Recreate the cache if the cloud environment is replaced; `/tmp` is not a durability guarantee. The full dependency freeze records what was installed; it does not imply cross-platform binary equivalence.
 
 ## Run the preparation already verified
 
@@ -24,7 +35,7 @@ Candidate: [intfloat/multilingual-e5-small](https://huggingface.co/intfloat/mult
 
 Per its [pinned model card](https://huggingface.co/intfloat/multilingual-e5-small/blob/614241f622f53c4eeff9890bdc4f31cfecc418b3/README.md): prepend `query: ` for clustering in both languages; use attention-mask mean pooling and L2 normalization; max length 512 tokens, truncation enabled. Keep the source text unchanged before that prefix: no lowercasing, NFKC or whitespace rewriting in the semantic input. NFKC+casefold is for duplicate auditing only. Output is 384 dimensions; CPU float32, eval mode, inference mode, batch size 16, one thread, no mixed precision. Record truncation counts and validate finite vectors and unit norms.
 
-Load only standard Transformers architecture with `trust_remote_code=False`; require `use_safetensors=True`, pin tokenizer and model to the same revision, and after approved cache preparation load with `local_files_only=True`. Do not fall back to pickled weights, remote code or API inference. Record downloaded artifact SHA-256 values and installed package versions before results can be marked reproducible. **Weights and tokenizer artifacts were not downloaded or validated in this milestone.**
+Load only standard Transformers architecture with `trust_remote_code=False`; require `use_safetensors=True`, pin tokenizer and model to the same revision, and after approved cache preparation load with `local_files_only=True`. Do not fall back to pickled weights, remote code or API inference. Record downloaded artifact SHA-256 values and installed package versions before results can be marked reproducible. The executed milestone records all six artifact hashes in `model-artifacts.json`.
 
 ## Sample and validation contract
 
@@ -33,7 +44,7 @@ Load only standard Transformers architecture with `trust_remote_code=False`; req
 - Preserve test duplicates in the pilot. Report singleton classes, class counts and duplicate excess. No “every class must appear” resampling; small random subsets cannot support robust conclusions about rare intents.
 - Gold test labels are only used for evaluation and the explicitly oracle-K arm. Do not use test scores to choose hyperparameters, representation or model revision. E5 was selected as a low-cost multilingual control, not by observed test scores.
 
-## Planned comparisons (none run)
+## Frozen comparisons (executed without test-based changes)
 
 1. Re-run the lexical representation on **these exact same sampled rows**, rather than import full-test scores. Semantic uses 384 normalized features; lexical uses TF-IDF/SVD64/L2. This compares two pipelines, not a dimension-controlled causal encoder ablation.
 2. Oracle-K KMeans: test-present K, seeds 0/1/2, n_init=10, max_iter=300. Report the privileged K budget.

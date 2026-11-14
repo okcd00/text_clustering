@@ -42,13 +42,20 @@
 </div>
 <p>每次扩充先补“方法—数据—协议—成本—证据—限制”，再补引用数量。没有可靠版本/许可/完整实现的条目仍可保留为阅读材料，但不进入可复现候选榜。</p>
 <h2 id="overview-4">可视化与维护 <a class="permalink" href="#overview-4" aria-label="链接到此节">#</a></h2>
-<p><a href="https://dian.host/text_clustering/survey.html">Pages 交互阅读版</a>。内容以本目录四份 Markdown 为单一来源，运行 <code>python scripts/build_survey.py</code> 生成网页；<code>python scripts/build_survey.py --check</code> 检查漂移。页面外观在 <code>scripts/survey_template.html</code>、<code>docs/survey.css</code>，筛选逻辑在 <code>docs/survey.js</code>。本页中提及的本地路径为维护说明，不是 Pages 相对文件链接。</p></section><section id="methods" class="survey-panel" aria-label="方法地图"><div class="section-heading"><span>RESEARCH NOTE / 02</span><a href="https://github.com/okcd00/text_clustering/blob/main/survey/methods.md">Markdown 原文 ↗</a></div><p><a href="https://github.com/okcd00/text_clustering/blob/main/survey/README.md">Survey 首页</a> · <a href="https://github.com/okcd00/text_clustering/blob/main/survey/datasets.md">数据协议</a> · <a href="https://github.com/okcd00/text_clustering/blob/main/survey/roadmap.md">优先级</a></p>
+<p><a href="https://dian.host/text_clustering/survey.html">Pages 交互阅读版</a>。内容以本目录四份 Markdown 为单一来源，运行 <code>python scripts/build_survey.py</code> 生成网页；<code>python scripts/build_survey.py --check</code> 检查漂移。页面外观在 <code>scripts/survey_template.html</code>、<code>docs/survey.css</code>，筛选逻辑在 <code>docs/survey.js</code>。本页中提及的本地路径为维护说明，不是 Pages 相对文件链接。</p>
+<h2 id="overview-5">本地语义对照已执行 <a class="permalink" href="#overview-5" aria-label="链接到此节">#</a></h2>
+<p><a href="https://github.com/okcd00/text_clustering/blob/main/results/semantic-pilot-v1/README.md">semantic-pilot-v1</a>：固定 E5-small 与词面表示在相同 512 条样本上对照，分别给出 oracle-K、固定未知 K 和有标签验证集选参的未知-test-K。完整记录环境、权重哈希、耗时与覆盖率，不将小样本结论推广成通用排名。</p></section><section id="methods" class="survey-panel" aria-label="方法地图"><div class="section-heading"><span>RESEARCH NOTE / 02</span><a href="https://github.com/okcd00/text_clustering/blob/main/survey/methods.md">Markdown 原文 ↗</a></div><p><a href="https://github.com/okcd00/text_clustering/blob/main/survey/README.md">Survey 首页</a> · <a href="https://github.com/okcd00/text_clustering/blob/main/survey/datasets.md">数据协议</a> · <a href="https://github.com/okcd00/text_clustering/blob/main/survey/roadmap.md">优先级</a></p>
 <h2 id="methods-1">1. 按系统环节分组 <a class="permalink" href="#methods-1" aria-label="链接到此节">#</a></h2>
 <div class="survey-grid">
 <article class="evidence-card"><h3>静态、已知 K</h3><dl>
 <dt>最小基线</dt><dd>KMeans / MiniBatchKMeans</dd>
 <dt>值得对照的路线</dt><dd>对比表示学习、LLM 约束、<a href="https://github.com/okcd00/text_clustering/blob/main/references/lin2026bagoftexts/readme.md">Bag-of-Texts</a>、<a href="https://github.com/okcd00/text_clustering/blob/main/references/diazrodriguez2026summariescentroids/readme.md">Summaries as Centroids</a></dd>
 <dt>必须隔离的变量</dt><dd>K 来源、训练标签、表示/生成预算、测试时可见信息</dd>
+</dl></article>
+<article class="evidence-card"><h3>静态、已知 K 的规模化</h3><dl>
+<dt>最小基线</dt><dd>Lloyd / MiniBatchKMeans</dd>
+<dt>值得对照的路线</dt><dd><a href="https://github.com/okcd00/text_clustering/blob/main/references/bessa2026emeans/readme.md">Faiss e-means</a>（2026 预印本，未实测）</dd>
+<dt>必须隔离的变量</dt><dd>同硬件和向量测耗时、峰值内存与失真；失真与语义 ARI 分开，计入最终分配时间</dd>
 </dl></article>
 <article class="evidence-card"><h3>静态、未知 K</h3><dl>
 <dt>最小基线</dt><dd>HDBSCAN / BERTopic 核心管线</dd>
@@ -280,6 +287,6 @@ budget: tuning trials, labeled support, LLM tokens/calls, hardware</pre>
 <p>正式来源与版本 → 任务与输入假设 → 已知/未知 K 与监督 → 数据与切分 → 核心结果及表号 → 代码/权重/许可/核对日期 → 成本 → 对现有基线的新增价值 → 能证伪它的最小实验。</p>
 <p>仅新增 BibTeX 不算覆盖完成。每轮优先补“有书目但无证据卡”的核心条目，以及数据集可重建性；避免把重复预印本/会议版和共享软件 stars 重复计数。更新日期、来源检查与实验状态必须分开。</p>
 <h2 id="roadmap-3">语义对照的下一道门槛 <a class="permalink" href="#roadmap-3" aria-label="链接到此节">#</a></h2>
-<p><a href="https://github.com/okcd00/text_clustering/blob/main/experiments/semantic-pilot-v1/README.md">semantic-pilot-v1 准备协议</a> 已固定 E5-small revision、双语 <code>query: </code> 前缀、池化/归一化和 512 条/角色的无标签抽样；数据准备已执行。<strong>尚未产生语义向量或分数</strong>：当前执行环境缺少 torch、transformers、tokenizers、safetensors，不能在“仅使用现有模型运行库”的边界内编码。</p>
-<p>后续在可用的可信本地 CPU 模型环境执行，先记录依赖和权重哈希。词面与语义必须用同一批样本重跑；oracle-K、固定未知 K、仅 validation 选参的未知-test-K 三种预算分开。小样本只检验流程，不作全量性能或稀有意图结论。</p></section>
+<p><a href="https://github.com/okcd00/text_clustering/blob/main/experiments/semantic-pilot-v1/README.md">semantic-pilot-v1 执行协议</a> 与 <a href="https://github.com/okcd00/text_clustering/blob/main/results/semantic-pilot-v1/README.md">实际结果</a> 已落地：独立 CPU 环境、固定 E5-small revision、双语 <code>query: </code> 前缀、池化/归一化和 512 条/角色的无标签抽样，全部本地推理。原 preparation-only preflight 保留作历史记录，不再作为阻塞状态。</p>
+<p>词面与语义使用同一批样本；oracle-K、固定未知 K、仅 validation 选参的未知-test-K 三种预算分开。小样本只检验流程，不作全量性能或稀有意图结论；向量优于词面的 oracle-K 结果不等于未知 K 的密度发现也改善。后续扩展不覆盖既有分数，而以明确版本和协议建立新结果。</p></section>
 <footer>单一内容来源：仓库 <a href="https://github.com/okcd00/text_clustering/tree/main/survey">survey/ Markdown</a> · <a href="index.html">回到实测看板</a></footer></main><script src="survey.js"></script></body></html>

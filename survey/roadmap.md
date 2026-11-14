@@ -29,6 +29,6 @@
 
 ## 语义对照的下一道门槛
 
-[semantic-pilot-v1 准备协议](../experiments/semantic-pilot-v1/README.md) 已固定 E5-small revision、双语 `query: ` 前缀、池化/归一化和 512 条/角色的无标签抽样；数据准备已执行。**尚未产生语义向量或分数**：当前执行环境缺少 torch、transformers、tokenizers、safetensors，不能在“仅使用现有模型运行库”的边界内编码。
+[semantic-pilot-v1 执行协议](../experiments/semantic-pilot-v1/README.md) 与 [实际结果](../results/semantic-pilot-v1/README.md) 已落地：独立 CPU 环境、固定 E5-small revision、双语 `query: ` 前缀、池化/归一化和 512 条/角色的无标签抽样，全部本地推理。原 preparation-only preflight 保留作历史记录，不再作为阻塞状态。
 
-后续在可用的可信本地 CPU 模型环境执行，先记录依赖和权重哈希。词面与语义必须用同一批样本重跑；oracle-K、固定未知 K、仅 validation 选参的未知-test-K 三种预算分开。小样本只检验流程，不作全量性能或稀有意图结论。
+词面与语义使用同一批样本；oracle-K、固定未知 K、仅 validation 选参的未知-test-K 三种预算分开。小样本只检验流程，不作全量性能或稀有意图结论；向量优于词面的 oracle-K 结果不等于未知 K 的密度发现也改善。后续扩展不覆盖既有分数，而以明确版本和协议建立新结果。

@@ -1,0 +1,2357 @@
+{
+  "protocol": "semantic-pilot-v1",
+  "status": "executed",
+  "model": "intfloat/multilingual-e5-small",
+  "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+  "threads": 1,
+  "model_load_seconds": 2.124334521000037,
+  "versions": {
+    "python": "3.12.14",
+    "torch": "2.8.0+cpu",
+    "transformers": "4.57.1",
+    "tokenizers": "0.22.2",
+    "safetensors": "0.6.2",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "scikit-learn": "1.8.0",
+    "pyarrow": "19.0.1",
+    "threadpoolctl": "3.6.0"
+  },
+  "model_artifacts": {
+    "config.json": {
+      "sha256": "69137736cab8b8903a07fe8afaafdda25aac55415a12a55d1bffa9f581abf959",
+      "bytes": 655
+    },
+    "model.safetensors": {
+      "sha256": "1a55775f53449dac10a2bcbc312469fac40b96d53198c407081a831f81c98477",
+      "bytes": 470641600
+    },
+    "sentencepiece.bpe.model": {
+      "sha256": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+      "bytes": 5069051
+    },
+    "special_tokens_map.json": {
+      "sha256": "d05497f1da52c5e09554c0cd874037a083e1dc1b9cfd48034d1c717f1afc07a7",
+      "bytes": 167
+    },
+    "tokenizer.json": {
+      "sha256": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+      "bytes": 17082730
+    },
+    "tokenizer_config.json": {
+      "sha256": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b",
+      "bytes": 443
+    }
+  },
+  "scripts": {
+    "benchmark_semantic_pilot.py": "3190d666b52b7b52a4adb7a5256aed2933c2025fbe99f27bf3919aae48c9631e",
+    "prepare_semantic_pilot.py": "702676967645ecb90c00d75b5d294c6d307221500ece385cc171b3125edb94a3",
+    "prepare_datasets.py": "8b0049565e3e780067e44896d89b099ae45ad8d8092d99f8ff66cd172144318f",
+    "benchmark_lexical.py": "7579da2e5800e495b471c4aa651cf9fa68c267a193b41087c7645474a627db13"
+  },
+  "inputs": {
+    "banking77": {
+      "source_revision": "57ec275d8078af65b7731c2a98be812d844a6d6b",
+      "artifacts": [
+        {
+          "name": "train.csv",
+          "sha256": "b06e26ac675513959a63135f11b94ea7786ed02da65db93a5650d8838cbc664b",
+          "bytes": 839073
+        },
+        {
+          "name": "test.csv",
+          "sha256": "d12d6e3bc4c3103966ae786dc435913c0c563dfa328f5a3646d0e62cfeeb474d",
+          "bytes": 239961
+        },
+        {
+          "name": "categories.json",
+          "sha256": "53261da888122daf2d120d925458631d9619e15d82e56052e7a42e535ce32b63",
+          "bytes": 2036
+        }
+      ],
+      "splits": {
+        "validation": {
+          "rows": 512,
+          "classes": 76,
+          "class_counts": {
+            "Refund_not_showing_up": 10,
+            "activate_my_card": 12,
+            "age_limit": 5,
+            "apple_pay_or_google_pay": 9,
+            "atm_support": 4,
+            "balance_not_updated_after_bank_transfer": 10,
+            "balance_not_updated_after_cheque_or_cash_deposit": 7,
+            "beneficiary_not_allowed": 7,
+            "cancel_transfer": 10,
+            "card_about_to_expire": 8,
+            "card_acceptance": 4,
+            "card_arrival": 10,
+            "card_delivery_estimate": 2,
+            "card_linking": 10,
+            "card_not_working": 4,
+            "card_payment_fee_charged": 13,
+            "card_payment_not_recognised": 6,
+            "card_payment_wrong_exchange_rate": 14,
+            "card_swallowed": 3,
+            "cash_withdrawal_charge": 11,
+            "cash_withdrawal_not_recognised": 9,
+            "change_pin": 8,
+            "compromised_card": 2,
+            "contactless_not_working": 2,
+            "country_support": 4,
+            "declined_card_payment": 9,
+            "declined_cash_withdrawal": 11,
+            "declined_transfer": 8,
+            "direct_debit_payment_not_recognised": 10,
+            "disposable_card_limits": 7,
+            "edit_personal_details": 5,
+            "exchange_charge": 14,
+            "exchange_rate": 2,
+            "exchange_via_app": 4,
+            "extra_charge_on_statement": 9,
+            "failed_transfer": 6,
+            "fiat_currency_support": 5,
+            "get_disposable_virtual_card": 3,
+            "get_physical_card": 8,
+            "getting_spare_card": 8,
+            "getting_virtual_card": 5,
+            "lost_or_stolen_card": 3,
+            "lost_or_stolen_phone": 7,
+            "order_physical_card": 5,
+            "passcode_forgotten": 3,
+            "pending_card_payment": 12,
+            "pending_cash_withdrawal": 6,
+            "pending_top_up": 5,
+            "pending_transfer": 7,
+            "pin_blocked": 1,
+            "receiving_money": 4,
+            "request_refund": 11,
+            "reverted_card_payment?": 9,
+            "supported_cards_and_currencies": 4,
+            "terminate_account": 2,
+            "top_up_by_bank_transfer_charge": 6,
+            "top_up_by_card_charge": 5,
+            "top_up_by_cash_or_cheque": 3,
+            "top_up_failed": 5,
+            "top_up_limits": 5,
+            "top_up_reverted": 7,
+            "topping_up_by_card": 2,
+            "transaction_charged_twice": 5,
+            "transfer_fee_charged": 12,
+            "transfer_into_account": 8,
+            "transfer_not_received_by_recipient": 7,
+            "transfer_timing": 5,
+            "unable_to_verify_identity": 5,
+            "verify_my_identity": 6,
+            "verify_source_of_funds": 8,
+            "verify_top_up": 9,
+            "virtual_card_not_working": 3,
+            "visa_or_mastercard": 5,
+            "why_verify_identity": 5,
+            "wrong_amount_of_cash_received": 11,
+            "wrong_exchange_rate_for_cash_withdrawal": 13
+          },
+          "singleton_classes": 1,
+          "normalized_duplicate_excess": 0
+        },
+        "test": {
+          "rows": 512,
+          "classes": 77,
+          "class_counts": {
+            "Refund_not_showing_up": 2,
+            "activate_my_card": 11,
+            "age_limit": 4,
+            "apple_pay_or_google_pay": 4,
+            "atm_support": 8,
+            "automatic_top_up": 6,
+            "balance_not_updated_after_bank_transfer": 7,
+            "balance_not_updated_after_cheque_or_cash_deposit": 6,
+            "beneficiary_not_allowed": 6,
+            "cancel_transfer": 6,
+            "card_about_to_expire": 10,
+            "card_acceptance": 4,
+            "card_arrival": 9,
+            "card_delivery_estimate": 7,
+            "card_linking": 11,
+            "card_not_working": 11,
+            "card_payment_fee_charged": 11,
+            "card_payment_not_recognised": 5,
+            "card_payment_wrong_exchange_rate": 6,
+            "card_swallowed": 8,
+            "cash_withdrawal_charge": 5,
+            "cash_withdrawal_not_recognised": 7,
+            "change_pin": 9,
+            "compromised_card": 5,
+            "contactless_not_working": 3,
+            "country_support": 7,
+            "declined_card_payment": 5,
+            "declined_cash_withdrawal": 10,
+            "declined_transfer": 5,
+            "direct_debit_payment_not_recognised": 5,
+            "disposable_card_limits": 4,
+            "edit_personal_details": 3,
+            "exchange_charge": 1,
+            "exchange_rate": 13,
+            "exchange_via_app": 4,
+            "extra_charge_on_statement": 6,
+            "failed_transfer": 3,
+            "fiat_currency_support": 8,
+            "get_disposable_virtual_card": 9,
+            "get_physical_card": 8,
+            "getting_spare_card": 6,
+            "getting_virtual_card": 5,
+            "lost_or_stolen_card": 10,
+            "lost_or_stolen_phone": 6,
+            "order_physical_card": 7,
+            "passcode_forgotten": 5,
+            "pending_card_payment": 6,
+            "pending_cash_withdrawal": 6,
+            "pending_top_up": 5,
+            "pending_transfer": 3,
+            "pin_blocked": 3,
+            "receiving_money": 6,
+            "request_refund": 8,
+            "reverted_card_payment?": 6,
+            "supported_cards_and_currencies": 8,
+            "terminate_account": 9,
+            "top_up_by_bank_transfer_charge": 5,
+            "top_up_by_card_charge": 7,
+            "top_up_by_cash_or_cheque": 7,
+            "top_up_failed": 5,
+            "top_up_limits": 6,
+            "top_up_reverted": 3,
+            "topping_up_by_card": 7,
+            "transaction_charged_twice": 6,
+            "transfer_fee_charged": 4,
+            "transfer_into_account": 7,
+            "transfer_not_received_by_recipient": 11,
+            "transfer_timing": 6,
+            "unable_to_verify_identity": 7,
+            "verify_my_identity": 12,
+            "verify_source_of_funds": 7,
+            "verify_top_up": 9,
+            "virtual_card_not_working": 8,
+            "visa_or_mastercard": 7,
+            "why_verify_identity": 7,
+            "wrong_amount_of_cash_received": 10,
+            "wrong_exchange_rate_for_cash_withdrawal": 10
+          },
+          "singleton_classes": 1,
+          "normalized_duplicate_excess": 0
+        }
+      }
+    },
+    "massive_zh_cn": {
+      "source_revision": "ed58ac423a2f4121720918bf5301577edce4ffd3",
+      "artifacts": [
+        {
+          "name": "train.parquet",
+          "sha256": "ff3f4ff65f2e7419ec8ee01f9e5e8f50b500fd1fdc4affcb29dc57e04aa7a6bf",
+          "bytes": 726913
+        },
+        {
+          "name": "validation.parquet",
+          "sha256": "582f45a93e7a5b8f8094746b585f12e5f98ba13be3ee1a42ee4d866f190d7506",
+          "bytes": 148247
+        },
+        {
+          "name": "test.parquet",
+          "sha256": "7eca92a47e6bffeec3fc7de751948b82904680353a42eef7e8c6fdbe89adb2db",
+          "bytes": 201108
+        }
+      ],
+      "splits": {
+        "validation": {
+          "rows": 512,
+          "classes": 56,
+          "class_counts": {
+            "alarm_query": 4,
+            "alarm_remove": 5,
+            "alarm_set": 6,
+            "audio_volume_down": 2,
+            "audio_volume_mute": 4,
+            "audio_volume_up": 4,
+            "calendar_query": 24,
+            "calendar_remove": 11,
+            "calendar_set": 34,
+            "cooking_recipe": 9,
+            "datetime_convert": 2,
+            "datetime_query": 8,
+            "email_addcontact": 1,
+            "email_query": 26,
+            "email_querycontact": 4,
+            "email_sendemail": 16,
+            "general_joke": 4,
+            "general_quirky": 29,
+            "iot_cleaning": 3,
+            "iot_coffee": 3,
+            "iot_hue_lightchange": 8,
+            "iot_hue_lightdim": 3,
+            "iot_hue_lightoff": 5,
+            "iot_hue_lighton": 3,
+            "iot_hue_lightup": 2,
+            "iot_wemo_off": 2,
+            "iot_wemo_on": 1,
+            "lists_createoradd": 8,
+            "lists_query": 12,
+            "lists_remove": 10,
+            "music_likeness": 2,
+            "music_query": 7,
+            "music_settings": 1,
+            "news_query": 23,
+            "play_audiobook": 9,
+            "play_game": 5,
+            "play_music": 37,
+            "play_podcasts": 15,
+            "play_radio": 15,
+            "qa_currency": 10,
+            "qa_definition": 11,
+            "qa_factoid": 23,
+            "qa_maths": 2,
+            "qa_stock": 6,
+            "recommendation_events": 5,
+            "recommendation_locations": 3,
+            "recommendation_movies": 3,
+            "social_post": 8,
+            "social_query": 6,
+            "takeaway_order": 3,
+            "takeaway_query": 5,
+            "transport_query": 8,
+            "transport_taxi": 9,
+            "transport_ticket": 8,
+            "transport_traffic": 7,
+            "weather_query": 28
+          },
+          "singleton_classes": 3,
+          "normalized_duplicate_excess": 0
+        },
+        "test": {
+          "rows": 512,
+          "classes": 57,
+          "class_counts": {
+            "alarm_query": 2,
+            "alarm_remove": 3,
+            "alarm_set": 8,
+            "audio_volume_down": 2,
+            "audio_volume_mute": 7,
+            "audio_volume_other": 2,
+            "audio_volume_up": 2,
+            "calendar_query": 19,
+            "calendar_remove": 14,
+            "calendar_set": 40,
+            "cooking_recipe": 9,
+            "datetime_convert": 2,
+            "datetime_query": 17,
+            "email_addcontact": 2,
+            "email_query": 22,
+            "email_querycontact": 3,
+            "email_sendemail": 25,
+            "general_joke": 1,
+            "general_quirky": 26,
+            "iot_cleaning": 5,
+            "iot_coffee": 7,
+            "iot_hue_lightchange": 4,
+            "iot_hue_lightdim": 5,
+            "iot_hue_lightoff": 9,
+            "iot_hue_lightup": 5,
+            "iot_wemo_off": 4,
+            "iot_wemo_on": 4,
+            "lists_createoradd": 9,
+            "lists_query": 9,
+            "lists_remove": 10,
+            "music_dislikeness": 2,
+            "music_likeness": 2,
+            "music_query": 7,
+            "music_settings": 1,
+            "news_query": 22,
+            "play_audiobook": 4,
+            "play_game": 8,
+            "play_music": 32,
+            "play_podcasts": 13,
+            "play_radio": 11,
+            "qa_currency": 9,
+            "qa_definition": 10,
+            "qa_factoid": 16,
+            "qa_maths": 5,
+            "qa_stock": 8,
+            "recommendation_events": 7,
+            "recommendation_locations": 8,
+            "recommendation_movies": 3,
+            "social_post": 11,
+            "social_query": 3,
+            "takeaway_order": 1,
+            "takeaway_query": 7,
+            "transport_query": 11,
+            "transport_taxi": 4,
+            "transport_ticket": 7,
+            "transport_traffic": 4,
+            "weather_query": 19
+          },
+          "singleton_classes": 3,
+          "normalized_duplicate_excess": 2
+        }
+      }
+    }
+  },
+  "representations": [
+    {
+      "dataset": "banking77",
+      "representation": "e5",
+      "role": "validation",
+      "seed": null,
+      "seconds": 9.916789640999923,
+      "truncated": 0,
+      "dtype": "float32",
+      "dimensions": 384
+    },
+    {
+      "dataset": "banking77",
+      "representation": "e5",
+      "role": "test",
+      "seed": null,
+      "seconds": 9.859639505999894,
+      "truncated": 0,
+      "dtype": "float32",
+      "dimensions": 384
+    },
+    {
+      "dataset": "banking77",
+      "representation": "lexical",
+      "role": "validation",
+      "seed": 0,
+      "seconds": 0.2444578879999426,
+      "dimensions": 64,
+      "dtype": "float64"
+    },
+    {
+      "dataset": "banking77",
+      "representation": "lexical",
+      "role": "test",
+      "seed": 0,
+      "seconds": 0.21300948899988725,
+      "dimensions": 64,
+      "dtype": "float64"
+    },
+    {
+      "dataset": "banking77",
+      "representation": "lexical",
+      "role": "validation",
+      "seed": 1,
+      "seconds": 0.35140217599973766,
+      "dimensions": 64,
+      "dtype": "float64"
+    },
+    {
+      "dataset": "banking77",
+      "representation": "lexical",
+      "role": "test",
+      "seed": 1,
+      "seconds": 0.2967961879999166,
+      "dimensions": 64,
+      "dtype": "float64"
+    },
+    {
+      "dataset": "banking77",
+      "representation": "lexical",
+      "role": "validation",
+      "seed": 2,
+      "seconds": 0.2573281909999423,
+      "dimensions": 64,
+      "dtype": "float64"
+    },
+    {
+      "dataset": "banking77",
+      "representation": "lexical",
+      "role": "test",
+      "seed": 2,
+      "seconds": 0.23967948799963779,
+      "dimensions": 64,
+      "dtype": "float64"
+    },
+    {
+      "dataset": "massive_zh_cn",
+      "representation": "e5",
+      "role": "validation",
+      "seed": null,
+      "seconds": 3.8867577870000787,
+      "truncated": 0,
+      "dtype": "float32",
+      "dimensions": 384
+    },
+    {
+      "dataset": "massive_zh_cn",
+      "representation": "e5",
+      "role": "test",
+      "seed": null,
+      "seconds": 4.187941046000105,
+      "truncated": 0,
+      "dtype": "float32",
+      "dimensions": 384
+    },
+    {
+      "dataset": "massive_zh_cn",
+      "representation": "lexical",
+      "role": "validation",
+      "seed": 0,
+      "seconds": 0.05711558299981334,
+      "dimensions": 64,
+      "dtype": "float64"
+    },
+    {
+      "dataset": "massive_zh_cn",
+      "representation": "lexical",
+      "role": "test",
+      "seed": 0,
+      "seconds": 0.04972287900000083,
+      "dimensions": 64,
+      "dtype": "float64"
+    },
+    {
+      "dataset": "massive_zh_cn",
+      "representation": "lexical",
+      "role": "validation",
+      "seed": 1,
+      "seconds": 0.05544011300025886,
+      "dimensions": 64,
+      "dtype": "float64"
+    },
+    {
+      "dataset": "massive_zh_cn",
+      "representation": "lexical",
+      "role": "test",
+      "seed": 1,
+      "seconds": 0.0510486729999684,
+      "dimensions": 64,
+      "dtype": "float64"
+    },
+    {
+      "dataset": "massive_zh_cn",
+      "representation": "lexical",
+      "role": "validation",
+      "seed": 2,
+      "seconds": 0.05221162399993773,
+      "dimensions": 64,
+      "dtype": "float64"
+    },
+    {
+      "dataset": "massive_zh_cn",
+      "representation": "lexical",
+      "role": "test",
+      "seed": 2,
+      "seconds": 0.051526793999983056,
+      "dimensions": 64,
+      "dtype": "float64"
+    }
+  ],
+  "validation_trials": [
+    {
+      "dataset": "banking77",
+      "representation": "lexical",
+      "seed": 0,
+      "selected": [
+        5,
+        3
+      ],
+      "trials": [
+        {
+          "params": [
+            5,
+            3
+          ],
+          "ari_all_noise_as_one_cluster": 0.05751769845560777,
+          "nmi_all_noise_as_one_cluster": 0.5445076376013118,
+          "coverage": 0.609375,
+          "clusters_excluding_noise": 24,
+          "ari_covered": 0.2960655124633166,
+          "seconds": 0.04335126800015132
+        },
+        {
+          "params": [
+            5,
+            5
+          ],
+          "ari_all_noise_as_one_cluster": 0.02413645385947853,
+          "nmi_all_noise_as_one_cluster": 0.45290297673191426,
+          "coverage": 0.431640625,
+          "clusters_excluding_noise": 20,
+          "ari_covered": 0.41265377910005324,
+          "seconds": 0.040389474000221526
+        },
+        {
+          "params": [
+            10,
+            3
+          ],
+          "ari_all_noise_as_one_cluster": 0.04659293361392165,
+          "nmi_all_noise_as_one_cluster": 0.4547461397347218,
+          "coverage": 0.583984375,
+          "clusters_excluding_noise": 13,
+          "ari_covered": 0.19223437610954977,
+          "seconds": 0.03696798300006776
+        },
+        {
+          "params": [
+            10,
+            5
+          ],
+          "ari_all_noise_as_one_cluster": 0.02089355560166055,
+          "nmi_all_noise_as_one_cluster": 0.3477448075550074,
+          "coverage": 0.40625,
+          "clusters_excluding_noise": 8,
+          "ari_covered": 0.17743255564560118,
+          "seconds": 0.03470695499981957
+        },
+        {
+          "params": [
+            20,
+            3
+          ],
+          "ari_all_noise_as_one_cluster": 0.02131958360419066,
+          "nmi_all_noise_as_one_cluster": 0.28652003394590236,
+          "coverage": 0.43359375,
+          "clusters_excluding_noise": 4,
+          "ari_covered": 0.09195810040557827,
+          "seconds": 0.059943738999663765
+        },
+        {
+          "params": [
+            20,
+            5
+          ],
+          "ari_all_noise_as_one_cluster": 0.013564339082867067,
+          "nmi_all_noise_as_one_cluster": 0.25230841002255644,
+          "coverage": 0.34765625,
+          "clusters_excluding_noise": 4,
+          "ari_covered": 0.09543086889767977,
+          "seconds": 0.036039745999914885
+        }
+      ]
+    },
+    {
+      "dataset": "banking77",
+      "representation": "lexical",
+      "seed": 1,
+      "selected": [
+        5,
+        3
+      ],
+      "trials": [
+        {
+          "params": [
+            5,
+            3
+          ],
+          "ari_all_noise_as_one_cluster": 0.05248528308508802,
+          "nmi_all_noise_as_one_cluster": 0.5495422139741,
+          "coverage": 0.58984375,
+          "clusters_excluding_noise": 25,
+          "ari_covered": 0.38396059879516903,
+          "seconds": 0.04071187599993209
+        },
+        {
+          "params": [
+            5,
+            5
+          ],
+          "ari_all_noise_as_one_cluster": 0.025141743610181316,
+          "nmi_all_noise_as_one_cluster": 0.44437230427834323,
+          "coverage": 0.46484375,
+          "clusters_excluding_noise": 19,
+          "ari_covered": 0.32704638410636594,
+          "seconds": 0.041463823999947635
+        },
+        {
+          "params": [
+            10,
+            3
+          ],
+          "ari_all_noise_as_one_cluster": 0.043629721226073476,
+          "nmi_all_noise_as_one_cluster": 0.43486280994151316,
+          "coverage": 0.640625,
+          "clusters_excluding_noise": 12,
+          "ari_covered": 0.09515755631969774,
+          "seconds": 0.03840768500003833
+        },
+        {
+          "params": [
+            10,
+            5
+          ],
+          "ari_all_noise_as_one_cluster": 0.019604857491747403,
+          "nmi_all_noise_as_one_cluster": 0.36087807343851896,
+          "coverage": 0.390625,
+          "clusters_excluding_noise": 9,
+          "ari_covered": 0.2609350270463192,
+          "seconds": 0.04071761900013371
+        },
+        {
+          "params": [
+            20,
+            3
+          ],
+          "ari_all_noise_as_one_cluster": 0.025077225706432293,
+          "nmi_all_noise_as_one_cluster": 0.29336798808296327,
+          "coverage": 0.5078125,
+          "clusters_excluding_noise": 4,
+          "ari_covered": 0.06318435341148897,
+          "seconds": 0.04229175100044813
+        },
+        {
+          "params": [
+            20,
+            5
+          ],
+          "ari_all_noise_as_one_cluster": 0.013494877907983425,
+          "nmi_all_noise_as_one_cluster": 0.25976938205015426,
+          "coverage": 0.310546875,
+          "clusters_excluding_noise": 4,
+          "ari_covered": 0.1452897770593638,
+          "seconds": 0.040119802999925014
+        }
+      ]
+    },
+    {
+      "dataset": "banking77",
+      "representation": "lexical",
+      "seed": 2,
+      "selected": [
+        5,
+        3
+      ],
+      "trials": [
+        {
+          "params": [
+            5,
+            3
+          ],
+          "ari_all_noise_as_one_cluster": 0.058841307183593594,
+          "nmi_all_noise_as_one_cluster": 0.5718154991916368,
+          "coverage": 0.62109375,
+          "clusters_excluding_noise": 30,
+          "ari_covered": 0.38064670978957044,
+          "seconds": 0.04265069799976118
+        },
+        {
+          "params": [
+            5,
+            5
+          ],
+          "ari_all_noise_as_one_cluster": 0.02295117099895589,
+          "nmi_all_noise_as_one_cluster": 0.4507911513507089,
+          "coverage": 0.43359375,
+          "clusters_excluding_noise": 21,
+          "ari_covered": 0.39741576488233965,
+          "seconds": 0.03819162999980108
+        },
+        {
+          "params": [
+            10,
+            3
+          ],
+          "ari_all_noise_as_one_cluster": 0.046173668580511716,
+          "nmi_all_noise_as_one_cluster": 0.47396959678073486,
+          "coverage": 0.56640625,
+          "clusters_excluding_noise": 14,
+          "ari_covered": 0.2399589732503418,
+          "seconds": 0.038197589999981574
+        },
+        {
+          "params": [
+            10,
+            5
+          ],
+          "ari_all_noise_as_one_cluster": 0.019288614547459063,
+          "nmi_all_noise_as_one_cluster": 0.3723130794925605,
+          "coverage": 0.361328125,
+          "clusters_excluding_noise": 9,
+          "ari_covered": 0.32113585255458216,
+          "seconds": 0.038492020000376215
+        },
+        {
+          "params": [
+            20,
+            3
+          ],
+          "ari_all_noise_as_one_cluster": 0.027934721854630567,
+          "nmi_all_noise_as_one_cluster": 0.33108938836023694,
+          "coverage": 0.48046875,
+          "clusters_excluding_noise": 5,
+          "ari_covered": 0.11567200342553563,
+          "seconds": 0.10484176099998876
+        },
+        {
+          "params": [
+            20,
+            5
+          ],
+          "ari_all_noise_as_one_cluster": 0.014953554929846822,
+          "nmi_all_noise_as_one_cluster": 0.19556023360458497,
+          "coverage": 0.494140625,
+          "clusters_excluding_noise": 2,
+          "ari_covered": 0.022280858046481444,
+          "seconds": 0.04495177099988723
+        }
+      ]
+    },
+    {
+      "dataset": "banking77",
+      "representation": "e5",
+      "seed": 0,
+      "selected": [
+        5,
+        3
+      ],
+      "trials": [
+        {
+          "params": [
+            5,
+            3
+          ],
+          "ari_all_noise_as_one_cluster": 0.02089404248698071,
+          "nmi_all_noise_as_one_cluster": 0.4755871412665295,
+          "coverage": 0.43359375,
+          "clusters_excluding_noise": 24,
+          "ari_covered": 0.506978091169111,
+          "seconds": 0.22792421400026797
+        },
+        {
+          "params": [
+            5,
+            5
+          ],
+          "ari_all_noise_as_one_cluster": 0.008258444671652826,
+          "nmi_all_noise_as_one_cluster": 0.12200738060524567,
+          "coverage": 0.712890625,
+          "clusters_excluding_noise": 2,
+          "ari_covered": 0.002060979471191125,
+          "seconds": 0.23786432900033105
+        },
+        {
+          "params": [
+            10,
+            3
+          ],
+          "ari_all_noise_as_one_cluster": 0.014053225626669002,
+          "nmi_all_noise_as_one_cluster": 0.33951759190750674,
+          "coverage": 0.34765625,
+          "clusters_excluding_noise": 9,
+          "ari_covered": 0.278701843566739,
+          "seconds": 0.22651001199983511
+        },
+        {
+          "params": [
+            10,
+            5
+          ],
+          "ari_all_noise_as_one_cluster": 0.008258444671652826,
+          "nmi_all_noise_as_one_cluster": 0.12200738060524567,
+          "coverage": 0.712890625,
+          "clusters_excluding_noise": 2,
+          "ari_covered": 0.002060979471191125,
+          "seconds": 0.22942883399991842
+        },
+        {
+          "params": [
+            20,
+            3
+          ],
+          "ari_all_noise_as_one_cluster": 0.014810277892482304,
+          "nmi_all_noise_as_one_cluster": 0.18148357947917526,
+          "coverage": 0.634765625,
+          "clusters_excluding_noise": 2,
+          "ari_covered": 0.008643953037196206,
+          "seconds": 0.22893589000022985
+        },
+        {
+          "params": [
+            20,
+            5
+          ],
+          "ari_all_noise_as_one_cluster": 0.012674246286927454,
+          "nmi_all_noise_as_one_cluster": 0.16384577491141208,
+          "coverage": 0.515625,
+          "clusters_excluding_noise": 2,
+          "ari_covered": 0.0089462724167467,
+          "seconds": 0.22617016200001672
+        }
+      ]
+    },
+    {
+      "dataset": "banking77",
+      "representation": "e5",
+      "seed": 1,
+      "selected": [
+        5,
+        3
+      ],
+      "trials": [
+        {
+          "params": [
+            5,
+            3
+          ],
+          "ari_all_noise_as_one_cluster": 0.02089404248698071,
+          "nmi_all_noise_as_one_cluster": 0.4755871412665295,
+          "coverage": 0.43359375,
+          "clusters_excluding_noise": 24,
+          "ari_covered": 0.506978091169111,
+          "seconds": 0.2296951500002251
+        },
+        {
+          "params": [
+            5,
+            5
+          ],
+          "ari_all_noise_as_one_cluster": 0.008258444671652826,
+          "nmi_all_noise_as_one_cluster": 0.12200738060524567,
+          "coverage": 0.712890625,
+          "clusters_excluding_noise": 2,
+          "ari_covered": 0.002060979471191125,
+          "seconds": 0.24687148200018783
+        },
+        {
+          "params": [
+            10,
+            3
+          ],
+          "ari_all_noise_as_one_cluster": 0.014053225626669002,
+          "nmi_all_noise_as_one_cluster": 0.33951759190750674,
+          "coverage": 0.34765625,
+          "clusters_excluding_noise": 9,
+          "ari_covered": 0.278701843566739,
+          "seconds": 0.23013813699981256
+        },
+        {
+          "params": [
+            10,
+            5
+          ],
+          "ari_all_noise_as_one_cluster": 0.008258444671652826,
+          "nmi_all_noise_as_one_cluster": 0.12200738060524567,
+          "coverage": 0.712890625,
+          "clusters_excluding_noise": 2,
+          "ari_covered": 0.002060979471191125,
+          "seconds": 0.24283401100001356
+        },
+        {
+          "params": [
+            20,
+            3
+          ],
+          "ari_all_noise_as_one_cluster": 0.014810277892482304,
+          "nmi_all_noise_as_one_cluster": 0.18148357947917526,
+          "coverage": 0.634765625,
+          "clusters_excluding_noise": 2,
+          "ari_covered": 0.008643953037196206,
+          "seconds": 0.23666344699995534
+        },
+        {
+          "params": [
+            20,
+            5
+          ],
+          "ari_all_noise_as_one_cluster": 0.012674246286927454,
+          "nmi_all_noise_as_one_cluster": 0.16384577491141208,
+          "coverage": 0.515625,
+          "clusters_excluding_noise": 2,
+          "ari_covered": 0.0089462724167467,
+          "seconds": 0.23076740299984522
+        }
+      ]
+    },
+    {
+      "dataset": "banking77",
+      "representation": "e5",
+      "seed": 2,
+      "selected": [
+        5,
+        3
+      ],
+      "trials": [
+        {
+          "params": [
+            5,
+            3
+          ],
+          "ari_all_noise_as_one_cluster": 0.02089404248698071,
+          "nmi_all_noise_as_one_cluster": 0.4755871412665295,
+          "coverage": 0.43359375,
+          "clusters_excluding_noise": 24,
+          "ari_covered": 0.506978091169111,
+          "seconds": 0.23129910199986625
+        },
+        {
+          "params": [
+            5,
+            5
+          ],
+          "ari_all_noise_as_one_cluster": 0.008258444671652826,
+          "nmi_all_noise_as_one_cluster": 0.12200738060524567,
+          "coverage": 0.712890625,
+          "clusters_excluding_noise": 2,
+          "ari_covered": 0.002060979471191125,
+          "seconds": 0.22253148099980535
+        },
+        {
+          "params": [
+            10,
+            3
+          ],
+          "ari_all_noise_as_one_cluster": 0.014053225626669002,
+          "nmi_all_noise_as_one_cluster": 0.33951759190750674,
+          "coverage": 0.34765625,
+          "clusters_excluding_noise": 9,
+          "ari_covered": 0.278701843566739,
+          "seconds": 0.22902357400016626
+        },
+        {
+          "params": [
+            10,
+            5
+          ],
+          "ari_all_noise_as_one_cluster": 0.008258444671652826,
+          "nmi_all_noise_as_one_cluster": 0.12200738060524567,
+          "coverage": 0.712890625,
+          "clusters_excluding_noise": 2,
+          "ari_covered": 0.002060979471191125,
+          "seconds": 0.23385758999984319
+        },
+        {
+          "params": [
+            20,
+            3
+          ],
+          "ari_all_noise_as_one_cluster": 0.014810277892482304,
+          "nmi_all_noise_as_one_cluster": 0.18148357947917526,
+          "coverage": 0.634765625,
+          "clusters_excluding_noise": 2,
+          "ari_covered": 0.008643953037196206,
+          "seconds": 0.2220686669998031
+        },
+        {
+          "params": [
+            20,
+            5
+          ],
+          "ari_all_noise_as_one_cluster": 0.012674246286927454,
+          "nmi_all_noise_as_one_cluster": 0.16384577491141208,
+          "coverage": 0.515625,
+          "clusters_excluding_noise": 2,
+          "ari_covered": 0.0089462724167467,
+          "seconds": 0.24409769399971992
+        }
+      ]
+    },
+    {
+      "dataset": "massive_zh_cn",
+      "representation": "lexical",
+      "seed": 0,
+      "selected": [
+        5,
+        3
+      ],
+      "trials": [
+        {
+          "params": [
+            5,
+            3
+          ],
+          "ari_all_noise_as_one_cluster": 0.08330231380626542,
+          "nmi_all_noise_as_one_cluster": 0.533111600654946,
+          "coverage": 0.763671875,
+          "clusters_excluding_noise": 41,
+          "ari_covered": 0.23228580626602177,
+          "seconds": 0.03633445900004517
+        },
+        {
+          "params": [
+            5,
+            5
+          ],
+          "ari_all_noise_as_one_cluster": 0.04200154476186792,
+          "nmi_all_noise_as_one_cluster": 0.4746258136929577,
+          "coverage": 0.58984375,
+          "clusters_excluding_noise": 32,
+          "ari_covered": 0.30971311167876536,
+          "seconds": 0.039001345000087895
+        },
+        {
+          "params": [
+            10,
+            3
+          ],
+          "ari_all_noise_as_one_cluster": 0.0017006317729518867,
+          "nmi_all_noise_as_one_cluster": 0.04478850063299282,
+          "coverage": 0.99609375,
+          "clusters_excluding_noise": 2,
+          "ari_covered": 0.001213975040652521,
+          "seconds": 0.04216915799997878
+        },
+        {
+          "params": [
+            10,
+            5
+          ],
+          "ari_all_noise_as_one_cluster": 0.0030292750991682145,
+          "nmi_all_noise_as_one_cluster": 0.07115885572150421,
+          "coverage": 0.93359375,
+          "clusters_excluding_noise": 2,
+          "ari_covered": 0.0016346805366582546,
+          "seconds": 0.038062510999679944
+        },
+        {
+          "params": [
+            20,
+            3
+          ],
+          "ari_all_noise_as_one_cluster": 0.0017006317729518867,
+          "nmi_all_noise_as_one_cluster": 0.04478850063299282,
+          "coverage": 0.99609375,
+          "clusters_excluding_noise": 2,
+          "ari_covered": 0.001213975040652521,
+          "seconds": 0.03566706500032524
+        },
+        {
+          "params": [
+            20,
+            5
+          ],
+          "ari_all_noise_as_one_cluster": 0.0030292750991682145,
+          "nmi_all_noise_as_one_cluster": 0.07115885572150421,
+          "coverage": 0.93359375,
+          "clusters_excluding_noise": 2,
+          "ari_covered": 0.0016346805366582546,
+          "seconds": 0.036781840000003285
+        }
+      ]
+    },
+    {
+      "dataset": "massive_zh_cn",
+      "representation": "lexical",
+      "seed": 1,
+      "selected": [
+        10,
+        3
+      ],
+      "trials": [
+        {
+          "params": [
+            5,
+            3
+          ],
+          "ari_all_noise_as_one_cluster": 0.10144410121678189,
+          "nmi_all_noise_as_one_cluster": 0.5375744713413456,
+          "coverage": 0.77734375,
+          "clusters_excluding_noise": 41,
+          "ari_covered": 0.24474806049069175,
+          "seconds": 0.0444170320001831
+        },
+        {
+          "params": [
+            5,
+            5
+          ],
+          "ari_all_noise_as_one_cluster": 0.04547110190509166,
+          "nmi_all_noise_as_one_cluster": 0.47392594781354985,
+          "coverage": 0.60546875,
+          "clusters_excluding_noise": 31,
+          "ari_covered": 0.2781178691365641,
+          "seconds": 0.03987422900036108
+        },
+        {
+          "params": [
+            10,
+            3
+          ],
+          "ari_all_noise_as_one_cluster": 0.10347840448129282,
+          "nmi_all_noise_as_one_cluster": 0.4453960598638393,
+          "coverage": 0.787109375,
+          "clusters_excluding_noise": 16,
+          "ari_covered": 0.16812518985539668,
+          "seconds": 0.04183412399970621
+        },
+        {
+          "params": [
+            10,
+            5
+          ],
+          "ari_all_noise_as_one_cluster": 0.0041454406722553246,
+          "nmi_all_noise_as_one_cluster": 0.10297906699077529,
+          "coverage": 0.91015625,
+          "clusters_excluding_noise": 3,
+          "ari_covered": 0.00415087916888845,
+          "seconds": 0.0426082970002426
+        },
+        {
+          "params": [
+            20,
+            3
+          ],
+          "ari_all_noise_as_one_cluster": 0.0018895833328349025,
+          "nmi_all_noise_as_one_cluster": 0.04728195494838128,
+          "coverage": 0.994140625,
+          "clusters_excluding_noise": 2,
+          "ari_covered": 0.0012705934294416296,
+          "seconds": 0.034717413000180386
+        },
+        {
+          "params": [
+            20,
+            5
+          ],
+          "ari_all_noise_as_one_cluster": 0.002740921178488462,
+          "nmi_all_noise_as_one_cluster": 0.0686486449299595,
+          "coverage": 0.9453125,
+          "clusters_excluding_noise": 2,
+          "ari_covered": 0.0014331204808506678,
+          "seconds": 0.043079526999918016
+        }
+      ]
+    },
+    {
+      "dataset": "massive_zh_cn",
+      "representation": "lexical",
+      "seed": 2,
+      "selected": [
+        5,
+        3
+      ],
+      "trials": [
+        {
+          "params": [
+            5,
+            3
+          ],
+          "ari_all_noise_as_one_cluster": 0.09033482655963021,
+          "nmi_all_noise_as_one_cluster": 0.5428416858059405,
+          "coverage": 0.78125,
+          "clusters_excluding_noise": 42,
+          "ari_covered": 0.2201131032995066,
+          "seconds": 0.04145667600005254
+        },
+        {
+          "params": [
+            5,
+            5
+          ],
+          "ari_all_noise_as_one_cluster": 0.03933844631488187,
+          "nmi_all_noise_as_one_cluster": 0.4587382212703195,
+          "coverage": 0.576171875,
+          "clusters_excluding_noise": 28,
+          "ari_covered": 0.28489736871751015,
+          "seconds": 0.036065407999558374
+        },
+        {
+          "params": [
+            10,
+            3
+          ],
+          "ari_all_noise_as_one_cluster": 0.08540583337156729,
+          "nmi_all_noise_as_one_cluster": 0.44243935025371994,
+          "coverage": 0.720703125,
+          "clusters_excluding_noise": 17,
+          "ari_covered": 0.18700553457873578,
+          "seconds": 0.0402291770001284
+        },
+        {
+          "params": [
+            10,
+            5
+          ],
+          "ari_all_noise_as_one_cluster": 0.0015416984983196308,
+          "nmi_all_noise_as_one_cluster": 0.06269355097724685,
+          "coverage": 0.955078125,
+          "clusters_excluding_noise": 2,
+          "ari_covered": 0.0013896621944842612,
+          "seconds": 0.03525266999986343
+        },
+        {
+          "params": [
+            20,
+            3
+          ],
+          "ari_all_noise_as_one_cluster": 0.0014695189032167774,
+          "nmi_all_noise_as_one_cluster": 0.048072096102796814,
+          "coverage": 0.990234375,
+          "clusters_excluding_noise": 2,
+          "ari_covered": 0.0012597992182130382,
+          "seconds": 0.037276262999967
+        },
+        {
+          "params": [
+            20,
+            5
+          ],
+          "ari_all_noise_as_one_cluster": 0.0015416984983196308,
+          "nmi_all_noise_as_one_cluster": 0.06269355097724685,
+          "coverage": 0.955078125,
+          "clusters_excluding_noise": 2,
+          "ari_covered": 0.0013896621944842612,
+          "seconds": 0.040076866000163136
+        }
+      ]
+    },
+    {
+      "dataset": "massive_zh_cn",
+      "representation": "e5",
+      "seed": 0,
+      "selected": [
+        5,
+        5
+      ],
+      "trials": [
+        {
+          "params": [
+            5,
+            3
+          ],
+          "ari_all_noise_as_one_cluster": 0.022567629068104063,
+          "nmi_all_noise_as_one_cluster": 0.16608208337805408,
+          "coverage": 0.744140625,
+          "clusters_excluding_noise": 2,
+          "ari_covered": 0.00297243443110631,
+          "seconds": 0.2698097060001601
+        },
+        {
+          "params": [
+            5,
+            5
+          ],
+          "ari_all_noise_as_one_cluster": 0.030585279497542944,
+          "nmi_all_noise_as_one_cluster": 0.17863231232177798,
+          "coverage": 0.650390625,
+          "clusters_excluding_noise": 2,
+          "ari_covered": 0.003365366157312762,
+          "seconds": 0.24942976900001668
+        },
+        {
+          "params": [
+            10,
+            3
+          ],
+          "ari_all_noise_as_one_cluster": 0.02874089065001181,
+          "nmi_all_noise_as_one_cluster": 0.33373987818302464,
+          "coverage": 0.35546875,
+          "clusters_excluding_noise": 6,
+          "ari_covered": 0.3185545711281345,
+          "seconds": 0.24602600200023517
+        },
+        {
+          "params": [
+            10,
+            5
+          ],
+          "ari_all_noise_as_one_cluster": 0.026364817476426335,
+          "nmi_all_noise_as_one_cluster": 0.21246750139104434,
+          "coverage": 0.392578125,
+          "clusters_excluding_noise": 2,
+          "ari_covered": 0.06697342549611822,
+          "seconds": 0.26452379400006976
+        },
+        {
+          "params": [
+            20,
+            3
+          ],
+          "ari_all_noise_as_one_cluster": 0.025811129425269502,
+          "nmi_all_noise_as_one_cluster": 0.2915641464408505,
+          "coverage": 0.34375,
+          "clusters_excluding_noise": 4,
+          "ari_covered": 0.25609405138949454,
+          "seconds": 0.25422935500000676
+        },
+        {
+          "params": [
+            20,
+            5
+          ],
+          "ari_all_noise_as_one_cluster": 0.026364817476426335,
+          "nmi_all_noise_as_one_cluster": 0.21246750139104434,
+          "coverage": 0.392578125,
+          "clusters_excluding_noise": 2,
+          "ari_covered": 0.06697342549611822,
+          "seconds": 0.24775482599989118
+        }
+      ]
+    },
+    {
+      "dataset": "massive_zh_cn",
+      "representation": "e5",
+      "seed": 1,
+      "selected": [
+        5,
+        5
+      ],
+      "trials": [
+        {
+          "params": [
+            5,
+            3
+          ],
+          "ari_all_noise_as_one_cluster": 0.022567629068104063,
+          "nmi_all_noise_as_one_cluster": 0.16608208337805408,
+          "coverage": 0.744140625,
+          "clusters_excluding_noise": 2,
+          "ari_covered": 0.00297243443110631,
+          "seconds": 0.2485111739997592
+        },
+        {
+          "params": [
+            5,
+            5
+          ],
+          "ari_all_noise_as_one_cluster": 0.030585279497542944,
+          "nmi_all_noise_as_one_cluster": 0.17863231232177798,
+          "coverage": 0.650390625,
+          "clusters_excluding_noise": 2,
+          "ari_covered": 0.003365366157312762,
+          "seconds": 0.24851956499969674
+        },
+        {
+          "params": [
+            10,
+            3
+          ],
+          "ari_all_noise_as_one_cluster": 0.02874089065001181,
+          "nmi_all_noise_as_one_cluster": 0.33373987818302464,
+          "coverage": 0.35546875,
+          "clusters_excluding_noise": 6,
+          "ari_covered": 0.3185545711281345,
+          "seconds": 0.2513650559999405
+        },
+        {
+          "params": [
+            10,
+            5
+          ],
+          "ari_all_noise_as_one_cluster": 0.026364817476426335,
+          "nmi_all_noise_as_one_cluster": 0.21246750139104434,
+          "coverage": 0.392578125,
+          "clusters_excluding_noise": 2,
+          "ari_covered": 0.06697342549611822,
+          "seconds": 0.2700857929999074
+        },
+        {
+          "params": [
+            20,
+            3
+          ],
+          "ari_all_noise_as_one_cluster": 0.025811129425269502,
+          "nmi_all_noise_as_one_cluster": 0.2915641464408505,
+          "coverage": 0.34375,
+          "clusters_excluding_noise": 4,
+          "ari_covered": 0.25609405138949454,
+          "seconds": 0.2839264600002025
+        },
+        {
+          "params": [
+            20,
+            5
+          ],
+          "ari_all_noise_as_one_cluster": 0.026364817476426335,
+          "nmi_all_noise_as_one_cluster": 0.21246750139104434,
+          "coverage": 0.392578125,
+          "clusters_excluding_noise": 2,
+          "ari_covered": 0.06697342549611822,
+          "seconds": 0.27411127400000623
+        }
+      ]
+    },
+    {
+      "dataset": "massive_zh_cn",
+      "representation": "e5",
+      "seed": 2,
+      "selected": [
+        5,
+        5
+      ],
+      "trials": [
+        {
+          "params": [
+            5,
+            3
+          ],
+          "ari_all_noise_as_one_cluster": 0.022567629068104063,
+          "nmi_all_noise_as_one_cluster": 0.16608208337805408,
+          "coverage": 0.744140625,
+          "clusters_excluding_noise": 2,
+          "ari_covered": 0.00297243443110631,
+          "seconds": 0.2861588179998762
+        },
+        {
+          "params": [
+            5,
+            5
+          ],
+          "ari_all_noise_as_one_cluster": 0.030585279497542944,
+          "nmi_all_noise_as_one_cluster": 0.17863231232177798,
+          "coverage": 0.650390625,
+          "clusters_excluding_noise": 2,
+          "ari_covered": 0.003365366157312762,
+          "seconds": 0.3033483150002212
+        },
+        {
+          "params": [
+            10,
+            3
+          ],
+          "ari_all_noise_as_one_cluster": 0.02874089065001181,
+          "nmi_all_noise_as_one_cluster": 0.33373987818302464,
+          "coverage": 0.35546875,
+          "clusters_excluding_noise": 6,
+          "ari_covered": 0.3185545711281345,
+          "seconds": 0.29392706899989207
+        },
+        {
+          "params": [
+            10,
+            5
+          ],
+          "ari_all_noise_as_one_cluster": 0.026364817476426335,
+          "nmi_all_noise_as_one_cluster": 0.21246750139104434,
+          "coverage": 0.392578125,
+          "clusters_excluding_noise": 2,
+          "ari_covered": 0.06697342549611822,
+          "seconds": 0.2441978649999328
+        },
+        {
+          "params": [
+            20,
+            3
+          ],
+          "ari_all_noise_as_one_cluster": 0.025811129425269502,
+          "nmi_all_noise_as_one_cluster": 0.2915641464408505,
+          "coverage": 0.34375,
+          "clusters_excluding_noise": 4,
+          "ari_covered": 0.25609405138949454,
+          "seconds": 0.2773613260001184
+        },
+        {
+          "params": [
+            20,
+            5
+          ],
+          "ari_all_noise_as_one_cluster": 0.026364817476426335,
+          "nmi_all_noise_as_one_cluster": 0.21246750139104434,
+          "coverage": 0.392578125,
+          "clusters_excluding_noise": 2,
+          "ari_covered": 0.06697342549611822,
+          "seconds": 0.2480929160001324
+        }
+      ]
+    }
+  ],
+  "runs": [
+    {
+      "dataset": "banking77",
+      "representation": "lexical",
+      "seed": 0,
+      "method": "one-cluster",
+      "n": 512,
+      "covered_n": 512,
+      "oracle_k": null,
+      "selected_params": null,
+      "ari_all_noise_as_one_cluster": 0.0,
+      "nmi_all_noise_as_one_cluster": 0.0,
+      "coverage": 1.0,
+      "clusters_excluding_noise": 1,
+      "ari_covered": 0.0,
+      "cluster_seconds": 4.0380000427830964e-06
+    },
+    {
+      "dataset": "banking77",
+      "representation": "lexical",
+      "seed": 0,
+      "method": "kmeans-oracle-k",
+      "n": 512,
+      "covered_n": 512,
+      "oracle_k": 77,
+      "selected_params": null,
+      "ari_all_noise_as_one_cluster": 0.30348108157973336,
+      "nmi_all_noise_as_one_cluster": 0.7468065568753922,
+      "coverage": 1.0,
+      "clusters_excluding_noise": 77,
+      "ari_covered": 0.30348108157973336,
+      "cluster_seconds": 0.1850002879996282
+    },
+    {
+      "dataset": "banking77",
+      "representation": "lexical",
+      "seed": 0,
+      "method": "hdbscan-fixed",
+      "n": 512,
+      "covered_n": 226,
+      "oracle_k": null,
+      "selected_params": null,
+      "ari_all_noise_as_one_cluster": 0.020217119685940938,
+      "nmi_all_noise_as_one_cluster": 0.3538786141979611,
+      "coverage": 0.44140625,
+      "clusters_excluding_noise": 7,
+      "ari_covered": 0.16771283606111456,
+      "cluster_seconds": 0.037916919000053895
+    },
+    {
+      "dataset": "banking77",
+      "representation": "lexical",
+      "seed": 0,
+      "method": "hdbscan-validation-tuned",
+      "n": 512,
+      "covered_n": 289,
+      "oracle_k": null,
+      "selected_params": [
+        5,
+        3
+      ],
+      "ari_all_noise_as_one_cluster": 0.03226667767220634,
+      "nmi_all_noise_as_one_cluster": 0.4967274496247561,
+      "coverage": 0.564453125,
+      "clusters_excluding_noise": 25,
+      "ari_covered": 0.26279748117669394,
+      "cluster_seconds": 0.06004776600002515
+    },
+    {
+      "dataset": "banking77",
+      "representation": "lexical",
+      "seed": 1,
+      "method": "one-cluster",
+      "n": 512,
+      "covered_n": 512,
+      "oracle_k": null,
+      "selected_params": null,
+      "ari_all_noise_as_one_cluster": 0.0,
+      "nmi_all_noise_as_one_cluster": 0.0,
+      "coverage": 1.0,
+      "clusters_excluding_noise": 1,
+      "ari_covered": 0.0,
+      "cluster_seconds": 3.4469999263819773e-06
+    },
+    {
+      "dataset": "banking77",
+      "representation": "lexical",
+      "seed": 1,
+      "method": "kmeans-oracle-k",
+      "n": 512,
+      "covered_n": 512,
+      "oracle_k": 77,
+      "selected_params": null,
+      "ari_all_noise_as_one_cluster": 0.28864782246373166,
+      "nmi_all_noise_as_one_cluster": 0.7398240279843982,
+      "coverage": 1.0,
+      "clusters_excluding_noise": 77,
+      "ari_covered": 0.28864782246373166,
+      "cluster_seconds": 0.12876461799987737
+    },
+    {
+      "dataset": "banking77",
+      "representation": "lexical",
+      "seed": 1,
+      "method": "hdbscan-fixed",
+      "n": 512,
+      "covered_n": 226,
+      "oracle_k": null,
+      "selected_params": null,
+      "ari_all_noise_as_one_cluster": 0.017382155598140565,
+      "nmi_all_noise_as_one_cluster": 0.3406990100533704,
+      "coverage": 0.44140625,
+      "clusters_excluding_noise": 7,
+      "ari_covered": 0.16424289590227312,
+      "cluster_seconds": 0.035764581999956135
+    },
+    {
+      "dataset": "banking77",
+      "representation": "lexical",
+      "seed": 1,
+      "method": "hdbscan-validation-tuned",
+      "n": 512,
+      "covered_n": 289,
+      "oracle_k": null,
+      "selected_params": [
+        5,
+        3
+      ],
+      "ari_all_noise_as_one_cluster": 0.03532969974805496,
+      "nmi_all_noise_as_one_cluster": 0.5185236678996861,
+      "coverage": 0.564453125,
+      "clusters_excluding_noise": 27,
+      "ari_covered": 0.2851893626703045,
+      "cluster_seconds": 0.030929771000046458
+    },
+    {
+      "dataset": "banking77",
+      "representation": "lexical",
+      "seed": 2,
+      "method": "one-cluster",
+      "n": 512,
+      "covered_n": 512,
+      "oracle_k": null,
+      "selected_params": null,
+      "ari_all_noise_as_one_cluster": 0.0,
+      "nmi_all_noise_as_one_cluster": 0.0,
+      "coverage": 1.0,
+      "clusters_excluding_noise": 1,
+      "ari_covered": 0.0,
+      "cluster_seconds": 3.4270001378899906e-06
+    },
+    {
+      "dataset": "banking77",
+      "representation": "lexical",
+      "seed": 2,
+      "method": "kmeans-oracle-k",
+      "n": 512,
+      "covered_n": 512,
+      "oracle_k": 77,
+      "selected_params": null,
+      "ari_all_noise_as_one_cluster": 0.28798707101474325,
+      "nmi_all_noise_as_one_cluster": 0.7389476254814269,
+      "coverage": 1.0,
+      "clusters_excluding_noise": 77,
+      "ari_covered": 0.28798707101474325,
+      "cluster_seconds": 0.21427854900002785
+    },
+    {
+      "dataset": "banking77",
+      "representation": "lexical",
+      "seed": 2,
+      "method": "hdbscan-fixed",
+      "n": 512,
+      "covered_n": 213,
+      "oracle_k": null,
+      "selected_params": null,
+      "ari_all_noise_as_one_cluster": 0.01773053831432317,
+      "nmi_all_noise_as_one_cluster": 0.345377434202178,
+      "coverage": 0.416015625,
+      "clusters_excluding_noise": 7,
+      "ari_covered": 0.19245996158341722,
+      "cluster_seconds": 0.03362686099990242
+    },
+    {
+      "dataset": "banking77",
+      "representation": "lexical",
+      "seed": 2,
+      "method": "hdbscan-validation-tuned",
+      "n": 512,
+      "covered_n": 285,
+      "oracle_k": null,
+      "selected_params": [
+        5,
+        3
+      ],
+      "ari_all_noise_as_one_cluster": 0.03281427005311604,
+      "nmi_all_noise_as_one_cluster": 0.5160581815770188,
+      "coverage": 0.556640625,
+      "clusters_excluding_noise": 27,
+      "ari_covered": 0.30194530420532556,
+      "cluster_seconds": 0.031056720999913523
+    },
+    {
+      "dataset": "banking77",
+      "representation": "e5",
+      "seed": 0,
+      "method": "one-cluster",
+      "n": 512,
+      "covered_n": 512,
+      "oracle_k": null,
+      "selected_params": null,
+      "ari_all_noise_as_one_cluster": 0.0,
+      "nmi_all_noise_as_one_cluster": 0.0,
+      "coverage": 1.0,
+      "clusters_excluding_noise": 1,
+      "ari_covered": 0.0,
+      "cluster_seconds": 2.750000021478627e-06
+    },
+    {
+      "dataset": "banking77",
+      "representation": "e5",
+      "seed": 0,
+      "method": "kmeans-oracle-k",
+      "n": 512,
+      "covered_n": 512,
+      "oracle_k": 77,
+      "selected_params": null,
+      "ari_all_noise_as_one_cluster": 0.34157095783607744,
+      "nmi_all_noise_as_one_cluster": 0.7623515306872681,
+      "coverage": 1.0,
+      "clusters_excluding_noise": 77,
+      "ari_covered": 0.34157095783607744,
+      "cluster_seconds": 0.5542521359998318
+    },
+    {
+      "dataset": "banking77",
+      "representation": "e5",
+      "seed": 0,
+      "method": "hdbscan-fixed",
+      "n": 512,
+      "covered_n": 147,
+      "oracle_k": null,
+      "selected_params": null,
+      "ari_all_noise_as_one_cluster": 0.00857295158275913,
+      "nmi_all_noise_as_one_cluster": 0.2328044583682408,
+      "coverage": 0.287109375,
+      "clusters_excluding_noise": 4,
+      "ari_covered": 0.11028954538773757,
+      "cluster_seconds": 0.2295740540002953
+    },
+    {
+      "dataset": "banking77",
+      "representation": "e5",
+      "seed": 0,
+      "method": "hdbscan-validation-tuned",
+      "n": 512,
+      "covered_n": 329,
+      "oracle_k": null,
+      "selected_params": [
+        5,
+        3
+      ],
+      "ari_all_noise_as_one_cluster": 0.013775602749139753,
+      "nmi_all_noise_as_one_cluster": 0.2397256711135977,
+      "coverage": 0.642578125,
+      "clusters_excluding_noise": 7,
+      "ari_covered": 0.011001965312636875,
+      "cluster_seconds": 0.22571881500016389
+    },
+    {
+      "dataset": "banking77",
+      "representation": "e5",
+      "seed": 1,
+      "method": "one-cluster",
+      "n": 512,
+      "covered_n": 512,
+      "oracle_k": null,
+      "selected_params": null,
+      "ari_all_noise_as_one_cluster": 0.0,
+      "nmi_all_noise_as_one_cluster": 0.0,
+      "coverage": 1.0,
+      "clusters_excluding_noise": 1,
+      "ari_covered": 0.0,
+      "cluster_seconds": 8.582999726058915e-06
+    },
+    {
+      "dataset": "banking77",
+      "representation": "e5",
+      "seed": 1,
+      "method": "kmeans-oracle-k",
+      "n": 512,
+      "covered_n": 512,
+      "oracle_k": 77,
+      "selected_params": null,
+      "ari_all_noise_as_one_cluster": 0.3620417059404539,
+      "nmi_all_noise_as_one_cluster": 0.7723080510308807,
+      "coverage": 1.0,
+      "clusters_excluding_noise": 77,
+      "ari_covered": 0.3620417059404539,
+      "cluster_seconds": 0.561670112000229
+    },
+    {
+      "dataset": "banking77",
+      "representation": "e5",
+      "seed": 1,
+      "method": "hdbscan-fixed",
+      "n": 512,
+      "covered_n": 147,
+      "oracle_k": null,
+      "selected_params": null,
+      "ari_all_noise_as_one_cluster": 0.00857295158275913,
+      "nmi_all_noise_as_one_cluster": 0.2328044583682408,
+      "coverage": 0.287109375,
+      "clusters_excluding_noise": 4,
+      "ari_covered": 0.11028954538773757,
+      "cluster_seconds": 0.23440727199977118
+    },
+    {
+      "dataset": "banking77",
+      "representation": "e5",
+      "seed": 1,
+      "method": "hdbscan-validation-tuned",
+      "n": 512,
+      "covered_n": 329,
+      "oracle_k": null,
+      "selected_params": [
+        5,
+        3
+      ],
+      "ari_all_noise_as_one_cluster": 0.013775602749139753,
+      "nmi_all_noise_as_one_cluster": 0.2397256711135977,
+      "coverage": 0.642578125,
+      "clusters_excluding_noise": 7,
+      "ari_covered": 0.011001965312636875,
+      "cluster_seconds": 0.2240602920001038
+    },
+    {
+      "dataset": "banking77",
+      "representation": "e5",
+      "seed": 2,
+      "method": "one-cluster",
+      "n": 512,
+      "covered_n": 512,
+      "oracle_k": null,
+      "selected_params": null,
+      "ari_all_noise_as_one_cluster": 0.0,
+      "nmi_all_noise_as_one_cluster": 0.0,
+      "coverage": 1.0,
+      "clusters_excluding_noise": 1,
+      "ari_covered": 0.0,
+      "cluster_seconds": 5.543000042962376e-06
+    },
+    {
+      "dataset": "banking77",
+      "representation": "e5",
+      "seed": 2,
+      "method": "kmeans-oracle-k",
+      "n": 512,
+      "covered_n": 512,
+      "oracle_k": 77,
+      "selected_params": null,
+      "ari_all_noise_as_one_cluster": 0.33393533594822095,
+      "nmi_all_noise_as_one_cluster": 0.7601118740397038,
+      "coverage": 1.0,
+      "clusters_excluding_noise": 77,
+      "ari_covered": 0.33393533594822095,
+      "cluster_seconds": 0.5170567800000754
+    },
+    {
+      "dataset": "banking77",
+      "representation": "e5",
+      "seed": 2,
+      "method": "hdbscan-fixed",
+      "n": 512,
+      "covered_n": 147,
+      "oracle_k": null,
+      "selected_params": null,
+      "ari_all_noise_as_one_cluster": 0.00857295158275913,
+      "nmi_all_noise_as_one_cluster": 0.2328044583682408,
+      "coverage": 0.287109375,
+      "clusters_excluding_noise": 4,
+      "ari_covered": 0.11028954538773757,
+      "cluster_seconds": 0.22318841399965095
+    },
+    {
+      "dataset": "banking77",
+      "representation": "e5",
+      "seed": 2,
+      "method": "hdbscan-validation-tuned",
+      "n": 512,
+      "covered_n": 329,
+      "oracle_k": null,
+      "selected_params": [
+        5,
+        3
+      ],
+      "ari_all_noise_as_one_cluster": 0.013775602749139753,
+      "nmi_all_noise_as_one_cluster": 0.2397256711135977,
+      "coverage": 0.642578125,
+      "clusters_excluding_noise": 7,
+      "ari_covered": 0.011001965312636875,
+      "cluster_seconds": 0.23289486600015152
+    },
+    {
+      "dataset": "massive_zh_cn",
+      "representation": "lexical",
+      "seed": 0,
+      "method": "one-cluster",
+      "n": 512,
+      "covered_n": 512,
+      "oracle_k": null,
+      "selected_params": null,
+      "ari_all_noise_as_one_cluster": 0.0,
+      "nmi_all_noise_as_one_cluster": 0.0,
+      "coverage": 1.0,
+      "clusters_excluding_noise": 1,
+      "ari_covered": 0.0,
+      "cluster_seconds": 7.347000064328313e-06
+    },
+    {
+      "dataset": "massive_zh_cn",
+      "representation": "lexical",
+      "seed": 0,
+      "method": "kmeans-oracle-k",
+      "n": 512,
+      "covered_n": 512,
+      "oracle_k": 57,
+      "selected_params": null,
+      "ari_all_noise_as_one_cluster": 0.13959057218982762,
+      "nmi_all_noise_as_one_cluster": 0.6054310916645739,
+      "coverage": 1.0,
+      "clusters_excluding_noise": 57,
+      "ari_covered": 0.13959057218982762,
+      "cluster_seconds": 0.11440885499996511
+    },
+    {
+      "dataset": "massive_zh_cn",
+      "representation": "lexical",
+      "seed": 0,
+      "method": "hdbscan-fixed",
+      "n": 512,
+      "covered_n": 272,
+      "oracle_k": null,
+      "selected_params": null,
+      "ari_all_noise_as_one_cluster": 0.03207599897766899,
+      "nmi_all_noise_as_one_cluster": 0.3853240044943547,
+      "coverage": 0.53125,
+      "clusters_excluding_noise": 16,
+      "ari_covered": 0.28244914254679254,
+      "cluster_seconds": 0.03231240900004195
+    },
+    {
+      "dataset": "massive_zh_cn",
+      "representation": "lexical",
+      "seed": 0,
+      "method": "hdbscan-validation-tuned",
+      "n": 512,
+      "covered_n": 405,
+      "oracle_k": null,
+      "selected_params": [
+        5,
+        3
+      ],
+      "ari_all_noise_as_one_cluster": 0.0893735000721602,
+      "nmi_all_noise_as_one_cluster": 0.5562054931789231,
+      "coverage": 0.791015625,
+      "clusters_excluding_noise": 48,
+      "ari_covered": 0.21572946653113767,
+      "cluster_seconds": 0.03352251800015438
+    },
+    {
+      "dataset": "massive_zh_cn",
+      "representation": "lexical",
+      "seed": 1,
+      "method": "one-cluster",
+      "n": 512,
+      "covered_n": 512,
+      "oracle_k": null,
+      "selected_params": null,
+      "ari_all_noise_as_one_cluster": 0.0,
+      "nmi_all_noise_as_one_cluster": 0.0,
+      "coverage": 1.0,
+      "clusters_excluding_noise": 1,
+      "ari_covered": 0.0,
+      "cluster_seconds": 2.782999672490405e-06
+    },
+    {
+      "dataset": "massive_zh_cn",
+      "representation": "lexical",
+      "seed": 1,
+      "method": "kmeans-oracle-k",
+      "n": 512,
+      "covered_n": 512,
+      "oracle_k": 57,
+      "selected_params": null,
+      "ari_all_noise_as_one_cluster": 0.1476579559023873,
+      "nmi_all_noise_as_one_cluster": 0.6107673163821029,
+      "coverage": 1.0,
+      "clusters_excluding_noise": 57,
+      "ari_covered": 0.1476579559023873,
+      "cluster_seconds": 0.10166469400019196
+    },
+    {
+      "dataset": "massive_zh_cn",
+      "representation": "lexical",
+      "seed": 1,
+      "method": "hdbscan-fixed",
+      "n": 512,
+      "covered_n": 473,
+      "oracle_k": null,
+      "selected_params": null,
+      "ari_all_noise_as_one_cluster": 0.005956827171817954,
+      "nmi_all_noise_as_one_cluster": 0.09057617547208258,
+      "coverage": 0.923828125,
+      "clusters_excluding_noise": 2,
+      "ari_covered": 0.001459453568466104,
+      "cluster_seconds": 0.039038322000124026
+    },
+    {
+      "dataset": "massive_zh_cn",
+      "representation": "lexical",
+      "seed": 1,
+      "method": "hdbscan-validation-tuned",
+      "n": 512,
+      "covered_n": 353,
+      "oracle_k": null,
+      "selected_params": [
+        10,
+        3
+      ],
+      "ari_all_noise_as_one_cluster": 0.05994995421373017,
+      "nmi_all_noise_as_one_cluster": 0.4367576078471069,
+      "coverage": 0.689453125,
+      "clusters_excluding_noise": 20,
+      "ari_covered": 0.20490742126460607,
+      "cluster_seconds": 0.02954578800017771
+    },
+    {
+      "dataset": "massive_zh_cn",
+      "representation": "lexical",
+      "seed": 2,
+      "method": "one-cluster",
+      "n": 512,
+      "covered_n": 512,
+      "oracle_k": null,
+      "selected_params": null,
+      "ari_all_noise_as_one_cluster": 0.0,
+      "nmi_all_noise_as_one_cluster": 0.0,
+      "coverage": 1.0,
+      "clusters_excluding_noise": 1,
+      "ari_covered": 0.0,
+      "cluster_seconds": 2.9440002435876522e-06
+    },
+    {
+      "dataset": "massive_zh_cn",
+      "representation": "lexical",
+      "seed": 2,
+      "method": "kmeans-oracle-k",
+      "n": 512,
+      "covered_n": 512,
+      "oracle_k": 57,
+      "selected_params": null,
+      "ari_all_noise_as_one_cluster": 0.15750104935984197,
+      "nmi_all_noise_as_one_cluster": 0.6122579466624435,
+      "coverage": 1.0,
+      "clusters_excluding_noise": 57,
+      "ari_covered": 0.15750104935984197,
+      "cluster_seconds": 0.10822100499990484
+    },
+    {
+      "dataset": "massive_zh_cn",
+      "representation": "lexical",
+      "seed": 2,
+      "method": "hdbscan-fixed",
+      "n": 512,
+      "covered_n": 473,
+      "oracle_k": null,
+      "selected_params": null,
+      "ari_all_noise_as_one_cluster": 0.005763640275922864,
+      "nmi_all_noise_as_one_cluster": 0.08492949386674983,
+      "coverage": 0.923828125,
+      "clusters_excluding_noise": 2,
+      "ari_covered": 0.0014191201324920103,
+      "cluster_seconds": 0.04013271400026497
+    },
+    {
+      "dataset": "massive_zh_cn",
+      "representation": "lexical",
+      "seed": 2,
+      "method": "hdbscan-validation-tuned",
+      "n": 512,
+      "covered_n": 404,
+      "oracle_k": null,
+      "selected_params": [
+        5,
+        3
+      ],
+      "ari_all_noise_as_one_cluster": 0.08109817808481455,
+      "nmi_all_noise_as_one_cluster": 0.5354259836451122,
+      "coverage": 0.7890625,
+      "clusters_excluding_noise": 43,
+      "ari_covered": 0.18178676796952384,
+      "cluster_seconds": 0.043807041000036406
+    },
+    {
+      "dataset": "massive_zh_cn",
+      "representation": "e5",
+      "seed": 0,
+      "method": "one-cluster",
+      "n": 512,
+      "covered_n": 512,
+      "oracle_k": null,
+      "selected_params": null,
+      "ari_all_noise_as_one_cluster": 0.0,
+      "nmi_all_noise_as_one_cluster": 0.0,
+      "coverage": 1.0,
+      "clusters_excluding_noise": 1,
+      "ari_covered": 0.0,
+      "cluster_seconds": 3.5530001696315594e-06
+    },
+    {
+      "dataset": "massive_zh_cn",
+      "representation": "e5",
+      "seed": 0,
+      "method": "kmeans-oracle-k",
+      "n": 512,
+      "covered_n": 512,
+      "oracle_k": 57,
+      "selected_params": null,
+      "ari_all_noise_as_one_cluster": 0.3247298450795756,
+      "nmi_all_noise_as_one_cluster": 0.7084043400097174,
+      "coverage": 1.0,
+      "clusters_excluding_noise": 57,
+      "ari_covered": 0.3247298450795756,
+      "cluster_seconds": 0.4373627189997933
+    },
+    {
+      "dataset": "massive_zh_cn",
+      "representation": "e5",
+      "seed": 0,
+      "method": "hdbscan-fixed",
+      "n": 512,
+      "covered_n": 266,
+      "oracle_k": null,
+      "selected_params": null,
+      "ari_all_noise_as_one_cluster": 0.03979743656731755,
+      "nmi_all_noise_as_one_cluster": 0.26812876807176866,
+      "coverage": 0.51953125,
+      "clusters_excluding_noise": 4,
+      "ari_covered": 0.05006817658890315,
+      "cluster_seconds": 0.2579490540001643
+    },
+    {
+      "dataset": "massive_zh_cn",
+      "representation": "e5",
+      "seed": 0,
+      "method": "hdbscan-validation-tuned",
+      "n": 512,
+      "covered_n": 272,
+      "oracle_k": null,
+      "selected_params": [
+        5,
+        5
+      ],
+      "ari_all_noise_as_one_cluster": 0.03926058125139761,
+      "nmi_all_noise_as_one_cluster": 0.2780369890009232,
+      "coverage": 0.53125,
+      "clusters_excluding_noise": 5,
+      "ari_covered": 0.05381104588472522,
+      "cluster_seconds": 0.25249897500043517
+    },
+    {
+      "dataset": "massive_zh_cn",
+      "representation": "e5",
+      "seed": 1,
+      "method": "one-cluster",
+      "n": 512,
+      "covered_n": 512,
+      "oracle_k": null,
+      "selected_params": null,
+      "ari_all_noise_as_one_cluster": 0.0,
+      "nmi_all_noise_as_one_cluster": 0.0,
+      "coverage": 1.0,
+      "clusters_excluding_noise": 1,
+      "ari_covered": 0.0,
+      "cluster_seconds": 3.4120002965210006e-06
+    },
+    {
+      "dataset": "massive_zh_cn",
+      "representation": "e5",
+      "seed": 1,
+      "method": "kmeans-oracle-k",
+      "n": 512,
+      "covered_n": 512,
+      "oracle_k": 57,
+      "selected_params": null,
+      "ari_all_noise_as_one_cluster": 0.30537500429235076,
+      "nmi_all_noise_as_one_cluster": 0.6997616523999952,
+      "coverage": 1.0,
+      "clusters_excluding_noise": 57,
+      "ari_covered": 0.30537500429235076,
+      "cluster_seconds": 0.46436506899999586
+    },
+    {
+      "dataset": "massive_zh_cn",
+      "representation": "e5",
+      "seed": 1,
+      "method": "hdbscan-fixed",
+      "n": 512,
+      "covered_n": 266,
+      "oracle_k": null,
+      "selected_params": null,
+      "ari_all_noise_as_one_cluster": 0.03979743656731755,
+      "nmi_all_noise_as_one_cluster": 0.26812876807176866,
+      "coverage": 0.51953125,
+      "clusters_excluding_noise": 4,
+      "ari_covered": 0.05006817658890315,
+      "cluster_seconds": 0.24669768900002964
+    },
+    {
+      "dataset": "massive_zh_cn",
+      "representation": "e5",
+      "seed": 1,
+      "method": "hdbscan-validation-tuned",
+      "n": 512,
+      "covered_n": 272,
+      "oracle_k": null,
+      "selected_params": [
+        5,
+        5
+      ],
+      "ari_all_noise_as_one_cluster": 0.03926058125139761,
+      "nmi_all_noise_as_one_cluster": 0.2780369890009232,
+      "coverage": 0.53125,
+      "clusters_excluding_noise": 5,
+      "ari_covered": 0.05381104588472522,
+      "cluster_seconds": 0.2425193730000501
+    },
+    {
+      "dataset": "massive_zh_cn",
+      "representation": "e5",
+      "seed": 2,
+      "method": "one-cluster",
+      "n": 512,
+      "covered_n": 512,
+      "oracle_k": null,
+      "selected_params": null,
+      "ari_all_noise_as_one_cluster": 0.0,
+      "nmi_all_noise_as_one_cluster": 0.0,
+      "coverage": 1.0,
+      "clusters_excluding_noise": 1,
+      "ari_covered": 0.0,
+      "cluster_seconds": 3.2009997994464356e-06
+    },
+    {
+      "dataset": "massive_zh_cn",
+      "representation": "e5",
+      "seed": 2,
+      "method": "kmeans-oracle-k",
+      "n": 512,
+      "covered_n": 512,
+      "oracle_k": 57,
+      "selected_params": null,
+      "ari_all_noise_as_one_cluster": 0.3093366922330677,
+      "nmi_all_noise_as_one_cluster": 0.7095003398994654,
+      "coverage": 1.0,
+      "clusters_excluding_noise": 57,
+      "ari_covered": 0.3093366922330677,
+      "cluster_seconds": 0.4437346859999707
+    },
+    {
+      "dataset": "massive_zh_cn",
+      "representation": "e5",
+      "seed": 2,
+      "method": "hdbscan-fixed",
+      "n": 512,
+      "covered_n": 266,
+      "oracle_k": null,
+      "selected_params": null,
+      "ari_all_noise_as_one_cluster": 0.03979743656731755,
+      "nmi_all_noise_as_one_cluster": 0.26812876807176866,
+      "coverage": 0.51953125,
+      "clusters_excluding_noise": 4,
+      "ari_covered": 0.05006817658890315,
+      "cluster_seconds": 0.26236368499985474
+    },
+    {
+      "dataset": "massive_zh_cn",
+      "representation": "e5",
+      "seed": 2,
+      "method": "hdbscan-validation-tuned",
+      "n": 512,
+      "covered_n": 272,
+      "oracle_k": null,
+      "selected_params": [
+        5,
+        5
+      ],
+      "ari_all_noise_as_one_cluster": 0.03926058125139761,
+      "nmi_all_noise_as_one_cluster": 0.2780369890009232,
+      "coverage": 0.53125,
+      "clusters_excluding_noise": 5,
+      "ari_covered": 0.05381104588472522,
+      "cluster_seconds": 0.2425563609999699
+    }
+  ],
+  "hardware": {
+    "machine": "x86_64",
+    "logical_cpus": 9,
+    "processor": "Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz"
+  },
+  "process_peak_rss_mib": 1151.34765625,
+  "memory_scope": "whole process high-water mark, includes model load, both datasets and artifact hashing; not per-method peak"
+}

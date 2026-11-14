@@ -35,3 +35,7 @@
 ## 可视化与维护
 
 [Pages 交互阅读版](https://dian.host/text_clustering/survey.html)。内容以本目录四份 Markdown 为单一来源，运行 `python scripts/build_survey.py` 生成网页；`python scripts/build_survey.py --check` 检查漂移。页面外观在 `scripts/survey_template.html`、`docs/survey.css`，筛选逻辑在 `docs/survey.js`。本页中提及的本地路径为维护说明，不是 Pages 相对文件链接。
+
+## 本地语义对照已执行
+
+[semantic-pilot-v1](../results/semantic-pilot-v1/README.md)：固定 E5-small 与词面表示在相同 512 条样本上对照，分别给出 oracle-K、固定未知 K 和有标签验证集选参的未知-test-K。完整记录环境、权重哈希、耗时与覆盖率，不将小样本结论推广成通用排名。

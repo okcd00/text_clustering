@@ -1,0 +1,11 @@
+{
+  "status": "identical_non_timing_metrics_and_selections",
+  "runs": 2,
+  "test_result_rows_per_run": 48,
+  "validation_trial_groups_per_run": 12,
+  "excluded_comparison_fields": [
+    "any *seconds field",
+    "process_peak_rss_mib",
+    "scripts (external cache persistence added before run 2; numerical pipeline unchanged)"
+  ]
+}
