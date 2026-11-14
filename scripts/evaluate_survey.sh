@@ -24,3 +24,7 @@ RUN_DIR="$RUN_DIR/static" bash "$ROOT/scripts/evaluate_static.sh" "$@"
 "$ROUTING_PYTHON" "$ROOT/scripts/benchmark_routing_v2.py" --cache "$DATA_CACHE" --output "$RUN_DIR/routing.json"
 "$SUITE_PYTHON" "$ROOT/scripts/export_survey_results.py" --static "$RUN_DIR/static/results.json" --routing "$RUN_DIR/routing.json" --output "$RUN_DIR/unified-results.json"
 printf 'Static, routing and combined comparison artifacts: %s\n' "$RUN_DIR"
+if ! "$SUITE_PYTHON" -c 'import json,sys; sys.exit(json.load(open(sys.argv[1]))["status"] != "executed")' "$RUN_DIR/unified-results.json"; then
+  printf 'Partial comparison: reviewed aggregate written, but one or more planned runs did not complete.\n' >&2
+  exit 2
+fi

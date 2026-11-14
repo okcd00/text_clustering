@@ -26,7 +26,7 @@ RUN_DIR="$HOME/text-clustering-evaluations/round-1" \
 bash scripts/evaluate_survey.sh
 ```
 
-一轮顺序跑静态聚类与路由，输出两个完整汇总和一个可供页面读取的 `unified-results.json`。首次生成语义向量，设定 `SEMANTIC_PYTHON`、`MODEL_DIR` 并加 `--prepare-vectors`。脚本不自动发布；原始数据、向量和个体预测不会入库。层级、时间流与维护场景需要独立协议，暂不使用旧分数填入当前对照。
+一轮顺序跑静态聚类与路由，输出两个完整汇总和一个可供页面读取的 `unified-results.json`。首次生成语义向量，设定 `SEMANTIC_PYTHON`、`MODEL_DIR` 并加 `--prepare-vectors`。脚本不自动发布；原始数据、向量和个体预测不会入库。运行缺行或重复会拒绝导出；显式失败保留为不完整结果，评估命令返回非零，不把失败写成零分。层级、时间流与维护场景需要独立协议，暂不使用旧分数填入当前对照。
 
 ## 五分钟开始
 
