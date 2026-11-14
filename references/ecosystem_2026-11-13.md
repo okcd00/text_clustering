@@ -29,3 +29,7 @@ License labels concern repositories, not blanket clearance for all models, data 
 4. **Hierarchy-only study:** SPARROW is a near-term parent-placement reference; PEEL is conditional on a defensible source-edge supervision set. Measure direct-edge and ancestor quality as well as false attachments. Preserve NodeProposal review/version controls; do not silently replace them with generated edges.
 
 Batch, routing, hierarchy navigation and evolution protocols remain distinct. A method's incremental block fusion or document-add API is not proof of eventwise prequential learning, stable cluster identity or concept-drift handling. Offline evidence and small paired experiments should precede any wider integration. No downstream value is inferred from paper benchmark rankings alone.
+
+## Continual-protocol follow-through
+
+[COSID / CIDA](chen2026cosid/readme.md) (EMNLP main 2026) adds a staged mixture of recurring and new intents. Prioritize its low-compute **split-only** stress test using existing backends before any LLM-agent reproduction. The official CIDA configuration defaults to ground-truth K; keep oracle and estimated-K results separate. This remains synthetic staged evaluation, not actual event-time drift.

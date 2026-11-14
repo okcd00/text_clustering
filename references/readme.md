@@ -104,3 +104,5 @@ Upstream papers and citation records; PDFs are not bundled.
 - [FASTopic: Pretrained Transformer is a Fast, Adaptive, Stable, and Transferable Topic Model](wu2024fastopic/readme.md)
 
 See [ecosystem snapshot and prioritized comparison plan](ecosystem_2026-11-13.md) for software popularity, task distinctions and research priorities.
+
+- [Lifelong Intent Discovery: A Continual Learning Protocol and Method](chen2026cosid/readme.md) · COSID staged-stream protocol; CIDA agent and split-only comparison caveats
