@@ -344,9 +344,23 @@ budget: tuning trials, labeled support, LLM tokens/calls, hardware</pre>
 <p>可参考 <a href="https://github.com/okcd00/text_clustering/blob/main/references/milev2026syntheticfiredrill/README.md">Synthetic Fire Drill</a> 的受控注入思路，分别观察被旧簇吸收、形成新簇及校准后的误报；只列为固定嵌入空间的压力测试参考，尚未在本库复现。背景新闻原文未公开，不能据此承诺原文重编码／端到端复跑，也不能把同一批行机械重放当作自然重现证据或汇入跨任务总榜。</p>
 </details>
 <h2 id="roadmap-6">层级归属：叶节点未知，不等于父节点未知 <a class="permalink" href="#roadmap-6" aria-label="链接到此节">#</a></h2>
+<p><strong>已实测 · hierarchy-e5-v1：已知叶误拒率 57.4%，父级增益小且不一致。</strong> 固定验证集阈值后，测试中拒出 89 / 104 个隐藏叶查询，却也误拒 132 / 230 个已知叶查询；已知覆盖率仅 98 / 230（42.6%）。父级均值方案只多判对 2 / 104，不能因接收子集准确率高而忽略误拒成本。</p>
+<p><a href="https://github.com/okcd00/text_clustering/blob/main/results/hierarchy-e5-v1/README.md">独立结果与全部分母</a> · <a href="https://github.com/okcd00/text_clustering/blob/main/results/hierarchy-e5-v1/results.json">聚合 JSON</a> · <a href="https://github.com/okcd00/text_clustering/blob/main/experiments/hierarchy-e5-v1/README.md">锁定协议与复跑</a></p>
+<div class="tablewrap" tabindex="0" aria-label="独立协议结果表，可横向滚动"><table><thead><tr><th scope="col">已知支持子叶数量</th><th scope="col">隐藏查询 / 父类</th><th scope="col">隐藏拒出，共用掩码</th><th scope="col">平面叶→父：父级正确 / 联合成功</th><th scope="col">等叶权父均值：父级正确 / 联合成功</th></tr></thead><tbody>
+<tr><th scope="row">全部</th><td>104 / 13</td><td>89 / 104</td><td>64 / 104；49 / 104</td><td>66 / 104；51 / 104</td></tr>
+<tr><th scope="row">一个</th><td>56 / 7</td><td>47 / 56</td><td>31 / 56；22 / 56</td><td>28 / 56；19 / 56</td></tr>
+<tr><th scope="row">多个</th><td>48 / 6</td><td>42 / 48</td><td>33 / 48；27 / 48</td><td>38 / 48；32 / 48</td></tr>
+</tbody></table></div>
+<p>联合成功要求「拒绝已知叶 + 正确父类」，分母仍是全部隐藏查询。均值方案在多子叶组多对 5 条，单子叶组少对 3 条；不能按查询未知的真实父类分组事后选方法。</p>
+<details class="metric-help">
+<summary>ⓘ 层级实测的覆盖率、宏平均与比较边界</summary>
+<p>两方案共享同一 E5 表示、已知叶原型、叶预测和拒识掩码；父均值对归一化叶原型等权，不按支持行数加权，也不按查询重排候选。阈值规则在首次评分前锁定，只用验证集已知／隐藏标记最大化平衡正确率；无测试调参、无全局 oracle K。两次复跑预测及非资源字段完全一致。</p>
+<p>全体隐藏查询的父类宏平均为 .615385 → .634615，联合宏平均 .471154 → .490385；每个测试隐藏父类恰有 8 条查询，因此这里宏平均与逐行比例相同，并非第二份独立证据。拒出子集父级正确是 49 / 89 → 51 / 89。已知叶接收后准确率 93 / 98（94.9%），但覆盖率只有 98 / 230，接收且叶正确仅 93 / 230；单／多子叶已知查询分母和验证集结果均在独立报告。</p>
+<p>这是有监督已知拓扑上的父级归属，不是发现父类、创建新节点、自然流新意图检测或业务增益。与原 42 个静态／路由运行、历史层级场景及日历维护试验分开，不混用旧分数。预检保留原始记录，新结果另列 hierarchy-e5-v1。</p>
+</details>
 <p>MASSIVE zh-CN 的 scenario/intent 可作两层公开试验，但官方 intent 名称会泄露父类。层级输入只能给<strong>不透明节点编号、已知叶的父子边、支持样本及原始 <code>utt</code></strong>；名称、带槽位文本、隐藏叶及其映射不参与决策。评价使用官方标注，不代表发现、命名或插入新节点。</p>
 <p>平面路由原协议允许整个父类不在支持集，适合测拒识，不适合把其正确父类计作可达。层级试验应单列两种问题：</p>
 <p class="list-item">- <strong>未见叶、父类可达</strong>：每个隐藏叶在训练支持集里有同父兄弟。验证、测试隐藏叶互斥；只用验证集设阈值。先比「最相近的已知叶映射到父类」与「直接比较等叶权重的父类原型」，保持输入与标签预算相同。并列全体隐藏叶的父类命中、成功拒叶且命中父类、已知叶覆盖与准确率，不能只看被接收子集。</p>
 <p class="list-item">- <strong>父类不可达</strong>：父节点不在候选集中，单列拒绝或复核率和错接已知父类率；这里不报可达父类命中。若引入描述、外部 taxonomy、节点生成或 LLM，明确额外信息和独立协议。</p>
-<p><a href="https://github.com/okcd00/text_clustering/blob/main/experiments/hierarchy-preflight-v1/README.md">层级切分的数据与接口预检</a>已用固定 MASSIVE 数据验证：18 个父类都有实际支持，13 个测试隐藏叶（与验证隐藏叶互斥）、104 条隐藏测试行，没有跨角色的规范化文本重合。这里只核验可达性、样本与方法输入；尚未测模型、归属准确率或新节点质量。</p></section>
+<p><a href="https://github.com/okcd00/text_clustering/blob/main/experiments/hierarchy-preflight-v1/README.md">层级切分的数据与接口预检</a>已用固定 MASSIVE 数据验证：18 个父类都有实际支持，13 个测试隐藏叶（与验证隐藏叶互斥）、104 条隐藏测试行，没有跨角色的规范化文本重合。该历史预检本身只核验可达性、样本与方法输入，不含模型结果；上面的 hierarchy-e5-v1 独立完成首次 E5 父级归属评估，仍未测新节点质量。</p></section>
 <footer>内容来源：统一评估 JSON 与仓库 <a href="https://github.com/okcd00/text_clustering/tree/main/survey">survey/ Markdown</a> · <a href="index.html">回到实测看板</a></footer></main><script src="survey.js"></script><script src="unified.js"></script></body></html>

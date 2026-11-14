@@ -40,3 +40,17 @@ class ExtendedStreamingSection(unittest.TestCase):
         self.assertIn('calendar-paired-v2/results.json',content)
         self.assertIn('5ms',content)
         self.assertIn('69.31 / 68.50 MiB',content)
+
+class HierarchyPilotSection(unittest.TestCase):
+    def test_cost_leads_and_preflight_remains_distinct(self):
+        content=(ROOT/'docs/survey.html').read_text()
+        self.assertIn('id="roadmap-6"',content)
+        self.assertIn('hierarchy-e5-v1/results.json',content)
+        self.assertIn('hierarchy-preflight-v1/README.md',content)
+        self.assertIn('已知叶误拒率 57.4%',content)
+        self.assertIn('132 / 230',content)
+        self.assertIn('28 / 56；19 / 56',content)
+        self.assertIn('38 / 48；32 / 48',content)
+        self.assertIn('该历史预检本身只核验',content)
+        section=content[content.index('id="roadmap-6"'):]
+        self.assertLess(section.index('57.4%'),section.index('<table'))

@@ -1,0 +1,1407 @@
+{
+  "status": "executed_and_repeated",
+  "protocol": {
+    "id": "massive-hierarchy-e5-v1",
+    "base": "84df325",
+    "status": "locked_before_first_model_scores",
+    "split": "exact massive-hierarchy-supported-parent-v1; verify committed full preflight",
+    "model": "intfloat/multilingual-e5-small",
+    "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+    "encoding": "pure utterance prefixed query: ; masked mean pooling; L2 normalized float32; max_length 512; batch 16; CPU one thread; eval/inference mode; seed 0",
+    "leaf_prototype": "L2-normalize equal-row mean support vectors per known leaf",
+    "leaf_prediction": "maximum cosine against known leaf prototypes; exact ties lexicographic opaque leaf ID",
+    "rejection": "reject iff maximum leaf cosine < frozen threshold; identical leaf predictions and mask across parent arms",
+    "calibration": "validation known/hidden binary labels only. Candidates -1, sorted distinct validation scores, nextafter(max,+infinity). Maximize balanced known-accept / hidden-reject accuracy using exact integer numerator; ties maximize known acceptance, then choose smallest threshold. No parent labels or test scores used.",
+    "parent_arms": [
+      "flat: map highest-similarity known leaf to supplied parent",
+      "equal-leaf-mean: normalize equal-weight mean of normalized known child-leaf prototypes; max cosine over supported parents, ties lexicographic opaque parent ID"
+    ],
+    "prediction_boundary": "score all test predictions and shared rejection mask once with frozen validation threshold before any test gold scoring; no query-dependent reranking, online updating or test tuning",
+    "metrics": "validation and test separate; hidden all-row parent accuracy and joint reject+correct-parent, conditional parent accuracy among rejected with numerator/denominator; parent-macro averages over gold parents with hidden queries; known leaf accuracy, acceptance coverage and false novelty, conditional accepted correctness; all plus gold-parent one/multiple supported-child strata",
+    "scope": "supported parents only; hidden validation/test leaves disjoint; topology supervised; not open-parent discovery, oracle K clustering, temporal novelty or natural frequency distribution",
+    "repeats": 2,
+    "resource_scope": "separate encoder time/process highwater; source-free vector-worker fit/predict/calibrate/score time and process RSS baseline/highwater; not exact owned-heap or continuous peak"
+  },
+  "preparation": {
+    "encode_seconds": {
+      "support": 6.177587778000088,
+      "validation": 3.5701740129998143,
+      "test": 3.3816885750002257
+    },
+    "truncated_rows": {
+      "support": 0,
+      "validation": 0,
+      "test": 0
+    },
+    "encoder_process_highwater_bytes": 1095163904,
+    "model_artifacts": {
+      "config.json": {
+        "sha256": "69137736cab8b8903a07fe8afaafdda25aac55415a12a55d1bffa9f581abf959",
+        "bytes": 655
+      },
+      "model.safetensors": {
+        "sha256": "1a55775f53449dac10a2bcbc312469fac40b96d53198c407081a831f81c98477",
+        "bytes": 470641600
+      },
+      "sentencepiece.bpe.model": {
+        "sha256": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+        "bytes": 5069051
+      },
+      "special_tokens_map.json": {
+        "sha256": "d05497f1da52c5e09554c0cd874037a083e1dc1b9cfd48034d1c717f1afc07a7",
+        "bytes": 167
+      },
+      "tokenizer.json": {
+        "sha256": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+        "bytes": 17082730
+      },
+      "tokenizer_config.json": {
+        "sha256": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b",
+        "bytes": 443
+      }
+    },
+    "source_revision": "ed58ac423a2f4121720918bf5301577edce4ffd3",
+    "source_artifacts": [
+      {
+        "name": "train.parquet",
+        "sha256": "ff3f4ff65f2e7419ec8ee01f9e5e8f50b500fd1fdc4affcb29dc57e04aa7a6bf",
+        "bytes": 726913
+      },
+      {
+        "name": "validation.parquet",
+        "sha256": "582f45a93e7a5b8f8094746b585f12e5f98ba13be3ee1a42ee4d866f190d7506",
+        "bytes": 148247
+      },
+      {
+        "name": "test.parquet",
+        "sha256": "7eca92a47e6bffeec3fc7de751948b82904680353a42eef7e8c6fdbe89adb2db",
+        "bytes": 201108
+      }
+    ],
+    "split_fingerprint": "473f984ed604f8a5b1e7eec4518ff8de7f5ca8bda6781a3de24f3258d35d7729",
+    "preflight_verified": true
+  },
+  "runs": [
+    {
+      "status": "executed",
+      "protocol_sha256": "88aea169c10e5e79b8bbb9ab38b395853606394398212c4205efa1804ba4f1f2",
+      "threshold": 0.9438210129737854,
+      "calibration": {
+        "known_n": 223,
+        "hidden_n": 111,
+        "known_accepted_n": 97,
+        "hidden_rejected_n": 97,
+        "balanced_accuracy": 0.6544257261746051,
+        "candidate_count": 336
+      },
+      "roles": {
+        "validation": {
+          "all": {
+            "rows": 334,
+            "known_rows": 223,
+            "hidden_rows": 111,
+            "known": {
+              "leaf_accuracy": {
+                "numerator": 184,
+                "denominator": 223,
+                "value": 0.8251121076233184
+              },
+              "acceptance_coverage": {
+                "numerator": 97,
+                "denominator": 223,
+                "value": 0.4349775784753363
+              },
+              "false_novelty": {
+                "numerator": 126,
+                "denominator": 223,
+                "value": 0.5650224215246636
+              },
+              "accepted_leaf_accuracy": {
+                "numerator": 91,
+                "denominator": 97,
+                "value": 0.9381443298969072
+              },
+              "accepted_and_correct_all_known": {
+                "numerator": 91,
+                "denominator": 223,
+                "value": 0.4080717488789238
+              }
+            },
+            "hidden_rejection_detection": {
+              "numerator": 97,
+              "denominator": 111,
+              "value": 0.8738738738738738
+            },
+            "parent_arms": {
+              "flat": {
+                "all_hidden_parent_accuracy": {
+                  "numerator": 70,
+                  "denominator": 111,
+                  "value": 0.6306306306306306
+                },
+                "joint_reject_and_correct_parent": {
+                  "numerator": 57,
+                  "denominator": 111,
+                  "value": 0.5135135135135135
+                },
+                "parent_accuracy_among_rejected_hidden": {
+                  "numerator": 57,
+                  "denominator": 97,
+                  "value": 0.5876288659793815
+                },
+                "parent_macro_all_hidden": {
+                  "parent_count": 14,
+                  "value": 0.6326530612244898
+                },
+                "parent_macro_joint_all_hidden": {
+                  "parent_count": 14,
+                  "value": 0.5165816326530612
+                },
+                "parent_macro_among_rejected_hidden": {
+                  "parent_count": 14,
+                  "value": 0.6308673469387756
+                },
+                "gold_hidden_parent_count": 14,
+                "gold_known_parent_count": 18
+              },
+              "equal_leaf_mean": {
+                "all_hidden_parent_accuracy": {
+                  "numerator": 75,
+                  "denominator": 111,
+                  "value": 0.6756756756756757
+                },
+                "joint_reject_and_correct_parent": {
+                  "numerator": 62,
+                  "denominator": 111,
+                  "value": 0.5585585585585585
+                },
+                "parent_accuracy_among_rejected_hidden": {
+                  "numerator": 62,
+                  "denominator": 97,
+                  "value": 0.6391752577319587
+                },
+                "parent_macro_all_hidden": {
+                  "parent_count": 14,
+                  "value": 0.6772959183673469
+                },
+                "parent_macro_joint_all_hidden": {
+                  "parent_count": 14,
+                  "value": 0.5612244897959183
+                },
+                "parent_macro_among_rejected_hidden": {
+                  "parent_count": 14,
+                  "value": 0.6606292517006802
+                },
+                "gold_hidden_parent_count": 14,
+                "gold_known_parent_count": 18
+              }
+            }
+          },
+          "one_supported_child": {
+            "rows": 152,
+            "known_rows": 89,
+            "hidden_rows": 63,
+            "known": {
+              "leaf_accuracy": {
+                "numerator": 74,
+                "denominator": 89,
+                "value": 0.8314606741573034
+              },
+              "acceptance_coverage": {
+                "numerator": 35,
+                "denominator": 89,
+                "value": 0.39325842696629215
+              },
+              "false_novelty": {
+                "numerator": 54,
+                "denominator": 89,
+                "value": 0.6067415730337079
+              },
+              "accepted_leaf_accuracy": {
+                "numerator": 35,
+                "denominator": 35,
+                "value": 1.0
+              },
+              "accepted_and_correct_all_known": {
+                "numerator": 35,
+                "denominator": 89,
+                "value": 0.39325842696629215
+              }
+            },
+            "hidden_rejection_detection": {
+              "numerator": 55,
+              "denominator": 63,
+              "value": 0.873015873015873
+            },
+            "parent_arms": {
+              "flat": {
+                "all_hidden_parent_accuracy": {
+                  "numerator": 40,
+                  "denominator": 63,
+                  "value": 0.6349206349206349
+                },
+                "joint_reject_and_correct_parent": {
+                  "numerator": 32,
+                  "denominator": 63,
+                  "value": 0.5079365079365079
+                },
+                "parent_accuracy_among_rejected_hidden": {
+                  "numerator": 32,
+                  "denominator": 55,
+                  "value": 0.5818181818181818
+                },
+                "parent_macro_all_hidden": {
+                  "parent_count": 8,
+                  "value": 0.6383928571428572
+                },
+                "parent_macro_joint_all_hidden": {
+                  "parent_count": 8,
+                  "value": 0.5133928571428572
+                },
+                "parent_macro_among_rejected_hidden": {
+                  "parent_count": 8,
+                  "value": 0.6290178571428571
+                },
+                "gold_hidden_parent_count": 8,
+                "gold_known_parent_count": 12
+              },
+              "equal_leaf_mean": {
+                "all_hidden_parent_accuracy": {
+                  "numerator": 41,
+                  "denominator": 63,
+                  "value": 0.6507936507936508
+                },
+                "joint_reject_and_correct_parent": {
+                  "numerator": 33,
+                  "denominator": 63,
+                  "value": 0.5238095238095238
+                },
+                "parent_accuracy_among_rejected_hidden": {
+                  "numerator": 33,
+                  "denominator": 55,
+                  "value": 0.6
+                },
+                "parent_macro_all_hidden": {
+                  "parent_count": 8,
+                  "value": 0.6540178571428572
+                },
+                "parent_macro_joint_all_hidden": {
+                  "parent_count": 8,
+                  "value": 0.5290178571428572
+                },
+                "parent_macro_among_rejected_hidden": {
+                  "parent_count": 8,
+                  "value": 0.6186011904761906
+                },
+                "gold_hidden_parent_count": 8,
+                "gold_known_parent_count": 12
+              }
+            }
+          },
+          "multiple_supported_children": {
+            "rows": 182,
+            "known_rows": 134,
+            "hidden_rows": 48,
+            "known": {
+              "leaf_accuracy": {
+                "numerator": 110,
+                "denominator": 134,
+                "value": 0.8208955223880597
+              },
+              "acceptance_coverage": {
+                "numerator": 62,
+                "denominator": 134,
+                "value": 0.4626865671641791
+              },
+              "false_novelty": {
+                "numerator": 72,
+                "denominator": 134,
+                "value": 0.5373134328358209
+              },
+              "accepted_leaf_accuracy": {
+                "numerator": 56,
+                "denominator": 62,
+                "value": 0.9032258064516129
+              },
+              "accepted_and_correct_all_known": {
+                "numerator": 56,
+                "denominator": 134,
+                "value": 0.417910447761194
+              }
+            },
+            "hidden_rejection_detection": {
+              "numerator": 42,
+              "denominator": 48,
+              "value": 0.875
+            },
+            "parent_arms": {
+              "flat": {
+                "all_hidden_parent_accuracy": {
+                  "numerator": 30,
+                  "denominator": 48,
+                  "value": 0.625
+                },
+                "joint_reject_and_correct_parent": {
+                  "numerator": 25,
+                  "denominator": 48,
+                  "value": 0.5208333333333334
+                },
+                "parent_accuracy_among_rejected_hidden": {
+                  "numerator": 25,
+                  "denominator": 42,
+                  "value": 0.5952380952380952
+                },
+                "parent_macro_all_hidden": {
+                  "parent_count": 6,
+                  "value": 0.625
+                },
+                "parent_macro_joint_all_hidden": {
+                  "parent_count": 6,
+                  "value": 0.5208333333333334
+                },
+                "parent_macro_among_rejected_hidden": {
+                  "parent_count": 6,
+                  "value": 0.6333333333333333
+                },
+                "gold_hidden_parent_count": 6,
+                "gold_known_parent_count": 6
+              },
+              "equal_leaf_mean": {
+                "all_hidden_parent_accuracy": {
+                  "numerator": 34,
+                  "denominator": 48,
+                  "value": 0.7083333333333334
+                },
+                "joint_reject_and_correct_parent": {
+                  "numerator": 29,
+                  "denominator": 48,
+                  "value": 0.6041666666666666
+                },
+                "parent_accuracy_among_rejected_hidden": {
+                  "numerator": 29,
+                  "denominator": 42,
+                  "value": 0.6904761904761905
+                },
+                "parent_macro_all_hidden": {
+                  "parent_count": 6,
+                  "value": 0.7083333333333334
+                },
+                "parent_macro_joint_all_hidden": {
+                  "parent_count": 6,
+                  "value": 0.6041666666666666
+                },
+                "parent_macro_among_rejected_hidden": {
+                  "parent_count": 6,
+                  "value": 0.7166666666666667
+                },
+                "gold_hidden_parent_count": 6,
+                "gold_known_parent_count": 6
+              }
+            }
+          }
+        },
+        "test": {
+          "all": {
+            "rows": 334,
+            "known_rows": 230,
+            "hidden_rows": 104,
+            "known": {
+              "leaf_accuracy": {
+                "numerator": 192,
+                "denominator": 230,
+                "value": 0.8347826086956521
+              },
+              "acceptance_coverage": {
+                "numerator": 98,
+                "denominator": 230,
+                "value": 0.4260869565217391
+              },
+              "false_novelty": {
+                "numerator": 132,
+                "denominator": 230,
+                "value": 0.5739130434782609
+              },
+              "accepted_leaf_accuracy": {
+                "numerator": 93,
+                "denominator": 98,
+                "value": 0.9489795918367347
+              },
+              "accepted_and_correct_all_known": {
+                "numerator": 93,
+                "denominator": 230,
+                "value": 0.4043478260869565
+              }
+            },
+            "hidden_rejection_detection": {
+              "numerator": 89,
+              "denominator": 104,
+              "value": 0.8557692307692307
+            },
+            "parent_arms": {
+              "flat": {
+                "all_hidden_parent_accuracy": {
+                  "numerator": 64,
+                  "denominator": 104,
+                  "value": 0.6153846153846154
+                },
+                "joint_reject_and_correct_parent": {
+                  "numerator": 49,
+                  "denominator": 104,
+                  "value": 0.47115384615384615
+                },
+                "parent_accuracy_among_rejected_hidden": {
+                  "numerator": 49,
+                  "denominator": 89,
+                  "value": 0.550561797752809
+                },
+                "parent_macro_all_hidden": {
+                  "parent_count": 13,
+                  "value": 0.6153846153846154
+                },
+                "parent_macro_joint_all_hidden": {
+                  "parent_count": 13,
+                  "value": 0.47115384615384615
+                },
+                "parent_macro_among_rejected_hidden": {
+                  "parent_count": 13,
+                  "value": 0.5723443223443223
+                },
+                "gold_hidden_parent_count": 13,
+                "gold_known_parent_count": 18
+              },
+              "equal_leaf_mean": {
+                "all_hidden_parent_accuracy": {
+                  "numerator": 66,
+                  "denominator": 104,
+                  "value": 0.6346153846153846
+                },
+                "joint_reject_and_correct_parent": {
+                  "numerator": 51,
+                  "denominator": 104,
+                  "value": 0.49038461538461536
+                },
+                "parent_accuracy_among_rejected_hidden": {
+                  "numerator": 51,
+                  "denominator": 89,
+                  "value": 0.5730337078651685
+                },
+                "parent_macro_all_hidden": {
+                  "parent_count": 13,
+                  "value": 0.6346153846153846
+                },
+                "parent_macro_joint_all_hidden": {
+                  "parent_count": 13,
+                  "value": 0.49038461538461536
+                },
+                "parent_macro_among_rejected_hidden": {
+                  "parent_count": 13,
+                  "value": 0.5943223443223442
+                },
+                "gold_hidden_parent_count": 13,
+                "gold_known_parent_count": 18
+              }
+            }
+          },
+          "one_supported_child": {
+            "rows": 145,
+            "known_rows": 89,
+            "hidden_rows": 56,
+            "known": {
+              "leaf_accuracy": {
+                "numerator": 75,
+                "denominator": 89,
+                "value": 0.8426966292134831
+              },
+              "acceptance_coverage": {
+                "numerator": 29,
+                "denominator": 89,
+                "value": 0.3258426966292135
+              },
+              "false_novelty": {
+                "numerator": 60,
+                "denominator": 89,
+                "value": 0.6741573033707865
+              },
+              "accepted_leaf_accuracy": {
+                "numerator": 28,
+                "denominator": 29,
+                "value": 0.9655172413793104
+              },
+              "accepted_and_correct_all_known": {
+                "numerator": 28,
+                "denominator": 89,
+                "value": 0.3146067415730337
+              }
+            },
+            "hidden_rejection_detection": {
+              "numerator": 47,
+              "denominator": 56,
+              "value": 0.8392857142857143
+            },
+            "parent_arms": {
+              "flat": {
+                "all_hidden_parent_accuracy": {
+                  "numerator": 31,
+                  "denominator": 56,
+                  "value": 0.5535714285714286
+                },
+                "joint_reject_and_correct_parent": {
+                  "numerator": 22,
+                  "denominator": 56,
+                  "value": 0.39285714285714285
+                },
+                "parent_accuracy_among_rejected_hidden": {
+                  "numerator": 22,
+                  "denominator": 47,
+                  "value": 0.46808510638297873
+                },
+                "parent_macro_all_hidden": {
+                  "parent_count": 7,
+                  "value": 0.5535714285714286
+                },
+                "parent_macro_joint_all_hidden": {
+                  "parent_count": 7,
+                  "value": 0.39285714285714285
+                },
+                "parent_macro_among_rejected_hidden": {
+                  "parent_count": 7,
+                  "value": 0.5042517006802721
+                },
+                "gold_hidden_parent_count": 7,
+                "gold_known_parent_count": 12
+              },
+              "equal_leaf_mean": {
+                "all_hidden_parent_accuracy": {
+                  "numerator": 28,
+                  "denominator": 56,
+                  "value": 0.5
+                },
+                "joint_reject_and_correct_parent": {
+                  "numerator": 19,
+                  "denominator": 56,
+                  "value": 0.3392857142857143
+                },
+                "parent_accuracy_among_rejected_hidden": {
+                  "numerator": 19,
+                  "denominator": 47,
+                  "value": 0.40425531914893614
+                },
+                "parent_macro_all_hidden": {
+                  "parent_count": 7,
+                  "value": 0.5
+                },
+                "parent_macro_joint_all_hidden": {
+                  "parent_count": 7,
+                  "value": 0.3392857142857143
+                },
+                "parent_macro_among_rejected_hidden": {
+                  "parent_count": 7,
+                  "value": 0.4506802721088436
+                },
+                "gold_hidden_parent_count": 7,
+                "gold_known_parent_count": 12
+              }
+            }
+          },
+          "multiple_supported_children": {
+            "rows": 189,
+            "known_rows": 141,
+            "hidden_rows": 48,
+            "known": {
+              "leaf_accuracy": {
+                "numerator": 117,
+                "denominator": 141,
+                "value": 0.8297872340425532
+              },
+              "acceptance_coverage": {
+                "numerator": 69,
+                "denominator": 141,
+                "value": 0.48936170212765956
+              },
+              "false_novelty": {
+                "numerator": 72,
+                "denominator": 141,
+                "value": 0.5106382978723404
+              },
+              "accepted_leaf_accuracy": {
+                "numerator": 65,
+                "denominator": 69,
+                "value": 0.9420289855072463
+              },
+              "accepted_and_correct_all_known": {
+                "numerator": 65,
+                "denominator": 141,
+                "value": 0.46099290780141844
+              }
+            },
+            "hidden_rejection_detection": {
+              "numerator": 42,
+              "denominator": 48,
+              "value": 0.875
+            },
+            "parent_arms": {
+              "flat": {
+                "all_hidden_parent_accuracy": {
+                  "numerator": 33,
+                  "denominator": 48,
+                  "value": 0.6875
+                },
+                "joint_reject_and_correct_parent": {
+                  "numerator": 27,
+                  "denominator": 48,
+                  "value": 0.5625
+                },
+                "parent_accuracy_among_rejected_hidden": {
+                  "numerator": 27,
+                  "denominator": 42,
+                  "value": 0.6428571428571429
+                },
+                "parent_macro_all_hidden": {
+                  "parent_count": 6,
+                  "value": 0.6875
+                },
+                "parent_macro_joint_all_hidden": {
+                  "parent_count": 6,
+                  "value": 0.5625
+                },
+                "parent_macro_among_rejected_hidden": {
+                  "parent_count": 6,
+                  "value": 0.6517857142857143
+                },
+                "gold_hidden_parent_count": 6,
+                "gold_known_parent_count": 6
+              },
+              "equal_leaf_mean": {
+                "all_hidden_parent_accuracy": {
+                  "numerator": 38,
+                  "denominator": 48,
+                  "value": 0.7916666666666666
+                },
+                "joint_reject_and_correct_parent": {
+                  "numerator": 32,
+                  "denominator": 48,
+                  "value": 0.6666666666666666
+                },
+                "parent_accuracy_among_rejected_hidden": {
+                  "numerator": 32,
+                  "denominator": 42,
+                  "value": 0.7619047619047619
+                },
+                "parent_macro_all_hidden": {
+                  "parent_count": 6,
+                  "value": 0.7916666666666666
+                },
+                "parent_macro_joint_all_hidden": {
+                  "parent_count": 6,
+                  "value": 0.6666666666666666
+                },
+                "parent_macro_among_rejected_hidden": {
+                  "parent_count": 6,
+                  "value": 0.7619047619047619
+                },
+                "gold_hidden_parent_count": 6,
+                "gold_known_parent_count": 6
+              }
+            }
+          }
+        }
+      },
+      "known_leaf_count": 31,
+      "supported_parent_count": 18,
+      "timing": {
+        "fit_seconds": 0.0014347100000122737,
+        "validation_predict_seconds": 0.00034125100000892417,
+        "calibration_seconds": 0.004842244999963441,
+        "test_predict_seconds": 0.0002796590001707955,
+        "scoring_seconds": 0.002537501999995584
+      },
+      "memory": {
+        "post_input_load_baseline": {
+          "VmRSS": 34308096,
+          "RssAnon": 20807680,
+          "RssFile": 13500416,
+          "RssShmem": 0
+        },
+        "end": {
+          "VmRSS": 38350848,
+          "RssAnon": 21819392,
+          "RssFile": 16531456,
+          "RssShmem": 0
+        },
+        "lifetime_process_highwater_bytes": 38273024,
+        "scope": "source-free, encoder-free worker; highwater not reset at baseline, no continuous sampling or owned-heap claim"
+      },
+      "python": "3.12.14",
+      "versions": {
+        "numpy": "2.3.5",
+        "threadpoolctl": "3.6.0"
+      }
+    },
+    {
+      "status": "executed",
+      "protocol_sha256": "88aea169c10e5e79b8bbb9ab38b395853606394398212c4205efa1804ba4f1f2",
+      "threshold": 0.9438210129737854,
+      "calibration": {
+        "known_n": 223,
+        "hidden_n": 111,
+        "known_accepted_n": 97,
+        "hidden_rejected_n": 97,
+        "balanced_accuracy": 0.6544257261746051,
+        "candidate_count": 336
+      },
+      "roles": {
+        "validation": {
+          "all": {
+            "rows": 334,
+            "known_rows": 223,
+            "hidden_rows": 111,
+            "known": {
+              "leaf_accuracy": {
+                "numerator": 184,
+                "denominator": 223,
+                "value": 0.8251121076233184
+              },
+              "acceptance_coverage": {
+                "numerator": 97,
+                "denominator": 223,
+                "value": 0.4349775784753363
+              },
+              "false_novelty": {
+                "numerator": 126,
+                "denominator": 223,
+                "value": 0.5650224215246636
+              },
+              "accepted_leaf_accuracy": {
+                "numerator": 91,
+                "denominator": 97,
+                "value": 0.9381443298969072
+              },
+              "accepted_and_correct_all_known": {
+                "numerator": 91,
+                "denominator": 223,
+                "value": 0.4080717488789238
+              }
+            },
+            "hidden_rejection_detection": {
+              "numerator": 97,
+              "denominator": 111,
+              "value": 0.8738738738738738
+            },
+            "parent_arms": {
+              "flat": {
+                "all_hidden_parent_accuracy": {
+                  "numerator": 70,
+                  "denominator": 111,
+                  "value": 0.6306306306306306
+                },
+                "joint_reject_and_correct_parent": {
+                  "numerator": 57,
+                  "denominator": 111,
+                  "value": 0.5135135135135135
+                },
+                "parent_accuracy_among_rejected_hidden": {
+                  "numerator": 57,
+                  "denominator": 97,
+                  "value": 0.5876288659793815
+                },
+                "parent_macro_all_hidden": {
+                  "parent_count": 14,
+                  "value": 0.6326530612244898
+                },
+                "parent_macro_joint_all_hidden": {
+                  "parent_count": 14,
+                  "value": 0.5165816326530612
+                },
+                "parent_macro_among_rejected_hidden": {
+                  "parent_count": 14,
+                  "value": 0.6308673469387756
+                },
+                "gold_hidden_parent_count": 14,
+                "gold_known_parent_count": 18
+              },
+              "equal_leaf_mean": {
+                "all_hidden_parent_accuracy": {
+                  "numerator": 75,
+                  "denominator": 111,
+                  "value": 0.6756756756756757
+                },
+                "joint_reject_and_correct_parent": {
+                  "numerator": 62,
+                  "denominator": 111,
+                  "value": 0.5585585585585585
+                },
+                "parent_accuracy_among_rejected_hidden": {
+                  "numerator": 62,
+                  "denominator": 97,
+                  "value": 0.6391752577319587
+                },
+                "parent_macro_all_hidden": {
+                  "parent_count": 14,
+                  "value": 0.6772959183673469
+                },
+                "parent_macro_joint_all_hidden": {
+                  "parent_count": 14,
+                  "value": 0.5612244897959183
+                },
+                "parent_macro_among_rejected_hidden": {
+                  "parent_count": 14,
+                  "value": 0.6606292517006802
+                },
+                "gold_hidden_parent_count": 14,
+                "gold_known_parent_count": 18
+              }
+            }
+          },
+          "one_supported_child": {
+            "rows": 152,
+            "known_rows": 89,
+            "hidden_rows": 63,
+            "known": {
+              "leaf_accuracy": {
+                "numerator": 74,
+                "denominator": 89,
+                "value": 0.8314606741573034
+              },
+              "acceptance_coverage": {
+                "numerator": 35,
+                "denominator": 89,
+                "value": 0.39325842696629215
+              },
+              "false_novelty": {
+                "numerator": 54,
+                "denominator": 89,
+                "value": 0.6067415730337079
+              },
+              "accepted_leaf_accuracy": {
+                "numerator": 35,
+                "denominator": 35,
+                "value": 1.0
+              },
+              "accepted_and_correct_all_known": {
+                "numerator": 35,
+                "denominator": 89,
+                "value": 0.39325842696629215
+              }
+            },
+            "hidden_rejection_detection": {
+              "numerator": 55,
+              "denominator": 63,
+              "value": 0.873015873015873
+            },
+            "parent_arms": {
+              "flat": {
+                "all_hidden_parent_accuracy": {
+                  "numerator": 40,
+                  "denominator": 63,
+                  "value": 0.6349206349206349
+                },
+                "joint_reject_and_correct_parent": {
+                  "numerator": 32,
+                  "denominator": 63,
+                  "value": 0.5079365079365079
+                },
+                "parent_accuracy_among_rejected_hidden": {
+                  "numerator": 32,
+                  "denominator": 55,
+                  "value": 0.5818181818181818
+                },
+                "parent_macro_all_hidden": {
+                  "parent_count": 8,
+                  "value": 0.6383928571428572
+                },
+                "parent_macro_joint_all_hidden": {
+                  "parent_count": 8,
+                  "value": 0.5133928571428572
+                },
+                "parent_macro_among_rejected_hidden": {
+                  "parent_count": 8,
+                  "value": 0.6290178571428571
+                },
+                "gold_hidden_parent_count": 8,
+                "gold_known_parent_count": 12
+              },
+              "equal_leaf_mean": {
+                "all_hidden_parent_accuracy": {
+                  "numerator": 41,
+                  "denominator": 63,
+                  "value": 0.6507936507936508
+                },
+                "joint_reject_and_correct_parent": {
+                  "numerator": 33,
+                  "denominator": 63,
+                  "value": 0.5238095238095238
+                },
+                "parent_accuracy_among_rejected_hidden": {
+                  "numerator": 33,
+                  "denominator": 55,
+                  "value": 0.6
+                },
+                "parent_macro_all_hidden": {
+                  "parent_count": 8,
+                  "value": 0.6540178571428572
+                },
+                "parent_macro_joint_all_hidden": {
+                  "parent_count": 8,
+                  "value": 0.5290178571428572
+                },
+                "parent_macro_among_rejected_hidden": {
+                  "parent_count": 8,
+                  "value": 0.6186011904761906
+                },
+                "gold_hidden_parent_count": 8,
+                "gold_known_parent_count": 12
+              }
+            }
+          },
+          "multiple_supported_children": {
+            "rows": 182,
+            "known_rows": 134,
+            "hidden_rows": 48,
+            "known": {
+              "leaf_accuracy": {
+                "numerator": 110,
+                "denominator": 134,
+                "value": 0.8208955223880597
+              },
+              "acceptance_coverage": {
+                "numerator": 62,
+                "denominator": 134,
+                "value": 0.4626865671641791
+              },
+              "false_novelty": {
+                "numerator": 72,
+                "denominator": 134,
+                "value": 0.5373134328358209
+              },
+              "accepted_leaf_accuracy": {
+                "numerator": 56,
+                "denominator": 62,
+                "value": 0.9032258064516129
+              },
+              "accepted_and_correct_all_known": {
+                "numerator": 56,
+                "denominator": 134,
+                "value": 0.417910447761194
+              }
+            },
+            "hidden_rejection_detection": {
+              "numerator": 42,
+              "denominator": 48,
+              "value": 0.875
+            },
+            "parent_arms": {
+              "flat": {
+                "all_hidden_parent_accuracy": {
+                  "numerator": 30,
+                  "denominator": 48,
+                  "value": 0.625
+                },
+                "joint_reject_and_correct_parent": {
+                  "numerator": 25,
+                  "denominator": 48,
+                  "value": 0.5208333333333334
+                },
+                "parent_accuracy_among_rejected_hidden": {
+                  "numerator": 25,
+                  "denominator": 42,
+                  "value": 0.5952380952380952
+                },
+                "parent_macro_all_hidden": {
+                  "parent_count": 6,
+                  "value": 0.625
+                },
+                "parent_macro_joint_all_hidden": {
+                  "parent_count": 6,
+                  "value": 0.5208333333333334
+                },
+                "parent_macro_among_rejected_hidden": {
+                  "parent_count": 6,
+                  "value": 0.6333333333333333
+                },
+                "gold_hidden_parent_count": 6,
+                "gold_known_parent_count": 6
+              },
+              "equal_leaf_mean": {
+                "all_hidden_parent_accuracy": {
+                  "numerator": 34,
+                  "denominator": 48,
+                  "value": 0.7083333333333334
+                },
+                "joint_reject_and_correct_parent": {
+                  "numerator": 29,
+                  "denominator": 48,
+                  "value": 0.6041666666666666
+                },
+                "parent_accuracy_among_rejected_hidden": {
+                  "numerator": 29,
+                  "denominator": 42,
+                  "value": 0.6904761904761905
+                },
+                "parent_macro_all_hidden": {
+                  "parent_count": 6,
+                  "value": 0.7083333333333334
+                },
+                "parent_macro_joint_all_hidden": {
+                  "parent_count": 6,
+                  "value": 0.6041666666666666
+                },
+                "parent_macro_among_rejected_hidden": {
+                  "parent_count": 6,
+                  "value": 0.7166666666666667
+                },
+                "gold_hidden_parent_count": 6,
+                "gold_known_parent_count": 6
+              }
+            }
+          }
+        },
+        "test": {
+          "all": {
+            "rows": 334,
+            "known_rows": 230,
+            "hidden_rows": 104,
+            "known": {
+              "leaf_accuracy": {
+                "numerator": 192,
+                "denominator": 230,
+                "value": 0.8347826086956521
+              },
+              "acceptance_coverage": {
+                "numerator": 98,
+                "denominator": 230,
+                "value": 0.4260869565217391
+              },
+              "false_novelty": {
+                "numerator": 132,
+                "denominator": 230,
+                "value": 0.5739130434782609
+              },
+              "accepted_leaf_accuracy": {
+                "numerator": 93,
+                "denominator": 98,
+                "value": 0.9489795918367347
+              },
+              "accepted_and_correct_all_known": {
+                "numerator": 93,
+                "denominator": 230,
+                "value": 0.4043478260869565
+              }
+            },
+            "hidden_rejection_detection": {
+              "numerator": 89,
+              "denominator": 104,
+              "value": 0.8557692307692307
+            },
+            "parent_arms": {
+              "flat": {
+                "all_hidden_parent_accuracy": {
+                  "numerator": 64,
+                  "denominator": 104,
+                  "value": 0.6153846153846154
+                },
+                "joint_reject_and_correct_parent": {
+                  "numerator": 49,
+                  "denominator": 104,
+                  "value": 0.47115384615384615
+                },
+                "parent_accuracy_among_rejected_hidden": {
+                  "numerator": 49,
+                  "denominator": 89,
+                  "value": 0.550561797752809
+                },
+                "parent_macro_all_hidden": {
+                  "parent_count": 13,
+                  "value": 0.6153846153846154
+                },
+                "parent_macro_joint_all_hidden": {
+                  "parent_count": 13,
+                  "value": 0.47115384615384615
+                },
+                "parent_macro_among_rejected_hidden": {
+                  "parent_count": 13,
+                  "value": 0.5723443223443223
+                },
+                "gold_hidden_parent_count": 13,
+                "gold_known_parent_count": 18
+              },
+              "equal_leaf_mean": {
+                "all_hidden_parent_accuracy": {
+                  "numerator": 66,
+                  "denominator": 104,
+                  "value": 0.6346153846153846
+                },
+                "joint_reject_and_correct_parent": {
+                  "numerator": 51,
+                  "denominator": 104,
+                  "value": 0.49038461538461536
+                },
+                "parent_accuracy_among_rejected_hidden": {
+                  "numerator": 51,
+                  "denominator": 89,
+                  "value": 0.5730337078651685
+                },
+                "parent_macro_all_hidden": {
+                  "parent_count": 13,
+                  "value": 0.6346153846153846
+                },
+                "parent_macro_joint_all_hidden": {
+                  "parent_count": 13,
+                  "value": 0.49038461538461536
+                },
+                "parent_macro_among_rejected_hidden": {
+                  "parent_count": 13,
+                  "value": 0.5943223443223442
+                },
+                "gold_hidden_parent_count": 13,
+                "gold_known_parent_count": 18
+              }
+            }
+          },
+          "one_supported_child": {
+            "rows": 145,
+            "known_rows": 89,
+            "hidden_rows": 56,
+            "known": {
+              "leaf_accuracy": {
+                "numerator": 75,
+                "denominator": 89,
+                "value": 0.8426966292134831
+              },
+              "acceptance_coverage": {
+                "numerator": 29,
+                "denominator": 89,
+                "value": 0.3258426966292135
+              },
+              "false_novelty": {
+                "numerator": 60,
+                "denominator": 89,
+                "value": 0.6741573033707865
+              },
+              "accepted_leaf_accuracy": {
+                "numerator": 28,
+                "denominator": 29,
+                "value": 0.9655172413793104
+              },
+              "accepted_and_correct_all_known": {
+                "numerator": 28,
+                "denominator": 89,
+                "value": 0.3146067415730337
+              }
+            },
+            "hidden_rejection_detection": {
+              "numerator": 47,
+              "denominator": 56,
+              "value": 0.8392857142857143
+            },
+            "parent_arms": {
+              "flat": {
+                "all_hidden_parent_accuracy": {
+                  "numerator": 31,
+                  "denominator": 56,
+                  "value": 0.5535714285714286
+                },
+                "joint_reject_and_correct_parent": {
+                  "numerator": 22,
+                  "denominator": 56,
+                  "value": 0.39285714285714285
+                },
+                "parent_accuracy_among_rejected_hidden": {
+                  "numerator": 22,
+                  "denominator": 47,
+                  "value": 0.46808510638297873
+                },
+                "parent_macro_all_hidden": {
+                  "parent_count": 7,
+                  "value": 0.5535714285714286
+                },
+                "parent_macro_joint_all_hidden": {
+                  "parent_count": 7,
+                  "value": 0.39285714285714285
+                },
+                "parent_macro_among_rejected_hidden": {
+                  "parent_count": 7,
+                  "value": 0.5042517006802721
+                },
+                "gold_hidden_parent_count": 7,
+                "gold_known_parent_count": 12
+              },
+              "equal_leaf_mean": {
+                "all_hidden_parent_accuracy": {
+                  "numerator": 28,
+                  "denominator": 56,
+                  "value": 0.5
+                },
+                "joint_reject_and_correct_parent": {
+                  "numerator": 19,
+                  "denominator": 56,
+                  "value": 0.3392857142857143
+                },
+                "parent_accuracy_among_rejected_hidden": {
+                  "numerator": 19,
+                  "denominator": 47,
+                  "value": 0.40425531914893614
+                },
+                "parent_macro_all_hidden": {
+                  "parent_count": 7,
+                  "value": 0.5
+                },
+                "parent_macro_joint_all_hidden": {
+                  "parent_count": 7,
+                  "value": 0.3392857142857143
+                },
+                "parent_macro_among_rejected_hidden": {
+                  "parent_count": 7,
+                  "value": 0.4506802721088436
+                },
+                "gold_hidden_parent_count": 7,
+                "gold_known_parent_count": 12
+              }
+            }
+          },
+          "multiple_supported_children": {
+            "rows": 189,
+            "known_rows": 141,
+            "hidden_rows": 48,
+            "known": {
+              "leaf_accuracy": {
+                "numerator": 117,
+                "denominator": 141,
+                "value": 0.8297872340425532
+              },
+              "acceptance_coverage": {
+                "numerator": 69,
+                "denominator": 141,
+                "value": 0.48936170212765956
+              },
+              "false_novelty": {
+                "numerator": 72,
+                "denominator": 141,
+                "value": 0.5106382978723404
+              },
+              "accepted_leaf_accuracy": {
+                "numerator": 65,
+                "denominator": 69,
+                "value": 0.9420289855072463
+              },
+              "accepted_and_correct_all_known": {
+                "numerator": 65,
+                "denominator": 141,
+                "value": 0.46099290780141844
+              }
+            },
+            "hidden_rejection_detection": {
+              "numerator": 42,
+              "denominator": 48,
+              "value": 0.875
+            },
+            "parent_arms": {
+              "flat": {
+                "all_hidden_parent_accuracy": {
+                  "numerator": 33,
+                  "denominator": 48,
+                  "value": 0.6875
+                },
+                "joint_reject_and_correct_parent": {
+                  "numerator": 27,
+                  "denominator": 48,
+                  "value": 0.5625
+                },
+                "parent_accuracy_among_rejected_hidden": {
+                  "numerator": 27,
+                  "denominator": 42,
+                  "value": 0.6428571428571429
+                },
+                "parent_macro_all_hidden": {
+                  "parent_count": 6,
+                  "value": 0.6875
+                },
+                "parent_macro_joint_all_hidden": {
+                  "parent_count": 6,
+                  "value": 0.5625
+                },
+                "parent_macro_among_rejected_hidden": {
+                  "parent_count": 6,
+                  "value": 0.6517857142857143
+                },
+                "gold_hidden_parent_count": 6,
+                "gold_known_parent_count": 6
+              },
+              "equal_leaf_mean": {
+                "all_hidden_parent_accuracy": {
+                  "numerator": 38,
+                  "denominator": 48,
+                  "value": 0.7916666666666666
+                },
+                "joint_reject_and_correct_parent": {
+                  "numerator": 32,
+                  "denominator": 48,
+                  "value": 0.6666666666666666
+                },
+                "parent_accuracy_among_rejected_hidden": {
+                  "numerator": 32,
+                  "denominator": 42,
+                  "value": 0.7619047619047619
+                },
+                "parent_macro_all_hidden": {
+                  "parent_count": 6,
+                  "value": 0.7916666666666666
+                },
+                "parent_macro_joint_all_hidden": {
+                  "parent_count": 6,
+                  "value": 0.6666666666666666
+                },
+                "parent_macro_among_rejected_hidden": {
+                  "parent_count": 6,
+                  "value": 0.7619047619047619
+                },
+                "gold_hidden_parent_count": 6,
+                "gold_known_parent_count": 6
+              }
+            }
+          }
+        }
+      },
+      "known_leaf_count": 31,
+      "supported_parent_count": 18,
+      "timing": {
+        "fit_seconds": 0.0017082690001188894,
+        "validation_predict_seconds": 0.00030838200018479256,
+        "calibration_seconds": 0.005848393000178476,
+        "test_predict_seconds": 0.00031725600001664134,
+        "scoring_seconds": 0.0026858139999603736
+      },
+      "memory": {
+        "post_input_load_baseline": {
+          "VmRSS": 35414016,
+          "RssAnon": 20803584,
+          "RssFile": 14610432,
+          "RssShmem": 0
+        },
+        "end": {
+          "VmRSS": 38539264,
+          "RssAnon": 21819392,
+          "RssFile": 16719872,
+          "RssShmem": 0
+        },
+        "lifetime_process_highwater_bytes": 38387712,
+        "scope": "source-free, encoder-free worker; highwater not reset at baseline, no continuous sampling or owned-heap claim"
+      },
+      "python": "3.12.14",
+      "versions": {
+        "numpy": "2.3.5",
+        "threadpoolctl": "3.6.0"
+      }
+    }
+  ],
+  "checks": {
+    "identical_prediction_and_mask_digest": true,
+    "identical_non_resource_time_fields": true,
+    "shared_leaf_predictions_and_rejection_mask_across_parent_arms": true
+  },
+  "scripts": {
+    "prepare_hierarchy.py": "dbbb05af2acfa7329b06ca4d85784d4248f26282ffb3c3c945235cb2a55043ba",
+    "prepare_hierarchy_e5.py": "d28980555e9d5150ddfe9808d7049cdc74dc6d8e8dcfa25c0b049c63b69f9e4b",
+    "benchmark_hierarchy_e5.py": "3d82f9d9a232c684445bc59ed18c1eb5b0e9088c7372c62caacadfe59d967d58",
+    "summarize_hierarchy_e5.py": "14f92089d1e6a775fd3ace633d9fefe9ace2e83518be98d055b9525f2d90891e"
+  }
+}

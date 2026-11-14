@@ -1,0 +1,19 @@
+{
+  "id": "massive-hierarchy-e5-v1",
+  "base": "84df325",
+  "status": "locked_before_first_model_scores",
+  "split": "exact massive-hierarchy-supported-parent-v1; verify committed full preflight",
+  "model": "intfloat/multilingual-e5-small",
+  "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+  "encoding": "pure utterance prefixed query: ; masked mean pooling; L2 normalized float32; max_length 512; batch 16; CPU one thread; eval/inference mode; seed 0",
+  "leaf_prototype": "L2-normalize equal-row mean support vectors per known leaf",
+  "leaf_prediction": "maximum cosine against known leaf prototypes; exact ties lexicographic opaque leaf ID",
+  "rejection": "reject iff maximum leaf cosine < frozen threshold; identical leaf predictions and mask across parent arms",
+  "calibration": "validation known/hidden binary labels only. Candidates -1, sorted distinct validation scores, nextafter(max,+infinity). Maximize balanced known-accept / hidden-reject accuracy using exact integer numerator; ties maximize known acceptance, then choose smallest threshold. No parent labels or test scores used.",
+  "parent_arms": ["flat: map highest-similarity known leaf to supplied parent", "equal-leaf-mean: normalize equal-weight mean of normalized known child-leaf prototypes; max cosine over supported parents, ties lexicographic opaque parent ID"],
+  "prediction_boundary": "score all test predictions and shared rejection mask once with frozen validation threshold before any test gold scoring; no query-dependent reranking, online updating or test tuning",
+  "metrics": "validation and test separate; hidden all-row parent accuracy and joint reject+correct-parent, conditional parent accuracy among rejected with numerator/denominator; parent-macro averages over gold parents with hidden queries; known leaf accuracy, acceptance coverage and false novelty, conditional accepted correctness; all plus gold-parent one/multiple supported-child strata",
+  "scope": "supported parents only; hidden validation/test leaves disjoint; topology supervised; not open-parent discovery, oracle K clustering, temporal novelty or natural frequency distribution",
+  "repeats": 2,
+  "resource_scope": "separate encoder time/process highwater; source-free vector-worker fit/predict/calibrate/score time and process RSS baseline/highwater; not exact owned-heap or continuous peak"
+}

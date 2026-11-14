@@ -52,6 +52,12 @@ bash scripts/evaluate_calendar_v2.sh
 
 入口复跑四策略各两轮并核对 v1 前七天；与原 42 个静态／路由运行保持分离。[Survey 延长观察表](https://dian.host/text_clustering/survey.html#roadmap-5)。
 
+### 独立层级归属实测（hierarchy-e5-v1）
+
+**已知叶误拒 132 / 230（57.4%），父级提升仅 2 / 104，且分组方向不同。** [首次 E5 父级归属结果](results/hierarchy-e5-v1/README.md)使用原 MASSIVE zh-CN 层级预检切分；验证集单独校准、冻结叶预测与拒识掩码后，比较平面最大叶→父和等叶权父均值。均值方案在多支持子叶组改善、单子叶组下降，不是可直接上线的结论。
+
+[锁定协议、环境与两轮复跑步骤](experiments/hierarchy-e5-v1/README.md) · [Survey 层级段落](https://dian.host/text_clustering/survey.html#roadmap-6)。原[预检记录](experiments/hierarchy-preflight-v1/README.md)保持不变；新结果不加入原 42 个静态／路由运行，不改历史场景与统一图表数据，也不自动发布。
+
 ## 五分钟开始
 
 推荐 Python 3.10；部分可选算法需要 Python 3.11 或更高版本。
