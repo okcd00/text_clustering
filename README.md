@@ -12,7 +12,21 @@
 | 层级归属与新节点建议 | Hierarchical + 可插拔导航策略 | 节点新增建议需要业务审核 |
 | 持续到来的文本流 | BIRCH / MiniBatch / 密度微簇 | 同时监测质量、状态增长与维护开销 |
 
-看板首版公开 **17 组配置、85 次逐种子结果**：已知 K 与未知 K 两个独立协议，不混排总榜。其他场景已提供代码入口，其评测结果尚未纳入此公开快照。
+[当前统一实测](https://dian.host/text_clustering/survey.html#compare)分开显示已知 K、未知 K 与路由拒识。每个比较组使用相同输入与信息预算，按质量、覆盖率和成本看指标，不计算跨组总分。旧批量与场景结果仍可从页面中的「历史记录」访问。
+
+## 复跑一轮评估
+
+按[静态评估的准备说明](experiments/unified-static-v1/README.md)一次性准备校验过的数据、E5 权重和两个隔离环境。不同算法依赖不同 scikit-learn 版本，避免合装。首次准备向量后，后续可以直接复用经校验的外部缓存：
+
+```bash
+SUITE_PYTHON="$HOME/.venvs/text-clustering-static/bin/python" \
+ROUTING_PYTHON="$HOME/.venvs/text-clustering-pilot/bin/python" \
+DATA_CACHE="$HOME/.cache/text-clustering/data" \
+RUN_DIR="$HOME/text-clustering-evaluations/round-1" \
+bash scripts/evaluate_survey.sh
+```
+
+一轮顺序跑静态聚类与路由，输出两个完整汇总和一个可供页面读取的 `unified-results.json`。首次生成语义向量，设定 `SEMANTIC_PYTHON`、`MODEL_DIR` 并加 `--prepare-vectors`。脚本不自动发布；原始数据、向量和个体预测不会入库。层级、时间流与维护场景需要独立协议，暂不使用旧分数填入当前对照。
 
 ## 五分钟开始
 
@@ -55,7 +69,7 @@ print(result.partition.labels)
 - `tests/`：公共 API 离线验收与看板浏览器回归。
 - `scripts/`：看板启动与发布审核。
 
-论文原方法、核心改编和工程基线需区别解读，例如 `bertopic_pipeline` 是降维与聚类核心，**不包含完整 BERTopic 主题表示产品**。当前公开结果使用的历史编码器未提供可下载 checkpoint，数值复现条件见[评测说明](docs/protocols.md)。
+论文原方法、核心改编和工程基线需区别解读，例如 `bertopic_pipeline` 是降维与聚类核心，**不包含完整 BERTopic 主题表示产品**。历史看板的编码器未提供可下载 checkpoint；旧分数不等同于本轮固定公开 E5 的新测值。
 
 ## 公开协作
 
@@ -63,6 +77,6 @@ print(result.partition.labels)
 
 安装验收与浏览器检查状态见[验证记录](docs/verification.md)。更新看板后运行 `npm ci && npx playwright install chromium && npm run test:dashboard`；[移动端布局与详情跳转回归说明](tests/browser/readme.md)。
 
-### 路由、层级与持续更新结果
+### 历史场景档案
 
-[场景评测看板](https://dian.host/text_clustering/scenarios.html) 新增 18 个独立比较组：原型与 NLI 路由、层级归属、冻结/更新流式方案、BIRCH 容量维护。与批量聚类合计 68 个方法/视图配置；按协议分别查看，不作跨任务总榜。[分组、指标与限制](docs/scenario-protocols.md)。
+[历史场景评测档案](https://dian.host/text_clustering/scenarios.html) 新增 18 个独立比较组：原型与 NLI 路由、层级归属、冻结/更新流式方案、BIRCH 容量维护。与批量聚类合计 68 个方法/视图配置；按协议分别查看，不作跨任务总榜。[分组、指标与限制](docs/scenario-protocols.md)。

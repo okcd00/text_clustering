@@ -1,0 +1,792 @@
+{
+  "schema_version": 1,
+  "protocol": "survey-comparison-v1",
+  "status": "executed",
+  "protocols": {
+    "static": "unified-static-v1",
+    "routing": "routing-v2-lexical-heldout-labels"
+  },
+  "cohorts": [
+    {
+      "dataset": "banking77",
+      "dimensions": 384,
+      "id": "banking77__e5-small-pinned__known-k",
+      "information_budget": "oracle test-present K",
+      "n": 512,
+      "oracle_k": 77,
+      "representation": "e5-small-pinned",
+      "scenario": "known-k"
+    },
+    {
+      "dataset": "banking77",
+      "dimensions": 384,
+      "id": "banking77__e5-small-pinned__unknown-k-fixed",
+      "information_budget": "no labels, no K; fixed presets",
+      "n": 512,
+      "oracle_k": null,
+      "representation": "e5-small-pinned",
+      "scenario": "unknown-k-fixed"
+    },
+    {
+      "dataset": "massive_zh_cn",
+      "dimensions": 384,
+      "id": "massive_zh_cn__e5-small-pinned__known-k",
+      "information_budget": "oracle test-present K",
+      "n": 512,
+      "oracle_k": 57,
+      "representation": "e5-small-pinned",
+      "scenario": "known-k"
+    },
+    {
+      "dataset": "massive_zh_cn",
+      "dimensions": 384,
+      "id": "massive_zh_cn__e5-small-pinned__unknown-k-fixed",
+      "information_budget": "no labels, no K; fixed presets",
+      "n": 512,
+      "oracle_k": null,
+      "representation": "e5-small-pinned",
+      "scenario": "unknown-k-fixed"
+    },
+    {
+      "id": "banking77__train-lexical__routing",
+      "dataset": "banking77",
+      "representation": "仅支持集拟合的 TF-IDF + SVD64",
+      "n": 512,
+      "dimensions": 64,
+      "scenario": "routing",
+      "information_budget": "有标签支持集 920 条；仅用验证集 512 条校准拒识；验证未知类与测试未知类互斥。"
+    },
+    {
+      "id": "massive_zh_cn__train-lexical__routing",
+      "dataset": "massive_zh_cn",
+      "representation": "仅支持集拟合的 TF-IDF + SVD64",
+      "n": 512,
+      "dimensions": 64,
+      "scenario": "routing",
+      "information_budget": "有标签支持集 698 条；仅用验证集 512 条校准拒识；验证未知类与测试未知类互斥。"
+    }
+  ],
+  "methods": [
+    {
+      "id": "kmeans",
+      "title": "KMeans",
+      "track": "known-k"
+    },
+    {
+      "id": "minibatch_kmeans",
+      "title": "MiniBatchKMeans",
+      "track": "known-k"
+    },
+    {
+      "id": "hdbscan",
+      "title": "HDBSCAN",
+      "track": "unknown-k-fixed"
+    },
+    {
+      "id": "bertopic_pipeline",
+      "title": "BERTopic clustering core",
+      "track": "unknown-k-fixed"
+    },
+    {
+      "id": "evoc",
+      "title": "EVoC",
+      "track": "unknown-k-fixed"
+    },
+    {
+      "id": "prototype",
+      "title": "原型余弦路由",
+      "track": "routing"
+    },
+    {
+      "id": "class-max-1nn",
+      "title": "类别最大 1-NN",
+      "track": "routing"
+    }
+  ],
+  "runs": [
+    {
+      "cohort_id": "banking77__e5-small-pinned__known-k",
+      "method": "kmeans",
+      "seed": 0,
+      "status": "ok",
+      "fit_predict_seconds": 0.6493023850002828,
+      "process_peak_rss_bytes": 131448832,
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.34157095783607744,
+        "ari_covered": 0.34157095783607744,
+        "clusters_excluding_noise": 77,
+        "coverage": 1.0,
+        "nmi_all_noise_as_one_cluster": 0.7623515306872681
+      }
+    },
+    {
+      "cohort_id": "banking77__e5-small-pinned__known-k",
+      "method": "kmeans",
+      "seed": 1,
+      "status": "ok",
+      "fit_predict_seconds": 0.5519739300002584,
+      "process_peak_rss_bytes": 131268608,
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.3620417059404539,
+        "ari_covered": 0.3620417059404539,
+        "clusters_excluding_noise": 77,
+        "coverage": 1.0,
+        "nmi_all_noise_as_one_cluster": 0.7723080510308807
+      }
+    },
+    {
+      "cohort_id": "banking77__e5-small-pinned__known-k",
+      "method": "kmeans",
+      "seed": 2,
+      "status": "ok",
+      "fit_predict_seconds": 0.5472409119997792,
+      "process_peak_rss_bytes": 131432448,
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.33393533594822095,
+        "ari_covered": 0.33393533594822095,
+        "clusters_excluding_noise": 77,
+        "coverage": 1.0,
+        "nmi_all_noise_as_one_cluster": 0.7601118740397038
+      }
+    },
+    {
+      "cohort_id": "banking77__e5-small-pinned__known-k",
+      "method": "minibatch_kmeans",
+      "seed": 0,
+      "status": "ok",
+      "fit_predict_seconds": 0.6489041419999921,
+      "process_peak_rss_bytes": 131055616,
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.3042337009860545,
+        "ari_covered": 0.3042337009860545,
+        "clusters_excluding_noise": 77,
+        "coverage": 1.0,
+        "nmi_all_noise_as_one_cluster": 0.7493528442861914
+      }
+    },
+    {
+      "cohort_id": "banking77__e5-small-pinned__known-k",
+      "method": "minibatch_kmeans",
+      "seed": 1,
+      "status": "ok",
+      "fit_predict_seconds": 0.6885815910000019,
+      "process_peak_rss_bytes": 130998272,
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.33081895840456443,
+        "ari_covered": 0.33081895840456443,
+        "clusters_excluding_noise": 77,
+        "coverage": 1.0,
+        "nmi_all_noise_as_one_cluster": 0.7631311020568204
+      }
+    },
+    {
+      "cohort_id": "banking77__e5-small-pinned__known-k",
+      "method": "minibatch_kmeans",
+      "seed": 2,
+      "status": "ok",
+      "fit_predict_seconds": 0.9356087380001554,
+      "process_peak_rss_bytes": 131063808,
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.31701402936369155,
+        "ari_covered": 0.31701402936369155,
+        "clusters_excluding_noise": 77,
+        "coverage": 1.0,
+        "nmi_all_noise_as_one_cluster": 0.7590369349562051
+      }
+    },
+    {
+      "cohort_id": "banking77__e5-small-pinned__unknown-k-fixed",
+      "method": "hdbscan",
+      "seed": 0,
+      "status": "ok",
+      "fit_predict_seconds": 0.3003040170001441,
+      "process_peak_rss_bytes": 128438272,
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.009930041427149906,
+        "ari_covered": 0.011196288898112434,
+        "clusters_excluding_noise": 2,
+        "coverage": 0.3671875,
+        "nmi_all_noise_as_one_cluster": 0.1648411230379815
+      }
+    },
+    {
+      "cohort_id": "banking77__e5-small-pinned__unknown-k-fixed",
+      "method": "hdbscan",
+      "seed": 1,
+      "status": "ok",
+      "fit_predict_seconds": 0.2447480649998397,
+      "process_peak_rss_bytes": 127832064,
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.009930041427149906,
+        "ari_covered": 0.011196288898112434,
+        "clusters_excluding_noise": 2,
+        "coverage": 0.3671875,
+        "nmi_all_noise_as_one_cluster": 0.1648411230379815
+      }
+    },
+    {
+      "cohort_id": "banking77__e5-small-pinned__unknown-k-fixed",
+      "method": "hdbscan",
+      "seed": 2,
+      "status": "ok",
+      "fit_predict_seconds": 0.2891327209999872,
+      "process_peak_rss_bytes": 128610304,
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.009930041427149906,
+        "ari_covered": 0.011196288898112434,
+        "clusters_excluding_noise": 2,
+        "coverage": 0.3671875,
+        "nmi_all_noise_as_one_cluster": 0.1648411230379815
+      }
+    },
+    {
+      "cohort_id": "banking77__e5-small-pinned__unknown-k-fixed",
+      "method": "bertopic_pipeline",
+      "seed": 0,
+      "status": "ok",
+      "fit_predict_seconds": 9.352669862000312,
+      "process_peak_rss_bytes": 345735168,
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.1661619851933807,
+        "ari_covered": 0.18067725527965978,
+        "clusters_excluding_noise": 14,
+        "coverage": 0.888671875,
+        "nmi_all_noise_as_one_cluster": 0.6078589308506502
+      }
+    },
+    {
+      "cohort_id": "banking77__e5-small-pinned__unknown-k-fixed",
+      "method": "bertopic_pipeline",
+      "seed": 1,
+      "status": "ok",
+      "fit_predict_seconds": 10.917187403999833,
+      "process_peak_rss_bytes": 344940544,
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.13606439857980582,
+        "ari_covered": 0.1648569191904375,
+        "clusters_excluding_noise": 12,
+        "coverage": 0.837890625,
+        "nmi_all_noise_as_one_cluster": 0.5661939389623378
+      }
+    },
+    {
+      "cohort_id": "banking77__e5-small-pinned__unknown-k-fixed",
+      "method": "bertopic_pipeline",
+      "seed": 2,
+      "status": "ok",
+      "fit_predict_seconds": 10.230420585000047,
+      "process_peak_rss_bytes": 344633344,
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.13933099872660165,
+        "ari_covered": 0.16390238718198274,
+        "clusters_excluding_noise": 12,
+        "coverage": 0.84765625,
+        "nmi_all_noise_as_one_cluster": 0.5778407035902418
+      }
+    },
+    {
+      "cohort_id": "banking77__e5-small-pinned__unknown-k-fixed",
+      "method": "evoc",
+      "seed": 0,
+      "status": "ok",
+      "fit_predict_seconds": 0.9793840259999342,
+      "process_peak_rss_bytes": 292462592,
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.1109681284754921,
+        "ari_covered": 0.19381287878660003,
+        "clusters_excluding_noise": 14,
+        "coverage": 0.76953125,
+        "nmi_all_noise_as_one_cluster": 0.5570504372899806
+      }
+    },
+    {
+      "cohort_id": "banking77__e5-small-pinned__unknown-k-fixed",
+      "method": "evoc",
+      "seed": 1,
+      "status": "ok",
+      "fit_predict_seconds": 1.0217223529998591,
+      "process_peak_rss_bytes": 292106240,
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.12706330554668782,
+        "ari_covered": 0.21802522694455725,
+        "clusters_excluding_noise": 16,
+        "coverage": 0.796875,
+        "nmi_all_noise_as_one_cluster": 0.5790204765695863
+      }
+    },
+    {
+      "cohort_id": "banking77__e5-small-pinned__unknown-k-fixed",
+      "method": "evoc",
+      "seed": 2,
+      "status": "ok",
+      "fit_predict_seconds": 1.3123652839999522,
+      "process_peak_rss_bytes": 292671488,
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.11172137544691656,
+        "ari_covered": 0.18412037486919688,
+        "clusters_excluding_noise": 13,
+        "coverage": 0.76953125,
+        "nmi_all_noise_as_one_cluster": 0.5563352389243694
+      }
+    },
+    {
+      "cohort_id": "massive_zh_cn__e5-small-pinned__known-k",
+      "method": "kmeans",
+      "seed": 0,
+      "status": "ok",
+      "fit_predict_seconds": 0.5017114500001298,
+      "process_peak_rss_bytes": 141811712,
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.3247298450795756,
+        "ari_covered": 0.3247298450795756,
+        "clusters_excluding_noise": 57,
+        "coverage": 1.0,
+        "nmi_all_noise_as_one_cluster": 0.7084043400097174
+      }
+    },
+    {
+      "cohort_id": "massive_zh_cn__e5-small-pinned__known-k",
+      "method": "kmeans",
+      "seed": 1,
+      "status": "ok",
+      "fit_predict_seconds": 0.46827299999995375,
+      "process_peak_rss_bytes": 141811712,
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.30537500429235076,
+        "ari_covered": 0.30537500429235076,
+        "clusters_excluding_noise": 57,
+        "coverage": 1.0,
+        "nmi_all_noise_as_one_cluster": 0.6997616523999952
+      }
+    },
+    {
+      "cohort_id": "massive_zh_cn__e5-small-pinned__known-k",
+      "method": "kmeans",
+      "seed": 2,
+      "status": "ok",
+      "fit_predict_seconds": 0.630060389999926,
+      "process_peak_rss_bytes": 141811712,
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.3093366922330677,
+        "ari_covered": 0.3093366922330677,
+        "clusters_excluding_noise": 57,
+        "coverage": 1.0,
+        "nmi_all_noise_as_one_cluster": 0.7095003398994654
+      }
+    },
+    {
+      "cohort_id": "massive_zh_cn__e5-small-pinned__known-k",
+      "method": "minibatch_kmeans",
+      "seed": 0,
+      "status": "ok",
+      "fit_predict_seconds": 0.5617844280000099,
+      "process_peak_rss_bytes": 141811712,
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.32704312622161186,
+        "ari_covered": 0.32704312622161186,
+        "clusters_excluding_noise": 57,
+        "coverage": 1.0,
+        "nmi_all_noise_as_one_cluster": 0.7077303706052677
+      }
+    },
+    {
+      "cohort_id": "massive_zh_cn__e5-small-pinned__known-k",
+      "method": "minibatch_kmeans",
+      "seed": 1,
+      "status": "ok",
+      "fit_predict_seconds": 0.39997737700014113,
+      "process_peak_rss_bytes": 141811712,
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.30640118100572,
+        "ari_covered": 0.30640118100572,
+        "clusters_excluding_noise": 57,
+        "coverage": 1.0,
+        "nmi_all_noise_as_one_cluster": 0.7054450641505222
+      }
+    },
+    {
+      "cohort_id": "massive_zh_cn__e5-small-pinned__known-k",
+      "method": "minibatch_kmeans",
+      "seed": 2,
+      "status": "ok",
+      "fit_predict_seconds": 0.4849792410000191,
+      "process_peak_rss_bytes": 141811712,
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.32100975113400587,
+        "ari_covered": 0.32100975113400587,
+        "clusters_excluding_noise": 57,
+        "coverage": 1.0,
+        "nmi_all_noise_as_one_cluster": 0.7103397796051989
+      }
+    },
+    {
+      "cohort_id": "massive_zh_cn__e5-small-pinned__unknown-k-fixed",
+      "method": "hdbscan",
+      "seed": 0,
+      "status": "ok",
+      "fit_predict_seconds": 0.22865946000001713,
+      "process_peak_rss_bytes": 141811712,
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.03343239048349596,
+        "ari_covered": 0.03252475033489412,
+        "clusters_excluding_noise": 2,
+        "coverage": 0.4765625,
+        "nmi_all_noise_as_one_cluster": 0.223450764295555
+      }
+    },
+    {
+      "cohort_id": "massive_zh_cn__e5-small-pinned__unknown-k-fixed",
+      "method": "hdbscan",
+      "seed": 1,
+      "status": "ok",
+      "fit_predict_seconds": 0.2576056900002186,
+      "process_peak_rss_bytes": 141811712,
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.03343239048349596,
+        "ari_covered": 0.03252475033489412,
+        "clusters_excluding_noise": 2,
+        "coverage": 0.4765625,
+        "nmi_all_noise_as_one_cluster": 0.223450764295555
+      }
+    },
+    {
+      "cohort_id": "massive_zh_cn__e5-small-pinned__unknown-k-fixed",
+      "method": "hdbscan",
+      "seed": 2,
+      "status": "ok",
+      "fit_predict_seconds": 0.25558008699999846,
+      "process_peak_rss_bytes": 141811712,
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.03343239048349596,
+        "ari_covered": 0.03252475033489412,
+        "clusters_excluding_noise": 2,
+        "coverage": 0.4765625,
+        "nmi_all_noise_as_one_cluster": 0.223450764295555
+      }
+    },
+    {
+      "cohort_id": "massive_zh_cn__e5-small-pinned__unknown-k-fixed",
+      "method": "bertopic_pipeline",
+      "seed": 0,
+      "status": "ok",
+      "fit_predict_seconds": 9.81658084000037,
+      "process_peak_rss_bytes": 346046464,
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.08385333064168846,
+        "ari_covered": 0.08000346346447226,
+        "clusters_excluding_noise": 5,
+        "coverage": 0.96484375,
+        "nmi_all_noise_as_one_cluster": 0.4509156218091751
+      }
+    },
+    {
+      "cohort_id": "massive_zh_cn__e5-small-pinned__unknown-k-fixed",
+      "method": "bertopic_pipeline",
+      "seed": 1,
+      "status": "ok",
+      "fit_predict_seconds": 10.420073859999775,
+      "process_peak_rss_bytes": 345935872,
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.28234963180913303,
+        "ari_covered": 0.32759699001666615,
+        "clusters_excluding_noise": 12,
+        "coverage": 0.869140625,
+        "nmi_all_noise_as_one_cluster": 0.6138247642298096
+      }
+    },
+    {
+      "cohort_id": "massive_zh_cn__e5-small-pinned__unknown-k-fixed",
+      "method": "bertopic_pipeline",
+      "seed": 2,
+      "status": "ok",
+      "fit_predict_seconds": 10.656913396000164,
+      "process_peak_rss_bytes": 346464256,
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.2655706665438096,
+        "ari_covered": 0.33519908173789775,
+        "clusters_excluding_noise": 12,
+        "coverage": 0.837890625,
+        "nmi_all_noise_as_one_cluster": 0.6081534693448434
+      }
+    },
+    {
+      "cohort_id": "massive_zh_cn__e5-small-pinned__unknown-k-fixed",
+      "method": "evoc",
+      "seed": 0,
+      "status": "ok",
+      "fit_predict_seconds": 0.8869002930000534,
+      "process_peak_rss_bytes": 292040704,
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.2227742036625594,
+        "ari_covered": 0.41202689494406025,
+        "clusters_excluding_noise": 17,
+        "coverage": 0.771484375,
+        "nmi_all_noise_as_one_cluster": 0.6164299548426915
+      }
+    },
+    {
+      "cohort_id": "massive_zh_cn__e5-small-pinned__unknown-k-fixed",
+      "method": "evoc",
+      "seed": 1,
+      "status": "ok",
+      "fit_predict_seconds": 1.0717083730000923,
+      "process_peak_rss_bytes": 291848192,
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.21607106007355548,
+        "ari_covered": 0.42495556945591667,
+        "clusters_excluding_noise": 16,
+        "coverage": 0.75390625,
+        "nmi_all_noise_as_one_cluster": 0.6234091367976492
+      }
+    },
+    {
+      "cohort_id": "massive_zh_cn__e5-small-pinned__unknown-k-fixed",
+      "method": "evoc",
+      "seed": 2,
+      "status": "ok",
+      "fit_predict_seconds": 0.9947275859999536,
+      "process_peak_rss_bytes": 292229120,
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.25797310676522434,
+        "ari_covered": 0.3406324042695883,
+        "clusters_excluding_noise": 13,
+        "coverage": 0.84375,
+        "nmi_all_noise_as_one_cluster": 0.5986323822894484
+      }
+    },
+    {
+      "cohort_id": "banking77__train-lexical__routing",
+      "method": "prototype",
+      "seed": 0,
+      "status": "ok",
+      "test_routing_seconds": 0.0025391149997631146,
+      "metrics": {
+        "hidden_accepted_n": 14,
+        "hidden_false_acceptance": 0.10852713178294573,
+        "hidden_n": 129,
+        "known_accepted_accuracy": 0.9418604651162791,
+        "known_accepted_n": 172,
+        "known_correct_acceptance": 0.42297650130548303,
+        "known_correct_accepted_n": 162,
+        "known_coverage": 0.4490861618798956,
+        "known_n": 383
+      }
+    },
+    {
+      "cohort_id": "banking77__train-lexical__routing",
+      "method": "class-max-1nn",
+      "seed": 0,
+      "status": "ok",
+      "test_routing_seconds": 0.003937919000236434,
+      "metrics": {
+        "hidden_accepted_n": 16,
+        "hidden_false_acceptance": 0.12403100775193798,
+        "hidden_n": 129,
+        "known_accepted_accuracy": 0.93125,
+        "known_accepted_n": 160,
+        "known_correct_acceptance": 0.38903394255874674,
+        "known_correct_accepted_n": 149,
+        "known_coverage": 0.4177545691906005,
+        "known_n": 383
+      }
+    },
+    {
+      "cohort_id": "banking77__train-lexical__routing",
+      "method": "prototype",
+      "seed": 1,
+      "status": "ok",
+      "test_routing_seconds": 0.001759566000146151,
+      "metrics": {
+        "hidden_accepted_n": 15,
+        "hidden_false_acceptance": 0.11627906976744186,
+        "hidden_n": 129,
+        "known_accepted_accuracy": 0.9464285714285714,
+        "known_accepted_n": 168,
+        "known_correct_acceptance": 0.4151436031331593,
+        "known_correct_accepted_n": 159,
+        "known_coverage": 0.4386422976501306,
+        "known_n": 383
+      }
+    },
+    {
+      "cohort_id": "banking77__train-lexical__routing",
+      "method": "class-max-1nn",
+      "seed": 1,
+      "status": "ok",
+      "test_routing_seconds": 0.002837075000115874,
+      "metrics": {
+        "hidden_accepted_n": 15,
+        "hidden_false_acceptance": 0.11627906976744186,
+        "hidden_n": 129,
+        "known_accepted_accuracy": 0.930379746835443,
+        "known_accepted_n": 158,
+        "known_correct_acceptance": 0.3838120104438642,
+        "known_correct_accepted_n": 147,
+        "known_coverage": 0.412532637075718,
+        "known_n": 383
+      }
+    },
+    {
+      "cohort_id": "banking77__train-lexical__routing",
+      "method": "prototype",
+      "seed": 2,
+      "status": "ok",
+      "test_routing_seconds": 0.0020641060000343714,
+      "metrics": {
+        "hidden_accepted_n": 15,
+        "hidden_false_acceptance": 0.11627906976744186,
+        "hidden_n": 129,
+        "known_accepted_accuracy": 0.9364161849710982,
+        "known_accepted_n": 173,
+        "known_correct_acceptance": 0.42297650130548303,
+        "known_correct_accepted_n": 162,
+        "known_coverage": 0.4516971279373368,
+        "known_n": 383
+      }
+    },
+    {
+      "cohort_id": "banking77__train-lexical__routing",
+      "method": "class-max-1nn",
+      "seed": 2,
+      "status": "ok",
+      "test_routing_seconds": 0.0032476270002916863,
+      "metrics": {
+        "hidden_accepted_n": 17,
+        "hidden_false_acceptance": 0.13178294573643412,
+        "hidden_n": 129,
+        "known_accepted_accuracy": 0.9371069182389937,
+        "known_accepted_n": 159,
+        "known_correct_acceptance": 0.38903394255874674,
+        "known_correct_accepted_n": 149,
+        "known_coverage": 0.4151436031331593,
+        "known_n": 383
+      }
+    },
+    {
+      "cohort_id": "massive_zh_cn__train-lexical__routing",
+      "method": "prototype",
+      "seed": 0,
+      "status": "ok",
+      "test_routing_seconds": 0.0015874580003583105,
+      "metrics": {
+        "hidden_accepted_n": 18,
+        "hidden_false_acceptance": 0.18181818181818182,
+        "hidden_n": 99,
+        "known_accepted_accuracy": 0.8047337278106509,
+        "known_accepted_n": 169,
+        "known_correct_acceptance": 0.32929782082324455,
+        "known_correct_accepted_n": 136,
+        "known_coverage": 0.4092009685230024,
+        "known_n": 413
+      }
+    },
+    {
+      "cohort_id": "massive_zh_cn__train-lexical__routing",
+      "method": "class-max-1nn",
+      "seed": 0,
+      "status": "ok",
+      "test_routing_seconds": 0.0028203020001456025,
+      "metrics": {
+        "hidden_accepted_n": 18,
+        "hidden_false_acceptance": 0.18181818181818182,
+        "hidden_n": 99,
+        "known_accepted_accuracy": 0.8269230769230769,
+        "known_accepted_n": 104,
+        "known_correct_acceptance": 0.20823244552058112,
+        "known_correct_accepted_n": 86,
+        "known_coverage": 0.25181598062953997,
+        "known_n": 413
+      }
+    },
+    {
+      "cohort_id": "massive_zh_cn__train-lexical__routing",
+      "method": "prototype",
+      "seed": 1,
+      "status": "ok",
+      "test_routing_seconds": 0.0023306990001401573,
+      "metrics": {
+        "hidden_accepted_n": 19,
+        "hidden_false_acceptance": 0.1919191919191919,
+        "hidden_n": 99,
+        "known_accepted_accuracy": 0.7682926829268293,
+        "known_accepted_n": 164,
+        "known_correct_acceptance": 0.3050847457627119,
+        "known_correct_accepted_n": 126,
+        "known_coverage": 0.39709443099273606,
+        "known_n": 413
+      }
+    },
+    {
+      "cohort_id": "massive_zh_cn__train-lexical__routing",
+      "method": "class-max-1nn",
+      "seed": 1,
+      "status": "ok",
+      "test_routing_seconds": 0.002616438000131893,
+      "metrics": {
+        "hidden_accepted_n": 17,
+        "hidden_false_acceptance": 0.1717171717171717,
+        "hidden_n": 99,
+        "known_accepted_accuracy": 0.8383838383838383,
+        "known_accepted_n": 99,
+        "known_correct_acceptance": 0.2009685230024213,
+        "known_correct_accepted_n": 83,
+        "known_coverage": 0.2397094430992736,
+        "known_n": 413
+      }
+    },
+    {
+      "cohort_id": "massive_zh_cn__train-lexical__routing",
+      "method": "prototype",
+      "seed": 2,
+      "status": "ok",
+      "test_routing_seconds": 0.0015111130001059792,
+      "metrics": {
+        "hidden_accepted_n": 20,
+        "hidden_false_acceptance": 0.20202020202020202,
+        "hidden_n": 99,
+        "known_accepted_accuracy": 0.8109756097560976,
+        "known_accepted_n": 164,
+        "known_correct_acceptance": 0.3220338983050847,
+        "known_correct_accepted_n": 133,
+        "known_coverage": 0.39709443099273606,
+        "known_n": 413
+      }
+    },
+    {
+      "cohort_id": "massive_zh_cn__train-lexical__routing",
+      "method": "class-max-1nn",
+      "seed": 2,
+      "status": "ok",
+      "test_routing_seconds": 0.002949324999917735,
+      "metrics": {
+        "hidden_accepted_n": 24,
+        "hidden_false_acceptance": 0.24242424242424243,
+        "hidden_n": 99,
+        "known_accepted_accuracy": 0.7785714285714286,
+        "known_accepted_n": 140,
+        "known_correct_acceptance": 0.2639225181598063,
+        "known_correct_accepted_n": 109,
+        "known_coverage": 0.3389830508474576,
+        "known_n": 413
+      }
+    }
+  ],
+  "metric_definitions": {
+    "ari_all_noise_as_one_cluster": "Adjusted Rand index on all N rows; all -1 noise forms one cluster; higher is better, may be negative.",
+    "nmi_all_noise_as_one_cluster": "Arithmetic NMI on all N rows, with -1 as one cluster; higher is better.",
+    "ari_covered": "ARI only on rows with prediction != -1; null if fewer than 2; never compare without coverage.",
+    "coverage": "Assigned rows / all N rows; no noise reassignment; higher coverage alone does not imply quality.",
+    "clusters_excluding_noise": "Number of nonnegative cluster IDs, not a quality score.",
+    "fit_predict_seconds": "Wall seconds for adapter construction+fit_predict, including UMAP/JIT where incurred; includes algorithm lazy imports; excludes worker bootstrap imports, encoder, file loading, scoring. Fresh process per run, cache state recorded.",
+    "cpu_seconds": "Process CPU seconds over the same fit_predict region.",
+    "process_peak_rss_bytes": "Fresh worker process maximum RSS through scoring; includes imports and loaded arrays, not incremental method memory; bytes.",
+    "known_coverage": "Known test samples accepted / all known test samples.",
+    "known_accepted_accuracy": "Correctly routed known samples / accepted known samples; null when none accepted.",
+    "known_correct_acceptance": "Correctly routed and accepted known samples / all known test samples.",
+    "hidden_false_acceptance": "Accepted hidden test samples / all hidden test samples (lower is better).",
+    "test_routing_seconds": "Batch test routing wall time, including building scores from support; excludes representation preparation and threshold calibration."
+  },
+  "deferred": [
+    "层级归属与持续演化需要独立的树结构与时间窗协议；本轮不以旧纪录补分。"
+  ]
+}

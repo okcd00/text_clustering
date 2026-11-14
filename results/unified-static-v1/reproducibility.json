@@ -1,0 +1,8 @@
+{
+  "status": "verified",
+  "static_compared_rows": 30,
+  "routing_compared_rows": 12,
+  "static_non_timing_metrics_exact": true,
+  "routing_non_timing_metrics_and_thresholds_exact": true,
+  "comparison": "One standalone execution per scene plus a fresh invocation of evaluate_survey.sh; same frozen rows and seeds. Timing and RSS excluded."
+}

@@ -1,0 +1,2257 @@
+{
+  "schema_version": 1,
+  "protocol": "unified-static-v1",
+  "status": "executed",
+  "generated_at": "2026-11-14T08:34:58Z",
+  "metric_definitions": {
+    "ari_all_noise_as_one_cluster": "Adjusted Rand index on all N rows; all -1 noise forms one cluster; higher is better, may be negative.",
+    "nmi_all_noise_as_one_cluster": "Arithmetic NMI on all N rows, with -1 as one cluster; higher is better.",
+    "ari_covered": "ARI only on rows with prediction != -1; null if fewer than 2; never compare without coverage.",
+    "coverage": "Assigned rows / all N rows; no noise reassignment; higher coverage alone does not imply quality.",
+    "clusters_excluding_noise": "Number of nonnegative cluster IDs, not a quality score.",
+    "fit_predict_seconds": "Wall seconds for adapter construction+fit_predict, including UMAP/JIT where incurred; includes algorithm lazy imports; excludes worker bootstrap imports, encoder, file loading, scoring. Fresh process per run, cache state recorded.",
+    "cpu_seconds": "Process CPU seconds over the same fit_predict region.",
+    "process_peak_rss_bytes": "Fresh worker process maximum RSS through scoring; includes imports and loaded arrays, not incremental method memory; bytes."
+  },
+  "methods": [
+    {
+      "id": "kmeans",
+      "title": "KMeans",
+      "track": "known-k",
+      "highlight": "Lloyd full-batch Euclidean baseline",
+      "caveat": "Oracle test-present K; not spherical KMeans"
+    },
+    {
+      "id": "minibatch_kmeans",
+      "title": "MiniBatchKMeans",
+      "track": "known-k",
+      "highlight": "Mini-batch centroid updates",
+      "caveat": "Batch fit here, not a streaming evaluation"
+    },
+    {
+      "id": "hdbscan",
+      "title": "HDBSCAN",
+      "track": "unknown-k-fixed",
+      "highlight": "Density hierarchy with explicit noise",
+      "caveat": "Fixed preset; retained noise counts against coverage"
+    },
+    {
+      "id": "bertopic_pipeline",
+      "title": "BERTopic clustering core",
+      "track": "unknown-k-fixed",
+      "highlight": "Cosine UMAP then density clustering",
+      "caveat": "Not full BERTopic: no topic words/naming/reassignment"
+    },
+    {
+      "id": "evoc",
+      "title": "EVoC",
+      "track": "unknown-k-fixed",
+      "highlight": "Upstream label-blind selected cluster layer",
+      "caveat": "No gold-scored layer selection; K not supplied"
+    }
+  ],
+  "cohorts": [
+    {
+      "id": "banking77__e5-small-pinned__known-k",
+      "dataset": "banking77",
+      "representation": "e5-small-pinned",
+      "n": 512,
+      "dimensions": 384,
+      "source_revision": "57ec275d8078af65b7731c2a98be812d844a6d6b",
+      "sample_sha256": "81b390ae1d36a2284f65db67a7065ac2fa2908454dd5e772b8a60b088ef1e029",
+      "feature_sha256": "0e64118fb7e865970cfb0075d9eba2226848bc505697356efd708f250fdb9161",
+      "scenario": "known-k",
+      "information_budget": "oracle test-present K",
+      "oracle_k": 77
+    },
+    {
+      "id": "banking77__e5-small-pinned__unknown-k-fixed",
+      "dataset": "banking77",
+      "representation": "e5-small-pinned",
+      "n": 512,
+      "dimensions": 384,
+      "source_revision": "57ec275d8078af65b7731c2a98be812d844a6d6b",
+      "sample_sha256": "81b390ae1d36a2284f65db67a7065ac2fa2908454dd5e772b8a60b088ef1e029",
+      "feature_sha256": "0e64118fb7e865970cfb0075d9eba2226848bc505697356efd708f250fdb9161",
+      "scenario": "unknown-k-fixed",
+      "information_budget": "no labels, no K; fixed presets",
+      "oracle_k": null
+    },
+    {
+      "id": "massive_zh_cn__e5-small-pinned__known-k",
+      "dataset": "massive_zh_cn",
+      "representation": "e5-small-pinned",
+      "n": 512,
+      "dimensions": 384,
+      "source_revision": "ed58ac423a2f4121720918bf5301577edce4ffd3",
+      "sample_sha256": "d4a1ec33e20b46bd351bce7ea52531fbdfe5a36a9ce411c006fe9267ba6bed64",
+      "feature_sha256": "e7553d87daa58a2d913be3928f7a8136f1a0c6ca17559f66f73f257ccf12fa6d",
+      "scenario": "known-k",
+      "information_budget": "oracle test-present K",
+      "oracle_k": 57
+    },
+    {
+      "id": "massive_zh_cn__e5-small-pinned__unknown-k-fixed",
+      "dataset": "massive_zh_cn",
+      "representation": "e5-small-pinned",
+      "n": 512,
+      "dimensions": 384,
+      "source_revision": "ed58ac423a2f4121720918bf5301577edce4ffd3",
+      "sample_sha256": "d4a1ec33e20b46bd351bce7ea52531fbdfe5a36a9ce411c006fe9267ba6bed64",
+      "feature_sha256": "e7553d87daa58a2d913be3928f7a8136f1a0c6ca17559f66f73f257ccf12fa6d",
+      "scenario": "unknown-k-fixed",
+      "information_budget": "no labels, no K; fixed presets",
+      "oracle_k": null
+    }
+  ],
+  "runs": [
+    {
+      "cohort_id": "banking77__e5-small-pinned__known-k",
+      "method": "kmeans",
+      "seed": 0,
+      "worker_elapsed_seconds": 1.9997766459996456,
+      "status": "ok",
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.34157095783607744,
+        "nmi_all_noise_as_one_cluster": 0.7623515306872681,
+        "coverage": 1.0,
+        "clusters_excluding_noise": 77,
+        "ari_covered": 0.34157095783607744
+      },
+      "fit_predict_seconds": 0.6493023850002828,
+      "cpu_seconds": 0.649117253,
+      "process_peak_rss_bytes": 131448832,
+      "params": {
+        "algorithm": "KMeans",
+        "seed": 0,
+        "inertia": 43.7252311706543,
+        "params": {
+          "algorithm": "lloyd",
+          "copy_x": true,
+          "init": "k-means++",
+          "max_iter": 300,
+          "n_clusters": 77,
+          "n_init": 10,
+          "random_state": 0,
+          "tol": 0.0001,
+          "verbose": 0
+        },
+        "n_iter": 4
+      }
+    },
+    {
+      "cohort_id": "banking77__e5-small-pinned__known-k",
+      "method": "kmeans",
+      "seed": 1,
+      "worker_elapsed_seconds": 1.7425171290001344,
+      "status": "ok",
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.3620417059404539,
+        "nmi_all_noise_as_one_cluster": 0.7723080510308807,
+        "coverage": 1.0,
+        "clusters_excluding_noise": 77,
+        "ari_covered": 0.3620417059404539
+      },
+      "fit_predict_seconds": 0.5519739300002584,
+      "cpu_seconds": 0.5519690530000001,
+      "process_peak_rss_bytes": 131268608,
+      "params": {
+        "algorithm": "KMeans",
+        "seed": 1,
+        "inertia": 43.54975128173828,
+        "params": {
+          "algorithm": "lloyd",
+          "copy_x": true,
+          "init": "k-means++",
+          "max_iter": 300,
+          "n_clusters": 77,
+          "n_init": 10,
+          "random_state": 1,
+          "tol": 0.0001,
+          "verbose": 0
+        },
+        "n_iter": 6
+      }
+    },
+    {
+      "cohort_id": "banking77__e5-small-pinned__known-k",
+      "method": "kmeans",
+      "seed": 2,
+      "worker_elapsed_seconds": 1.7272500129997752,
+      "status": "ok",
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.33393533594822095,
+        "nmi_all_noise_as_one_cluster": 0.7601118740397038,
+        "coverage": 1.0,
+        "clusters_excluding_noise": 77,
+        "ari_covered": 0.33393533594822095
+      },
+      "fit_predict_seconds": 0.5472409119997792,
+      "cpu_seconds": 0.5472336910000002,
+      "process_peak_rss_bytes": 131432448,
+      "params": {
+        "algorithm": "KMeans",
+        "seed": 2,
+        "inertia": 43.42507553100586,
+        "params": {
+          "algorithm": "lloyd",
+          "copy_x": true,
+          "init": "k-means++",
+          "max_iter": 300,
+          "n_clusters": 77,
+          "n_init": 10,
+          "random_state": 2,
+          "tol": 0.0001,
+          "verbose": 0
+        },
+        "n_iter": 6
+      }
+    },
+    {
+      "cohort_id": "banking77__e5-small-pinned__known-k",
+      "method": "minibatch_kmeans",
+      "seed": 0,
+      "worker_elapsed_seconds": 1.858591121000245,
+      "status": "ok",
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.3042337009860545,
+        "nmi_all_noise_as_one_cluster": 0.7493528442861914,
+        "coverage": 1.0,
+        "clusters_excluding_noise": 77,
+        "ari_covered": 0.3042337009860545
+      },
+      "fit_predict_seconds": 0.6489041419999921,
+      "cpu_seconds": 0.647667107,
+      "process_peak_rss_bytes": 131055616,
+      "params": {
+        "algorithm": "MiniBatchKMeans",
+        "seed": 0,
+        "inertia": 44.373355865478516,
+        "params": {
+          "batch_size": 1024,
+          "compute_labels": true,
+          "init": "k-means++",
+          "init_size": null,
+          "max_iter": 100,
+          "max_no_improvement": 10,
+          "n_clusters": 77,
+          "n_init": 10,
+          "random_state": 0,
+          "reassignment_ratio": 0.01,
+          "tol": 0.0,
+          "verbose": 0
+        },
+        "n_iter": 25
+      }
+    },
+    {
+      "cohort_id": "banking77__e5-small-pinned__known-k",
+      "method": "minibatch_kmeans",
+      "seed": 1,
+      "worker_elapsed_seconds": 1.919024552999872,
+      "status": "ok",
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.33081895840456443,
+        "nmi_all_noise_as_one_cluster": 0.7631311020568204,
+        "coverage": 1.0,
+        "clusters_excluding_noise": 77,
+        "ari_covered": 0.33081895840456443
+      },
+      "fit_predict_seconds": 0.6885815910000019,
+      "cpu_seconds": 0.6861539590000001,
+      "process_peak_rss_bytes": 130998272,
+      "params": {
+        "algorithm": "MiniBatchKMeans",
+        "seed": 1,
+        "inertia": 44.50996398925781,
+        "params": {
+          "batch_size": 1024,
+          "compute_labels": true,
+          "init": "k-means++",
+          "init_size": null,
+          "max_iter": 100,
+          "max_no_improvement": 10,
+          "n_clusters": 77,
+          "n_init": 10,
+          "random_state": 1,
+          "reassignment_ratio": 0.01,
+          "tol": 0.0,
+          "verbose": 0
+        },
+        "n_iter": 32
+      }
+    },
+    {
+      "cohort_id": "banking77__e5-small-pinned__known-k",
+      "method": "minibatch_kmeans",
+      "seed": 2,
+      "worker_elapsed_seconds": 2.406247201000042,
+      "status": "ok",
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.31701402936369155,
+        "nmi_all_noise_as_one_cluster": 0.7590369349562051,
+        "coverage": 1.0,
+        "clusters_excluding_noise": 77,
+        "ari_covered": 0.31701402936369155
+      },
+      "fit_predict_seconds": 0.9356087380001554,
+      "cpu_seconds": 0.8967870769999999,
+      "process_peak_rss_bytes": 131063808,
+      "params": {
+        "algorithm": "MiniBatchKMeans",
+        "seed": 2,
+        "inertia": 44.95185852050781,
+        "params": {
+          "batch_size": 1024,
+          "compute_labels": true,
+          "init": "k-means++",
+          "init_size": null,
+          "max_iter": 100,
+          "max_no_improvement": 10,
+          "n_clusters": 77,
+          "n_init": 10,
+          "random_state": 2,
+          "reassignment_ratio": 0.01,
+          "tol": 0.0,
+          "verbose": 0
+        },
+        "n_iter": 15
+      }
+    },
+    {
+      "cohort_id": "banking77__e5-small-pinned__unknown-k-fixed",
+      "method": "hdbscan",
+      "seed": 0,
+      "worker_elapsed_seconds": 2.1164337250002063,
+      "status": "ok",
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.009930041427149906,
+        "nmi_all_noise_as_one_cluster": 0.1648411230379815,
+        "coverage": 0.3671875,
+        "clusters_excluding_noise": 2,
+        "ari_covered": 0.011196288898112434
+      },
+      "fit_predict_seconds": 0.3003040170001441,
+      "cpu_seconds": 0.28540629100000015,
+      "process_peak_rss_bytes": 128438272,
+      "params": {
+        "algorithm": "HDBSCAN",
+        "min_cluster_size": 15,
+        "min_samples": 5
+      }
+    },
+    {
+      "cohort_id": "banking77__e5-small-pinned__unknown-k-fixed",
+      "method": "hdbscan",
+      "seed": 1,
+      "worker_elapsed_seconds": 1.7173684889999095,
+      "status": "ok",
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.009930041427149906,
+        "nmi_all_noise_as_one_cluster": 0.1648411230379815,
+        "coverage": 0.3671875,
+        "clusters_excluding_noise": 2,
+        "ari_covered": 0.011196288898112434
+      },
+      "fit_predict_seconds": 0.2447480649998397,
+      "cpu_seconds": 0.2447508759999999,
+      "process_peak_rss_bytes": 127832064,
+      "params": {
+        "algorithm": "HDBSCAN",
+        "min_cluster_size": 15,
+        "min_samples": 5
+      }
+    },
+    {
+      "cohort_id": "banking77__e5-small-pinned__unknown-k-fixed",
+      "method": "hdbscan",
+      "seed": 2,
+      "worker_elapsed_seconds": 1.4358284609998009,
+      "status": "ok",
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.009930041427149906,
+        "nmi_all_noise_as_one_cluster": 0.1648411230379815,
+        "coverage": 0.3671875,
+        "clusters_excluding_noise": 2,
+        "ari_covered": 0.011196288898112434
+      },
+      "fit_predict_seconds": 0.2891327209999872,
+      "cpu_seconds": 0.28201756099999997,
+      "process_peak_rss_bytes": 128610304,
+      "params": {
+        "algorithm": "HDBSCAN",
+        "min_cluster_size": 15,
+        "min_samples": 5
+      }
+    },
+    {
+      "cohort_id": "banking77__e5-small-pinned__unknown-k-fixed",
+      "method": "bertopic_pipeline",
+      "seed": 0,
+      "worker_elapsed_seconds": 10.669934816000023,
+      "status": "ok",
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.1661619851933807,
+        "nmi_all_noise_as_one_cluster": 0.6078589308506502,
+        "coverage": 0.888671875,
+        "clusters_excluding_noise": 14,
+        "ari_covered": 0.18067725527965978
+      },
+      "fit_predict_seconds": 9.352669862000312,
+      "cpu_seconds": 9.346499399999999,
+      "process_peak_rss_bytes": 345735168,
+      "params": {
+        "algorithm": "BERTopic clustering core",
+        "implementation": "umap.UMAP + hdbscan.HDBSCAN",
+        "backend_protocol": "bertopic-matched-density-v1",
+        "classification": "core adaptation",
+        "seed": 0,
+        "versions": {
+          "umap-learn": "0.5.9.post2",
+          "hdbscan": "0.8.40"
+        },
+        "params": {
+          "umap": {
+            "a": null,
+            "angular_rp_forest": true,
+            "b": null,
+            "dens_frac": 0.3,
+            "dens_lambda": 2.0,
+            "dens_var_shift": 0.1,
+            "densmap": false,
+            "disconnection_distance": null,
+            "force_approximation_algorithm": false,
+            "init": "spectral",
+            "learning_rate": 1.0,
+            "local_connectivity": 1.0,
+            "low_memory": true,
+            "metric": "cosine",
+            "metric_kwds": null,
+            "min_dist": 0.0,
+            "n_components": 5,
+            "n_epochs": null,
+            "n_jobs": 1,
+            "n_neighbors": 15,
+            "negative_sample_rate": 5,
+            "output_dens": false,
+            "output_metric": "euclidean",
+            "output_metric_kwds": null,
+            "precomputed_knn": [
+              null,
+              null,
+              null
+            ],
+            "random_state": 0,
+            "repulsion_strength": 1.0,
+            "set_op_mix_ratio": 1.0,
+            "spread": 1.0,
+            "target_metric": "categorical",
+            "target_metric_kwds": null,
+            "target_n_neighbors": -1,
+            "target_weight": 0.5,
+            "tqdm_kwds": {
+              "desc": "Epochs completed",
+              "bar_format": "{desc}: {percentage:3.0f}%| {bar} {n_fmt}/{total_fmt} [{elapsed}]",
+              "disable": true
+            },
+            "transform_mode": "embedding",
+            "transform_queue_size": 4.0,
+            "transform_seed": 42,
+            "unique": false,
+            "verbose": false
+          },
+          "hdbscan": {
+            "algorithm": "best",
+            "allow_single_cluster": false,
+            "alpha": 1.0,
+            "approx_min_span_tree": false,
+            "branch_detection_data": false,
+            "cluster_selection_epsilon": 0.0,
+            "cluster_selection_epsilon_max": "Infinity",
+            "cluster_selection_method": "eom",
+            "cluster_selection_persistence": 0.0,
+            "core_dist_n_jobs": 1,
+            "gen_min_span_tree": false,
+            "leaf_size": 40,
+            "match_reference_implementation": false,
+            "max_cluster_size": 0,
+            "memory": {
+              "location": null
+            },
+            "metric": "euclidean",
+            "min_cluster_size": 15,
+            "min_samples": 4,
+            "p": null,
+            "prediction_data": false
+          }
+        },
+        "requested_umap_params": {
+          "a": null,
+          "angular_rp_forest": false,
+          "b": null,
+          "dens_frac": 0.3,
+          "dens_lambda": 2.0,
+          "dens_var_shift": 0.1,
+          "densmap": false,
+          "disconnection_distance": null,
+          "force_approximation_algorithm": false,
+          "init": "spectral",
+          "learning_rate": 1.0,
+          "local_connectivity": 1.0,
+          "low_memory": true,
+          "metric": "cosine",
+          "metric_kwds": null,
+          "min_dist": 0.0,
+          "n_components": 5,
+          "n_epochs": null,
+          "n_jobs": 1,
+          "n_neighbors": 15,
+          "negative_sample_rate": 5,
+          "output_dens": false,
+          "output_metric": "euclidean",
+          "output_metric_kwds": null,
+          "precomputed_knn": [
+            null,
+            null,
+            null
+          ],
+          "random_state": 0,
+          "repulsion_strength": 1.0,
+          "set_op_mix_ratio": 1.0,
+          "spread": 1.0,
+          "target_metric": "categorical",
+          "target_metric_kwds": null,
+          "target_n_neighbors": -1,
+          "target_weight": 0.5,
+          "tqdm_kwds": null,
+          "transform_mode": "embedding",
+          "transform_queue_size": 4.0,
+          "transform_seed": 42,
+          "unique": false,
+          "verbose": false
+        },
+        "source_hashes": {
+          "umap.UMAP": "6f9eab187af19b20a210e7e5265a940940cea2ede6af3f38da41ebb2edede303",
+          "hdbscan.HDBSCAN": "67d3ad82e54d39c4e49a5ce67345f52f2ac5776036de2424697a52fe900ffb04"
+        },
+        "input": {
+          "shape": [
+            512,
+            384
+          ],
+          "source_dtype": "<f4",
+          "fit_dtype": "<f4",
+          "fit_vectors_sha256": "30378eaf144294a8d74c12f21642e420cf903268c400d9bf777d3490b0a0ef9b",
+          "fit_vector_bytes": 786432,
+          "normalization": "none; caller owns preprocessing"
+        },
+        "reduction_seconds": 8.641766110999924,
+        "clustering_seconds": 0.010285708000083105,
+        "reduced_vectors_sha256": "f679675e6878758b4ecc3e37e37185d3bb083f37e06b31047b7253cfa65e8fa5",
+        "reduced_shape": [
+          512,
+          5
+        ],
+        "reduced_dtype": "<f4",
+        "noise_label": -1,
+        "noise_policy": "retain; no reassignment",
+        "parameter_policy": "fixed before evaluation; no gold or K",
+        "excluded_components": [
+          "embedding generation",
+          "c-TF-IDF",
+          "topic naming",
+          "topic reduction"
+        ],
+        "min_samples_includes_self": false
+      }
+    },
+    {
+      "cohort_id": "banking77__e5-small-pinned__unknown-k-fixed",
+      "method": "bertopic_pipeline",
+      "seed": 1,
+      "worker_elapsed_seconds": 12.419134695999674,
+      "status": "ok",
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.13606439857980582,
+        "nmi_all_noise_as_one_cluster": 0.5661939389623378,
+        "coverage": 0.837890625,
+        "clusters_excluding_noise": 12,
+        "ari_covered": 0.1648569191904375
+      },
+      "fit_predict_seconds": 10.917187403999833,
+      "cpu_seconds": 10.899006221,
+      "process_peak_rss_bytes": 344940544,
+      "params": {
+        "algorithm": "BERTopic clustering core",
+        "implementation": "umap.UMAP + hdbscan.HDBSCAN",
+        "backend_protocol": "bertopic-matched-density-v1",
+        "classification": "core adaptation",
+        "seed": 1,
+        "versions": {
+          "umap-learn": "0.5.9.post2",
+          "hdbscan": "0.8.40"
+        },
+        "params": {
+          "umap": {
+            "a": null,
+            "angular_rp_forest": true,
+            "b": null,
+            "dens_frac": 0.3,
+            "dens_lambda": 2.0,
+            "dens_var_shift": 0.1,
+            "densmap": false,
+            "disconnection_distance": null,
+            "force_approximation_algorithm": false,
+            "init": "spectral",
+            "learning_rate": 1.0,
+            "local_connectivity": 1.0,
+            "low_memory": true,
+            "metric": "cosine",
+            "metric_kwds": null,
+            "min_dist": 0.0,
+            "n_components": 5,
+            "n_epochs": null,
+            "n_jobs": 1,
+            "n_neighbors": 15,
+            "negative_sample_rate": 5,
+            "output_dens": false,
+            "output_metric": "euclidean",
+            "output_metric_kwds": null,
+            "precomputed_knn": [
+              null,
+              null,
+              null
+            ],
+            "random_state": 1,
+            "repulsion_strength": 1.0,
+            "set_op_mix_ratio": 1.0,
+            "spread": 1.0,
+            "target_metric": "categorical",
+            "target_metric_kwds": null,
+            "target_n_neighbors": -1,
+            "target_weight": 0.5,
+            "tqdm_kwds": {
+              "desc": "Epochs completed",
+              "bar_format": "{desc}: {percentage:3.0f}%| {bar} {n_fmt}/{total_fmt} [{elapsed}]",
+              "disable": true
+            },
+            "transform_mode": "embedding",
+            "transform_queue_size": 4.0,
+            "transform_seed": 42,
+            "unique": false,
+            "verbose": false
+          },
+          "hdbscan": {
+            "algorithm": "best",
+            "allow_single_cluster": false,
+            "alpha": 1.0,
+            "approx_min_span_tree": false,
+            "branch_detection_data": false,
+            "cluster_selection_epsilon": 0.0,
+            "cluster_selection_epsilon_max": "Infinity",
+            "cluster_selection_method": "eom",
+            "cluster_selection_persistence": 0.0,
+            "core_dist_n_jobs": 1,
+            "gen_min_span_tree": false,
+            "leaf_size": 40,
+            "match_reference_implementation": false,
+            "max_cluster_size": 0,
+            "memory": {
+              "location": null
+            },
+            "metric": "euclidean",
+            "min_cluster_size": 15,
+            "min_samples": 4,
+            "p": null,
+            "prediction_data": false
+          }
+        },
+        "requested_umap_params": {
+          "a": null,
+          "angular_rp_forest": false,
+          "b": null,
+          "dens_frac": 0.3,
+          "dens_lambda": 2.0,
+          "dens_var_shift": 0.1,
+          "densmap": false,
+          "disconnection_distance": null,
+          "force_approximation_algorithm": false,
+          "init": "spectral",
+          "learning_rate": 1.0,
+          "local_connectivity": 1.0,
+          "low_memory": true,
+          "metric": "cosine",
+          "metric_kwds": null,
+          "min_dist": 0.0,
+          "n_components": 5,
+          "n_epochs": null,
+          "n_jobs": 1,
+          "n_neighbors": 15,
+          "negative_sample_rate": 5,
+          "output_dens": false,
+          "output_metric": "euclidean",
+          "output_metric_kwds": null,
+          "precomputed_knn": [
+            null,
+            null,
+            null
+          ],
+          "random_state": 1,
+          "repulsion_strength": 1.0,
+          "set_op_mix_ratio": 1.0,
+          "spread": 1.0,
+          "target_metric": "categorical",
+          "target_metric_kwds": null,
+          "target_n_neighbors": -1,
+          "target_weight": 0.5,
+          "tqdm_kwds": null,
+          "transform_mode": "embedding",
+          "transform_queue_size": 4.0,
+          "transform_seed": 42,
+          "unique": false,
+          "verbose": false
+        },
+        "source_hashes": {
+          "umap.UMAP": "6f9eab187af19b20a210e7e5265a940940cea2ede6af3f38da41ebb2edede303",
+          "hdbscan.HDBSCAN": "67d3ad82e54d39c4e49a5ce67345f52f2ac5776036de2424697a52fe900ffb04"
+        },
+        "input": {
+          "shape": [
+            512,
+            384
+          ],
+          "source_dtype": "<f4",
+          "fit_dtype": "<f4",
+          "fit_vectors_sha256": "30378eaf144294a8d74c12f21642e420cf903268c400d9bf777d3490b0a0ef9b",
+          "fit_vector_bytes": 786432,
+          "normalization": "none; caller owns preprocessing"
+        },
+        "reduction_seconds": 10.11375180999994,
+        "clustering_seconds": 0.011782093999954668,
+        "reduced_vectors_sha256": "95b54dfa99de644610e6892a05acf6e6cc03bca4d4fa776b90e6c473758c1fb4",
+        "reduced_shape": [
+          512,
+          5
+        ],
+        "reduced_dtype": "<f4",
+        "noise_label": -1,
+        "noise_policy": "retain; no reassignment",
+        "parameter_policy": "fixed before evaluation; no gold or K",
+        "excluded_components": [
+          "embedding generation",
+          "c-TF-IDF",
+          "topic naming",
+          "topic reduction"
+        ],
+        "min_samples_includes_self": false
+      }
+    },
+    {
+      "cohort_id": "banking77__e5-small-pinned__unknown-k-fixed",
+      "method": "bertopic_pipeline",
+      "seed": 2,
+      "worker_elapsed_seconds": 11.580793668000297,
+      "status": "ok",
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.13933099872660165,
+        "nmi_all_noise_as_one_cluster": 0.5778407035902418,
+        "coverage": 0.84765625,
+        "clusters_excluding_noise": 12,
+        "ari_covered": 0.16390238718198274
+      },
+      "fit_predict_seconds": 10.230420585000047,
+      "cpu_seconds": 10.215570961000001,
+      "process_peak_rss_bytes": 344633344,
+      "params": {
+        "algorithm": "BERTopic clustering core",
+        "implementation": "umap.UMAP + hdbscan.HDBSCAN",
+        "backend_protocol": "bertopic-matched-density-v1",
+        "classification": "core adaptation",
+        "seed": 2,
+        "versions": {
+          "umap-learn": "0.5.9.post2",
+          "hdbscan": "0.8.40"
+        },
+        "params": {
+          "umap": {
+            "a": null,
+            "angular_rp_forest": true,
+            "b": null,
+            "dens_frac": 0.3,
+            "dens_lambda": 2.0,
+            "dens_var_shift": 0.1,
+            "densmap": false,
+            "disconnection_distance": null,
+            "force_approximation_algorithm": false,
+            "init": "spectral",
+            "learning_rate": 1.0,
+            "local_connectivity": 1.0,
+            "low_memory": true,
+            "metric": "cosine",
+            "metric_kwds": null,
+            "min_dist": 0.0,
+            "n_components": 5,
+            "n_epochs": null,
+            "n_jobs": 1,
+            "n_neighbors": 15,
+            "negative_sample_rate": 5,
+            "output_dens": false,
+            "output_metric": "euclidean",
+            "output_metric_kwds": null,
+            "precomputed_knn": [
+              null,
+              null,
+              null
+            ],
+            "random_state": 2,
+            "repulsion_strength": 1.0,
+            "set_op_mix_ratio": 1.0,
+            "spread": 1.0,
+            "target_metric": "categorical",
+            "target_metric_kwds": null,
+            "target_n_neighbors": -1,
+            "target_weight": 0.5,
+            "tqdm_kwds": {
+              "desc": "Epochs completed",
+              "bar_format": "{desc}: {percentage:3.0f}%| {bar} {n_fmt}/{total_fmt} [{elapsed}]",
+              "disable": true
+            },
+            "transform_mode": "embedding",
+            "transform_queue_size": 4.0,
+            "transform_seed": 42,
+            "unique": false,
+            "verbose": false
+          },
+          "hdbscan": {
+            "algorithm": "best",
+            "allow_single_cluster": false,
+            "alpha": 1.0,
+            "approx_min_span_tree": false,
+            "branch_detection_data": false,
+            "cluster_selection_epsilon": 0.0,
+            "cluster_selection_epsilon_max": "Infinity",
+            "cluster_selection_method": "eom",
+            "cluster_selection_persistence": 0.0,
+            "core_dist_n_jobs": 1,
+            "gen_min_span_tree": false,
+            "leaf_size": 40,
+            "match_reference_implementation": false,
+            "max_cluster_size": 0,
+            "memory": {
+              "location": null
+            },
+            "metric": "euclidean",
+            "min_cluster_size": 15,
+            "min_samples": 4,
+            "p": null,
+            "prediction_data": false
+          }
+        },
+        "requested_umap_params": {
+          "a": null,
+          "angular_rp_forest": false,
+          "b": null,
+          "dens_frac": 0.3,
+          "dens_lambda": 2.0,
+          "dens_var_shift": 0.1,
+          "densmap": false,
+          "disconnection_distance": null,
+          "force_approximation_algorithm": false,
+          "init": "spectral",
+          "learning_rate": 1.0,
+          "local_connectivity": 1.0,
+          "low_memory": true,
+          "metric": "cosine",
+          "metric_kwds": null,
+          "min_dist": 0.0,
+          "n_components": 5,
+          "n_epochs": null,
+          "n_jobs": 1,
+          "n_neighbors": 15,
+          "negative_sample_rate": 5,
+          "output_dens": false,
+          "output_metric": "euclidean",
+          "output_metric_kwds": null,
+          "precomputed_knn": [
+            null,
+            null,
+            null
+          ],
+          "random_state": 2,
+          "repulsion_strength": 1.0,
+          "set_op_mix_ratio": 1.0,
+          "spread": 1.0,
+          "target_metric": "categorical",
+          "target_metric_kwds": null,
+          "target_n_neighbors": -1,
+          "target_weight": 0.5,
+          "tqdm_kwds": null,
+          "transform_mode": "embedding",
+          "transform_queue_size": 4.0,
+          "transform_seed": 42,
+          "unique": false,
+          "verbose": false
+        },
+        "source_hashes": {
+          "umap.UMAP": "6f9eab187af19b20a210e7e5265a940940cea2ede6af3f38da41ebb2edede303",
+          "hdbscan.HDBSCAN": "67d3ad82e54d39c4e49a5ce67345f52f2ac5776036de2424697a52fe900ffb04"
+        },
+        "input": {
+          "shape": [
+            512,
+            384
+          ],
+          "source_dtype": "<f4",
+          "fit_dtype": "<f4",
+          "fit_vectors_sha256": "30378eaf144294a8d74c12f21642e420cf903268c400d9bf777d3490b0a0ef9b",
+          "fit_vector_bytes": 786432,
+          "normalization": "none; caller owns preprocessing"
+        },
+        "reduction_seconds": 9.467944004999936,
+        "clustering_seconds": 0.010331965999739623,
+        "reduced_vectors_sha256": "cade35fa7d3a4b82312080a9936be9124da76b84edfaa005c60cdb25ad84513d",
+        "reduced_shape": [
+          512,
+          5
+        ],
+        "reduced_dtype": "<f4",
+        "noise_label": -1,
+        "noise_policy": "retain; no reassignment",
+        "parameter_policy": "fixed before evaluation; no gold or K",
+        "excluded_components": [
+          "embedding generation",
+          "c-TF-IDF",
+          "topic naming",
+          "topic reduction"
+        ],
+        "min_samples_includes_self": false
+      }
+    },
+    {
+      "cohort_id": "banking77__e5-small-pinned__unknown-k-fixed",
+      "method": "evoc",
+      "seed": 0,
+      "worker_elapsed_seconds": 2.4235978570000043,
+      "status": "ok",
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.1109681284754921,
+        "nmi_all_noise_as_one_cluster": 0.5570504372899806,
+        "coverage": 0.76953125,
+        "clusters_excluding_noise": 14,
+        "ari_covered": 0.19381287878660003
+      },
+      "fit_predict_seconds": 0.9793840259999342,
+      "cpu_seconds": 0.9875557959999999,
+      "process_peak_rss_bytes": 292462592,
+      "params": {
+        "algorithm": "EVoC",
+        "implementation": "evoc.EVoC",
+        "backend_protocol": "evoc-default-labelblind-v1",
+        "classification": "upstream library pipeline",
+        "seed": 0,
+        "versions": {
+          "evoc": "0.3.2"
+        },
+        "params": {
+          "approx_n_clusters": null,
+          "base_min_cluster_size": 5,
+          "base_n_clusters": null,
+          "max_layers": 10,
+          "min_samples": 5,
+          "min_similarity_threshold": 0.2,
+          "n_epochs": 50,
+          "n_label_prop_iter": 20,
+          "n_neighbors": 15,
+          "neighbor_scale": 1.0,
+          "node_embedding_dim": null,
+          "node_embedding_init": "label_prop",
+          "noise_level": 0.5,
+          "random_state": 0,
+          "symmetrize_graph": true
+        },
+        "input": {
+          "shape": [
+            512,
+            384
+          ],
+          "source_dtype": "<f4",
+          "fit_dtype": "<f4",
+          "fit_vectors_sha256": "30378eaf144294a8d74c12f21642e420cf903268c400d9bf777d3490b0a0ef9b",
+          "fit_vector_bytes": 786432,
+          "normalization": "none; caller owns preprocessing"
+        },
+        "implementation_sha256": "0972e5504eb8ce63bd1b6d88683b2ddfc96060312073f384d18487e7d3f5df87",
+        "selection_policy": "upstream labels_; no gold-scored layer search; approx/base K unset",
+        "selected_layer_matches": [
+          1
+        ],
+        "layer_cluster_counts": [
+          27,
+          14
+        ],
+        "layer_coverages": [
+          0.65625,
+          0.76953125
+        ],
+        "persistence_scores": [
+          0.0,
+          137.19415283203125
+        ],
+        "noise_label": -1,
+        "noise_policy": "retain; no reassignment"
+      }
+    },
+    {
+      "cohort_id": "banking77__e5-small-pinned__unknown-k-fixed",
+      "method": "evoc",
+      "seed": 1,
+      "worker_elapsed_seconds": 2.59702031300003,
+      "status": "ok",
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.12706330554668782,
+        "nmi_all_noise_as_one_cluster": 0.5790204765695863,
+        "coverage": 0.796875,
+        "clusters_excluding_noise": 16,
+        "ari_covered": 0.21802522694455725
+      },
+      "fit_predict_seconds": 1.0217223529998591,
+      "cpu_seconds": 1.023356268,
+      "process_peak_rss_bytes": 292106240,
+      "params": {
+        "algorithm": "EVoC",
+        "implementation": "evoc.EVoC",
+        "backend_protocol": "evoc-default-labelblind-v1",
+        "classification": "upstream library pipeline",
+        "seed": 1,
+        "versions": {
+          "evoc": "0.3.2"
+        },
+        "params": {
+          "approx_n_clusters": null,
+          "base_min_cluster_size": 5,
+          "base_n_clusters": null,
+          "max_layers": 10,
+          "min_samples": 5,
+          "min_similarity_threshold": 0.2,
+          "n_epochs": 50,
+          "n_label_prop_iter": 20,
+          "n_neighbors": 15,
+          "neighbor_scale": 1.0,
+          "node_embedding_dim": null,
+          "node_embedding_init": "label_prop",
+          "noise_level": 0.5,
+          "random_state": 1,
+          "symmetrize_graph": true
+        },
+        "input": {
+          "shape": [
+            512,
+            384
+          ],
+          "source_dtype": "<f4",
+          "fit_dtype": "<f4",
+          "fit_vectors_sha256": "30378eaf144294a8d74c12f21642e420cf903268c400d9bf777d3490b0a0ef9b",
+          "fit_vector_bytes": 786432,
+          "normalization": "none; caller owns preprocessing"
+        },
+        "implementation_sha256": "0972e5504eb8ce63bd1b6d88683b2ddfc96060312073f384d18487e7d3f5df87",
+        "selection_policy": "upstream labels_; no gold-scored layer search; approx/base K unset",
+        "selected_layer_matches": [
+          1
+        ],
+        "layer_cluster_counts": [
+          29,
+          16
+        ],
+        "layer_coverages": [
+          0.6953125,
+          0.796875
+        ],
+        "persistence_scores": [
+          0.0,
+          130.79620361328125
+        ],
+        "noise_label": -1,
+        "noise_policy": "retain; no reassignment"
+      }
+    },
+    {
+      "cohort_id": "banking77__e5-small-pinned__unknown-k-fixed",
+      "method": "evoc",
+      "seed": 2,
+      "worker_elapsed_seconds": 2.779084864000197,
+      "status": "ok",
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.11172137544691656,
+        "nmi_all_noise_as_one_cluster": 0.5563352389243694,
+        "coverage": 0.76953125,
+        "clusters_excluding_noise": 13,
+        "ari_covered": 0.18412037486919688
+      },
+      "fit_predict_seconds": 1.3123652839999522,
+      "cpu_seconds": 1.319112966,
+      "process_peak_rss_bytes": 292671488,
+      "params": {
+        "algorithm": "EVoC",
+        "implementation": "evoc.EVoC",
+        "backend_protocol": "evoc-default-labelblind-v1",
+        "classification": "upstream library pipeline",
+        "seed": 2,
+        "versions": {
+          "evoc": "0.3.2"
+        },
+        "params": {
+          "approx_n_clusters": null,
+          "base_min_cluster_size": 5,
+          "base_n_clusters": null,
+          "max_layers": 10,
+          "min_samples": 5,
+          "min_similarity_threshold": 0.2,
+          "n_epochs": 50,
+          "n_label_prop_iter": 20,
+          "n_neighbors": 15,
+          "neighbor_scale": 1.0,
+          "node_embedding_dim": null,
+          "node_embedding_init": "label_prop",
+          "noise_level": 0.5,
+          "random_state": 2,
+          "symmetrize_graph": true
+        },
+        "input": {
+          "shape": [
+            512,
+            384
+          ],
+          "source_dtype": "<f4",
+          "fit_dtype": "<f4",
+          "fit_vectors_sha256": "30378eaf144294a8d74c12f21642e420cf903268c400d9bf777d3490b0a0ef9b",
+          "fit_vector_bytes": 786432,
+          "normalization": "none; caller owns preprocessing"
+        },
+        "implementation_sha256": "0972e5504eb8ce63bd1b6d88683b2ddfc96060312073f384d18487e7d3f5df87",
+        "selection_policy": "upstream labels_; no gold-scored layer search; approx/base K unset",
+        "selected_layer_matches": [
+          1
+        ],
+        "layer_cluster_counts": [
+          27,
+          13,
+          5
+        ],
+        "layer_coverages": [
+          0.705078125,
+          0.76953125,
+          0.76171875
+        ],
+        "persistence_scores": [
+          0.0,
+          125.81492614746094,
+          90.96501159667969
+        ],
+        "noise_label": -1,
+        "noise_policy": "retain; no reassignment"
+      }
+    },
+    {
+      "cohort_id": "massive_zh_cn__e5-small-pinned__known-k",
+      "method": "kmeans",
+      "seed": 0,
+      "worker_elapsed_seconds": 1.6281849380002313,
+      "status": "ok",
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.3247298450795756,
+        "nmi_all_noise_as_one_cluster": 0.7084043400097174,
+        "coverage": 1.0,
+        "clusters_excluding_noise": 57,
+        "ari_covered": 0.3247298450795756
+      },
+      "fit_predict_seconds": 0.5017114500001298,
+      "cpu_seconds": 0.50170772,
+      "process_peak_rss_bytes": 141811712,
+      "params": {
+        "algorithm": "KMeans",
+        "seed": 0,
+        "inertia": 49.94662094116211,
+        "params": {
+          "algorithm": "lloyd",
+          "copy_x": true,
+          "init": "k-means++",
+          "max_iter": 300,
+          "n_clusters": 57,
+          "n_init": 10,
+          "random_state": 0,
+          "tol": 0.0001,
+          "verbose": 0
+        },
+        "n_iter": 6
+      }
+    },
+    {
+      "cohort_id": "massive_zh_cn__e5-small-pinned__known-k",
+      "method": "kmeans",
+      "seed": 1,
+      "worker_elapsed_seconds": 1.7344338500001868,
+      "status": "ok",
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.30537500429235076,
+        "nmi_all_noise_as_one_cluster": 0.6997616523999952,
+        "coverage": 1.0,
+        "clusters_excluding_noise": 57,
+        "ari_covered": 0.30537500429235076
+      },
+      "fit_predict_seconds": 0.46827299999995375,
+      "cpu_seconds": 0.46807672499999997,
+      "process_peak_rss_bytes": 141811712,
+      "params": {
+        "algorithm": "KMeans",
+        "seed": 1,
+        "inertia": 49.83567810058594,
+        "params": {
+          "algorithm": "lloyd",
+          "copy_x": true,
+          "init": "k-means++",
+          "max_iter": 300,
+          "n_clusters": 57,
+          "n_init": 10,
+          "random_state": 1,
+          "tol": 0.0001,
+          "verbose": 0
+        },
+        "n_iter": 6
+      }
+    },
+    {
+      "cohort_id": "massive_zh_cn__e5-small-pinned__known-k",
+      "method": "kmeans",
+      "seed": 2,
+      "worker_elapsed_seconds": 1.8392630230000577,
+      "status": "ok",
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.3093366922330677,
+        "nmi_all_noise_as_one_cluster": 0.7095003398994654,
+        "coverage": 1.0,
+        "clusters_excluding_noise": 57,
+        "ari_covered": 0.3093366922330677
+      },
+      "fit_predict_seconds": 0.630060389999926,
+      "cpu_seconds": 0.627877776,
+      "process_peak_rss_bytes": 141811712,
+      "params": {
+        "algorithm": "KMeans",
+        "seed": 2,
+        "inertia": 49.71001434326172,
+        "params": {
+          "algorithm": "lloyd",
+          "copy_x": true,
+          "init": "k-means++",
+          "max_iter": 300,
+          "n_clusters": 57,
+          "n_init": 10,
+          "random_state": 2,
+          "tol": 0.0001,
+          "verbose": 0
+        },
+        "n_iter": 8
+      }
+    },
+    {
+      "cohort_id": "massive_zh_cn__e5-small-pinned__known-k",
+      "method": "minibatch_kmeans",
+      "seed": 0,
+      "worker_elapsed_seconds": 1.7788471539997772,
+      "status": "ok",
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.32704312622161186,
+        "nmi_all_noise_as_one_cluster": 0.7077303706052677,
+        "coverage": 1.0,
+        "clusters_excluding_noise": 57,
+        "ari_covered": 0.32704312622161186
+      },
+      "fit_predict_seconds": 0.5617844280000099,
+      "cpu_seconds": 0.5544630239999999,
+      "process_peak_rss_bytes": 141811712,
+      "params": {
+        "algorithm": "MiniBatchKMeans",
+        "seed": 0,
+        "inertia": 50.15442657470703,
+        "params": {
+          "batch_size": 1024,
+          "compute_labels": true,
+          "init": "k-means++",
+          "init_size": null,
+          "max_iter": 100,
+          "max_no_improvement": 10,
+          "n_clusters": 57,
+          "n_init": 10,
+          "random_state": 0,
+          "reassignment_ratio": 0.01,
+          "tol": 0.0,
+          "verbose": 0
+        },
+        "n_iter": 30
+      }
+    },
+    {
+      "cohort_id": "massive_zh_cn__e5-small-pinned__known-k",
+      "method": "minibatch_kmeans",
+      "seed": 1,
+      "worker_elapsed_seconds": 1.4867280530002063,
+      "status": "ok",
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.30640118100572,
+        "nmi_all_noise_as_one_cluster": 0.7054450641505222,
+        "coverage": 1.0,
+        "clusters_excluding_noise": 57,
+        "ari_covered": 0.30640118100572
+      },
+      "fit_predict_seconds": 0.39997737700014113,
+      "cpu_seconds": 0.39998073700000003,
+      "process_peak_rss_bytes": 141811712,
+      "params": {
+        "algorithm": "MiniBatchKMeans",
+        "seed": 1,
+        "inertia": 49.70816421508789,
+        "params": {
+          "batch_size": 1024,
+          "compute_labels": true,
+          "init": "k-means++",
+          "init_size": null,
+          "max_iter": 100,
+          "max_no_improvement": 10,
+          "n_clusters": 57,
+          "n_init": 10,
+          "random_state": 1,
+          "reassignment_ratio": 0.01,
+          "tol": 0.0,
+          "verbose": 0
+        },
+        "n_iter": 19
+      }
+    },
+    {
+      "cohort_id": "massive_zh_cn__e5-small-pinned__known-k",
+      "method": "minibatch_kmeans",
+      "seed": 2,
+      "worker_elapsed_seconds": 1.7130131740000252,
+      "status": "ok",
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.32100975113400587,
+        "nmi_all_noise_as_one_cluster": 0.7103397796051989,
+        "coverage": 1.0,
+        "clusters_excluding_noise": 57,
+        "ari_covered": 0.32100975113400587
+      },
+      "fit_predict_seconds": 0.4849792410000191,
+      "cpu_seconds": 0.484957823,
+      "process_peak_rss_bytes": 141811712,
+      "params": {
+        "algorithm": "MiniBatchKMeans",
+        "seed": 2,
+        "inertia": 50.397071838378906,
+        "params": {
+          "batch_size": 1024,
+          "compute_labels": true,
+          "init": "k-means++",
+          "init_size": null,
+          "max_iter": 100,
+          "max_no_improvement": 10,
+          "n_clusters": 57,
+          "n_init": 10,
+          "random_state": 2,
+          "reassignment_ratio": 0.01,
+          "tol": 0.0,
+          "verbose": 0
+        },
+        "n_iter": 35
+      }
+    },
+    {
+      "cohort_id": "massive_zh_cn__e5-small-pinned__unknown-k-fixed",
+      "method": "hdbscan",
+      "seed": 0,
+      "worker_elapsed_seconds": 1.2685280129999228,
+      "status": "ok",
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.03343239048349596,
+        "nmi_all_noise_as_one_cluster": 0.223450764295555,
+        "coverage": 0.4765625,
+        "clusters_excluding_noise": 2,
+        "ari_covered": 0.03252475033489412
+      },
+      "fit_predict_seconds": 0.22865946000001713,
+      "cpu_seconds": 0.22864298400000005,
+      "process_peak_rss_bytes": 141811712,
+      "params": {
+        "algorithm": "HDBSCAN",
+        "min_cluster_size": 15,
+        "min_samples": 5
+      }
+    },
+    {
+      "cohort_id": "massive_zh_cn__e5-small-pinned__unknown-k-fixed",
+      "method": "hdbscan",
+      "seed": 1,
+      "worker_elapsed_seconds": 1.6313732670000718,
+      "status": "ok",
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.03343239048349596,
+        "nmi_all_noise_as_one_cluster": 0.223450764295555,
+        "coverage": 0.4765625,
+        "clusters_excluding_noise": 2,
+        "ari_covered": 0.03252475033489412
+      },
+      "fit_predict_seconds": 0.2576056900002186,
+      "cpu_seconds": 0.25759832399999993,
+      "process_peak_rss_bytes": 141811712,
+      "params": {
+        "algorithm": "HDBSCAN",
+        "min_cluster_size": 15,
+        "min_samples": 5
+      }
+    },
+    {
+      "cohort_id": "massive_zh_cn__e5-small-pinned__unknown-k-fixed",
+      "method": "hdbscan",
+      "seed": 2,
+      "worker_elapsed_seconds": 1.4259832909997385,
+      "status": "ok",
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.03343239048349596,
+        "nmi_all_noise_as_one_cluster": 0.223450764295555,
+        "coverage": 0.4765625,
+        "clusters_excluding_noise": 2,
+        "ari_covered": 0.03252475033489412
+      },
+      "fit_predict_seconds": 0.25558008699999846,
+      "cpu_seconds": 0.2555599989999999,
+      "process_peak_rss_bytes": 141811712,
+      "params": {
+        "algorithm": "HDBSCAN",
+        "min_cluster_size": 15,
+        "min_samples": 5
+      }
+    },
+    {
+      "cohort_id": "massive_zh_cn__e5-small-pinned__unknown-k-fixed",
+      "method": "bertopic_pipeline",
+      "seed": 0,
+      "worker_elapsed_seconds": 11.256937509999716,
+      "status": "ok",
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.08385333064168846,
+        "nmi_all_noise_as_one_cluster": 0.4509156218091751,
+        "coverage": 0.96484375,
+        "clusters_excluding_noise": 5,
+        "ari_covered": 0.08000346346447226
+      },
+      "fit_predict_seconds": 9.81658084000037,
+      "cpu_seconds": 9.806794354,
+      "process_peak_rss_bytes": 346046464,
+      "params": {
+        "algorithm": "BERTopic clustering core",
+        "implementation": "umap.UMAP + hdbscan.HDBSCAN",
+        "backend_protocol": "bertopic-matched-density-v1",
+        "classification": "core adaptation",
+        "seed": 0,
+        "versions": {
+          "umap-learn": "0.5.9.post2",
+          "hdbscan": "0.8.40"
+        },
+        "params": {
+          "umap": {
+            "a": null,
+            "angular_rp_forest": true,
+            "b": null,
+            "dens_frac": 0.3,
+            "dens_lambda": 2.0,
+            "dens_var_shift": 0.1,
+            "densmap": false,
+            "disconnection_distance": null,
+            "force_approximation_algorithm": false,
+            "init": "spectral",
+            "learning_rate": 1.0,
+            "local_connectivity": 1.0,
+            "low_memory": true,
+            "metric": "cosine",
+            "metric_kwds": null,
+            "min_dist": 0.0,
+            "n_components": 5,
+            "n_epochs": null,
+            "n_jobs": 1,
+            "n_neighbors": 15,
+            "negative_sample_rate": 5,
+            "output_dens": false,
+            "output_metric": "euclidean",
+            "output_metric_kwds": null,
+            "precomputed_knn": [
+              null,
+              null,
+              null
+            ],
+            "random_state": 0,
+            "repulsion_strength": 1.0,
+            "set_op_mix_ratio": 1.0,
+            "spread": 1.0,
+            "target_metric": "categorical",
+            "target_metric_kwds": null,
+            "target_n_neighbors": -1,
+            "target_weight": 0.5,
+            "tqdm_kwds": {
+              "desc": "Epochs completed",
+              "bar_format": "{desc}: {percentage:3.0f}%| {bar} {n_fmt}/{total_fmt} [{elapsed}]",
+              "disable": true
+            },
+            "transform_mode": "embedding",
+            "transform_queue_size": 4.0,
+            "transform_seed": 42,
+            "unique": false,
+            "verbose": false
+          },
+          "hdbscan": {
+            "algorithm": "best",
+            "allow_single_cluster": false,
+            "alpha": 1.0,
+            "approx_min_span_tree": false,
+            "branch_detection_data": false,
+            "cluster_selection_epsilon": 0.0,
+            "cluster_selection_epsilon_max": "Infinity",
+            "cluster_selection_method": "eom",
+            "cluster_selection_persistence": 0.0,
+            "core_dist_n_jobs": 1,
+            "gen_min_span_tree": false,
+            "leaf_size": 40,
+            "match_reference_implementation": false,
+            "max_cluster_size": 0,
+            "memory": {
+              "location": null
+            },
+            "metric": "euclidean",
+            "min_cluster_size": 15,
+            "min_samples": 4,
+            "p": null,
+            "prediction_data": false
+          }
+        },
+        "requested_umap_params": {
+          "a": null,
+          "angular_rp_forest": false,
+          "b": null,
+          "dens_frac": 0.3,
+          "dens_lambda": 2.0,
+          "dens_var_shift": 0.1,
+          "densmap": false,
+          "disconnection_distance": null,
+          "force_approximation_algorithm": false,
+          "init": "spectral",
+          "learning_rate": 1.0,
+          "local_connectivity": 1.0,
+          "low_memory": true,
+          "metric": "cosine",
+          "metric_kwds": null,
+          "min_dist": 0.0,
+          "n_components": 5,
+          "n_epochs": null,
+          "n_jobs": 1,
+          "n_neighbors": 15,
+          "negative_sample_rate": 5,
+          "output_dens": false,
+          "output_metric": "euclidean",
+          "output_metric_kwds": null,
+          "precomputed_knn": [
+            null,
+            null,
+            null
+          ],
+          "random_state": 0,
+          "repulsion_strength": 1.0,
+          "set_op_mix_ratio": 1.0,
+          "spread": 1.0,
+          "target_metric": "categorical",
+          "target_metric_kwds": null,
+          "target_n_neighbors": -1,
+          "target_weight": 0.5,
+          "tqdm_kwds": null,
+          "transform_mode": "embedding",
+          "transform_queue_size": 4.0,
+          "transform_seed": 42,
+          "unique": false,
+          "verbose": false
+        },
+        "source_hashes": {
+          "umap.UMAP": "6f9eab187af19b20a210e7e5265a940940cea2ede6af3f38da41ebb2edede303",
+          "hdbscan.HDBSCAN": "67d3ad82e54d39c4e49a5ce67345f52f2ac5776036de2424697a52fe900ffb04"
+        },
+        "input": {
+          "shape": [
+            512,
+            384
+          ],
+          "source_dtype": "<f4",
+          "fit_dtype": "<f4",
+          "fit_vectors_sha256": "f1efb1386030c508ca0396f659dcbbd9f94d40f5bcd09264e9c7af0e4064c335",
+          "fit_vector_bytes": 786432,
+          "normalization": "none; caller owns preprocessing"
+        },
+        "reduction_seconds": 9.035321263999776,
+        "clustering_seconds": 0.012042088000271178,
+        "reduced_vectors_sha256": "06f3f65ca4235aeb7ddfa74501d994a6edc9db3ce5909fcc1a415000de47662e",
+        "reduced_shape": [
+          512,
+          5
+        ],
+        "reduced_dtype": "<f4",
+        "noise_label": -1,
+        "noise_policy": "retain; no reassignment",
+        "parameter_policy": "fixed before evaluation; no gold or K",
+        "excluded_components": [
+          "embedding generation",
+          "c-TF-IDF",
+          "topic naming",
+          "topic reduction"
+        ],
+        "min_samples_includes_self": false
+      }
+    },
+    {
+      "cohort_id": "massive_zh_cn__e5-small-pinned__unknown-k-fixed",
+      "method": "bertopic_pipeline",
+      "seed": 1,
+      "worker_elapsed_seconds": 11.912564274000033,
+      "status": "ok",
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.28234963180913303,
+        "nmi_all_noise_as_one_cluster": 0.6138247642298096,
+        "coverage": 0.869140625,
+        "clusters_excluding_noise": 12,
+        "ari_covered": 0.32759699001666615
+      },
+      "fit_predict_seconds": 10.420073859999775,
+      "cpu_seconds": 10.399506162,
+      "process_peak_rss_bytes": 345935872,
+      "params": {
+        "algorithm": "BERTopic clustering core",
+        "implementation": "umap.UMAP + hdbscan.HDBSCAN",
+        "backend_protocol": "bertopic-matched-density-v1",
+        "classification": "core adaptation",
+        "seed": 1,
+        "versions": {
+          "umap-learn": "0.5.9.post2",
+          "hdbscan": "0.8.40"
+        },
+        "params": {
+          "umap": {
+            "a": null,
+            "angular_rp_forest": true,
+            "b": null,
+            "dens_frac": 0.3,
+            "dens_lambda": 2.0,
+            "dens_var_shift": 0.1,
+            "densmap": false,
+            "disconnection_distance": null,
+            "force_approximation_algorithm": false,
+            "init": "spectral",
+            "learning_rate": 1.0,
+            "local_connectivity": 1.0,
+            "low_memory": true,
+            "metric": "cosine",
+            "metric_kwds": null,
+            "min_dist": 0.0,
+            "n_components": 5,
+            "n_epochs": null,
+            "n_jobs": 1,
+            "n_neighbors": 15,
+            "negative_sample_rate": 5,
+            "output_dens": false,
+            "output_metric": "euclidean",
+            "output_metric_kwds": null,
+            "precomputed_knn": [
+              null,
+              null,
+              null
+            ],
+            "random_state": 1,
+            "repulsion_strength": 1.0,
+            "set_op_mix_ratio": 1.0,
+            "spread": 1.0,
+            "target_metric": "categorical",
+            "target_metric_kwds": null,
+            "target_n_neighbors": -1,
+            "target_weight": 0.5,
+            "tqdm_kwds": {
+              "desc": "Epochs completed",
+              "bar_format": "{desc}: {percentage:3.0f}%| {bar} {n_fmt}/{total_fmt} [{elapsed}]",
+              "disable": true
+            },
+            "transform_mode": "embedding",
+            "transform_queue_size": 4.0,
+            "transform_seed": 42,
+            "unique": false,
+            "verbose": false
+          },
+          "hdbscan": {
+            "algorithm": "best",
+            "allow_single_cluster": false,
+            "alpha": 1.0,
+            "approx_min_span_tree": false,
+            "branch_detection_data": false,
+            "cluster_selection_epsilon": 0.0,
+            "cluster_selection_epsilon_max": "Infinity",
+            "cluster_selection_method": "eom",
+            "cluster_selection_persistence": 0.0,
+            "core_dist_n_jobs": 1,
+            "gen_min_span_tree": false,
+            "leaf_size": 40,
+            "match_reference_implementation": false,
+            "max_cluster_size": 0,
+            "memory": {
+              "location": null
+            },
+            "metric": "euclidean",
+            "min_cluster_size": 15,
+            "min_samples": 4,
+            "p": null,
+            "prediction_data": false
+          }
+        },
+        "requested_umap_params": {
+          "a": null,
+          "angular_rp_forest": false,
+          "b": null,
+          "dens_frac": 0.3,
+          "dens_lambda": 2.0,
+          "dens_var_shift": 0.1,
+          "densmap": false,
+          "disconnection_distance": null,
+          "force_approximation_algorithm": false,
+          "init": "spectral",
+          "learning_rate": 1.0,
+          "local_connectivity": 1.0,
+          "low_memory": true,
+          "metric": "cosine",
+          "metric_kwds": null,
+          "min_dist": 0.0,
+          "n_components": 5,
+          "n_epochs": null,
+          "n_jobs": 1,
+          "n_neighbors": 15,
+          "negative_sample_rate": 5,
+          "output_dens": false,
+          "output_metric": "euclidean",
+          "output_metric_kwds": null,
+          "precomputed_knn": [
+            null,
+            null,
+            null
+          ],
+          "random_state": 1,
+          "repulsion_strength": 1.0,
+          "set_op_mix_ratio": 1.0,
+          "spread": 1.0,
+          "target_metric": "categorical",
+          "target_metric_kwds": null,
+          "target_n_neighbors": -1,
+          "target_weight": 0.5,
+          "tqdm_kwds": null,
+          "transform_mode": "embedding",
+          "transform_queue_size": 4.0,
+          "transform_seed": 42,
+          "unique": false,
+          "verbose": false
+        },
+        "source_hashes": {
+          "umap.UMAP": "6f9eab187af19b20a210e7e5265a940940cea2ede6af3f38da41ebb2edede303",
+          "hdbscan.HDBSCAN": "67d3ad82e54d39c4e49a5ce67345f52f2ac5776036de2424697a52fe900ffb04"
+        },
+        "input": {
+          "shape": [
+            512,
+            384
+          ],
+          "source_dtype": "<f4",
+          "fit_dtype": "<f4",
+          "fit_vectors_sha256": "f1efb1386030c508ca0396f659dcbbd9f94d40f5bcd09264e9c7af0e4064c335",
+          "fit_vector_bytes": 786432,
+          "normalization": "none; caller owns preprocessing"
+        },
+        "reduction_seconds": 9.586849967000035,
+        "clustering_seconds": 0.010886397000376746,
+        "reduced_vectors_sha256": "fae691578f79bd6310620696711783e9ef07d3030b2578635e84225d53eff8db",
+        "reduced_shape": [
+          512,
+          5
+        ],
+        "reduced_dtype": "<f4",
+        "noise_label": -1,
+        "noise_policy": "retain; no reassignment",
+        "parameter_policy": "fixed before evaluation; no gold or K",
+        "excluded_components": [
+          "embedding generation",
+          "c-TF-IDF",
+          "topic naming",
+          "topic reduction"
+        ],
+        "min_samples_includes_self": false
+      }
+    },
+    {
+      "cohort_id": "massive_zh_cn__e5-small-pinned__unknown-k-fixed",
+      "method": "bertopic_pipeline",
+      "seed": 2,
+      "worker_elapsed_seconds": 12.208387392000077,
+      "status": "ok",
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.2655706665438096,
+        "nmi_all_noise_as_one_cluster": 0.6081534693448434,
+        "coverage": 0.837890625,
+        "clusters_excluding_noise": 12,
+        "ari_covered": 0.33519908173789775
+      },
+      "fit_predict_seconds": 10.656913396000164,
+      "cpu_seconds": 10.648126203,
+      "process_peak_rss_bytes": 346464256,
+      "params": {
+        "algorithm": "BERTopic clustering core",
+        "implementation": "umap.UMAP + hdbscan.HDBSCAN",
+        "backend_protocol": "bertopic-matched-density-v1",
+        "classification": "core adaptation",
+        "seed": 2,
+        "versions": {
+          "umap-learn": "0.5.9.post2",
+          "hdbscan": "0.8.40"
+        },
+        "params": {
+          "umap": {
+            "a": null,
+            "angular_rp_forest": true,
+            "b": null,
+            "dens_frac": 0.3,
+            "dens_lambda": 2.0,
+            "dens_var_shift": 0.1,
+            "densmap": false,
+            "disconnection_distance": null,
+            "force_approximation_algorithm": false,
+            "init": "spectral",
+            "learning_rate": 1.0,
+            "local_connectivity": 1.0,
+            "low_memory": true,
+            "metric": "cosine",
+            "metric_kwds": null,
+            "min_dist": 0.0,
+            "n_components": 5,
+            "n_epochs": null,
+            "n_jobs": 1,
+            "n_neighbors": 15,
+            "negative_sample_rate": 5,
+            "output_dens": false,
+            "output_metric": "euclidean",
+            "output_metric_kwds": null,
+            "precomputed_knn": [
+              null,
+              null,
+              null
+            ],
+            "random_state": 2,
+            "repulsion_strength": 1.0,
+            "set_op_mix_ratio": 1.0,
+            "spread": 1.0,
+            "target_metric": "categorical",
+            "target_metric_kwds": null,
+            "target_n_neighbors": -1,
+            "target_weight": 0.5,
+            "tqdm_kwds": {
+              "desc": "Epochs completed",
+              "bar_format": "{desc}: {percentage:3.0f}%| {bar} {n_fmt}/{total_fmt} [{elapsed}]",
+              "disable": true
+            },
+            "transform_mode": "embedding",
+            "transform_queue_size": 4.0,
+            "transform_seed": 42,
+            "unique": false,
+            "verbose": false
+          },
+          "hdbscan": {
+            "algorithm": "best",
+            "allow_single_cluster": false,
+            "alpha": 1.0,
+            "approx_min_span_tree": false,
+            "branch_detection_data": false,
+            "cluster_selection_epsilon": 0.0,
+            "cluster_selection_epsilon_max": "Infinity",
+            "cluster_selection_method": "eom",
+            "cluster_selection_persistence": 0.0,
+            "core_dist_n_jobs": 1,
+            "gen_min_span_tree": false,
+            "leaf_size": 40,
+            "match_reference_implementation": false,
+            "max_cluster_size": 0,
+            "memory": {
+              "location": null
+            },
+            "metric": "euclidean",
+            "min_cluster_size": 15,
+            "min_samples": 4,
+            "p": null,
+            "prediction_data": false
+          }
+        },
+        "requested_umap_params": {
+          "a": null,
+          "angular_rp_forest": false,
+          "b": null,
+          "dens_frac": 0.3,
+          "dens_lambda": 2.0,
+          "dens_var_shift": 0.1,
+          "densmap": false,
+          "disconnection_distance": null,
+          "force_approximation_algorithm": false,
+          "init": "spectral",
+          "learning_rate": 1.0,
+          "local_connectivity": 1.0,
+          "low_memory": true,
+          "metric": "cosine",
+          "metric_kwds": null,
+          "min_dist": 0.0,
+          "n_components": 5,
+          "n_epochs": null,
+          "n_jobs": 1,
+          "n_neighbors": 15,
+          "negative_sample_rate": 5,
+          "output_dens": false,
+          "output_metric": "euclidean",
+          "output_metric_kwds": null,
+          "precomputed_knn": [
+            null,
+            null,
+            null
+          ],
+          "random_state": 2,
+          "repulsion_strength": 1.0,
+          "set_op_mix_ratio": 1.0,
+          "spread": 1.0,
+          "target_metric": "categorical",
+          "target_metric_kwds": null,
+          "target_n_neighbors": -1,
+          "target_weight": 0.5,
+          "tqdm_kwds": null,
+          "transform_mode": "embedding",
+          "transform_queue_size": 4.0,
+          "transform_seed": 42,
+          "unique": false,
+          "verbose": false
+        },
+        "source_hashes": {
+          "umap.UMAP": "6f9eab187af19b20a210e7e5265a940940cea2ede6af3f38da41ebb2edede303",
+          "hdbscan.HDBSCAN": "67d3ad82e54d39c4e49a5ce67345f52f2ac5776036de2424697a52fe900ffb04"
+        },
+        "input": {
+          "shape": [
+            512,
+            384
+          ],
+          "source_dtype": "<f4",
+          "fit_dtype": "<f4",
+          "fit_vectors_sha256": "f1efb1386030c508ca0396f659dcbbd9f94d40f5bcd09264e9c7af0e4064c335",
+          "fit_vector_bytes": 786432,
+          "normalization": "none; caller owns preprocessing"
+        },
+        "reduction_seconds": 9.819526259000213,
+        "clustering_seconds": 0.011692208000113169,
+        "reduced_vectors_sha256": "cac59f854a68e0773f68ac5a20e0430a3b13a29648f2ff82a5d4590e29147eaa",
+        "reduced_shape": [
+          512,
+          5
+        ],
+        "reduced_dtype": "<f4",
+        "noise_label": -1,
+        "noise_policy": "retain; no reassignment",
+        "parameter_policy": "fixed before evaluation; no gold or K",
+        "excluded_components": [
+          "embedding generation",
+          "c-TF-IDF",
+          "topic naming",
+          "topic reduction"
+        ],
+        "min_samples_includes_self": false
+      }
+    },
+    {
+      "cohort_id": "massive_zh_cn__e5-small-pinned__unknown-k-fixed",
+      "method": "evoc",
+      "seed": 0,
+      "worker_elapsed_seconds": 2.092586525000115,
+      "status": "ok",
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.2227742036625594,
+        "nmi_all_noise_as_one_cluster": 0.6164299548426915,
+        "coverage": 0.771484375,
+        "clusters_excluding_noise": 17,
+        "ari_covered": 0.41202689494406025
+      },
+      "fit_predict_seconds": 0.8869002930000534,
+      "cpu_seconds": 0.8897297599999999,
+      "process_peak_rss_bytes": 292040704,
+      "params": {
+        "algorithm": "EVoC",
+        "implementation": "evoc.EVoC",
+        "backend_protocol": "evoc-default-labelblind-v1",
+        "classification": "upstream library pipeline",
+        "seed": 0,
+        "versions": {
+          "evoc": "0.3.2"
+        },
+        "params": {
+          "approx_n_clusters": null,
+          "base_min_cluster_size": 5,
+          "base_n_clusters": null,
+          "max_layers": 10,
+          "min_samples": 5,
+          "min_similarity_threshold": 0.2,
+          "n_epochs": 50,
+          "n_label_prop_iter": 20,
+          "n_neighbors": 15,
+          "neighbor_scale": 1.0,
+          "node_embedding_dim": null,
+          "node_embedding_init": "label_prop",
+          "noise_level": 0.5,
+          "random_state": 0,
+          "symmetrize_graph": true
+        },
+        "input": {
+          "shape": [
+            512,
+            384
+          ],
+          "source_dtype": "<f4",
+          "fit_dtype": "<f4",
+          "fit_vectors_sha256": "f1efb1386030c508ca0396f659dcbbd9f94d40f5bcd09264e9c7af0e4064c335",
+          "fit_vector_bytes": 786432,
+          "normalization": "none; caller owns preprocessing"
+        },
+        "implementation_sha256": "0972e5504eb8ce63bd1b6d88683b2ddfc96060312073f384d18487e7d3f5df87",
+        "selection_policy": "upstream labels_; no gold-scored layer search; approx/base K unset",
+        "selected_layer_matches": [
+          1
+        ],
+        "layer_cluster_counts": [
+          28,
+          17
+        ],
+        "layer_coverages": [
+          0.767578125,
+          0.771484375
+        ],
+        "persistence_scores": [
+          0.0,
+          124.29192352294922
+        ],
+        "noise_label": -1,
+        "noise_policy": "retain; no reassignment"
+      }
+    },
+    {
+      "cohort_id": "massive_zh_cn__e5-small-pinned__unknown-k-fixed",
+      "method": "evoc",
+      "seed": 1,
+      "worker_elapsed_seconds": 2.498883583999941,
+      "status": "ok",
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.21607106007355548,
+        "nmi_all_noise_as_one_cluster": 0.6234091367976492,
+        "coverage": 0.75390625,
+        "clusters_excluding_noise": 16,
+        "ari_covered": 0.42495556945591667
+      },
+      "fit_predict_seconds": 1.0717083730000923,
+      "cpu_seconds": 1.0731799280000003,
+      "process_peak_rss_bytes": 291848192,
+      "params": {
+        "algorithm": "EVoC",
+        "implementation": "evoc.EVoC",
+        "backend_protocol": "evoc-default-labelblind-v1",
+        "classification": "upstream library pipeline",
+        "seed": 1,
+        "versions": {
+          "evoc": "0.3.2"
+        },
+        "params": {
+          "approx_n_clusters": null,
+          "base_min_cluster_size": 5,
+          "base_n_clusters": null,
+          "max_layers": 10,
+          "min_samples": 5,
+          "min_similarity_threshold": 0.2,
+          "n_epochs": 50,
+          "n_label_prop_iter": 20,
+          "n_neighbors": 15,
+          "neighbor_scale": 1.0,
+          "node_embedding_dim": null,
+          "node_embedding_init": "label_prop",
+          "noise_level": 0.5,
+          "random_state": 1,
+          "symmetrize_graph": true
+        },
+        "input": {
+          "shape": [
+            512,
+            384
+          ],
+          "source_dtype": "<f4",
+          "fit_dtype": "<f4",
+          "fit_vectors_sha256": "f1efb1386030c508ca0396f659dcbbd9f94d40f5bcd09264e9c7af0e4064c335",
+          "fit_vector_bytes": 786432,
+          "normalization": "none; caller owns preprocessing"
+        },
+        "implementation_sha256": "0972e5504eb8ce63bd1b6d88683b2ddfc96060312073f384d18487e7d3f5df87",
+        "selection_policy": "upstream labels_; no gold-scored layer search; approx/base K unset",
+        "selected_layer_matches": [
+          1
+        ],
+        "layer_cluster_counts": [
+          28,
+          16,
+          7
+        ],
+        "layer_coverages": [
+          0.72265625,
+          0.75390625,
+          0.787109375
+        ],
+        "persistence_scores": [
+          0.0,
+          117.28374481201172,
+          108.27384185791016
+        ],
+        "noise_label": -1,
+        "noise_policy": "retain; no reassignment"
+      }
+    },
+    {
+      "cohort_id": "massive_zh_cn__e5-small-pinned__unknown-k-fixed",
+      "method": "evoc",
+      "seed": 2,
+      "worker_elapsed_seconds": 2.3273180209998827,
+      "status": "ok",
+      "metrics": {
+        "ari_all_noise_as_one_cluster": 0.25797310676522434,
+        "nmi_all_noise_as_one_cluster": 0.5986323822894484,
+        "coverage": 0.84375,
+        "clusters_excluding_noise": 13,
+        "ari_covered": 0.3406324042695883
+      },
+      "fit_predict_seconds": 0.9947275859999536,
+      "cpu_seconds": 0.99566149,
+      "process_peak_rss_bytes": 292229120,
+      "params": {
+        "algorithm": "EVoC",
+        "implementation": "evoc.EVoC",
+        "backend_protocol": "evoc-default-labelblind-v1",
+        "classification": "upstream library pipeline",
+        "seed": 2,
+        "versions": {
+          "evoc": "0.3.2"
+        },
+        "params": {
+          "approx_n_clusters": null,
+          "base_min_cluster_size": 5,
+          "base_n_clusters": null,
+          "max_layers": 10,
+          "min_samples": 5,
+          "min_similarity_threshold": 0.2,
+          "n_epochs": 50,
+          "n_label_prop_iter": 20,
+          "n_neighbors": 15,
+          "neighbor_scale": 1.0,
+          "node_embedding_dim": null,
+          "node_embedding_init": "label_prop",
+          "noise_level": 0.5,
+          "random_state": 2,
+          "symmetrize_graph": true
+        },
+        "input": {
+          "shape": [
+            512,
+            384
+          ],
+          "source_dtype": "<f4",
+          "fit_dtype": "<f4",
+          "fit_vectors_sha256": "f1efb1386030c508ca0396f659dcbbd9f94d40f5bcd09264e9c7af0e4064c335",
+          "fit_vector_bytes": 786432,
+          "normalization": "none; caller owns preprocessing"
+        },
+        "implementation_sha256": "0972e5504eb8ce63bd1b6d88683b2ddfc96060312073f384d18487e7d3f5df87",
+        "selection_policy": "upstream labels_; no gold-scored layer search; approx/base K unset",
+        "selected_layer_matches": [
+          1
+        ],
+        "layer_cluster_counts": [
+          28,
+          13
+        ],
+        "layer_coverages": [
+          0.751953125,
+          0.84375
+        ],
+        "persistence_scores": [
+          0.0,
+          129.56280517578125
+        ],
+        "noise_label": -1,
+        "noise_policy": "retain; no reassignment"
+      }
+    }
+  ],
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "environment": {
+    "python": "3.12.14",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "threads": 1,
+    "packages": {
+      "numpy": "2.3.5",
+      "scipy": "1.17.0",
+      "scikit-learn": "1.6.1",
+      "pyarrow": "19.0.1",
+      "umap-learn": "0.5.9.post2",
+      "hdbscan": "0.8.40",
+      "evoc": "0.3.2",
+      "numba": "0.68.1",
+      "pynndescent": "0.7.0",
+      "threadpoolctl": "3.6.0",
+      "joblib": "1.5.3"
+    },
+    "script_sha256": "a079bf9ff71e8ba627153e1e60fd591aa995fd45336987d8ca7fad16a3506d11",
+    "adapter_sha256": {
+      "sklearn_backends.py": "162aaadaf4f716a649124e12048c7de0951a43f16e0dced6cb7d1a22d1b808c8",
+      "discovery_backends.py": "a87a8c40db5fd999d5292b81ea4cbfaa5ba16e770f2bd60c2f8fdc3a9b54657b"
+    }
+  },
+  "representation": {
+    "id": "e5-small-pinned",
+    "model": "intfloat/multilingual-e5-small",
+    "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+    "source": "semantic-pilot-v1 external cache; no new encoding"
+  },
+  "deferred": [
+    {
+      "scenario": "routing / hierarchy",
+      "status": "deferred",
+      "reason": "Needs a shared support/query and hidden-class split; static test rows cannot reproduce supervised router evidence."
+    },
+    {
+      "scenario": "streaming / temporal / maintenance",
+      "status": "deferred",
+      "reason": "Needs prequential windows, order/time and frozen-vs-update controls; batch fit is not a streaming test."
+    }
+  ],
+  "notes": [
+    "No global ranking across cohorts or information budgets.",
+    "Fixed presets are not tuned and do not establish each algorithm best achievable quality.",
+    "Same rows and matrices; KMeans arms receive oracle number of labels present in test.",
+    "Three seeds quantify initialization variability only, not sampling confidence intervals.",
+    "HDBSCAN is deterministic on these fixed inputs; its repeated seeds are timing repetitions.",
+    "Includes cold startup/JIT effects in fit region; prior process cache state may affect timings. Do not interpret as steady-state throughput."
+  ]
+}

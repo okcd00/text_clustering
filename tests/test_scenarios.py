@@ -23,7 +23,10 @@ class ScenarioPublicationTest(unittest.TestCase):
         self.assertTrue(all(r.get('resources') for g in groups[-2:] for r in g['records']))
 
     def test_navigation_and_no_internal_payloads(self):
-        html = (ROOT / 'docs/index.html').read_text()
+        home = (ROOT / 'docs/index.html').read_text()
+        self.assertIn('survey.html', home)
+        self.assertIn('legacy.html', home)
+        html = (ROOT / 'docs/legacy.html').read_text()
         for task in ['onepass', 'hierarchical', 'evolution']:
             self.assertIn('scenarios.html?task=' + task, html)
         text = (ROOT / 'docs/scenarios.json').read_text()

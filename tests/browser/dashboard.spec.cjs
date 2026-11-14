@@ -34,7 +34,7 @@ test.afterEach(async ({ page }) => { expect(page.__dashboardErrors).toEqual([]);
 
 test('recommendation cards link to their own protocol and actual records', async ({ page }) => {
   for (const [label, task, id] of destinations) {
-    await page.goto('/index.html');
+    await page.goto('/legacy.html');
     const cards = page.locator('#scenario-choices article');
     await expect(cards).toHaveCount(5);
     const card = cards.nth(destinations.findIndex(d => d[2] === id));
@@ -64,7 +64,7 @@ test('recommendation cards link to their own protocol and actual records', async
 });
 
 test('leaderboard, radar and algorithm dialog fit the viewport', async ({ page }) => {
-  await page.goto('/index.html');
+  await page.goto('/legacy.html');
   await page.getByRole('button', { name: '效果排行榜', exact: true }).click();
   await expect(page.locator('#rows tr').first()).toBeVisible();
   for (const run of ['known-k-001', 'unknown-k-001']) {

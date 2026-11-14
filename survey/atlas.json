@@ -1,0 +1,104 @@
+{
+  "branches": [
+    {
+      "id": "representation",
+      "title": "01 · 表示",
+      "subtitle": "先定义什么叫相似",
+      "examples": "词法 TF-IDF / 语义 E5",
+      "note": "编码器、维度、归一化会改变几何；同一表示内比较聚类器。"
+    },
+    {
+      "id": "known",
+      "title": "02 · 已知 K",
+      "subtitle": "划分给定数量的簇",
+      "examples": "KMeans / MiniBatchKMeans",
+      "note": "真实 K 是额外信息；不能与未知 K 方法混排。"
+    },
+    {
+      "id": "unknown",
+      "title": "03 · 未知 K",
+      "subtitle": "发现结构，也允许拒收",
+      "examples": "HDBSCAN / BERTopic 核心 / EVoC",
+      "note": "同时看覆盖率和全样本质量；拒收不等于错误消失。"
+    },
+    {
+      "id": "routing",
+      "title": "04 · 路由与层级",
+      "subtitle": "新文本归属已有结构",
+      "examples": "原型 / kNN / 层级导航",
+      "note": "新类误接收、旧类误拒与树结构质量分别度量。"
+    },
+    {
+      "id": "evolution",
+      "title": "05 · 持续演化",
+      "subtitle": "时间改变数据与类别",
+      "examples": "增量更新 / 缓冲区再聚类",
+      "note": "预测后更新；衡量遗忘、簇 ID 稳定性和内存。"
+    },
+    {
+      "id": "interpretation",
+      "title": "06 · 解释与约束",
+      "subtitle": "为分组加入语义",
+      "examples": "关键词 / LLM 约束 / 主题标签",
+      "note": "解释质量与聚类质量不同；额外监督和调用预算要单列。"
+    }
+  ],
+  "methods": [
+    {
+      "name": "KMeans",
+      "track": "已知 K",
+      "highlight": "直接优化质心内平方距离",
+      "budget": "给定 K；无训练标签也能执行",
+      "tradeoff": "球状簇假设；初始化敏感；全部样本都会被分配。"
+    },
+    {
+      "name": "MiniBatchKMeans",
+      "track": "已知 K",
+      "highlight": "小批量更新，降低大批量计算负担",
+      "budget": "给定 K；批量与更新预算需固定",
+      "tradeoff": "速度与收敛质量权衡；静态批处理不等于已验证的流式适应。"
+    },
+    {
+      "name": "HDBSCAN",
+      "track": "未知 K",
+      "highlight": "用密度层级发现簇，并保留噪声",
+      "budget": "不输入 K；密度参数影响覆盖",
+      "tradeoff": "稀疏类可能被拒收；调参若用标签，须作为单独协议。"
+    },
+    {
+      "name": "BERTopic 核心管线",
+      "track": "未知 K",
+      "highlight": "降维后进行密度聚类",
+      "budget": "表示 + 降维 + 密度参数",
+      "tradeoff": "这里指聚类核心，不等于完整 BERTopic 主题解释系统。"
+    },
+    {
+      "name": "EVoC",
+      "track": "未知 K",
+      "highlight": "同一语义向量上生成聚类层，使用上游默认层输出",
+      "budget": "不给真实 K 或近似 K；不根据测试标签选层",
+      "tradeoff": "保留噪声；要和覆盖率一起读。多阶段计算与首次编译影响耗时。"
+    },
+    {
+      "name": "单簇控制",
+      "track": "表示对照",
+      "highlight": "用最简单的分组校验指标",
+      "budget": "不使用标签、不搜索参数",
+      "tradeoff": "不是推荐方案；防止只看覆盖率或退化指标得出错误结论。"
+    },
+    {
+      "name": "原型余弦路由",
+      "track": "开放集路由",
+      "highlight": "每类用一个中心，按最高分与前两名差距判断是否接收",
+      "budget": "有标签支持集；拒识门槛只在验证集选",
+      "tradeoff": "计算量随类别数增长；一个中心可能压平同一类内部的多种表达。"
+    },
+    {
+      "name": "类别最大 1-NN",
+      "track": "开放集路由",
+      "highlight": "用每类最相似的支持样本打分，保留局部相似性",
+      "budget": "与原型相同的支持集、验证集和候选门槛",
+      "tradeoff": "需要保留支持样本向量；孤立的相似样本可能造成误接收。"
+    }
+  ]
+}
