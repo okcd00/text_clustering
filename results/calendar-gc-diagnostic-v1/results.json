@@ -1,0 +1,1427 @@
+{
+  "status": "executed_two_repeats_per_arm",
+  "base_commit": "b2d3db7a9b1050fb033049bf725002838b61c164",
+  "checks": {
+    "matched_current_predictions_all_arms_and_uninstrumented": true,
+    "matched_published_v2_daily_scores_and_cf_counts": true,
+    "original_private_vector_or_prediction_bytes_available": false
+  },
+  "limitations": [
+    "Reconstructed cache, not a comparison of unavailable original private vector bytes.",
+    "Weakrefs observe linked leaf nodes, not complete ownership or native allocations.",
+    "5 ms nominal sampling can miss transients. RSS is not an ownership profiler.",
+    "No allocator retention, memory cap or production performance causal claim."
+  ],
+  "serialized_size_scope": "Estimator only; excludes 3 MiB numeric replay payload plus Python/controller state; RSS already includes replay.",
+  "runs": [
+    {
+      "diagnostic_arm": "automatic",
+      "protocol_sha256": "300698bd30cea2333b9c359c49f97ea5eaceb193c6b677454f35ff709d9eda7e",
+      "warmup_seconds": 0.9737798329999805,
+      "rebuild_events": [
+        {
+          "arrival": 2048,
+          "old_leaf_cf": 1783,
+          "retired_leaf_nodes_including_dummy": 60,
+          "before_memory": {
+            "VmRSS": 209694720,
+            "RssAnon": 101625856,
+            "RssFile": 108068864,
+            "RssShmem": 0
+          },
+          "gc_count_before": [
+            571,
+            0,
+            1
+          ],
+          "new_leaf_cf": 881,
+          "overlap_memory": {
+            "VmRSS": 216743936,
+            "RssAnon": 108670976,
+            "RssFile": 108072960,
+            "RssShmem": 0
+          },
+          "after_swap_memory": {
+            "VmRSS": 216743936,
+            "RssAnon": 108670976,
+            "RssFile": 108072960,
+            "RssShmem": 0
+          },
+          "retired_alive_after_swap": 60,
+          "all_retired_alive_after_swap": 60,
+          "explicit_gc_seconds": null,
+          "gc_collected_objects": null,
+          "after_gc_or_noop_memory": {
+            "VmRSS": 216743936,
+            "RssAnon": 108670976,
+            "RssFile": 108072960,
+            "RssShmem": 0
+          },
+          "retired_alive_after_gc_or_noop": 60,
+          "all_retired_alive_after_gc_or_noop": 60,
+          "gc_count_after": [
+            0,
+            4,
+            1
+          ]
+        },
+        {
+          "arrival": 4096,
+          "old_leaf_cf": 1790,
+          "retired_leaf_nodes_including_dummy": 58,
+          "before_memory": {
+            "VmRSS": 221810688,
+            "RssAnon": 113737728,
+            "RssFile": 108072960,
+            "RssShmem": 0
+          },
+          "gc_count_before": [
+            98,
+            9,
+            1
+          ],
+          "new_leaf_cf": 914,
+          "overlap_memory": {
+            "VmRSS": 226828288,
+            "RssAnon": 118755328,
+            "RssFile": 108072960,
+            "RssShmem": 0
+          },
+          "after_swap_memory": {
+            "VmRSS": 224075776,
+            "RssAnon": 116002816,
+            "RssFile": 108072960,
+            "RssShmem": 0
+          },
+          "retired_alive_after_swap": 58,
+          "all_retired_alive_after_swap": 118,
+          "explicit_gc_seconds": null,
+          "gc_collected_objects": null,
+          "after_gc_or_noop_memory": {
+            "VmRSS": 224075776,
+            "RssAnon": 116002816,
+            "RssFile": 108072960,
+            "RssShmem": 0
+          },
+          "retired_alive_after_gc_or_noop": 58,
+          "all_retired_alive_after_gc_or_noop": 118,
+          "gc_count_after": [
+            222,
+            0,
+            2
+          ]
+        },
+        {
+          "arrival": 6144,
+          "old_leaf_cf": 1913,
+          "retired_leaf_nodes_including_dummy": 67,
+          "before_memory": {
+            "VmRSS": 229842944,
+            "RssAnon": 121769984,
+            "RssFile": 108072960,
+            "RssShmem": 0
+          },
+          "gc_count_before": [
+            4,
+            6,
+            2
+          ],
+          "new_leaf_cf": 991,
+          "overlap_memory": {
+            "VmRSS": 238256128,
+            "RssAnon": 130183168,
+            "RssFile": 108072960,
+            "RssShmem": 0
+          },
+          "after_swap_memory": {
+            "VmRSS": 238256128,
+            "RssAnon": 130183168,
+            "RssFile": 108072960,
+            "RssShmem": 0
+          },
+          "retired_alive_after_swap": 67,
+          "all_retired_alive_after_swap": 185,
+          "explicit_gc_seconds": null,
+          "gc_collected_objects": null,
+          "after_gc_or_noop_memory": {
+            "VmRSS": 238256128,
+            "RssAnon": 130183168,
+            "RssFile": 108072960,
+            "RssShmem": 0
+          },
+          "retired_alive_after_gc_or_noop": 67,
+          "all_retired_alive_after_gc_or_noop": 185,
+          "gc_count_after": [
+            315,
+            9,
+            2
+          ]
+        },
+        {
+          "arrival": 8192,
+          "old_leaf_cf": 1871,
+          "retired_leaf_nodes_including_dummy": 61,
+          "before_memory": {
+            "VmRSS": 246157312,
+            "RssAnon": 138084352,
+            "RssFile": 108072960,
+            "RssShmem": 0
+          },
+          "gc_count_before": [
+            549,
+            2,
+            3
+          ],
+          "new_leaf_cf": 854,
+          "overlap_memory": {
+            "VmRSS": 246837248,
+            "RssAnon": 138764288,
+            "RssFile": 108072960,
+            "RssShmem": 0
+          },
+          "after_swap_memory": {
+            "VmRSS": 246837248,
+            "RssAnon": 138764288,
+            "RssFile": 108072960,
+            "RssShmem": 0
+          },
+          "retired_alive_after_swap": 61,
+          "all_retired_alive_after_swap": 246,
+          "explicit_gc_seconds": null,
+          "gc_collected_objects": null,
+          "after_gc_or_noop_memory": {
+            "VmRSS": 246837248,
+            "RssAnon": 138764288,
+            "RssFile": 108072960,
+            "RssShmem": 0
+          },
+          "retired_alive_after_gc_or_noop": 61,
+          "all_retired_alive_after_gc_or_noop": 246,
+          "gc_count_after": [
+            557,
+            5,
+            3
+          ]
+        },
+        {
+          "arrival": 10240,
+          "old_leaf_cf": 1845,
+          "retired_leaf_nodes_including_dummy": 66,
+          "before_memory": {
+            "VmRSS": 255246336,
+            "RssAnon": 147173376,
+            "RssFile": 108072960,
+            "RssShmem": 0
+          },
+          "gc_count_before": [
+            214,
+            11,
+            3
+          ],
+          "new_leaf_cf": 971,
+          "overlap_memory": {
+            "VmRSS": 257507328,
+            "RssAnon": 149434368,
+            "RssFile": 108072960,
+            "RssShmem": 0
+          },
+          "after_swap_memory": {
+            "VmRSS": 257507328,
+            "RssAnon": 149434368,
+            "RssFile": 108072960,
+            "RssShmem": 0
+          },
+          "retired_alive_after_swap": 66,
+          "all_retired_alive_after_swap": 312,
+          "explicit_gc_seconds": null,
+          "gc_collected_objects": null,
+          "after_gc_or_noop_memory": {
+            "VmRSS": 257507328,
+            "RssAnon": 149434368,
+            "RssFile": 108072960,
+            "RssShmem": 0
+          },
+          "retired_alive_after_gc_or_noop": 66,
+          "all_retired_alive_after_gc_or_noop": 312,
+          "gc_count_after": [
+            497,
+            2,
+            4
+          ]
+        }
+      ],
+      "serialized_final_model_bytes": 14140689,
+      "memory": {
+        "imports": {
+          "VmRSS": 166678528,
+          "RssAnon": 82460672,
+          "RssFile": 84217856,
+          "RssShmem": 0
+        },
+        "mapped_before_touch": {
+          "VmRSS": 166711296,
+          "RssAnon": 82472960,
+          "RssFile": 84238336,
+          "RssShmem": 0
+        },
+        "after_touch": {
+          "VmRSS": 188084224,
+          "RssAnon": 82477056,
+          "RssFile": 105607168,
+          "RssShmem": 0
+        },
+        "baseline_after_touch_api_warmup_sampler_start": {
+          "VmRSS": 190246912,
+          "RssAnon": 82587648,
+          "RssFile": 107659264,
+          "RssShmem": 0
+        },
+        "after_warmup": {
+          "VmRSS": 202686464,
+          "RssAnon": 94752768,
+          "RssFile": 107933696,
+          "RssShmem": 0
+        },
+        "phase_peaks": {
+          "warmup": {
+            "VmRSS": 203685888,
+            "RssAnon": 95752192,
+            "RssFile": 107933696,
+            "RssShmem": 0
+          },
+          "predict": {
+            "VmRSS": 260390912,
+            "RssAnon": 152317952,
+            "RssFile": 108072960,
+            "RssShmem": 0
+          },
+          "score": {
+            "VmRSS": 260390912,
+            "RssAnon": 152317952,
+            "RssFile": 108072960,
+            "RssShmem": 0
+          },
+          "update": {
+            "VmRSS": 261779456,
+            "RssAnon": 153706496,
+            "RssFile": 108072960,
+            "RssShmem": 0
+          },
+          "final_idle": {
+            "VmRSS": 261779456,
+            "RssAnon": 153706496,
+            "RssFile": 108072960,
+            "RssShmem": 0
+          }
+        },
+        "algorithm_phase_peak": {
+          "VmRSS": 261779456,
+          "RssAnon": 153706496,
+          "RssFile": 108072960,
+          "RssShmem": 0
+        },
+        "algorithm_peak_delta_from_baseline": {
+          "VmRSS": 71532544,
+          "RssAnon": 71118848,
+          "RssFile": 413696,
+          "RssShmem": 0
+        },
+        "all_phase_peak": {
+          "VmRSS": 261779456,
+          "RssAnon": 153706496,
+          "RssFile": 108072960,
+          "RssShmem": 0
+        },
+        "final_after_gc": {
+          "VmRSS": 261779456,
+          "RssAnon": 153706496,
+          "RssFile": 108072960,
+          "RssShmem": 0
+        },
+        "resource_highwater_before_serialization_bytes": 261533696,
+        "sample_interval_ms": 5,
+        "samples": 2795,
+        "mapped_file_bytes": 21358592
+      },
+      "python": "3.12.14",
+      "versions": {
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "scikit-learn": "1.8.0",
+        "threadpoolctl": "3.6.0"
+      },
+      "hardware": {
+        "machine": "x86_64",
+        "logical_cpus": 9,
+        "processor": "AMD EPYC 9V74 80-Core Processor"
+      },
+      "gc_thresholds": [
+        700,
+        10,
+        10
+      ],
+      "diagnostic_script_sha256": "36e3f3dc6c7336e248efd3da7deb8d64a5f28b3c1eb46bea5c7df4d693ef9535",
+      "repeat": 1,
+      "update_seconds": 12.674744105999935,
+      "explicit_gc_seconds": 0
+    },
+    {
+      "diagnostic_arm": "explicit-after-swap",
+      "protocol_sha256": "300698bd30cea2333b9c359c49f97ea5eaceb193c6b677454f35ff709d9eda7e",
+      "warmup_seconds": 1.0912416800000528,
+      "rebuild_events": [
+        {
+          "arrival": 2048,
+          "old_leaf_cf": 1783,
+          "retired_leaf_nodes_including_dummy": 60,
+          "before_memory": {
+            "VmRSS": 206565376,
+            "RssAnon": 101851136,
+            "RssFile": 104714240,
+            "RssShmem": 0
+          },
+          "gc_count_before": [
+            557,
+            0,
+            1
+          ],
+          "new_leaf_cf": 881,
+          "overlap_memory": {
+            "VmRSS": 213827584,
+            "RssAnon": 109109248,
+            "RssFile": 104718336,
+            "RssShmem": 0
+          },
+          "after_swap_memory": {
+            "VmRSS": 213827584,
+            "RssAnon": 109109248,
+            "RssFile": 104718336,
+            "RssShmem": 0
+          },
+          "retired_alive_after_swap": 60,
+          "all_retired_alive_after_swap": 60,
+          "explicit_gc_seconds": 0.034501556999998684,
+          "gc_collected_objects": 1904,
+          "after_gc_or_noop_memory": {
+            "VmRSS": 213827584,
+            "RssAnon": 109109248,
+            "RssFile": 104718336,
+            "RssShmem": 0
+          },
+          "retired_alive_after_gc_or_noop": 0,
+          "all_retired_alive_after_gc_or_noop": 0,
+          "gc_count_after": [
+            27,
+            0,
+            0
+          ]
+        },
+        {
+          "arrival": 4096,
+          "old_leaf_cf": 1790,
+          "retired_leaf_nodes_including_dummy": 58,
+          "before_memory": {
+            "VmRSS": 215285760,
+            "RssAnon": 110567424,
+            "RssFile": 104718336,
+            "RssShmem": 0
+          },
+          "gc_count_before": [
+            155,
+            5,
+            0
+          ],
+          "new_leaf_cf": 914,
+          "overlap_memory": {
+            "VmRSS": 215601152,
+            "RssAnon": 110882816,
+            "RssFile": 104718336,
+            "RssShmem": 0
+          },
+          "after_swap_memory": {
+            "VmRSS": 212848640,
+            "RssAnon": 108130304,
+            "RssFile": 104718336,
+            "RssShmem": 0
+          },
+          "retired_alive_after_swap": 58,
+          "all_retired_alive_after_swap": 58,
+          "explicit_gc_seconds": 0.03838574899998548,
+          "gc_collected_objects": 1907,
+          "after_gc_or_noop_memory": {
+            "VmRSS": 212848640,
+            "RssAnon": 108130304,
+            "RssFile": 104718336,
+            "RssShmem": 0
+          },
+          "retired_alive_after_gc_or_noop": 0,
+          "all_retired_alive_after_gc_or_noop": 0,
+          "gc_count_after": [
+            23,
+            0,
+            0
+          ]
+        },
+        {
+          "arrival": 6144,
+          "old_leaf_cf": 1913,
+          "retired_leaf_nodes_including_dummy": 67,
+          "before_memory": {
+            "VmRSS": 213164032,
+            "RssAnon": 108445696,
+            "RssFile": 104718336,
+            "RssShmem": 0
+          },
+          "gc_count_before": [
+            537,
+            5,
+            0
+          ],
+          "new_leaf_cf": 991,
+          "overlap_memory": {
+            "VmRSS": 217800704,
+            "RssAnon": 113082368,
+            "RssFile": 104718336,
+            "RssShmem": 0
+          },
+          "after_swap_memory": {
+            "VmRSS": 217800704,
+            "RssAnon": 113082368,
+            "RssFile": 104718336,
+            "RssShmem": 0
+          },
+          "retired_alive_after_swap": 67,
+          "all_retired_alive_after_swap": 67,
+          "explicit_gc_seconds": 0.04225721000000249,
+          "gc_collected_objects": 2048,
+          "after_gc_or_noop_memory": {
+            "VmRSS": 217800704,
+            "RssAnon": 113082368,
+            "RssFile": 104718336,
+            "RssShmem": 0
+          },
+          "retired_alive_after_gc_or_noop": 0,
+          "all_retired_alive_after_gc_or_noop": 0,
+          "gc_count_after": [
+            22,
+            0,
+            0
+          ]
+        },
+        {
+          "arrival": 8192,
+          "old_leaf_cf": 1871,
+          "retired_leaf_nodes_including_dummy": 61,
+          "before_memory": {
+            "VmRSS": 218939392,
+            "RssAnon": 114221056,
+            "RssFile": 104718336,
+            "RssShmem": 0
+          },
+          "gc_count_before": [
+            277,
+            5,
+            0
+          ],
+          "new_leaf_cf": 854,
+          "overlap_memory": {
+            "VmRSS": 218968064,
+            "RssAnon": 114249728,
+            "RssFile": 104718336,
+            "RssShmem": 0
+          },
+          "after_swap_memory": {
+            "VmRSS": 218968064,
+            "RssAnon": 114249728,
+            "RssFile": 104718336,
+            "RssShmem": 0
+          },
+          "retired_alive_after_swap": 61,
+          "all_retired_alive_after_swap": 61,
+          "explicit_gc_seconds": 0.04500766699993619,
+          "gc_collected_objects": 1994,
+          "after_gc_or_noop_memory": {
+            "VmRSS": 218968064,
+            "RssAnon": 114249728,
+            "RssFile": 104718336,
+            "RssShmem": 0
+          },
+          "retired_alive_after_gc_or_noop": 0,
+          "all_retired_alive_after_gc_or_noop": 0,
+          "gc_count_after": [
+            27,
+            0,
+            0
+          ]
+        },
+        {
+          "arrival": 10240,
+          "old_leaf_cf": 1845,
+          "retired_leaf_nodes_including_dummy": 66,
+          "before_memory": {
+            "VmRSS": 218849280,
+            "RssAnon": 114130944,
+            "RssFile": 104718336,
+            "RssShmem": 0
+          },
+          "gc_count_before": [
+            393,
+            5,
+            0
+          ],
+          "new_leaf_cf": 971,
+          "overlap_memory": {
+            "VmRSS": 218861568,
+            "RssAnon": 114143232,
+            "RssFile": 104718336,
+            "RssShmem": 0
+          },
+          "after_swap_memory": {
+            "VmRSS": 218861568,
+            "RssAnon": 114143232,
+            "RssFile": 104718336,
+            "RssShmem": 0
+          },
+          "retired_alive_after_swap": 66,
+          "all_retired_alive_after_swap": 66,
+          "explicit_gc_seconds": 0.034829740999953174,
+          "gc_collected_objects": 1978,
+          "after_gc_or_noop_memory": {
+            "VmRSS": 218861568,
+            "RssAnon": 114143232,
+            "RssFile": 104718336,
+            "RssShmem": 0
+          },
+          "retired_alive_after_gc_or_noop": 0,
+          "all_retired_alive_after_gc_or_noop": 0,
+          "gc_count_after": [
+            27,
+            0,
+            0
+          ]
+        }
+      ],
+      "serialized_final_model_bytes": 14140689,
+      "memory": {
+        "imports": {
+          "VmRSS": 163221504,
+          "RssAnon": 82460672,
+          "RssFile": 80760832,
+          "RssShmem": 0
+        },
+        "mapped_before_touch": {
+          "VmRSS": 163254272,
+          "RssAnon": 82472960,
+          "RssFile": 80781312,
+          "RssShmem": 0
+        },
+        "after_touch": {
+          "VmRSS": 184627200,
+          "RssAnon": 82477056,
+          "RssFile": 102150144,
+          "RssShmem": 0
+        },
+        "baseline_after_touch_api_warmup_sampler_start": {
+          "VmRSS": 186896384,
+          "RssAnon": 82587648,
+          "RssFile": 104308736,
+          "RssShmem": 0
+        },
+        "after_warmup": {
+          "VmRSS": 199208960,
+          "RssAnon": 94691328,
+          "RssFile": 104517632,
+          "RssShmem": 0
+        },
+        "phase_peaks": {
+          "warmup": {
+            "VmRSS": 200314880,
+            "RssAnon": 95797248,
+            "RssFile": 104517632,
+            "RssShmem": 0
+          },
+          "predict": {
+            "VmRSS": 218968064,
+            "RssAnon": 114249728,
+            "RssFile": 104718336,
+            "RssShmem": 0
+          },
+          "score": {
+            "VmRSS": 218968064,
+            "RssAnon": 114249728,
+            "RssFile": 104718336,
+            "RssShmem": 0
+          },
+          "update": {
+            "VmRSS": 218968064,
+            "RssAnon": 114249728,
+            "RssFile": 104718336,
+            "RssShmem": 0
+          },
+          "final_idle": {
+            "VmRSS": 218202112,
+            "RssAnon": 113483776,
+            "RssFile": 104718336,
+            "RssShmem": 0
+          }
+        },
+        "algorithm_phase_peak": {
+          "VmRSS": 218968064,
+          "RssAnon": 114249728,
+          "RssFile": 104718336,
+          "RssShmem": 0
+        },
+        "algorithm_peak_delta_from_baseline": {
+          "VmRSS": 32071680,
+          "RssAnon": 31662080,
+          "RssFile": 409600,
+          "RssShmem": 0
+        },
+        "all_phase_peak": {
+          "VmRSS": 218968064,
+          "RssAnon": 114249728,
+          "RssFile": 104718336,
+          "RssShmem": 0
+        },
+        "final_after_gc": {
+          "VmRSS": 218202112,
+          "RssAnon": 113483776,
+          "RssFile": 104718336,
+          "RssShmem": 0
+        },
+        "resource_highwater_before_serialization_bytes": 218820608,
+        "sample_interval_ms": 5,
+        "samples": 2741,
+        "mapped_file_bytes": 21358592
+      },
+      "python": "3.12.14",
+      "versions": {
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "scikit-learn": "1.8.0",
+        "threadpoolctl": "3.6.0"
+      },
+      "hardware": {
+        "machine": "x86_64",
+        "logical_cpus": 9,
+        "processor": "AMD EPYC 9V74 80-Core Processor"
+      },
+      "gc_thresholds": [
+        700,
+        10,
+        10
+      ],
+      "diagnostic_script_sha256": "36e3f3dc6c7336e248efd3da7deb8d64a5f28b3c1eb46bea5c7df4d693ef9535",
+      "repeat": 1,
+      "update_seconds": 12.220510509999599,
+      "explicit_gc_seconds": 0.19498192399987602
+    },
+    {
+      "diagnostic_arm": "explicit-after-swap",
+      "protocol_sha256": "300698bd30cea2333b9c359c49f97ea5eaceb193c6b677454f35ff709d9eda7e",
+      "warmup_seconds": 1.0079831860000468,
+      "rebuild_events": [
+        {
+          "arrival": 2048,
+          "old_leaf_cf": 1783,
+          "retired_leaf_nodes_including_dummy": 60,
+          "before_memory": {
+            "VmRSS": 213385216,
+            "RssAnon": 101838848,
+            "RssFile": 111546368,
+            "RssShmem": 0
+          },
+          "gc_count_before": [
+            559,
+            0,
+            1
+          ],
+          "new_leaf_cf": 881,
+          "overlap_memory": {
+            "VmRSS": 220278784,
+            "RssAnon": 108728320,
+            "RssFile": 111550464,
+            "RssShmem": 0
+          },
+          "after_swap_memory": {
+            "VmRSS": 220278784,
+            "RssAnon": 108728320,
+            "RssFile": 111550464,
+            "RssShmem": 0
+          },
+          "retired_alive_after_swap": 60,
+          "all_retired_alive_after_swap": 60,
+          "explicit_gc_seconds": 0.029711765999991258,
+          "gc_collected_objects": 1904,
+          "after_gc_or_noop_memory": {
+            "VmRSS": 220278784,
+            "RssAnon": 108728320,
+            "RssFile": 111550464,
+            "RssShmem": 0
+          },
+          "retired_alive_after_gc_or_noop": 0,
+          "all_retired_alive_after_gc_or_noop": 0,
+          "gc_count_after": [
+            27,
+            0,
+            0
+          ]
+        },
+        {
+          "arrival": 4096,
+          "old_leaf_cf": 1790,
+          "retired_leaf_nodes_including_dummy": 58,
+          "before_memory": {
+            "VmRSS": 221736960,
+            "RssAnon": 110186496,
+            "RssFile": 111550464,
+            "RssShmem": 0
+          },
+          "gc_count_before": [
+            150,
+            5,
+            0
+          ],
+          "new_leaf_cf": 914,
+          "overlap_memory": {
+            "VmRSS": 222052352,
+            "RssAnon": 110501888,
+            "RssFile": 111550464,
+            "RssShmem": 0
+          },
+          "after_swap_memory": {
+            "VmRSS": 219299840,
+            "RssAnon": 107749376,
+            "RssFile": 111550464,
+            "RssShmem": 0
+          },
+          "retired_alive_after_swap": 58,
+          "all_retired_alive_after_swap": 58,
+          "explicit_gc_seconds": 0.04277887099999589,
+          "gc_collected_objects": 1907,
+          "after_gc_or_noop_memory": {
+            "VmRSS": 219299840,
+            "RssAnon": 107749376,
+            "RssFile": 111550464,
+            "RssShmem": 0
+          },
+          "retired_alive_after_gc_or_noop": 0,
+          "all_retired_alive_after_gc_or_noop": 0,
+          "gc_count_after": [
+            27,
+            0,
+            0
+          ]
+        },
+        {
+          "arrival": 6144,
+          "old_leaf_cf": 1913,
+          "retired_leaf_nodes_including_dummy": 67,
+          "before_memory": {
+            "VmRSS": 219693056,
+            "RssAnon": 108142592,
+            "RssFile": 111550464,
+            "RssShmem": 0
+          },
+          "gc_count_before": [
+            546,
+            5,
+            0
+          ],
+          "new_leaf_cf": 991,
+          "overlap_memory": {
+            "VmRSS": 224333824,
+            "RssAnon": 112783360,
+            "RssFile": 111550464,
+            "RssShmem": 0
+          },
+          "after_swap_memory": {
+            "VmRSS": 224333824,
+            "RssAnon": 112783360,
+            "RssFile": 111550464,
+            "RssShmem": 0
+          },
+          "retired_alive_after_swap": 67,
+          "all_retired_alive_after_swap": 67,
+          "explicit_gc_seconds": 0.0336916049999445,
+          "gc_collected_objects": 2048,
+          "after_gc_or_noop_memory": {
+            "VmRSS": 224333824,
+            "RssAnon": 112783360,
+            "RssFile": 111550464,
+            "RssShmem": 0
+          },
+          "retired_alive_after_gc_or_noop": 0,
+          "all_retired_alive_after_gc_or_noop": 0,
+          "gc_count_after": [
+            27,
+            0,
+            0
+          ]
+        },
+        {
+          "arrival": 8192,
+          "old_leaf_cf": 1871,
+          "retired_leaf_nodes_including_dummy": 61,
+          "before_memory": {
+            "VmRSS": 225472512,
+            "RssAnon": 113922048,
+            "RssFile": 111550464,
+            "RssShmem": 0
+          },
+          "gc_count_before": [
+            286,
+            5,
+            0
+          ],
+          "new_leaf_cf": 854,
+          "overlap_memory": {
+            "VmRSS": 225497088,
+            "RssAnon": 113946624,
+            "RssFile": 111550464,
+            "RssShmem": 0
+          },
+          "after_swap_memory": {
+            "VmRSS": 225497088,
+            "RssAnon": 113946624,
+            "RssFile": 111550464,
+            "RssShmem": 0
+          },
+          "retired_alive_after_swap": 61,
+          "all_retired_alive_after_swap": 61,
+          "explicit_gc_seconds": 0.03334952299996985,
+          "gc_collected_objects": 1994,
+          "after_gc_or_noop_memory": {
+            "VmRSS": 225497088,
+            "RssAnon": 113946624,
+            "RssFile": 111550464,
+            "RssShmem": 0
+          },
+          "retired_alive_after_gc_or_noop": 0,
+          "all_retired_alive_after_gc_or_noop": 0,
+          "gc_count_after": [
+            18,
+            0,
+            0
+          ]
+        },
+        {
+          "arrival": 10240,
+          "old_leaf_cf": 1845,
+          "retired_leaf_nodes_including_dummy": 66,
+          "before_memory": {
+            "VmRSS": 225378304,
+            "RssAnon": 113827840,
+            "RssFile": 111550464,
+            "RssShmem": 0
+          },
+          "gc_count_before": [
+            390,
+            5,
+            0
+          ],
+          "new_leaf_cf": 971,
+          "overlap_memory": {
+            "VmRSS": 225390592,
+            "RssAnon": 113840128,
+            "RssFile": 111550464,
+            "RssShmem": 0
+          },
+          "after_swap_memory": {
+            "VmRSS": 225390592,
+            "RssAnon": 113840128,
+            "RssFile": 111550464,
+            "RssShmem": 0
+          },
+          "retired_alive_after_swap": 66,
+          "all_retired_alive_after_swap": 66,
+          "explicit_gc_seconds": 0.03771576500002993,
+          "gc_collected_objects": 1978,
+          "after_gc_or_noop_memory": {
+            "VmRSS": 225390592,
+            "RssAnon": 113840128,
+            "RssFile": 111550464,
+            "RssShmem": 0
+          },
+          "retired_alive_after_gc_or_noop": 0,
+          "all_retired_alive_after_gc_or_noop": 0,
+          "gc_count_after": [
+            23,
+            0,
+            0
+          ]
+        }
+      ],
+      "serialized_final_model_bytes": 14140689,
+      "memory": {
+        "imports": {
+          "VmRSS": 169140224,
+          "RssAnon": 82460672,
+          "RssFile": 86679552,
+          "RssShmem": 0
+        },
+        "mapped_before_touch": {
+          "VmRSS": 169172992,
+          "RssAnon": 82472960,
+          "RssFile": 86700032,
+          "RssShmem": 0
+        },
+        "after_touch": {
+          "VmRSS": 190545920,
+          "RssAnon": 82477056,
+          "RssFile": 108068864,
+          "RssShmem": 0
+        },
+        "baseline_after_touch_api_warmup_sampler_start": {
+          "VmRSS": 192548864,
+          "RssAnon": 82587648,
+          "RssFile": 109961216,
+          "RssShmem": 0
+        },
+        "after_warmup": {
+          "VmRSS": 205770752,
+          "RssAnon": 94748672,
+          "RssFile": 111022080,
+          "RssShmem": 0
+        },
+        "phase_peaks": {
+          "warmup": {
+            "VmRSS": 206868480,
+            "RssAnon": 95846400,
+            "RssFile": 111022080,
+            "RssShmem": 0
+          },
+          "predict": {
+            "VmRSS": 225497088,
+            "RssAnon": 113946624,
+            "RssFile": 111550464,
+            "RssShmem": 0
+          },
+          "score": {
+            "VmRSS": 225497088,
+            "RssAnon": 113946624,
+            "RssFile": 111550464,
+            "RssShmem": 0
+          },
+          "update": {
+            "VmRSS": 225497088,
+            "RssAnon": 113946624,
+            "RssFile": 111550464,
+            "RssShmem": 0
+          },
+          "final_idle": {
+            "VmRSS": 225452032,
+            "RssAnon": 113901568,
+            "RssFile": 111550464,
+            "RssShmem": 0
+          }
+        },
+        "algorithm_phase_peak": {
+          "VmRSS": 225497088,
+          "RssAnon": 113946624,
+          "RssFile": 111550464,
+          "RssShmem": 0
+        },
+        "algorithm_peak_delta_from_baseline": {
+          "VmRSS": 32948224,
+          "RssAnon": 31358976,
+          "RssFile": 1589248,
+          "RssShmem": 0
+        },
+        "all_phase_peak": {
+          "VmRSS": 225497088,
+          "RssAnon": 113946624,
+          "RssFile": 111550464,
+          "RssShmem": 0
+        },
+        "final_after_gc": {
+          "VmRSS": 225452032,
+          "RssAnon": 113901568,
+          "RssFile": 111550464,
+          "RssShmem": 0
+        },
+        "resource_highwater_before_serialization_bytes": 225349632,
+        "sample_interval_ms": 5,
+        "samples": 2811,
+        "mapped_file_bytes": 21358592
+      },
+      "python": "3.12.14",
+      "versions": {
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "scikit-learn": "1.8.0",
+        "threadpoolctl": "3.6.0"
+      },
+      "hardware": {
+        "machine": "x86_64",
+        "logical_cpus": 9,
+        "processor": "AMD EPYC 9V74 80-Core Processor"
+      },
+      "gc_thresholds": [
+        700,
+        10,
+        10
+      ],
+      "diagnostic_script_sha256": "36e3f3dc6c7336e248efd3da7deb8d64a5f28b3c1eb46bea5c7df4d693ef9535",
+      "repeat": 2,
+      "update_seconds": 12.77846782000006,
+      "explicit_gc_seconds": 0.17724752999993143
+    },
+    {
+      "diagnostic_arm": "automatic",
+      "protocol_sha256": "300698bd30cea2333b9c359c49f97ea5eaceb193c6b677454f35ff709d9eda7e",
+      "warmup_seconds": 1.0375323490000028,
+      "rebuild_events": [
+        {
+          "arrival": 2048,
+          "old_leaf_cf": 1783,
+          "retired_leaf_nodes_including_dummy": 60,
+          "before_memory": {
+            "VmRSS": 214544384,
+            "RssAnon": 101826560,
+            "RssFile": 112717824,
+            "RssShmem": 0
+          },
+          "gc_count_before": [
+            563,
+            0,
+            1
+          ],
+          "new_leaf_cf": 881,
+          "overlap_memory": {
+            "VmRSS": 221831168,
+            "RssAnon": 109109248,
+            "RssFile": 112721920,
+            "RssShmem": 0
+          },
+          "after_swap_memory": {
+            "VmRSS": 221831168,
+            "RssAnon": 109109248,
+            "RssFile": 112721920,
+            "RssShmem": 0
+          },
+          "retired_alive_after_swap": 60,
+          "all_retired_alive_after_swap": 60,
+          "explicit_gc_seconds": null,
+          "gc_collected_objects": null,
+          "after_gc_or_noop_memory": {
+            "VmRSS": 221831168,
+            "RssAnon": 109109248,
+            "RssFile": 112721920,
+            "RssShmem": 0
+          },
+          "retired_alive_after_gc_or_noop": 60,
+          "all_retired_alive_after_gc_or_noop": 60,
+          "gc_count_after": [
+            603,
+            3,
+            1
+          ]
+        },
+        {
+          "arrival": 4096,
+          "old_leaf_cf": 1790,
+          "retired_leaf_nodes_including_dummy": 58,
+          "before_memory": {
+            "VmRSS": 226902016,
+            "RssAnon": 114180096,
+            "RssFile": 112721920,
+            "RssShmem": 0
+          },
+          "gc_count_before": [
+            0,
+            9,
+            1
+          ],
+          "new_leaf_cf": 914,
+          "overlap_memory": {
+            "VmRSS": 231505920,
+            "RssAnon": 118784000,
+            "RssFile": 112721920,
+            "RssShmem": 0
+          },
+          "after_swap_memory": {
+            "VmRSS": 228753408,
+            "RssAnon": 116031488,
+            "RssFile": 112721920,
+            "RssShmem": 0
+          },
+          "retired_alive_after_swap": 58,
+          "all_retired_alive_after_swap": 118,
+          "explicit_gc_seconds": null,
+          "gc_collected_objects": null,
+          "after_gc_or_noop_memory": {
+            "VmRSS": 228753408,
+            "RssAnon": 116031488,
+            "RssFile": 112721920,
+            "RssShmem": 0
+          },
+          "retired_alive_after_gc_or_noop": 58,
+          "all_retired_alive_after_gc_or_noop": 118,
+          "gc_count_after": [
+            125,
+            0,
+            2
+          ]
+        },
+        {
+          "arrival": 6144,
+          "old_leaf_cf": 1913,
+          "retired_leaf_nodes_including_dummy": 67,
+          "before_memory": {
+            "VmRSS": 234184704,
+            "RssAnon": 121462784,
+            "RssFile": 112721920,
+            "RssShmem": 0
+          },
+          "gc_count_before": [
+            625,
+            5,
+            2
+          ],
+          "new_leaf_cf": 991,
+          "overlap_memory": {
+            "VmRSS": 243236864,
+            "RssAnon": 130510848,
+            "RssFile": 112726016,
+            "RssShmem": 0
+          },
+          "after_swap_memory": {
+            "VmRSS": 243236864,
+            "RssAnon": 130510848,
+            "RssFile": 112726016,
+            "RssShmem": 0
+          },
+          "retired_alive_after_swap": 67,
+          "all_retired_alive_after_swap": 185,
+          "explicit_gc_seconds": null,
+          "gc_collected_objects": null,
+          "after_gc_or_noop_memory": {
+            "VmRSS": 243236864,
+            "RssAnon": 130510848,
+            "RssFile": 112726016,
+            "RssShmem": 0
+          },
+          "retired_alive_after_gc_or_noop": 67,
+          "all_retired_alive_after_gc_or_noop": 185,
+          "gc_count_after": [
+            252,
+            9,
+            2
+          ]
+        },
+        {
+          "arrival": 8192,
+          "old_leaf_cf": 1871,
+          "retired_leaf_nodes_including_dummy": 61,
+          "before_memory": {
+            "VmRSS": 248283136,
+            "RssAnon": 135557120,
+            "RssFile": 112726016,
+            "RssShmem": 0
+          },
+          "gc_count_before": [
+            479,
+            2,
+            3
+          ],
+          "new_leaf_cf": 854,
+          "overlap_memory": {
+            "VmRSS": 251858944,
+            "RssAnon": 139132928,
+            "RssFile": 112726016,
+            "RssShmem": 0
+          },
+          "after_swap_memory": {
+            "VmRSS": 251858944,
+            "RssAnon": 139132928,
+            "RssFile": 112726016,
+            "RssShmem": 0
+          },
+          "retired_alive_after_swap": 61,
+          "all_retired_alive_after_swap": 246,
+          "explicit_gc_seconds": null,
+          "gc_collected_objects": null,
+          "after_gc_or_noop_memory": {
+            "VmRSS": 251858944,
+            "RssAnon": 139132928,
+            "RssFile": 112726016,
+            "RssShmem": 0
+          },
+          "retired_alive_after_gc_or_noop": 61,
+          "all_retired_alive_after_gc_or_noop": 246,
+          "gc_count_after": [
+            492,
+            5,
+            3
+          ]
+        },
+        {
+          "arrival": 10240,
+          "old_leaf_cf": 1845,
+          "retired_leaf_nodes_including_dummy": 66,
+          "before_memory": {
+            "VmRSS": 257769472,
+            "RssAnon": 145043456,
+            "RssFile": 112726016,
+            "RssShmem": 0
+          },
+          "gc_count_before": [
+            149,
+            11,
+            3
+          ],
+          "new_leaf_cf": 971,
+          "overlap_memory": {
+            "VmRSS": 263004160,
+            "RssAnon": 150278144,
+            "RssFile": 112726016,
+            "RssShmem": 0
+          },
+          "after_swap_memory": {
+            "VmRSS": 263004160,
+            "RssAnon": 150278144,
+            "RssFile": 112726016,
+            "RssShmem": 0
+          },
+          "retired_alive_after_swap": 66,
+          "all_retired_alive_after_swap": 312,
+          "explicit_gc_seconds": null,
+          "gc_collected_objects": null,
+          "after_gc_or_noop_memory": {
+            "VmRSS": 263004160,
+            "RssAnon": 150278144,
+            "RssFile": 112726016,
+            "RssShmem": 0
+          },
+          "retired_alive_after_gc_or_noop": 66,
+          "all_retired_alive_after_gc_or_noop": 312,
+          "gc_count_after": [
+            432,
+            2,
+            4
+          ]
+        }
+      ],
+      "serialized_final_model_bytes": 14140689,
+      "memory": {
+        "imports": {
+          "VmRSS": 169385984,
+          "RssAnon": 82468864,
+          "RssFile": 86917120,
+          "RssShmem": 0
+        },
+        "mapped_before_touch": {
+          "VmRSS": 169414656,
+          "RssAnon": 82477056,
+          "RssFile": 86937600,
+          "RssShmem": 0
+        },
+        "after_touch": {
+          "VmRSS": 190787584,
+          "RssAnon": 82481152,
+          "RssFile": 108306432,
+          "RssShmem": 0
+        },
+        "baseline_after_touch_api_warmup_sampler_start": {
+          "VmRSS": 193851392,
+          "RssAnon": 82587648,
+          "RssFile": 111263744,
+          "RssShmem": 0
+        },
+        "after_warmup": {
+          "VmRSS": 207073280,
+          "RssAnon": 94748672,
+          "RssFile": 112324608,
+          "RssShmem": 0
+        },
+        "phase_peaks": {
+          "warmup": {
+            "VmRSS": 208048128,
+            "RssAnon": 95723520,
+            "RssFile": 112324608,
+            "RssShmem": 0
+          },
+          "predict": {
+            "VmRSS": 263548928,
+            "RssAnon": 150822912,
+            "RssFile": 112726016,
+            "RssShmem": 0
+          },
+          "score": {
+            "VmRSS": 263553024,
+            "RssAnon": 150827008,
+            "RssFile": 112726016,
+            "RssShmem": 0
+          },
+          "update": {
+            "VmRSS": 267255808,
+            "RssAnon": 154529792,
+            "RssFile": 112726016,
+            "RssShmem": 0
+          },
+          "final_idle": {
+            "VmRSS": 267255808,
+            "RssAnon": 154529792,
+            "RssFile": 112726016,
+            "RssShmem": 0
+          }
+        },
+        "algorithm_phase_peak": {
+          "VmRSS": 267255808,
+          "RssAnon": 154529792,
+          "RssFile": 112726016,
+          "RssShmem": 0
+        },
+        "algorithm_peak_delta_from_baseline": {
+          "VmRSS": 73404416,
+          "RssAnon": 71942144,
+          "RssFile": 1462272,
+          "RssShmem": 0
+        },
+        "all_phase_peak": {
+          "VmRSS": 267255808,
+          "RssAnon": 154529792,
+          "RssFile": 112726016,
+          "RssShmem": 0
+        },
+        "final_after_gc": {
+          "VmRSS": 267255808,
+          "RssAnon": 154529792,
+          "RssFile": 112726016,
+          "RssShmem": 0
+        },
+        "resource_highwater_before_serialization_bytes": 267034624,
+        "sample_interval_ms": 5,
+        "samples": 2911,
+        "mapped_file_bytes": 21358592
+      },
+      "python": "3.12.14",
+      "versions": {
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "scikit-learn": "1.8.0",
+        "threadpoolctl": "3.6.0"
+      },
+      "hardware": {
+        "machine": "x86_64",
+        "logical_cpus": 9,
+        "processor": "AMD EPYC 9V74 80-Core Processor"
+      },
+      "gc_thresholds": [
+        700,
+        10,
+        10
+      ],
+      "diagnostic_script_sha256": "36e3f3dc6c7336e248efd3da7deb8d64a5f28b3c1eb46bea5c7df4d693ef9535",
+      "repeat": 2,
+      "update_seconds": 13.325352283000257,
+      "explicit_gc_seconds": 0
+    }
+  ],
+  "scripts": {
+    "diagnose_calendar_gc.py": "36e3f3dc6c7336e248efd3da7deb8d64a5f28b3c1eb46bea5c7df4d693ef9535",
+    "summarize_calendar_gc.py": "9bc89dff7a9a37b5fbb2e7b7c1fb8aad065c4a5fca8312a615dd47c5f8ddcbb1",
+    "benchmark_calendar_v2.py": "48a20685d788133537414642fb6bdb9c266d3689d56c021f1813fa33c82e6ea5"
+  }
+}
