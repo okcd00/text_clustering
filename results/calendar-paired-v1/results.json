@@ -1,0 +1,1090 @@
+{
+  "status": "executed_and_repeated",
+  "protocol": {
+    "id": "news-calendar-paired-v1",
+    "sampling_protocol": "news-calendar-preflight-v1",
+    "representation": "multilingual-e5-small pinned semantic-pilot-v1 revision; query prefix, masked mean, L2, float32, max_length 512",
+    "threshold": 0.3,
+    "branching_factor": 50,
+    "n_clusters": null,
+    "methods": [
+      "frozen",
+      "unbounded",
+      "cap-2048",
+      "cap-128",
+      "rolling-2048"
+    ],
+    "maintenance": "same full warmup for every method; cap stops future insertions once leaf CF count >= budget, including warmup already at budget; rolling rebuild after every 2048 scored arrivals using last 2048 learned rows, each row once",
+    "prediction": "all day predictions before any learning in that day; warmup and day updates chronological one row at a time",
+    "metrics": "per-day STORY and CATEGORY ARI, primary all and secondary first normalized title since warmup, row-weighted daily means (not pooled cross-window ARI); <2 rows returns null; singleton labels use sklearn definition",
+    "information_budget": "no labels in representation, sampling, fitting, maintenance or parameter choice; no threshold tuning; 128 cap is a prespecified small-budget sensitivity",
+    "timing": "separate encoding from clustering; fresh process per method, one numerical thread; no JIT; all maintenance included; process RSS includes vectors and imports, not encoder",
+    "identity": "within-window ARI only; no persistent cross-window identity claim"
+  },
+  "source": {
+    "dataset": "UCI News Aggregator",
+    "source": "https://archive.ics.uci.edu/dataset/359/news+aggregator",
+    "doi": "https://doi.org/10.24432/C5F61C",
+    "attribution": "Gasparetti, F. (2017). News Aggregator [Dataset]. UCI Machine Learning Repository.",
+    "license": "CC BY 4.0",
+    "license_source": "https://archive.ics.uci.edu/dataset/359/news+aggregator",
+    "checked_date": "2026-11-14",
+    "archive": {
+      "url": "https://archive.ics.uci.edu/static/public/359/news%2Baggregator.zip",
+      "name": "news-aggregator.zip",
+      "bytes": 29224203,
+      "sha256": "1f5f08691f0ce576cb0b5cfdbcb8c55e0ec14dda8f3e07933da72c500338845a"
+    },
+    "member": {
+      "name": "newsCorpora.csv",
+      "bytes": 102297000,
+      "sha256": "d343d484bb7e97534acf25898b688547b8140a0cea64590456ba368983f28452"
+    },
+    "format": {
+      "encoding": "UTF-8 strict",
+      "delimiter": "tab",
+      "header": false,
+      "fields": 8
+    },
+    "timestamp": "Approximate publication time, milliseconds since Unix epoch; interpret UTC, not observed user behavior."
+  },
+  "representation": {
+    "shape": [
+      5632,
+      384
+    ],
+    "dtype": "float32",
+    "encode_seconds": 83.53606364200004,
+    "truncated_rows": 0,
+    "model_artifacts": {
+      "config.json": {
+        "sha256": "69137736cab8b8903a07fe8afaafdda25aac55415a12a55d1bffa9f581abf959",
+        "bytes": 655
+      },
+      "model.safetensors": {
+        "sha256": "1a55775f53449dac10a2bcbc312469fac40b96d53198c407081a831f81c98477",
+        "bytes": 470641600
+      },
+      "sentencepiece.bpe.model": {
+        "sha256": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+        "bytes": 5069051
+      },
+      "special_tokens_map.json": {
+        "sha256": "d05497f1da52c5e09554c0cd874037a083e1dc1b9cfd48034d1c717f1afc07a7",
+        "bytes": 167
+      },
+      "tokenizer.json": {
+        "sha256": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+        "bytes": 17082730
+      },
+      "tokenizer_config.json": {
+        "sha256": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b",
+        "bytes": 443
+      }
+    },
+    "process_peak_rss_mib": 1062.74609375,
+    "model": "intfloat/multilingual-e5-small",
+    "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3"
+  },
+  "scripts": {
+    "summarize_calendar_paired.py": "402f93da26a3d43743039e6d42d5cfb29e4d0119c479afcc6d40adbed4528c77",
+    "benchmark_news_calendar.py": "7b3fe6f2ff62b232d26950cfb4af94c07f33f9d2149412c80dc52f185aee3aa6",
+    "prepare_news_calendar.py": "e8872e77700cade9a501f8a3e008d372c7cec3e97a341a5f1cd3ec42f9f51a0d",
+    "protocol.json": "be551e936e53fd79d057821cdf99362967a7874ee0be525c8ab9736232362c73"
+  },
+  "runs": [
+    {
+      "method": "frozen",
+      "status": "executed",
+      "warmup_leaf_cf": 891,
+      "warmup_seconds": 0.9078816009998718,
+      "first_freeze_arrival": null,
+      "total_rebuilds": 0,
+      "total_skipped_updates": 3584,
+      "windows": [
+        {
+          "date": "2014-03-24",
+          "n": 512,
+          "leaf_cf_before": 891,
+          "leaf_cf_after": 891,
+          "skipped_updates": 512,
+          "rebuilds": 0,
+          "predict_seconds": 0.011079118999987259,
+          "update_seconds": 9.5651000037833e-05,
+          "serialized_model_bytes": 7397620,
+          "scores": {
+            "all": {
+              "n": 512,
+              "story_ari": 0.4297134110043371,
+              "category_ari": 0.05057884561945711
+            },
+            "first_title": {
+              "n": 510,
+              "story_ari": 0.4265822157890153,
+              "category_ari": 0.050412857707297795
+            }
+          }
+        },
+        {
+          "date": "2014-03-25",
+          "n": 512,
+          "leaf_cf_before": 891,
+          "leaf_cf_after": 891,
+          "skipped_updates": 512,
+          "rebuilds": 0,
+          "predict_seconds": 0.010489066999980423,
+          "update_seconds": 6.88220000029105e-05,
+          "serialized_model_bytes": 7397620,
+          "scores": {
+            "all": {
+              "n": 512,
+              "story_ari": 0.3414478060886773,
+              "category_ari": 0.042089249599239334
+            },
+            "first_title": {
+              "n": 511,
+              "story_ari": 0.34152044329118914,
+              "category_ari": 0.04227250157014055
+            }
+          }
+        },
+        {
+          "date": "2014-03-26",
+          "n": 512,
+          "leaf_cf_before": 891,
+          "leaf_cf_after": 891,
+          "skipped_updates": 512,
+          "rebuilds": 0,
+          "predict_seconds": 0.009766958999989583,
+          "update_seconds": 6.650800014540437e-05,
+          "serialized_model_bytes": 7397620,
+          "scores": {
+            "all": {
+              "n": 512,
+              "story_ari": 0.28717587958466123,
+              "category_ari": 0.03573717272279939
+            },
+            "first_title": {
+              "n": 512,
+              "story_ari": 0.28717587958466123,
+              "category_ari": 0.03573717272279939
+            }
+          }
+        },
+        {
+          "date": "2014-03-27",
+          "n": 512,
+          "leaf_cf_before": 891,
+          "leaf_cf_after": 891,
+          "skipped_updates": 512,
+          "rebuilds": 0,
+          "predict_seconds": 0.010583325999959925,
+          "update_seconds": 6.79300001138472e-05,
+          "serialized_model_bytes": 7397620,
+          "scores": {
+            "all": {
+              "n": 512,
+              "story_ari": 0.28007513903688436,
+              "category_ari": 0.03475888084735218
+            },
+            "first_title": {
+              "n": 506,
+              "story_ari": 0.27923842020790407,
+              "category_ari": 0.03500034815263329
+            }
+          }
+        },
+        {
+          "date": "2014-03-28",
+          "n": 512,
+          "leaf_cf_before": 891,
+          "leaf_cf_after": 891,
+          "skipped_updates": 512,
+          "rebuilds": 0,
+          "predict_seconds": 0.009909958999969604,
+          "update_seconds": 6.778000010854157e-05,
+          "serialized_model_bytes": 7397620,
+          "scores": {
+            "all": {
+              "n": 512,
+              "story_ari": 0.3465435242259118,
+              "category_ari": 0.044470470914197084
+            },
+            "first_title": {
+              "n": 508,
+              "story_ari": 0.3517462736011395,
+              "category_ari": 0.044766879555439794
+            }
+          }
+        },
+        {
+          "date": "2014-03-29",
+          "n": 512,
+          "leaf_cf_before": 891,
+          "leaf_cf_after": 891,
+          "skipped_updates": 512,
+          "rebuilds": 0,
+          "predict_seconds": 0.010523207999995066,
+          "update_seconds": 9.427000009054609e-05,
+          "serialized_model_bytes": 7397620,
+          "scores": {
+            "all": {
+              "n": 512,
+              "story_ari": 0.3121584881402043,
+              "category_ari": 0.03967406479548584
+            },
+            "first_title": {
+              "n": 504,
+              "story_ari": 0.31095224707217184,
+              "category_ari": 0.03934590449333728
+            }
+          }
+        },
+        {
+          "date": "2014-03-30",
+          "n": 512,
+          "leaf_cf_before": 891,
+          "leaf_cf_after": 891,
+          "skipped_updates": 512,
+          "rebuilds": 0,
+          "predict_seconds": 0.010149743999818384,
+          "update_seconds": 6.729999995513936e-05,
+          "serialized_model_bytes": 7397620,
+          "scores": {
+            "all": {
+              "n": 512,
+              "story_ari": 0.21463978895953437,
+              "category_ari": 0.04637986194870935
+            },
+            "first_title": {
+              "n": 502,
+              "story_ari": 0.21311529957869302,
+              "category_ari": 0.045847000627728604
+            }
+          }
+        }
+      ],
+      "row_weighted_daily_scores": {
+        "all": {
+          "story_ari": 0.31596486243431576,
+          "category_ari": 0.04195550663532004
+        },
+        "first_title": {
+          "story_ari": 0.3160128025468615,
+          "category_ari": 0.04191008143154928
+        }
+      },
+      "process_peak_rss_mib": 648.62109375,
+      "versions": {
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "scikit-learn": "1.8.0",
+        "threadpoolctl": "3.6.0"
+      },
+      "python": "3.12.14",
+      "repeat_check": "all non-timing/resource fields and private prediction digest exact",
+      "second_run_timing": {
+        "warmup_seconds": 0.919248879999941,
+        "predict_seconds": 0.06772253600001932,
+        "update_seconds": 0.0005167060000985657,
+        "process_peak_rss_mib": 648.4375
+      }
+    },
+    {
+      "method": "unbounded",
+      "status": "executed",
+      "warmup_leaf_cf": 891,
+      "warmup_seconds": 0.8167183949999526,
+      "first_freeze_arrival": null,
+      "total_rebuilds": 0,
+      "total_skipped_updates": 0,
+      "windows": [
+        {
+          "date": "2014-03-24",
+          "n": 512,
+          "leaf_cf_before": 891,
+          "leaf_cf_after": 1086,
+          "skipped_updates": 0,
+          "rebuilds": 0,
+          "predict_seconds": 0.009280308999905174,
+          "update_seconds": 0.25059065899995403,
+          "serialized_model_bytes": 8916663,
+          "scores": {
+            "all": {
+              "n": 512,
+              "story_ari": 0.4297134110043371,
+              "category_ari": 0.05057884561945711
+            },
+            "first_title": {
+              "n": 510,
+              "story_ari": 0.4265822157890153,
+              "category_ari": 0.050412857707297795
+            }
+          }
+        },
+        {
+          "date": "2014-03-25",
+          "n": 512,
+          "leaf_cf_before": 1086,
+          "leaf_cf_after": 1328,
+          "skipped_updates": 0,
+          "rebuilds": 0,
+          "predict_seconds": 0.011572844000056648,
+          "update_seconds": 0.2942531090000102,
+          "serialized_model_bytes": 11029574,
+          "scores": {
+            "all": {
+              "n": 512,
+              "story_ari": 0.39561761708663024,
+              "category_ari": 0.045399385592607235
+            },
+            "first_title": {
+              "n": 511,
+              "story_ari": 0.395708084844135,
+              "category_ari": 0.04559654091151611
+            }
+          }
+        },
+        {
+          "date": "2014-03-26",
+          "n": 512,
+          "leaf_cf_before": 1328,
+          "leaf_cf_after": 1541,
+          "skipped_updates": 0,
+          "rebuilds": 0,
+          "predict_seconds": 0.042158273000040936,
+          "update_seconds": 0.3376915740000186,
+          "serialized_model_bytes": 12722857,
+          "scores": {
+            "all": {
+              "n": 512,
+              "story_ari": 0.44310846033251844,
+              "category_ari": 0.046456378949711635
+            },
+            "first_title": {
+              "n": 512,
+              "story_ari": 0.44310846033251844,
+              "category_ari": 0.046456378949711635
+            }
+          }
+        },
+        {
+          "date": "2014-03-27",
+          "n": 512,
+          "leaf_cf_before": 1541,
+          "leaf_cf_after": 1784,
+          "skipped_updates": 0,
+          "rebuilds": 0,
+          "predict_seconds": 0.016250035000211938,
+          "update_seconds": 0.37573218299985456,
+          "serialized_model_bytes": 14640663,
+          "scores": {
+            "all": {
+              "n": 512,
+              "story_ari": 0.4338549094641787,
+              "category_ari": 0.04175342902558388
+            },
+            "first_title": {
+              "n": 506,
+              "story_ari": 0.4304643747698909,
+              "category_ari": 0.04212957467375623
+            }
+          }
+        },
+        {
+          "date": "2014-03-28",
+          "n": 512,
+          "leaf_cf_before": 1784,
+          "leaf_cf_after": 2010,
+          "skipped_updates": 0,
+          "rebuilds": 0,
+          "predict_seconds": 0.018277383999929953,
+          "update_seconds": 0.44558479199986323,
+          "serialized_model_bytes": 16229816,
+          "scores": {
+            "all": {
+              "n": 512,
+              "story_ari": 0.4209323134489539,
+              "category_ari": 0.039976635162768163
+            },
+            "first_title": {
+              "n": 508,
+              "story_ari": 0.4269718527144503,
+              "category_ari": 0.04032135558757486
+            }
+          }
+        },
+        {
+          "date": "2014-03-29",
+          "n": 512,
+          "leaf_cf_before": 2010,
+          "leaf_cf_after": 2240,
+          "skipped_updates": 0,
+          "rebuilds": 0,
+          "predict_seconds": 0.02111288100013553,
+          "update_seconds": 0.45180468800003837,
+          "serialized_model_bytes": 18503682,
+          "scores": {
+            "all": {
+              "n": 512,
+              "story_ari": 0.466668781693536,
+              "category_ari": 0.0394319345189524
+            },
+            "first_title": {
+              "n": 504,
+              "story_ari": 0.4724154032810319,
+              "category_ari": 0.039906359734399176
+            }
+          }
+        },
+        {
+          "date": "2014-03-30",
+          "n": 512,
+          "leaf_cf_before": 2240,
+          "leaf_cf_after": 2473,
+          "skipped_updates": 0,
+          "rebuilds": 0,
+          "predict_seconds": 0.02445706000003156,
+          "update_seconds": 0.6111983900000268,
+          "serialized_model_bytes": 20372890,
+          "scores": {
+            "all": {
+              "n": 512,
+              "story_ari": 0.3211233417431183,
+              "category_ari": 0.03779768727208148
+            },
+            "first_title": {
+              "n": 502,
+              "story_ari": 0.3124490557816545,
+              "category_ari": 0.03723544758372346
+            }
+          }
+        }
+      ],
+      "row_weighted_daily_scores": {
+        "all": {
+          "story_ari": 0.41585983353903894,
+          "category_ari": 0.04305632802016598
+        },
+        "first_title": {
+          "story_ari": 0.41550767159204516,
+          "category_ari": 0.04317530798630285
+        }
+      },
+      "process_peak_rss_mib": 649.54296875,
+      "versions": {
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "scikit-learn": "1.8.0",
+        "threadpoolctl": "3.6.0"
+      },
+      "python": "3.12.14",
+      "repeat_check": "all non-timing/resource fields and private prediction digest exact",
+      "second_run_timing": {
+        "warmup_seconds": 0.8919813249999606,
+        "predict_seconds": 0.12275872699979118,
+        "update_seconds": 3.3563299769998594,
+        "process_peak_rss_mib": 648.3828125
+      }
+    },
+    {
+      "method": "cap-2048",
+      "status": "executed",
+      "warmup_leaf_cf": 891,
+      "warmup_seconds": 0.8012625480000679,
+      "first_freeze_arrival": 2641,
+      "total_rebuilds": 0,
+      "total_skipped_updates": 944,
+      "windows": [
+        {
+          "date": "2014-03-24",
+          "n": 512,
+          "leaf_cf_before": 891,
+          "leaf_cf_after": 1086,
+          "skipped_updates": 0,
+          "rebuilds": 0,
+          "predict_seconds": 0.011535904000083974,
+          "update_seconds": 0.23571762999995372,
+          "serialized_model_bytes": 8916663,
+          "scores": {
+            "all": {
+              "n": 512,
+              "story_ari": 0.4297134110043371,
+              "category_ari": 0.05057884561945711
+            },
+            "first_title": {
+              "n": 510,
+              "story_ari": 0.4265822157890153,
+              "category_ari": 0.050412857707297795
+            }
+          }
+        },
+        {
+          "date": "2014-03-25",
+          "n": 512,
+          "leaf_cf_before": 1086,
+          "leaf_cf_after": 1328,
+          "skipped_updates": 0,
+          "rebuilds": 0,
+          "predict_seconds": 0.010889649999853646,
+          "update_seconds": 0.2699850230001175,
+          "serialized_model_bytes": 11029574,
+          "scores": {
+            "all": {
+              "n": 512,
+              "story_ari": 0.39561761708663024,
+              "category_ari": 0.045399385592607235
+            },
+            "first_title": {
+              "n": 511,
+              "story_ari": 0.395708084844135,
+              "category_ari": 0.04559654091151611
+            }
+          }
+        },
+        {
+          "date": "2014-03-26",
+          "n": 512,
+          "leaf_cf_before": 1328,
+          "leaf_cf_after": 1541,
+          "skipped_updates": 0,
+          "rebuilds": 0,
+          "predict_seconds": 0.01333165400001235,
+          "update_seconds": 0.33848885199995493,
+          "serialized_model_bytes": 12722857,
+          "scores": {
+            "all": {
+              "n": 512,
+              "story_ari": 0.44310846033251844,
+              "category_ari": 0.046456378949711635
+            },
+            "first_title": {
+              "n": 512,
+              "story_ari": 0.44310846033251844,
+              "category_ari": 0.046456378949711635
+            }
+          }
+        },
+        {
+          "date": "2014-03-27",
+          "n": 512,
+          "leaf_cf_before": 1541,
+          "leaf_cf_after": 1784,
+          "skipped_updates": 0,
+          "rebuilds": 0,
+          "predict_seconds": 0.015263242000173705,
+          "update_seconds": 0.3572593930000494,
+          "serialized_model_bytes": 14640663,
+          "scores": {
+            "all": {
+              "n": 512,
+              "story_ari": 0.4338549094641787,
+              "category_ari": 0.04175342902558388
+            },
+            "first_title": {
+              "n": 506,
+              "story_ari": 0.4304643747698909,
+              "category_ari": 0.04212957467375623
+            }
+          }
+        },
+        {
+          "date": "2014-03-28",
+          "n": 512,
+          "leaf_cf_before": 1784,
+          "leaf_cf_after": 2010,
+          "skipped_updates": 0,
+          "rebuilds": 0,
+          "predict_seconds": 0.017678063999937876,
+          "update_seconds": 0.484937969999919,
+          "serialized_model_bytes": 16229816,
+          "scores": {
+            "all": {
+              "n": 512,
+              "story_ari": 0.4209323134489539,
+              "category_ari": 0.039976635162768163
+            },
+            "first_title": {
+              "n": 508,
+              "story_ari": 0.4269718527144503,
+              "category_ari": 0.04032135558757486
+            }
+          }
+        },
+        {
+          "date": "2014-03-29",
+          "n": 512,
+          "leaf_cf_before": 2010,
+          "leaf_cf_after": 2048,
+          "skipped_updates": 432,
+          "rebuilds": 0,
+          "predict_seconds": 0.020070073999931992,
+          "update_seconds": 0.062323202000015954,
+          "serialized_model_bytes": 16510684,
+          "scores": {
+            "all": {
+              "n": 512,
+              "story_ari": 0.466668781693536,
+              "category_ari": 0.0394319345189524
+            },
+            "first_title": {
+              "n": 504,
+              "story_ari": 0.4724154032810319,
+              "category_ari": 0.039906359734399176
+            }
+          }
+        },
+        {
+          "date": "2014-03-30",
+          "n": 512,
+          "leaf_cf_before": 2048,
+          "leaf_cf_after": 2048,
+          "skipped_updates": 512,
+          "rebuilds": 0,
+          "predict_seconds": 0.02005568399999902,
+          "update_seconds": 0.00021713099999942642,
+          "serialized_model_bytes": 16510684,
+          "scores": {
+            "all": {
+              "n": 512,
+              "story_ari": 0.3035447819554063,
+              "category_ari": 0.040766064100395565
+            },
+            "first_title": {
+              "n": 502,
+              "story_ari": 0.29528297127691305,
+              "category_ari": 0.039912455180974464
+            }
+          }
+        }
+      ],
+      "row_weighted_daily_scores": {
+        "all": {
+          "story_ari": 0.41334861071222295,
+          "category_ari": 0.04348038185278229
+        },
+        "first_title": {
+          "story_ari": 0.41308229179430234,
+          "category_ari": 0.043553539850592175
+        }
+      },
+      "process_peak_rss_mib": 650.1796875,
+      "versions": {
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "scikit-learn": "1.8.0",
+        "threadpoolctl": "3.6.0"
+      },
+      "python": "3.12.14",
+      "repeat_check": "all non-timing/resource fields and private prediction digest exact",
+      "second_run_timing": {
+        "warmup_seconds": 0.8928959129998475,
+        "predict_seconds": 0.11270714500005852,
+        "update_seconds": 1.9959234509999533,
+        "process_peak_rss_mib": 649.078125
+      }
+    },
+    {
+      "method": "cap-128",
+      "status": "executed",
+      "warmup_leaf_cf": 891,
+      "warmup_seconds": 0.8648234610000145,
+      "first_freeze_arrival": 1,
+      "total_rebuilds": 0,
+      "total_skipped_updates": 3584,
+      "windows": [
+        {
+          "date": "2014-03-24",
+          "n": 512,
+          "leaf_cf_before": 891,
+          "leaf_cf_after": 891,
+          "skipped_updates": 512,
+          "rebuilds": 0,
+          "predict_seconds": 0.011049136999872644,
+          "update_seconds": 0.00021645200013153953,
+          "serialized_model_bytes": 7397620,
+          "scores": {
+            "all": {
+              "n": 512,
+              "story_ari": 0.4297134110043371,
+              "category_ari": 0.05057884561945711
+            },
+            "first_title": {
+              "n": 510,
+              "story_ari": 0.4265822157890153,
+              "category_ari": 0.050412857707297795
+            }
+          }
+        },
+        {
+          "date": "2014-03-25",
+          "n": 512,
+          "leaf_cf_before": 891,
+          "leaf_cf_after": 891,
+          "skipped_updates": 512,
+          "rebuilds": 0,
+          "predict_seconds": 0.009228939000195169,
+          "update_seconds": 0.00026260100003128173,
+          "serialized_model_bytes": 7397620,
+          "scores": {
+            "all": {
+              "n": 512,
+              "story_ari": 0.3414478060886773,
+              "category_ari": 0.042089249599239334
+            },
+            "first_title": {
+              "n": 511,
+              "story_ari": 0.34152044329118914,
+              "category_ari": 0.04227250157014055
+            }
+          }
+        },
+        {
+          "date": "2014-03-26",
+          "n": 512,
+          "leaf_cf_before": 891,
+          "leaf_cf_after": 891,
+          "skipped_updates": 512,
+          "rebuilds": 0,
+          "predict_seconds": 0.009326172999863047,
+          "update_seconds": 0.0002590050000890187,
+          "serialized_model_bytes": 7397620,
+          "scores": {
+            "all": {
+              "n": 512,
+              "story_ari": 0.28717587958466123,
+              "category_ari": 0.03573717272279939
+            },
+            "first_title": {
+              "n": 512,
+              "story_ari": 0.28717587958466123,
+              "category_ari": 0.03573717272279939
+            }
+          }
+        },
+        {
+          "date": "2014-03-27",
+          "n": 512,
+          "leaf_cf_before": 891,
+          "leaf_cf_after": 891,
+          "skipped_updates": 512,
+          "rebuilds": 0,
+          "predict_seconds": 0.009396098000024722,
+          "update_seconds": 0.0002464570000029198,
+          "serialized_model_bytes": 7397620,
+          "scores": {
+            "all": {
+              "n": 512,
+              "story_ari": 0.28007513903688436,
+              "category_ari": 0.03475888084735218
+            },
+            "first_title": {
+              "n": 506,
+              "story_ari": 0.27923842020790407,
+              "category_ari": 0.03500034815263329
+            }
+          }
+        },
+        {
+          "date": "2014-03-28",
+          "n": 512,
+          "leaf_cf_before": 891,
+          "leaf_cf_after": 891,
+          "skipped_updates": 512,
+          "rebuilds": 0,
+          "predict_seconds": 0.00927045100002033,
+          "update_seconds": 0.0002205879998200544,
+          "serialized_model_bytes": 7397620,
+          "scores": {
+            "all": {
+              "n": 512,
+              "story_ari": 0.3465435242259118,
+              "category_ari": 0.044470470914197084
+            },
+            "first_title": {
+              "n": 508,
+              "story_ari": 0.3517462736011395,
+              "category_ari": 0.044766879555439794
+            }
+          }
+        },
+        {
+          "date": "2014-03-29",
+          "n": 512,
+          "leaf_cf_before": 891,
+          "leaf_cf_after": 891,
+          "skipped_updates": 512,
+          "rebuilds": 0,
+          "predict_seconds": 0.008801263000123072,
+          "update_seconds": 0.0002168020000681281,
+          "serialized_model_bytes": 7397620,
+          "scores": {
+            "all": {
+              "n": 512,
+              "story_ari": 0.3121584881402043,
+              "category_ari": 0.03967406479548584
+            },
+            "first_title": {
+              "n": 504,
+              "story_ari": 0.31095224707217184,
+              "category_ari": 0.03934590449333728
+            }
+          }
+        },
+        {
+          "date": "2014-03-30",
+          "n": 512,
+          "leaf_cf_before": 891,
+          "leaf_cf_after": 891,
+          "skipped_updates": 512,
+          "rebuilds": 0,
+          "predict_seconds": 0.008924435999915659,
+          "update_seconds": 0.00022696800010635343,
+          "serialized_model_bytes": 7397620,
+          "scores": {
+            "all": {
+              "n": 512,
+              "story_ari": 0.21463978895953437,
+              "category_ari": 0.04637986194870935
+            },
+            "first_title": {
+              "n": 502,
+              "story_ari": 0.21311529957869302,
+              "category_ari": 0.045847000627728604
+            }
+          }
+        }
+      ],
+      "row_weighted_daily_scores": {
+        "all": {
+          "story_ari": 0.31596486243431576,
+          "category_ari": 0.04195550663532004
+        },
+        "first_title": {
+          "story_ari": 0.3160128025468615,
+          "category_ari": 0.04191008143154928
+        }
+      },
+      "process_peak_rss_mib": 648.8046875,
+      "versions": {
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "scikit-learn": "1.8.0",
+        "threadpoolctl": "3.6.0"
+      },
+      "python": "3.12.14",
+      "repeat_check": "all non-timing/resource fields and private prediction digest exact",
+      "second_run_timing": {
+        "warmup_seconds": 1.0545079339999575,
+        "predict_seconds": 0.06901910600026895,
+        "update_seconds": 0.0015400939996652596,
+        "process_peak_rss_mib": 648.625
+      }
+    },
+    {
+      "method": "rolling-2048",
+      "status": "executed",
+      "warmup_leaf_cf": 891,
+      "warmup_seconds": 0.75729916399996,
+      "first_freeze_arrival": null,
+      "total_rebuilds": 1,
+      "total_skipped_updates": 0,
+      "windows": [
+        {
+          "date": "2014-03-24",
+          "n": 512,
+          "leaf_cf_before": 891,
+          "leaf_cf_after": 1086,
+          "skipped_updates": 0,
+          "rebuilds": 0,
+          "predict_seconds": 0.009536388000014995,
+          "update_seconds": 0.24115055800007212,
+          "serialized_model_bytes": 8916663,
+          "scores": {
+            "all": {
+              "n": 512,
+              "story_ari": 0.4297134110043371,
+              "category_ari": 0.05057884561945711
+            },
+            "first_title": {
+              "n": 510,
+              "story_ari": 0.4265822157890153,
+              "category_ari": 0.050412857707297795
+            }
+          }
+        },
+        {
+          "date": "2014-03-25",
+          "n": 512,
+          "leaf_cf_before": 1086,
+          "leaf_cf_after": 1328,
+          "skipped_updates": 0,
+          "rebuilds": 0,
+          "predict_seconds": 0.010939492000034079,
+          "update_seconds": 0.27534708000007413,
+          "serialized_model_bytes": 11029574,
+          "scores": {
+            "all": {
+              "n": 512,
+              "story_ari": 0.39561761708663024,
+              "category_ari": 0.045399385592607235
+            },
+            "first_title": {
+              "n": 511,
+              "story_ari": 0.395708084844135,
+              "category_ari": 0.04559654091151611
+            }
+          }
+        },
+        {
+          "date": "2014-03-26",
+          "n": 512,
+          "leaf_cf_before": 1328,
+          "leaf_cf_after": 1541,
+          "skipped_updates": 0,
+          "rebuilds": 0,
+          "predict_seconds": 0.012968606999947951,
+          "update_seconds": 0.31710111099982896,
+          "serialized_model_bytes": 12722857,
+          "scores": {
+            "all": {
+              "n": 512,
+              "story_ari": 0.44310846033251844,
+              "category_ari": 0.046456378949711635
+            },
+            "first_title": {
+              "n": 512,
+              "story_ari": 0.44310846033251844,
+              "category_ari": 0.046456378949711635
+            }
+          }
+        },
+        {
+          "date": "2014-03-27",
+          "n": 512,
+          "leaf_cf_before": 1541,
+          "leaf_cf_after": 881,
+          "skipped_updates": 0,
+          "rebuilds": 1,
+          "predict_seconds": 0.015012372999990475,
+          "update_seconds": 1.1453449639998325,
+          "serialized_model_bytes": 7369783,
+          "scores": {
+            "all": {
+              "n": 512,
+              "story_ari": 0.4338549094641787,
+              "category_ari": 0.04175342902558388
+            },
+            "first_title": {
+              "n": 506,
+              "story_ari": 0.4304643747698909,
+              "category_ari": 0.04212957467375623
+            }
+          }
+        },
+        {
+          "date": "2014-03-28",
+          "n": 512,
+          "leaf_cf_before": 881,
+          "leaf_cf_after": 1090,
+          "skipped_updates": 0,
+          "rebuilds": 0,
+          "predict_seconds": 0.008890055999927426,
+          "update_seconds": 0.25122483500013004,
+          "serialized_model_bytes": 9055297,
+          "scores": {
+            "all": {
+              "n": 512,
+              "story_ari": 0.4083494859400779,
+              "category_ari": 0.043377566618580776
+            },
+            "first_title": {
+              "n": 508,
+              "story_ari": 0.41311820071795974,
+              "category_ari": 0.043825598111953246
+            }
+          }
+        },
+        {
+          "date": "2014-03-29",
+          "n": 512,
+          "leaf_cf_before": 1090,
+          "leaf_cf_after": 1329,
+          "skipped_updates": 0,
+          "rebuilds": 0,
+          "predict_seconds": 0.011159678000012718,
+          "update_seconds": 0.28961467299996,
+          "serialized_model_bytes": 10722826,
+          "scores": {
+            "all": {
+              "n": 512,
+              "story_ari": 0.45215203194139425,
+              "category_ari": 0.04161367638209166
+            },
+            "first_title": {
+              "n": 504,
+              "story_ari": 0.45659324108575317,
+              "category_ari": 0.04214093194095153
+            }
+          }
+        },
+        {
+          "date": "2014-03-30",
+          "n": 512,
+          "leaf_cf_before": 1329,
+          "leaf_cf_after": 1560,
+          "skipped_updates": 0,
+          "rebuilds": 0,
+          "predict_seconds": 0.013365843999963545,
+          "update_seconds": 0.32503734300007636,
+          "serialized_model_bytes": 12499177,
+          "scores": {
+            "all": {
+              "n": 512,
+              "story_ari": 0.3481899949773432,
+              "category_ari": 0.04013032342990328
+            },
+            "first_title": {
+              "n": 502,
+              "story_ari": 0.342620071116243,
+              "category_ari": 0.03970410559817167
+            }
+          }
+        }
+      ],
+      "row_weighted_daily_scores": {
+        "all": {
+          "story_ari": 0.41585513010663994,
+          "category_ari": 0.04418708651684794
+        },
+        "first_title": {
+          "story_ari": 0.41554533687133755,
+          "category_ari": 0.04434210953928332
+        }
+      },
+      "process_peak_rss_mib": 648.9140625,
+      "versions": {
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "scikit-learn": "1.8.0",
+        "threadpoolctl": "3.6.0"
+      },
+      "python": "3.12.14",
+      "repeat_check": "all non-timing/resource fields and private prediction digest exact",
+      "second_run_timing": {
+        "warmup_seconds": 0.7773251569999502,
+        "predict_seconds": 0.09151098899974386,
+        "update_seconds": 3.298246643999846,
+        "process_peak_rss_mib": 648.953125
+      }
+    }
+  ],
+  "limitations": [
+    "thinned news-title replay, not behavior stream",
+    "single frozen setting; no universal ranking or statistical confidence",
+    "STORY silver labels and CATEGORY distinct target",
+    "within-day scores do not track identity across days",
+    "serialized bytes are storage proxy; RSS includes source parsing",
+    "cap128 already exceeded at common warmup, not a 128-budget method"
+  ]
+}

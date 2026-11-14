@@ -17,3 +17,16 @@ class Survey(unittest.TestCase):
         for u in p.urls:
             if u.startswith('#'):self.assertIn(u[1:],p.ids)
             elif not u.startswith('http'):self.assertTrue((ROOT/'docs'/u.split('?')[0].split('#')[0]).exists(),u)
+
+class StreamingSection(unittest.TestCase):
+    def test_independent_new_table_and_closed_history(self):
+        content=(ROOT/'docs/survey.html').read_text()
+        self.assertIn('id="roadmap-4"',content)
+        self.assertIn('calendar-paired-v1',content)
+        self.assertIn('<th scope="col">维护方法</th>',content)
+        self.assertIn('<details class="metric-help">\n<summary>查看历史场景 18',content)
+        self.assertNotIn('<details class="metric-help" open>',content)
+        self.assertNotIn('未运行编码或模型',content)
+        self.assertIn('不加入静态与路由的原 42 个运行结果',content)
+        # The previous charts retain their own dataset/runner, untouched by this table.
+        self.assertIn('href="unified-results.json"',content)

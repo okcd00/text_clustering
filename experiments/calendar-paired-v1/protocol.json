@@ -1,0 +1,15 @@
+{
+  "id": "news-calendar-paired-v1",
+  "sampling_protocol": "news-calendar-preflight-v1",
+  "representation": "multilingual-e5-small pinned semantic-pilot-v1 revision; query prefix, masked mean, L2, float32, max_length 512",
+  "threshold": 0.3,
+  "branching_factor": 50,
+  "n_clusters": null,
+  "methods": ["frozen", "unbounded", "cap-2048", "cap-128", "rolling-2048"],
+  "maintenance": "same full warmup for every method; cap stops future insertions once leaf CF count >= budget, including warmup already at budget; rolling rebuild after every 2048 scored arrivals using last 2048 learned rows, each row once",
+  "prediction": "all day predictions before any learning in that day; warmup and day updates chronological one row at a time",
+  "metrics": "per-day STORY and CATEGORY ARI, primary all and secondary first normalized title since warmup, row-weighted daily means (not pooled cross-window ARI); <2 rows returns null; singleton labels use sklearn definition",
+  "information_budget": "no labels in representation, sampling, fitting, maintenance or parameter choice; no threshold tuning; 128 cap is a prespecified small-budget sensitivity",
+  "timing": "separate encoding from clustering; fresh process per method, one numerical thread; no JIT; all maintenance included; process RSS includes vectors and imports, not encoder",
+  "identity": "within-window ARI only; no persistent cross-window identity claim"
+}

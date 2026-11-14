@@ -28,6 +28,18 @@ bash scripts/evaluate_survey.sh
 
 一轮顺序跑静态聚类与路由，输出两个完整汇总和一个可供页面读取的 `unified-results.json`。首次生成语义向量，设定 `SEMANTIC_PYTHON`、`MODEL_DIR` 并加 `--prepare-vectors`。脚本不自动发布；原始数据、向量和个体预测不会入库。运行缺行或重复会拒绝导出；显式失败保留为不完整结果，评估命令返回非零，不把失败写成零分。层级、时间流与维护场景需要独立协议，暂不使用旧分数填入当前对照。
 
+### 单独复跑日历流式维护
+
+[calendar-paired-v1 实测](results/calendar-paired-v1/README.md)比较同一 E5 表示和真实 UTC 日窗上的 BIRCH 冻结、更新及维护策略。它是独立实验，不加入上面静态／路由原有的 42 个运行结果，也不混用旧场景分数。先按[准备与复跑说明](experiments/calendar-paired-v1/README.md)准备 UCI 数据与向量缓存，再执行：
+
+```bash
+CALENDAR_PYTHON=/tmp/calendar-env/bin/python \
+CALENDAR_CACHE=/tmp/calendar-data CALENDAR_OUTPUT=/tmp/calendar-results \
+bash scripts/evaluate_calendar.sh
+```
+
+方法与结果表见 [Survey 的流式段落](https://dian.host/text_clustering/survey.html#roadmap-4)。该入口单独运行五个维护方案，不修改原有评估入口、图表数据或历史结果；不自动发布。
+
 ## 五分钟开始
 
 推荐 Python 3.10；部分可选算法需要 Python 3.11 或更高版本。

@@ -227,7 +227,7 @@ budget: tuning trials, labeled support, LLM tokens/calls, hardware</pre>
 <p class="list-item">6. <strong>同一成本边界</strong>：区分 encoder、fit、校准、预测、LLM 生成、维护、模型加载；报告峰值内存、吞吐/延迟及硬件。无法观测的账单写未知，不写零。</p>
 <p class="list-item">7. <strong>留出盲测</strong>：旧 test 已被反复查看，只能做描述性配对；新改进须留新验证/测试或预登记配置。已有历史 checkpoint 不可获取时，建立新 pinned encoder 基线，不回填旧分数。</p>
 <h2 id="datasets-5">5. 仍待补齐的协议 <a class="permalink" href="#datasets-5" aria-label="链接到此节">#</a></h2>
-<p>BANKING77 与 MASSIVE zh-CN 已分别给出英文细粒度与中文意图小样本结果。跨域的 CLINC150 可补相同 frozen encoder 下的静态聚类对照，并将原生 OOS 与 held-out intents 分设两个拒识组。层级先解决 WOS 重建和标签一致性，再跑；流式先借 COSID split 测旧新类干扰，再进入 UCI 时间回放。</p>
+<p>BANKING77 与 MASSIVE zh-CN 已分别给出英文细粒度与中文意图小样本结果。跨域的 CLINC150 可补相同 frozen encoder 下的静态聚类对照，并将原生 OOS 与 held-out intents 分设两个拒识组。层级先解决 WOS 重建和标签一致性，再跑；流式已有独立的 <a href="https://github.com/okcd00/text_clustering/blob/main/results/calendar-paired-v1/README.md">UCI 日历维护小试</a>，下一步延长维护触发后的观察期；COSID split 另测旧新类干扰，不能替代自然时间回放。</p>
 <p>后续目标是验证新增数据与协议可重复、找到稳定差异，不追求一次跑完所有论文，更不以英文分类标签上的 ARI 推断真实电商推荐增益。</p>
 <h2 id="datasets-6">6. 数据准备实证：先把比较的地基做实 <a class="permalink" href="#datasets-6" aria-label="链接到此节">#</a></h2>
 <p><a href="https://github.com/okcd00/text_clustering/blob/main/datasets/preparation.md">可执行准备流程与完整审计口径</a>。数据只下载到仓库外；没有模型调用，也没有向外部服务发送文本。旧榜单不变。</p>
@@ -262,7 +262,7 @@ budget: tuning trials, labeled support, LLM tokens/calls, hardware</pre>
 </div>
 <p>这里的全量 ARI 明确将噪声视为同一簇；原始 JSON 同时报告 covered-only ARI、覆盖率、簇数与 NMI，避免只展示易样本分数。KMeans 获得 test-present oracle K，是不同信息预算，不宣布“公平击败”未知 K。全归一簇控制覆盖率 100% 而 ARI/NMI 为 0，说明覆盖率也不能单独排名。3 seeds 是稳定性检查，不是置信区间。</p>
 <p>下一步先固定多语言语义模型的 revision、prefix、池化和归一化，再在同一矩阵上比较；另设验证集选参，不能反复按这里的 test 分数调参。此轮没有验证路由、层级、流式或业务推荐增量。</p></section><section id="roadmap" class="survey-panel" aria-label="研究路线"><div class="section-heading"><span>RESEARCH NOTE / 04</span><a href="https://github.com/okcd00/text_clustering/blob/main/survey/roadmap.md">Markdown 原文 ↗</a></div><p><a href="https://github.com/okcd00/text_clustering/blob/main/survey/README.md">Survey 首页</a> · <a href="https://github.com/okcd00/text_clustering/blob/main/survey/methods.md">方法地图</a> · <a href="https://github.com/okcd00/text_clustering/blob/main/survey/datasets.md">数据协议</a></p>
-<p>这是后续工作清单。已经执行的结果请从 Survey「统一实测」查看。</p>
+<p>这是后续工作清单。已执行的静态聚类与路由请从 Survey「统一实测」查看；新日历流式小试独立列在本页，不合并为同一榜。</p>
 <div class="survey-grid">
 <article class="evidence-card"><h3>P0 数据与证据基础</h3><dl>
 <dt>产出</dt><dd>BANKING/CLINC/MASSIVE manifest；新 pinned encoder 基线；独立 known-K/unknown-K 表</dd>
@@ -298,31 +298,33 @@ budget: tuning trials, labeled support, LLM tokens/calls, hardware</pre>
 <h2 id="roadmap-3">语义对照的下一道门槛 <a class="permalink" href="#roadmap-3" aria-label="链接到此节">#</a></h2>
 <p><a href="https://github.com/okcd00/text_clustering/blob/main/experiments/semantic-pilot-v1/README.md">semantic-pilot-v1 执行协议</a> 与 <a href="https://github.com/okcd00/text_clustering/blob/main/results/semantic-pilot-v1/README.md">实际结果</a> 已落地：独立 CPU 环境、固定 E5-small revision、双语 <code>query: </code> 前缀、池化/归一化和 512 条/角色的无标签抽样，全部本地推理。原 preparation-only preflight 保留作历史记录，不再作为阻塞状态。</p>
 <p>词面与语义使用同一批样本；oracle-K、固定未知 K、仅 validation 选参的未知-test-K 三种预算分开。小样本只检验流程，不作全量性能或稀有意图结论；向量优于词面的 oracle-K 结果不等于未知 K 的密度发现也改善。后续扩展不覆盖既有分数，而以明确版本和协议建立新结果。</p>
-<h2 id="roadmap-4">下一个场景：先固定窗口，再比较更新策略 <a class="permalink" href="#roadmap-4" aria-label="链接到此节">#</a></h2>
-<p>静态聚类与开放集路由已有同协议小规模结果。持续演化不能使用 BANKING77 或 MASSIVE 的原始行序冒充自然时间。UCI News Aggregator 的发布时间只支持<strong>新闻标题的时间回放</strong>，不是用户行为意图漂移。</p>
-<p><a href="https://github.com/okcd00/text_clustering/blob/main/docs/scenarios.html?task=evolution_temporal_capacity&amp;amp;group=scenario-18">历史场景 18</a> 已经做过一次按时间的 BIRCH 维护对照：原始标题视图中 26,842 条、7 个评分窗口。下表仅用于选择新协议的对照组，不进入本轮统一结果。</p>
-<div class="survey-grid">
-<article class="evidence-card"><h3>不限制叶微簇</h3><dl>
-<dt>窗口加权 ARI</dt><dd>0.462</dd>
-<dt>整个进程耗时</dt><dd>295.8 秒</dd>
-<dt>峰值 RSS</dt><dd>1,073 MiB</dd>
-</dl></article>
-<article class="evidence-card"><h3>叶微簇最多 2,048，触顶后停止更新</h3><dl>
-<dt>窗口加权 ARI</dt><dd>0.436</dd>
-<dt>整个进程耗时</dt><dd>38.2 秒</dd>
-<dt>峰值 RSS</dt><dd>545 MiB</dd>
-</dl></article>
-<article class="evidence-card"><h3>用最近 2,048 条定期重建</h3><dl>
-<dt>窗口加权 ARI</dt><dd>0.341</dd>
-<dt>整个进程耗时</dt><dd>70.2 秒</dd>
-<dt>峰值 RSS</dt><dd>605 MiB</dd>
-</dl></article>
-</div>
-<p>这是同一条过去看过的流上的描述性结果。原始压缩包哈希、切分边界和编码器版本无法从档案重建；去重标题视图与原始视图共用学习状态，也不是独立重复。<a href="https://github.com/okcd00/text_clustering/blob/main/experiments/calendar-preflight-v1/README.md">新协议的数据预检</a>已固定官方包、热身和七个 UTC 日窗，未运行编码或模型。后续做的是<strong>标准化重跑</strong>，不是宣称复现旧数值。</p>
-<p class="list-item">- 先用同一表示、日历边界、行顺序和热身状态，比较热身后冻结、不限叶微簇、触顶冻结、定期重建。每窗先保存预测再学习，不能用已有按条数分窗的流程冒充日历窗；测试标签只在评分时读取。低预算试验看触顶是否真的发生，未触顶就是未触顶，不看分数改预算。</p>
-<p class="list-item">- 同报窗口 ARI/NMI、覆盖和首见故事与延续故事的误差；ARI 是窗内指标。跨窗稳定性单独用同一份过去文本探针、无标签匹配后报告簇重合和未匹配比例；不能直接拼接各窗局部整数 ID。</p>
-<p class="list-item">- 状态量、时间和内存分开：叶微簇上限不等于字节上限；重建期间可能同时保有两棵树，结尾状态大小不能代替峰值。编码、预测、在线更新和重建的计时边界要写清楚，重建若已在更新时间内就不重复累计。</p>
-<p class="list-item">- 层级归属先固定金标准父子边和支持信息，再单独对照，不拿静态 ARI 当替代。</p>
+<h2 id="roadmap-4">日历流式小试：同窗预测，再比较更新策略 <a class="permalink" href="#roadmap-4" aria-label="链接到此节">#</a></h2>
+<p><strong>已实测 · 独立协议 calendar-paired-v1。</strong> 固定 E5-small，2,048 条热身和七个 UTC 日窗各 512 条；每一天全部预测完成后，再按时间顺序学习。五种维护策略完整运行两遍，非时间/资源字段与预测摘要完全一致。这里是新闻标题的稀疏时间回放，不是用户行为流，也不加入静态与路由的原 42 个运行结果。</p>
+<p><a href="https://github.com/okcd00/text_clustering/blob/main/results/calendar-paired-v1/README.md">逐日配对结果与限制</a> · <a href="https://github.com/okcd00/text_clustering/blob/main/results/calendar-paired-v1/results.json">完整聚合 JSON</a> · <a href="https://github.com/okcd00/text_clustering/blob/main/experiments/calendar-paired-v1/README.md">独立复跑说明</a></p>
+<div class="tablewrap" tabindex="0" aria-label="独立协议结果表，可横向滚动"><table><thead><tr><th scope="col">维护方法</th><th scope="col">STORY ARI（日内加权均值）</th><th scope="col">最终叶微簇</th><th scope="col">末态序列化体积</th><th scope="col">更新及维护耗时（两轮）</th></tr></thead><tbody>
+<tr><th scope="row">热身后冻结</th><td>.315965</td><td>891</td><td>7.40 MB</td><td>.0005 / .0005 秒</td></tr>
+<tr><th scope="row">无界更新</th><td>.415860</td><td>2,473</td><td>20.37 MB</td><td>2.767 / 3.356 秒</td></tr>
+<tr><th scope="row">2,048 CF 后冻结</th><td>.413349</td><td>2,048</td><td>16.51 MB</td><td>1.749 / 1.996 秒</td></tr>
+<tr><th scope="row">最近 2,048 条定期重建</th><td>.415855</td><td>1,560</td><td>12.50 MB</td><td>2.845 / 3.298 秒</td></tr>
+<tr><th scope="row">128 CF 敏感性（热身已超额）</th><td>.315965</td><td>891</td><td>7.40 MB</td><td>.0016 / .0015 秒</td></tr>
+</tbody></table></div>
+<p><strong>不能只看均值：</strong>2,048 CF 在 Mar29 第 81 条到达时开始停止更新，只有最后一天的预测受到影响，当天 ARI 相对无界下降 .017579。重建后的三天分别变化 −.012583、−.014517、+.027067，七天均值接近是正负抵消，不是无影响。后续应延长触发后的观察区间，尚不能据此选定维护策略。</p>
+<details class="metric-help">
+<summary>ⓘ 信息预算、成本与边界</summary>
+<p>没有用测试标签调阈值或预算。原始行共 3,584 条；首见标题评分视图 3,553 条，但学习流相同。128 CF 小预算在共同热身的 891 CF 状态下已经超额，全程冻结，不声称实现了 128 CF 容量。CF 数量不是硬内存预算。</p>
+<p>序列化体积仅是存储代理，重建瞬间可能保有两棵树。算法进程 RSS 约 648–650 MiB，包含源数据解析和导入，不能据此证明算法 RAM 降幅。更新耗时含重建，不含编码、热身或预测；其他分项见完整 JSON。E5 本地编码 5,632 条标题约 83.54 秒，与聚类成本分开。两轮复跑证明确定性，不是统计置信区间。</p>
+<p>日内 ARI 不追踪跨天簇身份；STORY 是银标新闻事件组，四大 CATEGORY 是另一任务。不与旧场景 18 的不同编码器、样本和计时口径比较。</p>
+</details>
+<details class="metric-help">
+<summary>查看历史场景 18（单独归档，不参与新版比较）</summary>
+<p><a href="https://github.com/okcd00/text_clustering/blob/main/docs/scenarios.html?task=evolution_temporal_capacity&amp;amp;group=scenario-18">历史场景 18</a> 原始标题视图有 26,842 条、7 个评分窗口。原始压缩包哈希、切分边界和编码器版本无法从档案重建；新协议不是复现旧数值，以下只保留追溯。</p>
+<div class="tablewrap" tabindex="0" aria-label="独立协议结果表，可横向滚动"><table><thead><tr><th scope="col">历史策略</th><th scope="col">窗口加权 ARI</th><th scope="col">整个进程耗时</th><th scope="col">峰值 RSS</th></tr></thead><tbody>
+<tr><th scope="row">不限制叶微簇</th><td>0.462</td><td>295.8 秒</td><td>1,073 MiB</td></tr>
+<tr><th scope="row">叶微簇最多 2,048，触顶后停止更新</th><td>0.436</td><td>38.2 秒</td><td>545 MiB</td></tr>
+<tr><th scope="row">用最近 2,048 条定期重建</th><td>0.341</td><td>70.2 秒</td><td>605 MiB</td></tr>
+</tbody></table></div>
+</details>
+<p>后续仍需独立补齐：首见与延续故事误差、长时间触顶后的质量、隔离算法峰值内存，以及用过去文本探针和无标签匹配测跨窗身份稳定性。层级归属另设金标准父子边和支持信息，不拿静态 ARI 作替代。</p>
 <h2 id="roadmap-5">层级归属：叶节点未知，不等于父节点未知 <a class="permalink" href="#roadmap-5" aria-label="链接到此节">#</a></h2>
 <p>MASSIVE zh-CN 的 scenario/intent 可作两层公开试验，但官方 intent 名称会泄露父类。层级输入只能给<strong>不透明节点编号、已知叶的父子边、支持样本及原始 <code>utt</code></strong>；名称、带槽位文本、隐藏叶及其映射不参与决策。评价使用官方标注，不代表发现、命名或插入新节点。</p>
 <p>平面路由原协议允许整个父类不在支持集，适合测拒识，不适合把其正确父类计作可达。层级试验应单列两种问题：</p>

@@ -72,7 +72,7 @@ budget: tuning trials, labeled support, LLM tokens/calls, hardware
 
 ## 5. 仍待补齐的协议
 
-BANKING77 与 MASSIVE zh-CN 已分别给出英文细粒度与中文意图小样本结果。跨域的 CLINC150 可补相同 frozen encoder 下的静态聚类对照，并将原生 OOS 与 held-out intents 分设两个拒识组。层级先解决 WOS 重建和标签一致性，再跑；流式先借 COSID split 测旧新类干扰，再进入 UCI 时间回放。
+BANKING77 与 MASSIVE zh-CN 已分别给出英文细粒度与中文意图小样本结果。跨域的 CLINC150 可补相同 frozen encoder 下的静态聚类对照，并将原生 OOS 与 held-out intents 分设两个拒识组。层级先解决 WOS 重建和标签一致性，再跑；流式已有独立的 [UCI 日历维护小试](../results/calendar-paired-v1/README.md)，下一步延长维护触发后的观察期；COSID split 另测旧新类干扰，不能替代自然时间回放。
 
 后续目标是验证新增数据与协议可重复、找到稳定差异，不追求一次跑完所有论文，更不以英文分类标签上的 ARI 推断真实电商推荐增益。
 

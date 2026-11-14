@@ -19,13 +19,26 @@ def inline(text, source):
     return re.sub(r'`([^`]+)`',r'<code>\1</code>',text)
 
 def render(source,prefix):
-    lines=source.read_text().splitlines(); out=[]; i=0; heading=0
+    lines=source.read_text().splitlines(); out=[]; i=0; heading=0; native_table=False
     while i<len(lines):
         line=lines[i]
-        if line.startswith('```'):
+        if line == '<!-- native-table -->':
+            native_table=True
+        elif line == '<details>':out.append('<details class="metric-help">')
+        elif line == '</details>':out.append('</details>')
+        elif line.startswith('<summary>') and line.endswith('</summary>'):
+            out.append('<summary>'+inline(line[9:-10],source)+'</summary>')
+        elif line.startswith('```'):
             block=[];i+=1
             while i<len(lines) and not lines[i].startswith('```'):block.append(lines[i]);i+=1
             out.append('<pre>'+html.escape('\n'.join(block))+'</pre>')
+        elif line.startswith('|') and native_table:
+            headers=[x.strip() for x in line.strip('|').split('|')];i+=2
+            out.append('<div class="tablewrap" tabindex="0" aria-label="独立协议结果表，可横向滚动"><table><thead><tr>'+''.join('<th scope="col">'+inline(h,source)+'</th>' for h in headers)+'</tr></thead><tbody>')
+            while i<len(lines) and lines[i].startswith('|'):
+                cells=[x.strip() for x in lines[i].strip('|').split('|')]
+                out.append('<tr>'+''.join(('<th scope="row">' if j==0 else '<td>')+inline(v,source)+('</th>' if j==0 else '</td>') for j,v in enumerate(cells))+'</tr>');i+=1
+            out.append('</tbody></table></div>');native_table=False;continue
         elif line.startswith('|'):
             headers=[x.strip() for x in line.strip('|').split('|')];i+=2;out.append('<div class="survey-grid">')
             while i<len(lines) and lines[i].startswith('|'):
