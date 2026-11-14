@@ -339,7 +339,9 @@ budget: tuning trials, labeled support, LLM tokens/calls, hardware</pre>
 <summary>ⓘ 新版内存测量和比较边界</summary>
 <p>每种策略每轮使用全新 worker，不读取源文本，也不加载编码器。输入 mmap 全量触页、相同数值 API 预热后设基线（约 163 MiB）；表中是 warmup／预测／更新阶段采样峰值减去此基线。文件与共享页、匿名 RSS、绝对 RSS、重建时双树共存及末态序列化分开记录。序列化仅含 BIRCH 估计器；rolling 另有至少 3 MiB 数值回放缓存和控制状态，已包含于 RSS，不是完整重启文件大小。这比 v1 更隔离，但增量仍含分配器保留、工作空间和采样开销，不是算法独占堆内存。</p>
 <p>采样间隔名义为 5ms，并在阶段边界与双树共存点同步采样；调度可能延迟，短暂峰值可能漏掉，不能据此承诺不会 OOM。时间包含采样与重建，不含源准备、编码、热身和预测，不能跨版本比较速度。相同输入和导入条件下比较两轮结果；不跨任务排总榜。</p>
+<p><strong>跨日故事再次出现很少，不能当作新话题检测。</strong> 核对缓存哈希及已提交 v1 预检后，v1 是 2 / 597 个 STORY-日再次出现、3 / 3,584 条对应记录；v2 是 3 / 1,807 个 STORY-日、5 / 11,776 条记录，涉及 3 个不同 STORY。这里“再次出现”仅指在已选热身或此前已选日期见过；3 个均来自此前测试日期，热身交集为零。STORY-日逐日计数，不等于全期不同 STORY 数（v2 为 1,804）。首见标题评分保留相同原始历史：v2 为 3 / 1,800 个 STORY-日、4 / 11,685 条记录。详细日期及 v1 首见标题分母见<a href="https://github.com/okcd00/text_clustering/blob/main/results/calendar-paired-v2/README.md">审计说明</a>。抽样历史中未见不等于语义新颖，跨日见过也不等于消失后重现；日内 ARI 不能代替校准误报的新话题检测或跨窗身份保留。</p>
 <p>前一周已在 v1 看过，延长窗口是预登记续跑而非全新盲测；确定性复跑也不是统计置信区间。下一步可在独立时段复核，并单独研究重建时的内存回收策略，不根据这里的分数回调本轮参数。</p>
+<p>可参考 <a href="https://github.com/okcd00/text_clustering/blob/main/references/milev2026syntheticfiredrill/README.md">Synthetic Fire Drill</a> 的受控注入思路，分别观察被旧簇吸收、形成新簇及校准后的误报；只列为固定嵌入空间的压力测试参考，尚未在本库复现。背景新闻原文未公开，不能据此承诺原文重编码／端到端复跑，也不能把同一批行机械重放当作自然重现证据或汇入跨任务总榜。</p>
 </details>
 <h2 id="roadmap-6">层级归属：叶节点未知，不等于父节点未知 <a class="permalink" href="#roadmap-6" aria-label="链接到此节">#</a></h2>
 <p>MASSIVE zh-CN 的 scenario/intent 可作两层公开试验，但官方 intent 名称会泄露父类。层级输入只能给<strong>不透明节点编号、已知叶的父子边、支持样本及原始 <code>utt</code></strong>；名称、带槽位文本、隐藏叶及其映射不参与决策。评价使用官方标注，不代表发现、命名或插入新节点。</p>

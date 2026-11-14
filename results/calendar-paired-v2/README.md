@@ -10,6 +10,21 @@ There are 2,048 warmup rows plus 11,776 scored rows over 23 nonempty days. Five 
 
 Two complete fresh-process repetitions have identical scores, predictions and all non-timing/memory fields. V1 prefix checks pass separately. These are deterministic repeats, not independent random samples or confidence intervals.
 
+## Selected-history recurrence audit (not novelty detection)
+
+A read-only audit rechecked all cached-array hashes and matched the v1 prefix against the committed [calendar preflight](../../experiments/calendar-preflight-v1/preflight.json): every window's selected-row, STORY, recurrence and first-title counts agrees. A recurring STORY-day means a STORY observed in **selected warmup or an earlier selected day**, not repeated rows within the same day. The STORY-day denominator sums distinct STORYs per day; it is not the number of globally distinct STORYs.
+
+| Scope | Raw scored rows | STORY-day occurrences | Recurring STORY-day occurrences | Distinct recurrent STORYs | Rows belonging to recurring STORYs |
+|---|---:|---:|---:|---:|---:|
+| v1: 7 days | 3,584 | 597 | 2 | 2 | 3 |
+| v2: 28 days, 23 nonempty | 11,776 | 1,807 | 3 | 3 | 5 |
+
+V2 has 1,804 distinct test STORYs. None recurs from the selected warmup (2,048 rows, 303 STORYs); all three recur from earlier selected test days. Nonzero dates are Mar 28 (1 STORY, 1 raw row), Mar 30 (1 STORY, 2 raw rows), and Apr 13 (1 STORY, 2 raw rows). Other days have zero selected-history recurrence.
+
+The **first-title scoring view retains the same raw learning/history stream**: v1 has 2 recurring rows / 3,553 scored rows and 2 recurring STORY-day occurrences / 595; v2 has 4 / 11,685 rows and 3 / 1,800 STORY-day occurrences. This is title deduplication for scoring, not deduplicated learning or a different historical-label search.
+
+Only 5 / 11,776 raw v2 rows (0.0425%) belong to previously selected STORYs. This offers very little evidence for retention of returning event identities. Absence from the thinned selected history is **not semantic novelty**; recurrence does not prove disappearance and reappearance after a gap. No calibrated novelty alarm, event-return detection, or persistent cluster-identity score is measured. New-label routing, genuine new-topic emergence, and recurrence after absence require separate protocols; do not infer them from daily ARI.
+
 ## Primary post-cap comparison
 
 The guard again first skips arrival 2,641 (Mar 29, selected arrival 81). Since prediction precedes the day's updates, the post-cap evaluation begins Mar 30: **17 nonempty scored days, 8,704 rows**. There are 9,136 skipped updates in total. No new parameters were selected using these outcomes.
