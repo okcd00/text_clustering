@@ -1,0 +1,22 @@
+{
+  "dataset": "UCI News Aggregator",
+  "source": "https://archive.ics.uci.edu/dataset/359/news+aggregator",
+  "doi": "https://doi.org/10.24432/C5F61C",
+  "attribution": "Gasparetti, F. (2017). News Aggregator [Dataset]. UCI Machine Learning Repository.",
+  "license": "CC BY 4.0",
+  "license_source": "https://archive.ics.uci.edu/dataset/359/news+aggregator",
+  "checked_date": "2026-11-14",
+  "archive": {
+    "url": "https://archive.ics.uci.edu/static/public/359/news%2Baggregator.zip",
+    "name": "news-aggregator.zip",
+    "bytes": 29224203,
+    "sha256": "1f5f08691f0ce576cb0b5cfdbcb8c55e0ec14dda8f3e07933da72c500338845a"
+  },
+  "member": {
+    "name": "newsCorpora.csv",
+    "bytes": 102297000,
+    "sha256": "d343d484bb7e97534acf25898b688547b8140a0cea64590456ba368983f28452"
+  },
+  "format": {"encoding": "UTF-8 strict", "delimiter": "tab", "header": false, "fields": 8},
+  "timestamp": "Approximate publication time, milliseconds since Unix epoch; interpret UTC, not observed user behavior."
+}

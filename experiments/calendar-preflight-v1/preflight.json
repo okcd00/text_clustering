@@ -1,0 +1,214 @@
+{
+  "status": "preflight_only_no_model_or_benchmark",
+  "source": {
+    "dataset": "UCI News Aggregator",
+    "source": "https://archive.ics.uci.edu/dataset/359/news+aggregator",
+    "doi": "https://doi.org/10.24432/C5F61C",
+    "attribution": "Gasparetti, F. (2017). News Aggregator [Dataset]. UCI Machine Learning Repository.",
+    "license": "CC BY 4.0",
+    "license_source": "https://archive.ics.uci.edu/dataset/359/news+aggregator",
+    "checked_date": "2026-11-14",
+    "archive": {
+      "url": "https://archive.ics.uci.edu/static/public/359/news%2Baggregator.zip",
+      "name": "news-aggregator.zip",
+      "bytes": 29224203,
+      "sha256": "1f5f08691f0ce576cb0b5cfdbcb8c55e0ec14dda8f3e07933da72c500338845a"
+    },
+    "member": {
+      "name": "newsCorpora.csv",
+      "bytes": 102297000,
+      "sha256": "d343d484bb7e97534acf25898b688547b8140a0cea64590456ba368983f28452"
+    },
+    "format": {
+      "encoding": "UTF-8 strict",
+      "delimiter": "tab",
+      "header": false,
+      "fields": 8
+    },
+    "timestamp": "Approximate publication time, milliseconds since Unix epoch; interpret UTC, not observed user behavior."
+  },
+  "source_audit": {
+    "source_rows": 422937,
+    "timestamp_min_utc": "2014-03-10T16:52:50.698000+00:00",
+    "timestamp_max_utc": "2014-08-28T12:33:11.565000+00:00",
+    "rows_after_2014_08_10_utc_day": 10461,
+    "source_order_timestamp_inversions": 1,
+    "empty_publishers": 2,
+    "exact_title_duplicate_excess": 15993,
+    "normalized_title_duplicate_excess": 17862,
+    "duplicate_url_excess": 196,
+    "story_count": 7231,
+    "category_counts": {
+      "b": 115967,
+      "e": 152828,
+      "m": 45639,
+      "t": 108503
+    }
+  },
+  "replay_subset": {
+    "first_title_scored_rows": 3553,
+    "protocol": {
+      "id": "news-calendar-preflight-v1",
+      "status": "prepared_not_executed",
+      "warmup_start": "2014-03-17",
+      "test_start": "2014-03-24",
+      "test_end_exclusive": "2014-03-31",
+      "window": "UTC calendar day, half-open",
+      "warmup_max_rows": 2048,
+      "per_scored_day_max_rows": 512,
+      "sampling": "lowest SHA256(protocol id|role|numeric source ID); then sort (timestamp_ms, numeric ID)",
+      "primary_track": "raw selected rows",
+      "secondary_track": "first normalized title encountered since warmup start, scoring only; identical raw learning stream",
+      "normalization": "NFKC + casefold + whitespace collapse",
+      "label_use": "STORY is silver grouping for scoring only; CATEGORY is a separate coarse target, not a selection feature"
+    },
+    "selected_scored_rows": 3584,
+    "windows": [
+      {
+        "role": "warmup",
+        "start_utc": "2014-03-17T00:00:00+00:00",
+        "end_exclusive_utc": "2014-03-24T00:00:00+00:00",
+        "eligible_rows": 22730,
+        "selected_rows": 2048,
+        "first_title_scored_rows": 2041,
+        "repeated_title_rows_vs_prior_windows": 0,
+        "story_count": 303,
+        "recurring_story_count": 0,
+        "new_story_count": 303,
+        "category_counts": {
+          "b": 578,
+          "e": 705,
+          "m": 235,
+          "t": 530
+        }
+      },
+      {
+        "role": "2014-03-24",
+        "start_utc": "2014-03-24T00:00:00+00:00",
+        "end_exclusive_utc": "2014-03-25T00:00:00+00:00",
+        "eligible_rows": 2160,
+        "selected_rows": 512,
+        "first_title_scored_rows": 510,
+        "repeated_title_rows_vs_prior_windows": 2,
+        "story_count": 66,
+        "recurring_story_count": 0,
+        "new_story_count": 66,
+        "category_counts": {
+          "b": 121,
+          "e": 218,
+          "m": 70,
+          "t": 103
+        }
+      },
+      {
+        "role": "2014-03-25",
+        "start_utc": "2014-03-25T00:00:00+00:00",
+        "end_exclusive_utc": "2014-03-26T00:00:00+00:00",
+        "eligible_rows": 6326,
+        "selected_rows": 512,
+        "first_title_scored_rows": 511,
+        "repeated_title_rows_vs_prior_windows": 1,
+        "story_count": 115,
+        "recurring_story_count": 0,
+        "new_story_count": 115,
+        "category_counts": {
+          "b": 145,
+          "e": 154,
+          "m": 56,
+          "t": 157
+        }
+      },
+      {
+        "role": "2014-03-26",
+        "start_utc": "2014-03-26T00:00:00+00:00",
+        "end_exclusive_utc": "2014-03-27T00:00:00+00:00",
+        "eligible_rows": 3146,
+        "selected_rows": 512,
+        "first_title_scored_rows": 512,
+        "repeated_title_rows_vs_prior_windows": 0,
+        "story_count": 62,
+        "recurring_story_count": 0,
+        "new_story_count": 62,
+        "category_counts": {
+          "b": 199,
+          "e": 130,
+          "m": 57,
+          "t": 126
+        }
+      },
+      {
+        "role": "2014-03-27",
+        "start_utc": "2014-03-27T00:00:00+00:00",
+        "end_exclusive_utc": "2014-03-28T00:00:00+00:00",
+        "eligible_rows": 7608,
+        "selected_rows": 512,
+        "first_title_scored_rows": 506,
+        "repeated_title_rows_vs_prior_windows": 6,
+        "story_count": 98,
+        "recurring_story_count": 0,
+        "new_story_count": 98,
+        "category_counts": {
+          "b": 141,
+          "e": 160,
+          "m": 46,
+          "t": 165
+        }
+      },
+      {
+        "role": "2014-03-28",
+        "start_utc": "2014-03-28T00:00:00+00:00",
+        "end_exclusive_utc": "2014-03-29T00:00:00+00:00",
+        "eligible_rows": 5438,
+        "selected_rows": 512,
+        "first_title_scored_rows": 508,
+        "repeated_title_rows_vs_prior_windows": 2,
+        "story_count": 81,
+        "recurring_story_count": 1,
+        "new_story_count": 80,
+        "category_counts": {
+          "b": 113,
+          "e": 194,
+          "m": 112,
+          "t": 93
+        }
+      },
+      {
+        "role": "2014-03-29",
+        "start_utc": "2014-03-29T00:00:00+00:00",
+        "end_exclusive_utc": "2014-03-30T00:00:00+00:00",
+        "eligible_rows": 6151,
+        "selected_rows": 512,
+        "first_title_scored_rows": 504,
+        "repeated_title_rows_vs_prior_windows": 7,
+        "story_count": 111,
+        "recurring_story_count": 0,
+        "new_story_count": 111,
+        "category_counts": {
+          "b": 170,
+          "e": 157,
+          "m": 52,
+          "t": 133
+        }
+      },
+      {
+        "role": "2014-03-30",
+        "start_utc": "2014-03-30T00:00:00+00:00",
+        "end_exclusive_utc": "2014-03-31T00:00:00+00:00",
+        "eligible_rows": 2138,
+        "selected_rows": 512,
+        "first_title_scored_rows": 502,
+        "repeated_title_rows_vs_prior_windows": 10,
+        "story_count": 64,
+        "recurring_story_count": 1,
+        "new_story_count": 63,
+        "category_counts": {
+          "b": 113,
+          "e": 215,
+          "m": 70,
+          "t": 114
+        }
+      }
+    ]
+  },
+  "script_sha256": "e8872e77700cade9a501f8a3e008d372c7cec3e97a341a5f1cd3ec42f9f51a0d"
+}

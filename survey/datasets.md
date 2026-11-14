@@ -12,9 +12,11 @@
 | [CLINC150](https://github.com/clinc/oos-eval) | 英文众包单意图；150 意图/10 domains。`data_full.json` 每意图 train100/val20/test30；OOS train100/val100/test1000 | [许可](https://github.com/clinc/oos-eval/blob/master/LICENSE) CC BY **3.0**；不得与 small/imbalanced 版本混用 | intent/domain 两种粒度分别报。现仓库 4,500 test 不含 OOS；原生 OOS 可测拒识，但混合 OOS 标签不是一个可发现语义类。10 hidden intents 的 test 最多 300 条，拒识后缓冲区更小 |
 | [WOS v2](https://data.mendeley.com/datasets/9rw3vkcfy4/2) | 英文科学摘要；完整发布规格 46,985 / 134 子类 / 7 父类 | Mendeley v2 页面 CC BY 4.0；描述另含 MIT 式 permission notice，保留两者，不简化成“MIT 数据” | 层级导航、粗/细类聚类。历史 numeric-consistent 子集尚无验证过的公共重建，不能用完整数据伪称复现旧分数。先审计 numeric path 与类名冲突。2017 是发布年，不是样本事件时间 |
 | [MASSIVE zh-CN](https://github.com/alexa/massive) / [数据卡](https://huggingface.co/datasets/AmazonScience/massive) | 中文；60 intents / 18 scenarios；卡中 train11,514 / validation2,033 / test2,974 | CC BY 4.0；冻结 release/commit 与 locale。官方 1.1 增加 Catalan，其他语言不变 | 优先补中文语义意图；保留原始划分，用 `utt` 而非带 slot 标记的 `annot_utt`。跨语言按对齐 utterance ID 分组，防翻译泄漏。常规三 split 合计16,521；19,521口径另含竞赛3,000条/locale holdout，不能混入本基准。不是自然中文电商行为 |
-| [UCI News Aggregator](https://archive.ics.uci.edu/dataset/359/news+aggregator) | 英文新闻标题；422,937；4 大类及 STORY 聚合标识；2014-03-10 至 08-10 | CC BY 4.0；冻结下载版本/hash；TIMESTAMP 是 approximate publication time | 可做时间戳 silver-label 回放，不是人工金标意图漂移；story 标签与 4 大类是两任务。转载/重复 URL/标题及时间边界重复故事需单列；2pageSessions 不等于完整真实用户行为流 |
+| [UCI News Aggregator](https://archive.ics.uci.edu/dataset/359/news+aggregator) | 英文新闻标题；422,937；4 大类及 STORY 聚合标识；官方介绍写到 2014-08-10，当前官方压缩包实测 UTC 日期为 2014-03-10 至 08-28 | CC BY 4.0；TIMESTAMP 是粗略发布时间 | 可做时间戳 silver-label 回放，不是人工金标意图漂移；story 标签与 4 大类是两任务。转载/重复 URL/标题及时间边界重复故事需单列；2pageSessions 不等于完整真实用户行为流 |
 
 **BANKING77 与 MASSIVE zh-CN 已实测。** 两者都有[全量官方 test 词面基线](../results/lexical-v1/README.md)、[同样本词面与 E5 小对照](../results/semantic-pilot-v1/README.md)、[统一静态评估](../results/unified-static-v1/README.md)和[开放集路由](../results/routing-v2/README.md)。全量词面、512 条静态语义与带标签支持集的路由是不同协议，不能直接混排；这两套数据均未用于真实时间流评估。CLINC 和 WOS 的历史结果不动。
+
+**UCI 时间回放完成数据校验，尚未跑算法。** [预检与复跑命令](../experiments/calendar-preflight-v1/README.md)固定了官方包的 SHA-256、UTC 热身和七个评分日期，审计了重复标题与跨窗同故事。原始新闻标题和 URL 不入库。
 
 ## 2. 暂不承诺开箱可复现的覆盖候选
 

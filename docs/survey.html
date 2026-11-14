@@ -155,12 +155,13 @@
 <dt>适合的公平比较 / 主要陷阱</dt><dd>优先补中文语义意图；保留原始划分，用 <code>utt</code> 而非带 slot 标记的 <code>annot_utt</code>。跨语言按对齐 utterance ID 分组，防翻译泄漏。常规三 split 合计16,521；19,521口径另含竞赛3,000条/locale holdout，不能混入本基准。不是自然中文电商行为</dd>
 </dl></article>
 <article class="evidence-card"><h3><a href="https://archive.ics.uci.edu/dataset/359/news+aggregator">UCI News Aggregator</a></h3><dl>
-<dt>语言、规模、标签</dt><dd>英文新闻标题；422,937；4 大类及 STORY 聚合标识；2014-03-10 至 08-10</dd>
-<dt>版本与权限</dt><dd>CC BY 4.0；冻结下载版本/hash；TIMESTAMP 是 approximate publication time</dd>
+<dt>语言、规模、标签</dt><dd>英文新闻标题；422,937；4 大类及 STORY 聚合标识；官方介绍写到 2014-08-10，当前官方压缩包实测 UTC 日期为 2014-03-10 至 08-28</dd>
+<dt>版本与权限</dt><dd>CC BY 4.0；TIMESTAMP 是粗略发布时间</dd>
 <dt>适合的公平比较 / 主要陷阱</dt><dd>可做时间戳 silver-label 回放，不是人工金标意图漂移；story 标签与 4 大类是两任务。转载/重复 URL/标题及时间边界重复故事需单列；2pageSessions 不等于完整真实用户行为流</dd>
 </dl></article>
 </div>
 <p><strong>BANKING77 与 MASSIVE zh-CN 已实测。</strong> 两者都有<a href="https://github.com/okcd00/text_clustering/blob/main/results/lexical-v1/README.md">全量官方 test 词面基线</a>、<a href="https://github.com/okcd00/text_clustering/blob/main/results/semantic-pilot-v1/README.md">同样本词面与 E5 小对照</a>、<a href="https://github.com/okcd00/text_clustering/blob/main/results/unified-static-v1/README.md">统一静态评估</a>和<a href="https://github.com/okcd00/text_clustering/blob/main/results/routing-v2/README.md">开放集路由</a>。全量词面、512 条静态语义与带标签支持集的路由是不同协议，不能直接混排；这两套数据均未用于真实时间流评估。CLINC 和 WOS 的历史结果不动。</p>
+<p><strong>UCI 时间回放完成数据校验，尚未跑算法。</strong> <a href="https://github.com/okcd00/text_clustering/blob/main/experiments/calendar-preflight-v1/README.md">预检与复跑命令</a>固定了官方包的 SHA-256、UTC 热身和七个评分日期，审计了重复标题与跨窗同故事。原始新闻标题和 URL 不入库。</p>
 <h2 id="datasets-2">2. 暂不承诺开箱可复现的覆盖候选 <a class="permalink" href="#datasets-2" aria-label="链接到此节">#</a></h2>
 <p class="list-item">- <strong>中文新闻主题</strong>：<a href="https://github.com/FlagOpen/FlagEmbedding/tree/master/C_MTEB">C-MTEB</a>、<a href="https://huggingface.co/datasets/mteb/ThuNewsClusteringP2P.v2">ThuNewsClusteringP2P.v2</a>。它们补中文 topic，不替代中文 intent；原版嵌套任务行数不能当文档数，v2 不是同一协议。数据卡许可 unknown 时，不能套用框架许可证。先核对实际数据权利与 task revision，再纳入。</p>
 <p class="list-item">- <strong>人工标注新闻流</strong>：<a href="https://aclanthology.org/D18-1483/">Miranda et al., EMNLP 2018</a>、<a href="https://github.com/Priberam/news-clustering">官方代码</a>。旧 FTP 数据入口当前可用性未验证；官方说明原始部分组件专有，公开的是复刻/预提取特征等。BSD-3 软件许可不等于新闻文本许可。列为待准入，不宣称可完整复现。</p>
@@ -297,5 +298,28 @@ budget: tuning trials, labeled support, LLM tokens/calls, hardware</pre>
 <p><a href="https://github.com/okcd00/text_clustering/blob/main/experiments/semantic-pilot-v1/README.md">semantic-pilot-v1 执行协议</a> 与 <a href="https://github.com/okcd00/text_clustering/blob/main/results/semantic-pilot-v1/README.md">实际结果</a> 已落地：独立 CPU 环境、固定 E5-small revision、双语 <code>query: </code> 前缀、池化/归一化和 512 条/角色的无标签抽样，全部本地推理。原 preparation-only preflight 保留作历史记录，不再作为阻塞状态。</p>
 <p>词面与语义使用同一批样本；oracle-K、固定未知 K、仅 validation 选参的未知-test-K 三种预算分开。小样本只检验流程，不作全量性能或稀有意图结论；向量优于词面的 oracle-K 结果不等于未知 K 的密度发现也改善。后续扩展不覆盖既有分数，而以明确版本和协议建立新结果。</p>
 <h2 id="roadmap-4">下一个场景：先固定窗口，再比较更新策略 <a class="permalink" href="#roadmap-4" aria-label="链接到此节">#</a></h2>
-<p>静态聚类与开放集路由已有同协议小规模结果。持续演化不能使用 BANKING77 或 MASSIVE 的原始行序冒充自然时间。先核验公开时间字段及标签意义；同一事件顺序、窗口、初始状态和资源上限下，对比冻结、MiniBatch 和 BIRCH 更新。每窗先评分再学习；同步报告质量、旧类遗忘、簇 ID 保持率与状态增长。层级归属同理，先固定金标准父子边和支持信息，再单独对照，不拿静态 ARI 当替代。</p></section>
+<p>静态聚类与开放集路由已有同协议小规模结果。持续演化不能使用 BANKING77 或 MASSIVE 的原始行序冒充自然时间。UCI News Aggregator 的发布时间只支持<strong>新闻标题的时间回放</strong>，不是用户行为意图漂移。</p>
+<p><a href="https://github.com/okcd00/text_clustering/blob/main/docs/scenarios.html?task=evolution_temporal_capacity&amp;amp;group=scenario-18">历史场景 18</a> 已经做过一次按时间的 BIRCH 维护对照：原始标题视图中 26,842 条、7 个评分窗口。下表仅用于选择新协议的对照组，不进入本轮统一结果。</p>
+<div class="survey-grid">
+<article class="evidence-card"><h3>不限制叶微簇</h3><dl>
+<dt>窗口加权 ARI</dt><dd>0.462</dd>
+<dt>整个进程耗时</dt><dd>295.8 秒</dd>
+<dt>峰值 RSS</dt><dd>1,073 MiB</dd>
+</dl></article>
+<article class="evidence-card"><h3>叶微簇最多 2,048，触顶后停止更新</h3><dl>
+<dt>窗口加权 ARI</dt><dd>0.436</dd>
+<dt>整个进程耗时</dt><dd>38.2 秒</dd>
+<dt>峰值 RSS</dt><dd>545 MiB</dd>
+</dl></article>
+<article class="evidence-card"><h3>用最近 2,048 条定期重建</h3><dl>
+<dt>窗口加权 ARI</dt><dd>0.341</dd>
+<dt>整个进程耗时</dt><dd>70.2 秒</dd>
+<dt>峰值 RSS</dt><dd>605 MiB</dd>
+</dl></article>
+</div>
+<p>这是同一条过去看过的流上的描述性结果。原始压缩包哈希、切分边界和编码器版本无法从档案重建；去重标题视图与原始视图共用学习状态，也不是独立重复。<a href="https://github.com/okcd00/text_clustering/blob/main/experiments/calendar-preflight-v1/README.md">新协议的数据预检</a>已固定官方包、热身和七个 UTC 日窗，未运行编码或模型。后续做的是<strong>标准化重跑</strong>，不是宣称复现旧数值。</p>
+<p class="list-item">- 先用同一表示、日历边界、行顺序和热身状态，比较热身后冻结、不限叶微簇、触顶冻结、定期重建。每窗先保存预测再学习，不能用已有按条数分窗的流程冒充日历窗；测试标签只在评分时读取。低预算试验看触顶是否真的发生，未触顶就是未触顶，不看分数改预算。</p>
+<p class="list-item">- 同报窗口 ARI/NMI、覆盖和首见故事与延续故事的误差；ARI 是窗内指标。跨窗稳定性单独用同一份过去文本探针、无标签匹配后报告簇重合和未匹配比例；不能直接拼接各窗局部整数 ID。</p>
+<p class="list-item">- 状态量、时间和内存分开：叶微簇上限不等于字节上限；重建期间可能同时保有两棵树，结尾状态大小不能代替峰值。编码、预测、在线更新和重建的计时边界要写清楚，重建若已在更新时间内就不重复累计。</p>
+<p class="list-item">- 层级归属先固定金标准父子边和支持信息，再单独对照，不拿静态 ARI 当替代。</p></section>
 <footer>内容来源：统一评估 JSON 与仓库 <a href="https://github.com/okcd00/text_clustering/tree/main/survey">survey/ Markdown</a> · <a href="index.html">回到实测看板</a></footer></main><script src="survey.js"></script><script src="unified.js"></script></body></html>

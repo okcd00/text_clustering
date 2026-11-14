@@ -1,0 +1,15 @@
+{
+  "id": "news-calendar-preflight-v1",
+  "status": "prepared_not_executed",
+  "warmup_start": "2014-03-17",
+  "test_start": "2014-03-24",
+  "test_end_exclusive": "2014-03-31",
+  "window": "UTC calendar day, half-open",
+  "warmup_max_rows": 2048,
+  "per_scored_day_max_rows": 512,
+  "sampling": "lowest SHA256(protocol id|role|numeric source ID); then sort (timestamp_ms, numeric ID)",
+  "primary_track": "raw selected rows",
+  "secondary_track": "first normalized title encountered since warmup start, scoring only; identical raw learning stream",
+  "normalization": "NFKC + casefold + whitespace collapse",
+  "label_use": "STORY is silver grouping for scoring only; CATEGORY is a separate coarse target, not a selection feature"
+}
