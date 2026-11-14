@@ -108,3 +108,7 @@ Start with the [task-oriented survey](../survey/README.md), [dataset and fair-co
 See [ecosystem snapshot and prioritized comparison plan](ecosystem_2026-11-13.md) for software popularity, task distinctions and research priorities.
 
 - [Lifelong Intent Discovery: A Continual Learning Protocol and Method](chen2026cosid/readme.md) · COSID staged-stream protocol; CIDA agent and split-only comparison caveats
+
+## Fixed-K scalability
+
+- [e-means](bessa2026emeans/readme.md) · 2026 preprint and Faiss v1.16.0 implementation; time to matched Euclidean distortion, not semantic cluster quality.
