@@ -278,5 +278,8 @@ budget: tuning trials, labeled support, LLM tokens/calls, hardware</pre>
 <p class="list-item">- <strong>业务外推</strong>：没有证据表明离线聚类提升必然改善实时意图或推荐指标；遵守先小规模离线 case/增量、后小流量下游验证的门槛。</p>
 <h2 id="roadmap-2">后续每篇新增的最小卡片 <a class="permalink" href="#roadmap-2" aria-label="链接到此节">#</a></h2>
 <p>正式来源与版本 → 任务与输入假设 → 已知/未知 K 与监督 → 数据与切分 → 核心结果及表号 → 代码/权重/许可/核对日期 → 成本 → 对现有基线的新增价值 → 能证伪它的最小实验。</p>
-<p>仅新增 BibTeX 不算覆盖完成。每轮优先补“有书目但无证据卡”的核心条目，以及数据集可重建性；避免把重复预印本/会议版和共享软件 stars 重复计数。更新日期、来源检查与实验状态必须分开。</p></section>
+<p>仅新增 BibTeX 不算覆盖完成。每轮优先补“有书目但无证据卡”的核心条目，以及数据集可重建性；避免把重复预印本/会议版和共享软件 stars 重复计数。更新日期、来源检查与实验状态必须分开。</p>
+<h2 id="roadmap-3">语义对照的下一道门槛 <a class="permalink" href="#roadmap-3" aria-label="链接到此节">#</a></h2>
+<p><a href="https://github.com/okcd00/text_clustering/blob/main/experiments/semantic-pilot-v1/README.md">semantic-pilot-v1 准备协议</a> 已固定 E5-small revision、双语 <code>query: </code> 前缀、池化/归一化和 512 条/角色的无标签抽样；数据准备已执行。<strong>尚未产生语义向量或分数</strong>：当前执行环境缺少 torch、transformers、tokenizers、safetensors，不能在“仅使用现有模型运行库”的边界内编码。</p>
+<p>后续在可用的可信本地 CPU 模型环境执行，先记录依赖和权重哈希。词面与语义必须用同一批样本重跑；oracle-K、固定未知 K、仅 validation 选参的未知-test-K 三种预算分开。小样本只检验流程，不作全量性能或稀有意图结论。</p></section>
 <footer>单一内容来源：仓库 <a href="https://github.com/okcd00/text_clustering/tree/main/survey">survey/ Markdown</a> · <a href="index.html">回到实测看板</a></footer></main><script src="survey.js"></script></body></html>
