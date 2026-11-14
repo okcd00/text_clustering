@@ -30,3 +30,7 @@
 | 待验证假设 | 迁移建议或独立改编 | 必须标注未执行，不能写成收益 |
 
 每次扩充先补“方法—数据—协议—成本—证据—限制”，再补引用数量。没有可靠版本/许可/完整实现的条目仍可保留为阅读材料，但不进入可复现候选榜。
+
+## 可视化与维护
+
+[Pages 交互阅读版](https://dian.host/text_clustering/survey.html)。内容以本目录四份 Markdown 为单一来源，运行 `python scripts/build_survey.py` 生成网页；`python scripts/build_survey.py --check` 检查漂移。页面外观在 `scripts/survey_template.html`、`docs/survey.css`，筛选逻辑在 `docs/survey.js`。本页中提及的本地路径为维护说明，不是 Pages 相对文件链接。

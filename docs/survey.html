@@ -1,0 +1,248 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="文本聚类方法、数据集、证据与公平比较协议的交互研究地图"><title>Research Atlas · Text Clustering Survey</title><link rel="stylesheet" href="style.css?v=20261114"><link rel="stylesheet" href="survey.css"></head><body><main>
+<header><a href="index.html">Text Clustering Lab</a><span>RESEARCH ATLAS · 2026.11.14</span></header>
+<div class="page-links"><a href="index.html">实测选型</a><a href="scenarios.html">场景证据</a><a href="survey.html" aria-current="page">文献 Survey</a></div>
+<section class="atlas-hero"><div><p class="eyebrow">METHODS / DATA / EVIDENCE</p><h1>从文献地图，<br>走向可验证的选择。</h1><p>不拼跨任务总榜。先看问题、数据与信息预算，<br>再选择值得复现的方法。</p></div><div class="atlas-orbit" aria-hidden="true"><span>TEXT</span><b>方法</b><b>数据</b><b>协议</b></div></section>
+<div class="evidence-boundary"><span>文献与方案</span><p>这里整理论文证据与待执行方案，<strong>不是新增实验结果</strong>。<a href="scenarios.html">查看仓库实测 →</a></p><details><summary aria-label="范围说明">ⓘ</summary><p>目的性 Survey v1，非会议穷尽综述；stars 使用带日期的快照。原始证据与未验证边界在各卡片保留。</p></details></div>
+<nav class="survey-tabs" aria-label="Survey 章节"><a href="#overview" data-section="overview">范围与证据</a><a href="#methods" data-section="methods">方法地图</a><a href="#datasets" data-section="datasets">数据与协议</a><a href="#roadmap" data-section="roadmap">研究路线</a></nav>
+<div class="searchbar"><label for="survey-search">查找卡片</label><input type="search" id="survey-search" placeholder="例如：中文、未知 K、CLINC、许可" autocomplete="off"><button id="clear-search">清空</button><span id="search-status" role="status"></span></div>
+<noscript><p>当前以完整阅读模式展示。启用 JavaScript 可使用章节切换和卡片筛选。</p></noscript>
+<section id="overview" class="survey-panel" aria-label="范围与证据"><div class="section-heading"><span>RESEARCH NOTE / 01</span><a href="https://github.com/okcd00/text_clustering/blob/main/survey/README.md">Markdown 原文 ↗</a></div><p><strong>问题导向的阅读与选型地图，而不是跨任务总榜。</strong> 更新日期：2026-11-14。当前版本以仓库既有参考库为起点，连接批量聚类、已有类别路由、层级导航和持续更新；尚不是覆盖所有会议的系统综述。</p>
+<h2 id="overview-1">阅读路线 <a class="permalink" href="#overview-1" aria-label="链接到此节">#</a></h2>
+<p class="list-item">1. <a href="https://github.com/okcd00/text_clustering/blob/main/survey/methods.md">方法地图与证据比较</a>：先确定输入、输出、监督预算和失败模式，再选择论文。</p>
+<p class="list-item">2. <a href="https://github.com/okcd00/text_clustering/blob/main/survey/datasets.md">数据集选型与公平比较协议</a>：先选数据和切分，再谈榜单；真实时间与合成流分开。</p>
+<p class="list-item">3. <a href="https://github.com/okcd00/text_clustering/blob/main/survey/roadmap.md">复现优先级与覆盖缺口</a>：哪些值得先做，哪些暂不应投入。</p>
+<p class="list-item">4. <a href="https://github.com/okcd00/text_clustering/blob/main/references/readme.md">原始参考库</a>：逐篇来源与 BibTeX；<a href="https://github.com/okcd00/text_clustering/blob/main/references/ecosystem_2026-11-13.md">开源生态快照</a>：2026-11-13 的 stars、许可证和实现限制。</p>
+<p class="list-item">5. 本仓库实测证据：<a href="https://github.com/okcd00/text_clustering/blob/main/docs/protocols.md">批量协议</a>、<a href="https://github.com/okcd00/text_clustering/blob/main/docs/scenario-protocols.md">场景协议</a>。<strong>下文的论文结果不是本仓库复现结果。</strong></p>
+<h2 id="overview-2">范围与检索边界 <a class="permalink" href="#overview-2" aria-label="链接到此节">#</a></h2>
+<p class="list-item">- 核心：短文本/意图聚类、冻结语义表示上的聚类、LLM 辅助约束与解释、拒识后发现新类、类别树维护、文本流演化。</p>
+<p class="list-item">- 邻接：主题模型、概念 taxonomy、表格聚类，用于借鉴或单独实验，不把它们的指标直接混入文本聚类榜。</p>
+<p class="list-item">- 文献层：以 2024–2026 近期工作为重点，保留早期基础方法；正式会议、Findings、演示、预印本和软件分别标注。题目或 arXiv 年份不等于录用证明。</p>
+<p class="list-item">- 软件层：优先有可检查代码、明确任务接口和实际采用度的项目。stars 是带日期的可见度快照，不是算法质量，不宣称“全网最高”。</p>
+<p class="list-item">- 来源顺序：正式论文集/论文正文 → 作者官方仓库及配置 → 数据发布页。二手列表只用于发现线索，不作为结果证据。</p>
+<p>本轮审阅入口包括 ACL Anthology 的文本/意图聚类、topic modeling、taxonomy、continual intent discovery；ICLR/NeurIPS 原始论文入口；作者 GitHub 及仓库现有引用链。该过程是<strong>目的性筛选</strong>，没有宣称所有数据库已检索穷尽，也不虚构 PRISMA 检索数量。可复用关键词：<code>text clustering</code>, <code>intent discovery</code>, <code>LLM clustering constraints</code>, <code>topic modeling</code>, <code>hierarchical taxonomy</code>, <code>stream clustering</code>。</p>
+<h2 id="overview-3">证据分层 <a class="permalink" href="#overview-3" aria-label="链接到此节">#</a></h2>
+<div class="survey-grid">
+<article class="evidence-card"><h3>本仓库测量</h3><dl>
+<dt>含义</dt><dd>已发布协议、配置及逐 seed 汇总</dd>
+<dt>允许得出的结论</dt><dd>仅在相同组内比较，遵守历史编码器和数据限制</dd>
+</dl></article>
+<article class="evidence-card"><h3>论文测量</h3><dl>
+<dt>含义</dt><dd>原文表格/实验设置</dd>
+<dt>允许得出的结论</dt><dd>该论文的设置下有效，不等于在本仓库有效</dd>
+</dl></article>
+<article class="evidence-card"><h3>实现检查</h3><dl>
+<dt>含义</dt><dd>README、配置或源码静态检查</dd>
+<dt>允许得出的结论</dt><dd>接口/默认值/依赖条件，不等于运行成功</dd>
+</dl></article>
+<article class="evidence-card"><h3>待验证假设</h3><dl>
+<dt>含义</dt><dd>迁移建议或独立改编</dd>
+<dt>允许得出的结论</dt><dd>必须标注未执行，不能写成收益</dd>
+</dl></article>
+</div>
+<p>每次扩充先补“方法—数据—协议—成本—证据—限制”，再补引用数量。没有可靠版本/许可/完整实现的条目仍可保留为阅读材料，但不进入可复现候选榜。</p>
+<h2 id="overview-4">可视化与维护 <a class="permalink" href="#overview-4" aria-label="链接到此节">#</a></h2>
+<p><a href="https://dian.host/text_clustering/survey.html">Pages 交互阅读版</a>。内容以本目录四份 Markdown 为单一来源，运行 <code>python scripts/build_survey.py</code> 生成网页；<code>python scripts/build_survey.py --check</code> 检查漂移。页面外观在 <code>scripts/survey_template.html</code>、<code>docs/survey.css</code>，筛选逻辑在 <code>docs/survey.js</code>。本页中提及的本地路径为维护说明，不是 Pages 相对文件链接。</p></section><section id="methods" class="survey-panel" aria-label="方法地图"><div class="section-heading"><span>RESEARCH NOTE / 02</span><a href="https://github.com/okcd00/text_clustering/blob/main/survey/methods.md">Markdown 原文 ↗</a></div><p><a href="https://github.com/okcd00/text_clustering/blob/main/survey/README.md">Survey 首页</a> · <a href="https://github.com/okcd00/text_clustering/blob/main/survey/datasets.md">数据协议</a> · <a href="https://github.com/okcd00/text_clustering/blob/main/survey/roadmap.md">优先级</a></p>
+<h2 id="methods-1">1. 按系统环节分组 <a class="permalink" href="#methods-1" aria-label="链接到此节">#</a></h2>
+<div class="survey-grid">
+<article class="evidence-card"><h3>静态、已知 K</h3><dl>
+<dt>最小基线</dt><dd>KMeans / MiniBatchKMeans</dd>
+<dt>值得对照的路线</dt><dd>对比表示学习、LLM 约束、<a href="https://github.com/okcd00/text_clustering/blob/main/references/lin2026bagoftexts/readme.md">Bag-of-Texts</a>、<a href="https://github.com/okcd00/text_clustering/blob/main/references/diazrodriguez2026summariescentroids/readme.md">Summaries as Centroids</a></dd>
+<dt>必须隔离的变量</dt><dd>K 来源、训练标签、表示/生成预算、测试时可见信息</dd>
+</dl></article>
+<article class="evidence-card"><h3>静态、未知 K</h3><dl>
+<dt>最小基线</dt><dd>HDBSCAN / BERTopic 核心管线</dd>
+<dt>值得对照的路线</dt><dd><a href="https://github.com/okcd00/text_clustering/blob/main/references/angelov2020top2vec/readme.md">Top2Vec</a>、<a href="https://github.com/okcd00/text_clustering/blob/main/references/raffel2026topicmerge/readme.md">TopicMerge</a></dd>
+<dt>必须隔离的变量</dt><dd>噪声、全覆盖再分配、初始微簇数、合并决策成本</dd>
+</dl></article>
+<article class="evidence-card"><h3>主题解释</h3><dl>
+<dt>最小基线</dt><dd>c-TF-IDF 关键词</dd>
+<dt>值得对照的路线</dt><dd><a href="https://github.com/okcd00/text_clustering/blob/main/references/bianchi2021ctm/readme.md">CTM</a>、<a href="https://github.com/okcd00/text_clustering/blob/main/references/wu2024fastopic/readme.md">FASTopic</a>、<a href="https://github.com/okcd00/text_clustering/blob/main/references/yang2025llmitl/readme.md">LLM-ITL</a></dd>
+<dt>必须隔离的变量</dt><dd>soft topics ≠ hard clusters；coherence ≠ ARI；K 与词表需一致</dd>
+</dl></article>
+<article class="evidence-card"><h3>新文本路由/拒识</h3><dl>
+<dt>最小基线</dt><dd>原型 / 多原型 / kNN</dd>
+<dt>值得对照的路线</dt><dd>选择性语义验证、拒识缓冲区再聚类；<a href="https://github.com/okcd00/text_clustering/blob/main/references/wang2025nilc/readme.md">NILC</a> 为阅读对照</dd>
+<dt>必须隔离的变量</dt><dd>known coverage 与 hidden false accept 同报；校准只能用 validation</dd>
+</dl></article>
+<article class="evidence-card"><h3>类别树维护</h3><dl>
+<dt>最小基线</dt><dd>现有分层导航与 NodeProposal</dd>
+<dt>值得对照的路线</dt><dd><a href="https://github.com/okcd00/text_clustering/blob/main/references/zhang2026sparrow/readme.md">SPARROW</a>、<a href="https://github.com/okcd00/text_clustering/blob/main/references/kim2026peel/readme.md">PEEL</a>、<a href="https://github.com/okcd00/text_clustering/blob/main/references/lin2026taxoagent/readme.md">TaxoAgent</a></dd>
+<dt>必须隔离的变量</dt><dd>概念词表/金标准边是额外信息；树与 DAG、归属与构树分开</dd>
+</dl></article>
+<article class="evidence-card"><h3>持续演化</h3><dl>
+<dt>最小基线</dt><dd>frozen vs MiniBatch/BIRCH 更新</dd>
+<dt>值得对照的路线</dt><dd><a href="https://github.com/okcd00/text_clustering/blob/main/references/chen2026cosid/readme.md">COSID</a> 阶段协议、<a href="https://github.com/okcd00/text_clustering/blob/main/references/oliya2026rails/readme.md">RAILS</a> 增量路线</dd>
+<dt>必须隔离的变量</dt><dd>阶段流≠真实时间；预测后学习；遗忘、簇 ID、内存增长须单测</dd>
+</dl></article>
+<article class="evidence-card"><h3>邻接表格方法</h3><dl>
+<dt>最小基线</dt><dd>同矩阵几何基线</dd>
+<dt>值得对照的路线</dt><dd><a href="https://github.com/okcd00/text_clustering/blob/main/references/zhao2026tabclustpfn/comparison.md">TabClustPFN</a></dd>
+<dt>必须隔离的变量</dt><dd>文本适用性未证实；维度、K、批次归一化与非商业许可限制</dd>
+</dl></article>
+</div>
+<p>以上是路线定位，非各方法已实现清单。详读级证据如下；仅有书目记录的既有条目不自动提升为已复现。</p>
+<h2 id="methods-2">2. 近期重点工作的证据卡 <a class="permalink" href="#methods-2" aria-label="链接到此节">#</a></h2>
+<div class="survey-grid">
+<article class="evidence-card"><h3><a href="https://aclanthology.org/2026.findings-emnlp.2248/">TopicMerge</a>，EMNLP Findings 2026</h3><dl>
+<dt>可借鉴之处与原始证据</dt><dd>过分割微簇后做局部 LLM 合并；Table 1 Bills ARI .42、Wiki .71；Table 2 为 645/562 次 prompts</dd>
+<dt>限制 / 下一步</dt><dd>基线调用数是估计下界，不是实测延迟节省；只有两个数据集；记录时作者代码不可访问。先几何合并 vs 语义合并配对</dd>
+</dl></article>
+<article class="evidence-card"><h3><a href="https://aclanthology.org/2025.emnlp-main.300/">Dial-In LLM</a>，EMNLP main 2025</h3><dl>
+<dt>可借鉴之处与原始证据</dt><dd>对话角色/上下文与迭代意图发现；Table 4 NMI 从 KMeans .7899 到 context-free .8208，再到 role merge .8826</dd>
+<dt>限制 / 下一步</dt><dd>不把角色输入的收益全归为聚类器；完整训练集和微调权重可用性未建立。对话不是点击行为流</dd>
+</dl></article>
+<article class="evidence-card"><h3><a href="https://aclanthology.org/2026.emnlp-main.1502/">SPARROW</a>，EMNLP main 2026</h3><dl>
+<dt>可借鉴之处与原始证据</dt><dd>完整概念集合上分块建树/融合；1K GPT-5 设置下 Product ancestor F1 .745 vs LLMscorer .453</dd>
+<dt>限制 / 下一步</dt><dd>同设置 Edge F1 .579 vs .588，不能说全面提升。已有概念名、单父树，不是开放世界文本发现</dd>
+</dl></article>
+<article class="evidence-card"><h3><a href="https://aclanthology.org/2026.emnlp-main.1305/">PEEL</a>，EMNLP main 2026</h3><dl>
+<dt>可借鉴之处与原始证据</dt><dd>冻结 embedding 上的轻量 containment probe；有助研究父子关系信号</dd>
+<dt>限制 / 下一步</dt><dd>使用来源域金标准边与给定概念词表，不是无监督；98K 参数不代表整体系统零成本</dd>
+</dl></article>
+<article class="evidence-card"><h3><a href="https://aclanthology.org/2025.acl-long.70/">LLM-ITL</a>，ACL main 2025</h3><dl>
+<dt>可借鉴之处与原始证据</dt><dd>LLM 改善 topic words，置信加权 OT 训练</dd>
+<dt>限制 / 下一步</dt><dd>保留为主题解释独立轨道；训练、生成、外部知识偏置均需核算</dd>
+</dl></article>
+<article class="evidence-card"><h3><a href="https://aclanthology.org/2026.emnlp-main.705/">COSID / CIDA</a>，EMNLP main 2026</h3><dl>
+<dt>可借鉴之处与原始证据</dt><dd>ClincCL α=.5，CIDA USR 6.22 vs VBCGCD 21.82，但 OSR .73 vs .47；明确新类漏检/旧类误拒的权衡</dd>
+<dt>限制 / 下一步</dt><dd>默认配置 <code>ESTIMATE_K=False</code> 使用真实新类数。先借协议，不直接引入逐样本 LLM；完整定义见<a href="https://github.com/okcd00/text_clustering/blob/main/references/chen2026cosid/readme.md">参考卡</a></dd>
+</dl></article>
+</div>
+<p>各论文数据/表示/监督不一致，上表数字不能纵向排序。新旧类准确率、层级质量、聚类质量与业务推荐增量是不同终点。</p>
+<h2 id="methods-3">3. 开源项目怎么比较 <a class="permalink" href="#methods-3" aria-label="链接到此节">#</a></h2>
+<p><a href="https://github.com/okcd00/text_clustering/blob/main/references/ecosystem_2026-11-13.md">带 stars 与许可的原始快照</a>保留原日期，不以新文档日期冒充重新查询。</p>
+<p class="list-item">- <strong>BERTopic / Top2Vec</strong>：优先真实工程基线。仓库的 <code>bertopic_pipeline</code> 只是降维聚类核心，不等于完整 BERTopic。Top2Vec classic 将所有文档重新归到最近主题，不能把它的覆盖率直接与保留 noise 的 HDBSCAN 比；加一个“相同 HDBSCAN + 最近质心再分配”控制组。</p>
+<p class="list-item">- <strong>CTM / FASTopic</strong>：给定 K 的训练型 soft-topic 路线。若用 argmax 转硬标签，报告转换和覆盖规则；另报告主题质量。训练时间与冻结 encoder 聚类成本分开。</p>
+<p class="list-item">- <strong>TopMost</strong>：组织主题模型实验的工具箱，而非一种单独算法。先用作参考适配，不替换仓库既有协议。</p>
+<p class="list-item">- <strong>Contextual-Top2Vec</strong>：同 Top2Vec 仓库，不能重复计 stars；上下文版本为 beta 且 encoder 支持受限。</p>
+<p class="list-item">- <strong>论文附属代码</strong>：区分 README 存在、完整代码/权重可获取、许可明确、成功运行、完整复现五个等级。缺失许可不是默认许可。</p>
+<h2 id="methods-4">4. 当前本地证据对选型的约束 <a class="permalink" href="#methods-4" aria-label="链接到此节">#</a></h2>
+<p>既有 WOS 单次配对里 top-1 NLI 把 hidden false accept 从 64.00% 提到 69.85%，known accuracy 仅 58.62%→58.96%；不能默认“加一次 LLM/NLI 就更准”。见<a href="https://github.com/okcd00/text_clustering/blob/main/docs/scenario-protocols.md">完整口径</a>。先找模型成本可控且能改善失败 case 的方案，再扩大离线 seed/数据范围；只有明确离线增量，才讨论下游小流量验证。</p></section><section id="datasets" class="survey-panel" aria-label="数据与协议"><div class="section-heading"><span>RESEARCH NOTE / 03</span><a href="https://github.com/okcd00/text_clustering/blob/main/survey/datasets.md">Markdown 原文 ↗</a></div><p><a href="https://github.com/okcd00/text_clustering/blob/main/survey/README.md">Survey 首页</a> · <a href="https://github.com/okcd00/text_clustering/blob/main/survey/methods.md">方法地图</a> · <a href="https://github.com/okcd00/text_clustering/blob/main/datasets/readme.md">数据源目录</a></p>
+<p>核对日期：2026-11-14。下表区分<strong>官方数据规格</strong>、<strong>仓库历史使用子集</strong>与<strong>计划协议</strong>；未重新下载/运行数据。规模是出处中的规格，不冒充本轮 artifact 计数。数据不随仓库分发。原始文本、逐样本预测和缓存不进入公开仓库。</p>
+<h2 id="datasets-1">1. 可优先进入新基准的数据 <a class="permalink" href="#datasets-1" aria-label="链接到此节">#</a></h2>
+<div class="survey-grid">
+<article class="evidence-card"><h3><a href="https://github.com/PolyAI-LDN/task-specific-datasets">BANKING77</a></h3><dl>
+<dt>语言、规模、标签</dt><dd>英文；77 意图；train 10,003 / test 3,080</dd>
+<dt>版本与权限</dt><dd>官方 train/test；<a href="https://github.com/PolyAI-LDN/task-specific-datasets/blob/master/LICENSE">许可</a> CC BY 4.0；运行时 pin commit 与文件 hash</dd>
+<dt>适合的公平比较 / 主要陷阱</dt><dd>金融细粒度意图、known-K/unknown-K。无原生 OOS 或真实时间；需从训练集建立独立 validation；隐藏类是人工构造协议</dd>
+</dl></article>
+<article class="evidence-card"><h3><a href="https://github.com/clinc/oos-eval">CLINC150</a></h3><dl>
+<dt>语言、规模、标签</dt><dd>英文众包单意图；150 意图/10 domains。<code>data_full.json</code> 每意图 train100/val20/test30；OOS train100/val100/test1000</dd>
+<dt>版本与权限</dt><dd><a href="https://github.com/clinc/oos-eval/blob/master/LICENSE">许可</a> CC BY <strong>3.0</strong>；不得与 small/imbalanced 版本混用</dd>
+<dt>适合的公平比较 / 主要陷阱</dt><dd>intent/domain 两种粒度分别报。现仓库 4,500 test 不含 OOS；原生 OOS 可测拒识，但混合 OOS 标签不是一个可发现语义类。10 hidden intents 的 test 最多 300 条，拒识后缓冲区更小</dd>
+</dl></article>
+<article class="evidence-card"><h3><a href="https://data.mendeley.com/datasets/9rw3vkcfy4/2">WOS v2</a></h3><dl>
+<dt>语言、规模、标签</dt><dd>英文科学摘要；完整发布规格 46,985 / 134 子类 / 7 父类</dd>
+<dt>版本与权限</dt><dd>Mendeley v2 页面 CC BY 4.0；描述另含 MIT 式 permission notice，保留两者，不简化成“MIT 数据”</dd>
+<dt>适合的公平比较 / 主要陷阱</dt><dd>层级导航、粗/细类聚类。历史 numeric-consistent 子集尚无验证过的公共重建，不能用完整数据伪称复现旧分数。先审计 numeric path 与类名冲突。2017 是发布年，不是样本事件时间</dd>
+</dl></article>
+<article class="evidence-card"><h3><a href="https://github.com/alexa/massive">MASSIVE zh-CN</a> / <a href="https://huggingface.co/datasets/AmazonScience/massive">数据卡</a></h3><dl>
+<dt>语言、规模、标签</dt><dd>中文；60 intents / 18 scenarios；卡中 train11,514 / validation2,033 / test2,974</dd>
+<dt>版本与权限</dt><dd>CC BY 4.0；冻结 release/commit 与 locale。官方 1.1 增加 Catalan，其他语言不变</dd>
+<dt>适合的公平比较 / 主要陷阱</dt><dd>优先补中文语义意图；保留原始划分，用 <code>utt</code> 而非带 slot 标记的 <code>annot_utt</code>。跨语言按对齐 utterance ID 分组，防翻译泄漏。数据卡总量文字与 split 合计不一致，必须实数核对。不是自然中文电商行为</dd>
+</dl></article>
+<article class="evidence-card"><h3><a href="https://archive.ics.uci.edu/dataset/359/news+aggregator">UCI News Aggregator</a></h3><dl>
+<dt>语言、规模、标签</dt><dd>英文新闻标题；422,937；4 大类及 STORY 聚合标识；2014-03-10 至 08-10</dd>
+<dt>版本与权限</dt><dd>CC BY 4.0；冻结下载版本/hash；TIMESTAMP 是 approximate publication time</dd>
+<dt>适合的公平比较 / 主要陷阱</dt><dd>可做时间戳 silver-label 回放，不是人工金标意图漂移；story 标签与 4 大类是两任务。转载/重复 URL/标题及时间边界重复故事需单列；2pageSessions 不等于完整真实用户行为流</dd>
+</dl></article>
+</div>
+<p>MASSIVE 是新增候选，不是已完成的适配/测试。BANKING、CLINC、WOS 原有出处文件位于 <code>datasets/</code>，历史结果保持不动。</p>
+<h2 id="datasets-2">2. 暂不承诺开箱可复现的覆盖候选 <a class="permalink" href="#datasets-2" aria-label="链接到此节">#</a></h2>
+<p class="list-item">- <strong>中文新闻主题</strong>：<a href="https://github.com/FlagOpen/FlagEmbedding/tree/master/C_MTEB">C-MTEB</a>、<a href="https://huggingface.co/datasets/mteb/ThuNewsClusteringP2P.v2">ThuNewsClusteringP2P.v2</a>。它们补中文 topic，不替代中文 intent；原版嵌套任务行数不能当文档数，v2 不是同一协议。数据卡许可 unknown 时，不能套用框架许可证。先核对实际数据权利与 task revision，再纳入。</p>
+<p class="list-item">- <strong>人工标注新闻流</strong>：<a href="https://aclanthology.org/D18-1483/">Miranda et al., EMNLP 2018</a>、<a href="https://github.com/Priberam/news-clustering">官方代码</a>。旧 FTP 数据入口当前可用性未验证；官方说明原始部分组件专有，公开的是复刻/预提取特征等。BSD-3 软件许可不等于新闻文本许可。列为待准入，不宣称可完整复现。</p>
+<p class="list-item">- <strong>COSID 分阶段意图</strong>：<a href="https://github.com/okcd00/text_clustering/blob/main/references/chen2026cosid/readme.md">论文及官方实现</a>。这是在 BANKING/CLINC 上构造的协议，不是新自然流数据集；随机、语义调度、旧类复现率/Zipf 不平衡分别记录。借 split 的低成本实验与完整 CIDA 复现分开。</p>
+<h2 id="datasets-3">3. 固定六条实验轨道，禁止总榜 <a class="permalink" href="#datasets-3" aria-label="链接到此节">#</a></h2>
+<div class="survey-grid">
+<article class="evidence-card"><h3>B-K：批量已知 K</h3><dl>
+<dt>输入/切分</dt><dd>同一文档集合，同一明确 K</dd>
+<dt>核心指标</dt><dd>全量 ACC、ARI/NMI、时间/内存、多 seed</dd>
+<dt>不能得出的结论</dt><dd>oracle K 优势不能冒充未知 K 能力</dd>
+</dl></article>
+<article class="evidence-card"><h3>B-U：批量未知 K</h3><dl>
+<dt>输入/切分</dt><dd>禁止 test label 选 K/阈值</dd>
+<dt>核心指标</dt><dd>discovered K、coverage、全量噪声计错 ACC、接收子集 ARI/NMI</dd>
+<dt>不能得出的结论</dt><dd>高接收子集分数不等于全量好；密度 noise 不等于校准拒识</dd>
+</dl></article>
+<article class="evidence-card"><h3>R：已有类路由/拒识</h3><dl>
+<dt>输入/切分</dt><dd>train known support，独立 validation/test hidden classes</dd>
+<dt>核心指标</dt><dd>known acc/coverage、hidden false accept、novel P/R/F1、校准曲线</dd>
+<dt>不能得出的结论</dt><dd>CLINC 原生 OOS 与 held-out intent 不是同一未知分布</dd>
+</dl></article>
+<article class="evidence-card"><h3>H：层级</h3><dl>
+<dt>输入/切分</dt><dd>固定树/父子标签，叶类隐藏协议</dd>
+<dt>核心指标</dt><dd>leaf/parent、novel-and-parent recall、edge/ancestor F1、拒识</dd>
+<dt>不能得出的结论</dt><dd>导航不等于从零构树；给 gold edges 的监督模型不是无监督</dd>
+</dl></article>
+<article class="evidence-card"><h3>S：合成阶段流</h3><dl>
+<dt>输入/切分</dt><dd>固定引入顺序、复现率、类不平衡；阶段内先预测后更新</dd>
+<dt>核心指标</dt><dd>old/new accuracy、OSR/USR、buffer、簇稳定性、成本</dd>
+<dt>不能得出的结论</dt><dd>随机排列不是自然漂移；阶段窗口不是逐事件在线</dd>
+</dl></article>
+<article class="evidence-card"><h3>T：时间戳回放</h3><dl>
+<dt>输入/切分</dt><dd>稳定时间排序、未来隔离、重复故事显式处理</dd>
+<dt>核心指标</dt><dd>每窗口质量、recurring/new story、时间/内存/延迟、维护成本</dd>
+<dt>不能得出的结论</dt><dd>approximate timestamps 与 silver labels 不证明真实行为意图漂移</dd>
+</dl></article>
+</div>
+<h2 id="datasets-4">4. 每次比较必须冻结的 manifest <a class="permalink" href="#datasets-4" aria-label="链接到此节">#</a></h2>
+<p>新实验必须记录以下字段；无法公开具体数据时，仅发布安全汇总与摘要，但不能声称完全可复现：</p>
+<pre># Schema example, not a completed run
+source: canonical dataset URL
+revision: release or immutable commit
+artifact_sha256: required before execution
+license: dataset-specific license and notices
+language: locale
+text_field: exact field and preprocessing version
+label_view: intent / domain / leaf_path / story
+counts: raw, deduplicated, train, validation, test, known, hidden
+split: official or derived; seed; held-out classes; grouping key
+time: none / synthetic_stage / approximate_timestamp / verified_event_time
+encoder: model, immutable revision, instruction, pooling, truncation, dtype
+matrix: dimensions, preprocessing_fit_split, normalization, hash
+protocol: track, K source, noise/reassignment policy, update timing
+budget: tuning trials, labeled support, LLM tokens/calls, hardware</pre>
+<p class="list-item">1. <strong>先锁分割再编码</strong>：按 document/utterance/story ID 去泄漏；若研究重复出现，明确它是目标而非意外泄漏。PCA/词表/归一化参数只在允许的训练/calibration 集拟合。</p>
+<p class="list-item">2. <strong>双层对照</strong>：同矩阵后端比较回答“聚类器是否更好”；完整 native pipeline 比较回答“系统是否更好”。两个问题分栏，不能混因果。</p>
+<p class="list-item">3. <strong>相同监督与调参预算</strong>：oracle K、已知类名、标注 pairs、gold hierarchy、LLM 外部知识均计入预算。跨语言 encoder/指令差异单列。</p>
+<p class="list-item">4. <strong>同一噪声口径</strong>：同时报告接收和全量。Top2Vec 的全量再分配需配“相同密度聚类+最近质心”控制，不能把 assignment policy 当成表示突破。</p>
+<p class="list-item">5. <strong>同一统计单位</strong>：种子配对；报告均值/SD、逐 seed 与样本数。共享向量的 CLINC domain/intent 不是独立训练；窗口不是独立数据集。仅单次结果不附伪造方差/显著性。</p>
+<p class="list-item">6. <strong>同一成本边界</strong>：区分 encoder、fit、校准、预测、LLM 生成、维护、模型加载；报告峰值内存、吞吐/延迟及硬件。无法观测的账单写未知，不写零。</p>
+<p class="list-item">7. <strong>留出盲测</strong>：旧 test 已被反复查看，只能做描述性配对；新改进须留新验证/测试或预登记配置。已有历史 checkpoint 不可获取时，建立新 pinned encoder 基线，不回填旧分数。</p>
+<h2 id="datasets-5">5. 建议第一轮（未执行） <a class="permalink" href="#datasets-5" aria-label="链接到此节">#</a></h2>
+<p>先用 BANKING77、CLINC150、MASSIVE zh-CN 建立英文细粒度/跨域/中文意图三格；每格相同 frozen encoder 下做 KMeans 与一种 unknown-K 基线，已知 K 和未知 K 独立。CLINC 同时设原生 OOS 与 held-out intents 两个拒识组。层级先解决 WOS 重建和标签一致性，再跑；流式先借 COSID split 测旧新类干扰，再进入 UCI 时间回放。</p>
+<p>这轮目标是验证数据与协议可重复、找到稳定差异，不追求一次跑完所有论文，更不以英文分类标签上的 ARI 推断真实电商推荐增益。</p></section><section id="roadmap" class="survey-panel" aria-label="研究路线"><div class="section-heading"><span>RESEARCH NOTE / 04</span><a href="https://github.com/okcd00/text_clustering/blob/main/survey/roadmap.md">Markdown 原文 ↗</a></div><p><a href="https://github.com/okcd00/text_clustering/blob/main/survey/README.md">Survey 首页</a> · <a href="https://github.com/okcd00/text_clustering/blob/main/survey/methods.md">方法地图</a> · <a href="https://github.com/okcd00/text_clustering/blob/main/survey/datasets.md">数据协议</a></p>
+<p>这是实验建议，不是已经执行的结果。</p>
+<div class="survey-grid">
+<article class="evidence-card"><h3>P0 数据与证据基础</h3><dl>
+<dt>产出</dt><dd>BANKING/CLINC/MASSIVE manifest；新 pinned encoder 基线；独立 known-K/unknown-K 表</dd>
+<dt>准入 / 停止条件</dt><dd>许可、文件 hash、split、无泄漏检查未通过就不跑；历史数字不改写</dd>
+</dl></article>
+<article class="evidence-card"><h3>P1 廉价且可解释的对照</h3><dl>
+<dt>产出</dt><dd>Top2Vec/BERTopic 完整管线与同矩阵控制；COSID split-only 路由压力测试</dd>
+<dt>准入 / 停止条件</dt><dd>优先复用已有后端，不上逐样本 LLM；收益须跨 seed 与至少两个数据设置稳定</dd>
+</dl></article>
+<article class="evidence-card"><h3>P2 失败 case 定向改进</h3><dl>
+<dt>产出</dt><dd>小拒识缓冲区的语义合并/命名，几何 vs LLM 配对</dd>
+<dt>准入 / 停止条件</dt><dd>同时看 false merge/false accept、tokens/调用数/延迟；无明确离线增量则不扩大</dd>
+</dl></article>
+<article class="evidence-card"><h3>P3 层级及 topic 独立轨道</h3><dl>
+<dt>产出</dt><dd>SPARROW 父级放置；CTM/FASTopic 主题解释</dd>
+<dt>准入 / 停止条件</dt><dd>先验证所需概念/监督是否存在；不把额外标签优势混入无监督榜</dd>
+</dl></article>
+<article class="evidence-card"><h3>条件探索</h3><dl>
+<dt>产出</dt><dd>TabClustPFN、PEEL、完整 CIDA</dd>
+<dt>准入 / 停止条件</dt><dd>满足许可/权重/输入维度/监督/预算后才实验；当前只是参考，不是默认推荐</dd>
+</dl></article>
+</div>
+<h2 id="roadmap-1">尚未填平的缺口 <a class="permalink" href="#roadmap-1" aria-label="链接到此节">#</a></h2>
+<p class="list-item">- <strong>数据域</strong>：现有证据偏英文单句意图；中文、长文、业务描述、多意图、极度长尾和真实事件流覆盖不足。先补数据，而非继续仅加算法名。</p>
+<p class="list-item">- <strong>端到端新类</strong>：拒识质量不等于聚合、命名、父级选择及审核后插入质量。需单独定义每步错误及累积影响。</p>
+<p class="list-item">- <strong>演化</strong>：增量 API 不保证跨窗口簇 ID 稳定、可追溯合并/拆分、内存上限或自然漂移适应。</p>
+<p class="list-item">- <strong>论文覆盖</strong>：已有广泛书目并非逐篇证据审计；ACL/EMNLP 近年重点之外，SIGIR/KDD/WWW/ICLR/NeurIPS 等需逐会核对正文与正式状态。不能据本版宣称“会议全覆盖”。</p>
+<p class="list-item">- <strong>开放复现</strong>：部分项目只有样例、未释权重/完整数据或许可不清；记录这些差异，而不把 GitHub 链接视作复现保证。</p>
+<p class="list-item">- <strong>业务外推</strong>：没有证据表明离线聚类提升必然改善实时意图或推荐指标；遵守先小规模离线 case/增量、后小流量下游验证的门槛。</p>
+<h2 id="roadmap-2">后续每篇新增的最小卡片 <a class="permalink" href="#roadmap-2" aria-label="链接到此节">#</a></h2>
+<p>正式来源与版本 → 任务与输入假设 → 已知/未知 K 与监督 → 数据与切分 → 核心结果及表号 → 代码/权重/许可/核对日期 → 成本 → 对现有基线的新增价值 → 能证伪它的最小实验。</p>
+<p>仅新增 BibTeX 不算覆盖完成。每轮优先补“有书目但无证据卡”的核心条目，以及数据集可重建性；避免把重复预印本/会议版和共享软件 stars 重复计数。更新日期、来源检查与实验状态必须分开。</p></section>
+<footer>单一内容来源：仓库 <a href="https://github.com/okcd00/text_clustering/tree/main/survey">survey/ Markdown</a> · <a href="index.html">回到实测看板</a></footer></main><script src="survey.js"></script></body></html>

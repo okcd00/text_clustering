@@ -41,3 +41,10 @@ Added Playwright browser regression covering 320px, 390px and 1280px viewports: 
 Local validation uses the installed Google Chrome channel in fresh headless contexts. The bundled Chromium download was slow and stopped; the bundled-browser/Linux CI path is documented but not claimed as executed. The GitHub Actions example now includes the browser job; activation still requires workflow-write authorization. This is local browser regression against the public source, not a new live-domain or Safari/physical-device acceptance.
 
 Result: all 6 browser cases passed (2 flows × 3 widths, 12.7 seconds); all 5 Python unit tests and the existing homepage rendering check passed. Public-content audit and whitespace checks passed. No experimental numbers were changed.
+
+## Survey Pages · 2026-11-14
+
+- Markdown is the content source; `python scripts/build_survey.py --check` checks generated-page parity. `tests/test_survey.py` checks parity, unique anchors and local asset links.
+- Six Python tests passed with `PYTHONPATH=src python -m unittest discover -s tests -p 'test_*.py'`.
+- Cloud-browser local preview checked: homepage entry, chapter navigation, keyword search, empty state, clear, hash deep link, reload/back; 320/390 px iframe responsive layouts had no document horizontal overflow. This is responsive-width QA, not physical-phone testing.
+- Added Playwright regression for the above flows. The attempted nine-case full browser suite could not launch local Chromium due to container socket permissions; it is **not** a passing full browser regression. Existing result files and calculation code were untouched.
