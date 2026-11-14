@@ -10,3 +10,5 @@ Only citations, provenance and download links are distributed. Internal datasets
 
 - [MASSIVE zh-CN](massive_zh_cn/readme.md): pinned converted artifacts and observed split/overlap audit.
 - [Reproducible preparation](preparation.md): external-cache download, integrity checks and fair-comparison gates.
+
+- [KuaiSearch](kuaisearch/readme.md): catalog-only Chinese e-commerce search candidate; unresolved license discrepancy, no dataset download or benchmark execution.
