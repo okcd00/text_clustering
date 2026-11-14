@@ -81,3 +81,19 @@ budget: tuning trials, labeled support, LLM tokens/calls, hardware
 MASSIVE validation 缺 `audio_volume_other`，test 缺 `cooking_query`。已验证60意图到18场景的单父映射；这是数据审计，不授予模型读取隐藏类别或测试标签的权限。完整 hash、公共标签计数和缺失类在 [BANKING 审计](../datasets/banking77/audit_2026-11-14.json)、[MASSIVE 审计](../datasets/massive_zh_cn/audit_2026-11-14.json)。共享数按不同字符串计，不是重合行对数；尚未测量它对模型分数的影响。
 
 关于 MASSIVE 总量：[MMNLU-22 组织者报告 §4.1/4.2.1](https://arxiv.org/html/2212.06346)说明常规划分之外，另有每语言3,000条人工改写的竞赛留出集。因此19,521与这里三split实数16,521属于不同口径；本次仅审计固定HF转换版本的常规三split，未下载竞赛holdout，也未验证原始tarball字节。
+
+
+## 首个可运行基线：lexical-v1
+
+**本仓库新实测，独立于历史结果。** 在 BANKING77 / MASSIVE zh-CN 全量官方 test 上，冻结字符 TF-IDF → 64 维 SVD → L2 表示，以 3 个随机种子比较 oracle-K KMeans、固定参数的未知 K HDBSCAN，以及全归一簇的 sanity control。无需模型、GPU 或外部 API；是词面基线，不是语义方法排名。
+
+[完整执行协议与逐 seed 结果](../results/lexical-v1/README.md)。已完成独立的重复排除敏感性实验：BANKING77 从 3,080 到 3,071 条；MASSIVE zh-CN 从 2,974 到 2,696 条，均未丢失 test 中已有标签。删除所有 test 重复组及 train/dev 同文交集，不挑选“正确标签”的代表。每个新语料重新拟合表示，因此不能把分数变化解释为泄漏的因果效应。
+
+| 官方 test 实测 | Oracle-K KMeans 的 ARI（3 seed 均值） | 固定 HDBSCAN 的 ARI / 覆盖率 | 允许的结论 |
+|---|---|---|---|
+| BANKING77，77 个 test-present 意图 | 0.2934 | 0.0155 / 42.0% | 此词面表示和固定参数下，大量样本被密度法拒收；不能据此否定 HDBSCAN 或未知 K 方法 |
+| MASSIVE zh-CN，59 个 test-present 意图 | 0.1790 | 0.0387 / 62.9% | 相同配置不等于相同任务难度；不能把两个数据集的绝对分数当作语言优劣 |
+
+这里的全量 ARI 明确将噪声视为同一簇；原始 JSON 同时报告 covered-only ARI、覆盖率、簇数与 NMI，避免只展示易样本分数。KMeans 获得 test-present oracle K，是不同信息预算，不宣布“公平击败”未知 K。全归一簇控制覆盖率 100% 而 ARI/NMI 为 0，说明覆盖率也不能单独排名。3 seeds 是稳定性检查，不是置信区间。
+
+下一步先固定多语言语义模型的 revision、prefix、池化和归一化，再在同一矩阵上比较；另设验证集选参，不能反复按这里的 test 分数调参。此轮没有验证路由、层级、流式或业务推荐增量。

@@ -1,0 +1,8 @@
+# Isolated lexical-v1 executable protocol, not a change to project requirements.
+# Tested CPython 3.12.14; install in a separate venv, do not mix with the main package.
+numpy==2.3.5
+scipy==1.17.0
+scikit-learn==1.8.0
+pyarrow==19.0.1
+threadpoolctl==3.6.0
+joblib==1.5.3

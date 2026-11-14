@@ -8,7 +8,8 @@
 2. [数据集选型与公平比较协议](datasets.md)：先选数据和切分，再谈榜单；真实时间与合成流分开。
 3. [复现优先级与覆盖缺口](roadmap.md)：哪些值得先做，哪些暂不应投入。
 4. [原始参考库](../references/readme.md)：逐篇来源与 BibTeX；[开源生态快照](../references/ecosystem_2026-11-13.md)：2026-11-13 的 stars、许可证和实现限制。
-5. 本仓库实测证据：[批量协议](../docs/protocols.md)、[场景协议](../docs/scenario-protocols.md)。**下文的论文结果不是本仓库复现结果。**
+5. 新增独立可运行 [lexical-v1 基线](../results/lexical-v1/README.md)：两套完整 test、3 seeds、oracle-K/未知 K 和重复排除敏感性，明确不冒充语义模型比较。
+6. 本仓库实测证据：[批量协议](../docs/protocols.md)、[场景协议](../docs/scenario-protocols.md)。**下文的论文结果不是本仓库复现结果。**
 
 ## 范围与检索边界
 
