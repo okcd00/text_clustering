@@ -1,0 +1,23 @@
+{
+  "id": "news-calendar-paired-v2",
+  "status": "prespecified_before_v2_scored_execution",
+  "sampling_namespace": "news-calendar-preflight-v1",
+  "warmup_start": "2014-03-17",
+  "test_start": "2014-03-24",
+  "test_end_exclusive": "2014-04-21",
+  "window": "UTC calendar day, half-open; retain empty days",
+  "warmup_max_rows": 2048,
+  "per_scored_day_max_rows": 512,
+  "sampling": "smallest hash of v1 namespace|role|numeric ID; labels not used; sort timestamp and ID; preserve v1 prefix",
+  "threshold": 0.3,
+  "branching_factor": 50,
+  "n_clusters": null,
+  "methods": ["frozen", "unbounded", "cap-2048", "rolling-2048"],
+  "prediction": "entire day snapshot predicts before any same-day learning",
+  "rebuild": "latest 2048 learned rows every 2048 scored arrivals, replacing old tree; one insertion per row",
+  "scores": "STORY and CATEGORY within-day ARI, raw and first-title; <2 rows null; primary post-cap horizon includes days whose prediction snapshot starts after first skipped insertion",
+  "comparison": "paired per-day delta vs unbounded; full horizon and post-cap row-weighted means; report worst daily delta, negative/zero/positive day counts; no significance or universal winner claim; no threshold tuning",
+  "memory": "fresh subprocess for each method/repeat, never parse source or load encoder; mmap prepared feature/label arrays; touch all file-backed pages before baseline; preload sklearn scoring/imports using dummy model before baseline; sample own process RSS and anonymous RSS every 5ms plus synchronous phase boundaries; report absolute memory and deltas above post-touch baseline; resource high-water RSS separately; serialized model size is a separate storage proxy",
+  "repeat": "two complete deterministic repeats, no stochastic seed confidence interval",
+  "limitations": "v1 prefix already inspected; extended horizon is a fixed continuation not an untouched confirmatory dataset; capped warmup could exceed cap, report rather than hide"
+}

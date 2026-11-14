@@ -40,6 +40,18 @@ bash scripts/evaluate_calendar.sh
 
 方法与结果表见 [Survey 的流式段落](https://dian.host/text_clustering/survey.html#roadmap-4)。该入口单独运行五个维护方案，不修改原有评估入口、图表数据或历史结果；不自动发布。
 
+### 延长观察与隔离内存测量（v2）
+
+[28 日窗延长实验](results/calendar-paired-v2/README.md)保留 v1 全部结果及共享前缀。其独立 worker 不解析源数据或加载编码器，基于 mmap 触页后的基线报告采样峰值增量。实际出现了「rolling 末态较小但峰值 RSS 不低」的取舍，不能当硬内存承诺。[准备说明](experiments/calendar-paired-v2/README.md)完成后：
+
+```bash
+CALENDAR_PYTHON=/tmp/calendar-env/bin/python \
+CALENDAR_V1_CACHE=/tmp/calendar-data CALENDAR_V2_CACHE=/tmp/calendar-v2 \
+bash scripts/evaluate_calendar_v2.sh
+```
+
+入口复跑四策略各两轮并核对 v1 前七天；与原 42 个静态／路由运行保持分离。[Survey 延长观察表](https://dian.host/text_clustering/survey.html#roadmap-5)。
+
 ## 五分钟开始
 
 推荐 Python 3.10；部分可选算法需要 Python 3.11 或更高版本。

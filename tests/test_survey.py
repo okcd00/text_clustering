@@ -30,3 +30,13 @@ class StreamingSection(unittest.TestCase):
         self.assertIn('不加入静态与路由的原 42 个运行结果',content)
         # The previous charts retain their own dataset/runner, untouched by this table.
         self.assertIn('href="unified-results.json"',content)
+
+class ExtendedStreamingSection(unittest.TestCase):
+    def test_v1_and_v2_stay_separate(self):
+        content=(ROOT/'docs/survey.html').read_text()
+        self.assertIn('id="roadmap-4"',content)
+        self.assertIn('id="roadmap-5"',content)
+        self.assertIn('calendar-paired-v1/results.json',content)
+        self.assertIn('calendar-paired-v2/results.json',content)
+        self.assertIn('5ms',content)
+        self.assertIn('69.31 / 68.50 MiB',content)
