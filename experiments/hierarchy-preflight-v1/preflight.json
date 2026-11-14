@@ -1,0 +1,153 @@
+{
+  "status": "preflight_only_no_model_or_algorithm_execution",
+  "protocol": "massive-hierarchy-supported-parent-v1",
+  "source_leaf_count": 60,
+  "eligible_leaf_count": 58,
+  "excluded_leaf_count": 2,
+  "known_leaf_count": 31,
+  "validation_hidden_leaf_count": 14,
+  "test_hidden_leaf_count": 13,
+  "supported_parent_count": 18,
+  "excluded_parent_count": 0,
+  "cross_role_normalized_overlap": 0,
+  "unsupported_hidden_parents_after_caps": 0,
+  "split_fingerprint": "473f984ed604f8a5b1e7eec4518ff8de7f5ca8bda6781a3de24f3258d35d7729",
+  "limits": {
+    "support_per_leaf": 20,
+    "query_per_leaf": 8
+  },
+  "roles": {
+    "support": {
+      "rows": 606,
+      "leaves": 31,
+      "parents": 18,
+      "known_rows": 606,
+      "hidden_rows": 0
+    },
+    "validation": {
+      "rows": 334,
+      "leaves": 45,
+      "parents": 18,
+      "known_rows": 223,
+      "hidden_rows": 111
+    },
+    "test": {
+      "rows": 334,
+      "leaves": 44,
+      "parents": 18,
+      "known_rows": 230,
+      "hidden_rows": 104
+    }
+  },
+  "supported_parent_hidden_counts": {
+    "P004": {
+      "known_leaves": 1,
+      "validation_hidden_leaves": 1,
+      "test_hidden_leaves": 1
+    },
+    "P017": {
+      "known_leaves": 1,
+      "validation_hidden_leaves": 1,
+      "test_hidden_leaves": 1
+    },
+    "P013": {
+      "known_leaves": 1,
+      "validation_hidden_leaves": 1,
+      "test_hidden_leaves": 1
+    },
+    "P015": {
+      "known_leaves": 1,
+      "validation_hidden_leaves": 0,
+      "test_hidden_leaves": 0
+    },
+    "P009": {
+      "known_leaves": 1,
+      "validation_hidden_leaves": 0,
+      "test_hidden_leaves": 1
+    },
+    "P014": {
+      "known_leaves": 2,
+      "validation_hidden_leaves": 1,
+      "test_hidden_leaves": 1
+    },
+    "P000": {
+      "known_leaves": 1,
+      "validation_hidden_leaves": 1,
+      "test_hidden_leaves": 1
+    },
+    "P001": {
+      "known_leaves": 7,
+      "validation_hidden_leaves": 1,
+      "test_hidden_leaves": 1
+    },
+    "P003": {
+      "known_leaves": 1,
+      "validation_hidden_leaves": 1,
+      "test_hidden_leaves": 1
+    },
+    "P010": {
+      "known_leaves": 2,
+      "validation_hidden_leaves": 1,
+      "test_hidden_leaves": 1
+    },
+    "P005": {
+      "known_leaves": 1,
+      "validation_hidden_leaves": 0,
+      "test_hidden_leaves": 0
+    },
+    "P016": {
+      "known_leaves": 3,
+      "validation_hidden_leaves": 1,
+      "test_hidden_leaves": 1
+    },
+    "P012": {
+      "known_leaves": 3,
+      "validation_hidden_leaves": 1,
+      "test_hidden_leaves": 1
+    },
+    "P008": {
+      "known_leaves": 1,
+      "validation_hidden_leaves": 1,
+      "test_hidden_leaves": 1
+    },
+    "P007": {
+      "known_leaves": 1,
+      "validation_hidden_leaves": 1,
+      "test_hidden_leaves": 0
+    },
+    "P002": {
+      "known_leaves": 1,
+      "validation_hidden_leaves": 1,
+      "test_hidden_leaves": 0
+    },
+    "P011": {
+      "known_leaves": 2,
+      "validation_hidden_leaves": 1,
+      "test_hidden_leaves": 1
+    },
+    "P006": {
+      "known_leaves": 1,
+      "validation_hidden_leaves": 0,
+      "test_hidden_leaves": 0
+    }
+  },
+  "source_revision": "ed58ac423a2f4121720918bf5301577edce4ffd3",
+  "artifacts": [
+    {
+      "name": "train.parquet",
+      "sha256": "ff3f4ff65f2e7419ec8ee01f9e5e8f50b500fd1fdc4affcb29dc57e04aa7a6bf",
+      "bytes": 726913
+    },
+    {
+      "name": "validation.parquet",
+      "sha256": "582f45a93e7a5b8f8094746b585f12e5f98ba13be3ee1a42ee4d866f190d7506",
+      "bytes": 148247
+    },
+    {
+      "name": "test.parquet",
+      "sha256": "7eca92a47e6bffeec3fc7de751948b82904680353a42eef7e8c6fdbe89adb2db",
+      "bytes": 201108
+    }
+  ],
+  "script_sha256": "dbbb05af2acfa7329b06ca4d85784d4248f26282ffb3c3c945235cb2a55043ba"
+}
