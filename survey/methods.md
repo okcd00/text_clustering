@@ -7,6 +7,7 @@
 | 环节 | 最小基线 | 值得对照的路线 | 必须隔离的变量 |
 |---|---|---|---|
 | 静态、已知 K | KMeans / MiniBatchKMeans | 对比表示学习、LLM 约束、[Bag-of-Texts](../references/lin2026bagoftexts/readme.md)、[Summaries as Centroids](../references/diazrodriguez2026summariescentroids/readme.md) | K 来源、训练标签、表示/生成预算、测试时可见信息 |
+| 静态、已知 K 的规模化 | Lloyd / MiniBatchKMeans | [Faiss e-means](../references/bessa2026emeans/readme.md)（2026 预印本，未实测） | 同硬件和向量测耗时、峰值内存与失真；失真与语义 ARI 分开，计入最终分配时间 |
 | 静态、未知 K | HDBSCAN / BERTopic 核心管线 | [Top2Vec](../references/angelov2020top2vec/readme.md)、[TopicMerge](../references/raffel2026topicmerge/readme.md) | 噪声、全覆盖再分配、初始微簇数、合并决策成本 |
 | 主题解释 | c-TF-IDF 关键词 | [CTM](../references/bianchi2021ctm/readme.md)、[FASTopic](../references/wu2024fastopic/readme.md)、[LLM-ITL](../references/yang2025llmitl/readme.md) | soft topics ≠ hard clusters；coherence ≠ ARI；K 与词表需一致 |
 | 新文本路由/拒识 | 原型 / 多原型 / kNN | 选择性语义验证、拒识缓冲区再聚类；[NILC](../references/wang2025nilc/readme.md) 为阅读对照 | known coverage 与 hidden false accept 同报；校准只能用 validation |
