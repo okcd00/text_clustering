@@ -10,7 +10,7 @@ test('survey navigation, search, recovery, deep links and narrow layout', async(
  await page.getByRole('searchbox').fill('no-match-123');
  await expect(page.locator('#search-status')).toContainText('没有匹配项');
  await page.getByRole('button',{name:'清空',exact:true}).click();
- await expect(page.locator('#datasets .evidence-card:visible')).toHaveCount(11);
+ await expect(page.locator('#datasets .evidence-card:visible')).toHaveCount(13);
  await page.goto('/survey.html#datasets-3');await expect(page.locator('#datasets-3')).toBeVisible();
  await page.reload();await expect(page.locator('#datasets')).toBeVisible();
  expect(await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth)).toBeLessThanOrEqual(1);

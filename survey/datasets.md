@@ -2,7 +2,7 @@
 
 [Survey 首页](README.md) · [方法地图](methods.md) · [数据源目录](../datasets/readme.md)
 
-核对日期：2026-11-14。下表区分**官方数据规格**、**仓库历史使用子集**与**计划协议**；未重新下载/运行数据。规模是出处中的规格，不冒充本轮 artifact 计数。数据不随仓库分发。原始文本、逐样本预测和缓存不进入公开仓库。
+核对日期：2026-11-14。下表区分**官方数据规格**、**仓库历史使用子集**与**计划协议**；本节选型规格来自官方；2026-11-14 对 BANKING77/MASSIVE zh-CN 另做了实际下载与本地聚合审计，结果见末节；未运行模型。规模是出处中的规格，不冒充本轮 artifact 计数。数据不随仓库分发。原始文本、逐样本预测和缓存不进入公开仓库。
 
 ## 1. 可优先进入新基准的数据
 
@@ -11,10 +11,10 @@
 | [BANKING77](https://github.com/PolyAI-LDN/task-specific-datasets) | 英文；77 意图；train 10,003 / test 3,080 | 官方 train/test；[许可](https://github.com/PolyAI-LDN/task-specific-datasets/blob/master/LICENSE) CC BY 4.0；运行时 pin commit 与文件 hash | 金融细粒度意图、known-K/unknown-K。无原生 OOS 或真实时间；需从训练集建立独立 validation；隐藏类是人工构造协议 |
 | [CLINC150](https://github.com/clinc/oos-eval) | 英文众包单意图；150 意图/10 domains。`data_full.json` 每意图 train100/val20/test30；OOS train100/val100/test1000 | [许可](https://github.com/clinc/oos-eval/blob/master/LICENSE) CC BY **3.0**；不得与 small/imbalanced 版本混用 | intent/domain 两种粒度分别报。现仓库 4,500 test 不含 OOS；原生 OOS 可测拒识，但混合 OOS 标签不是一个可发现语义类。10 hidden intents 的 test 最多 300 条，拒识后缓冲区更小 |
 | [WOS v2](https://data.mendeley.com/datasets/9rw3vkcfy4/2) | 英文科学摘要；完整发布规格 46,985 / 134 子类 / 7 父类 | Mendeley v2 页面 CC BY 4.0；描述另含 MIT 式 permission notice，保留两者，不简化成“MIT 数据” | 层级导航、粗/细类聚类。历史 numeric-consistent 子集尚无验证过的公共重建，不能用完整数据伪称复现旧分数。先审计 numeric path 与类名冲突。2017 是发布年，不是样本事件时间 |
-| [MASSIVE zh-CN](https://github.com/alexa/massive) / [数据卡](https://huggingface.co/datasets/AmazonScience/massive) | 中文；60 intents / 18 scenarios；卡中 train11,514 / validation2,033 / test2,974 | CC BY 4.0；冻结 release/commit 与 locale。官方 1.1 增加 Catalan，其他语言不变 | 优先补中文语义意图；保留原始划分，用 `utt` 而非带 slot 标记的 `annot_utt`。跨语言按对齐 utterance ID 分组，防翻译泄漏。数据卡总量文字与 split 合计不一致，必须实数核对。不是自然中文电商行为 |
+| [MASSIVE zh-CN](https://github.com/alexa/massive) / [数据卡](https://huggingface.co/datasets/AmazonScience/massive) | 中文；60 intents / 18 scenarios；卡中 train11,514 / validation2,033 / test2,974 | CC BY 4.0；冻结 release/commit 与 locale。官方 1.1 增加 Catalan，其他语言不变 | 优先补中文语义意图；保留原始划分，用 `utt` 而非带 slot 标记的 `annot_utt`。跨语言按对齐 utterance ID 分组，防翻译泄漏。常规三 split 合计16,521；19,521口径另含竞赛3,000条/locale holdout，不能混入本基准。不是自然中文电商行为 |
 | [UCI News Aggregator](https://archive.ics.uci.edu/dataset/359/news+aggregator) | 英文新闻标题；422,937；4 大类及 STORY 聚合标识；2014-03-10 至 08-10 | CC BY 4.0；冻结下载版本/hash；TIMESTAMP 是 approximate publication time | 可做时间戳 silver-label 回放，不是人工金标意图漂移；story 标签与 4 大类是两任务。转载/重复 URL/标题及时间边界重复故事需单列；2pageSessions 不等于完整真实用户行为流 |
 
-MASSIVE 是新增候选，不是已完成的适配/测试。BANKING、CLINC、WOS 原有出处文件位于 `datasets/`，历史结果保持不动。
+MASSIVE 已完成固定版本与解析/数据审计，尚未进行聚类适配与模型评测。BANKING、CLINC、WOS 原有出处文件位于 `datasets/`，历史结果保持不动。
 
 ## 2. 暂不承诺开箱可复现的覆盖候选
 
@@ -68,3 +68,16 @@ budget: tuning trials, labeled support, LLM tokens/calls, hardware
 先用 BANKING77、CLINC150、MASSIVE zh-CN 建立英文细粒度/跨域/中文意图三格；每格相同 frozen encoder 下做 KMeans 与一种 unknown-K 基线，已知 K 和未知 K 独立。CLINC 同时设原生 OOS 与 held-out intents 两个拒识组。层级先解决 WOS 重建和标签一致性，再跑；流式先借 COSID split 测旧新类干扰，再进入 UCI 时间回放。
 
 这轮目标是验证数据与协议可重复、找到稳定差异，不追求一次跑完所有论文，更不以英文分类标签上的 ARI 推断真实电商推荐增益。
+
+## 6. 数据准备实证：先把比较的地基做实
+
+[可执行准备流程与完整审计口径](../datasets/preparation.md)。数据只下载到仓库外；没有模型调用，也没有向外部服务发送文本。旧榜单不变。
+
+| 数据 | 已固定并实测 | 发现的比较风险 | 下一步门槛 |
+|---|---|---|---|
+| BANKING77 | 既有 revision 与三文件 SHA-256 全通过；train/test 10,003/3,080，均77类 | 跨split原文重合0，但规范化文本有7个共享字符串；无原生validation | 固定训练内validation与去重敏感性方案；不能只查精确重复 |
+| MASSIVE zh-CN | 固定官方账号 HF Parquet 转换 revision；11,514/2,033/2,974；60/59/59 intents，18 scenarios | train/dev、train/test、dev/test 分别132/187/46个共享原文；ID无交叉不代表文本无交叉 | 官方split与重复控制敏感性轨道分开；test实际59类不能机械视为60类 |
+
+MASSIVE validation 缺 `audio_volume_other`，test 缺 `cooking_query`。已验证60意图到18场景的单父映射；这是数据审计，不授予模型读取隐藏类别或测试标签的权限。完整 hash、公共标签计数和缺失类在 [BANKING 审计](../datasets/banking77/audit_2026-11-14.json)、[MASSIVE 审计](../datasets/massive_zh_cn/audit_2026-11-14.json)。共享数按不同字符串计，不是重合行对数；尚未测量它对模型分数的影响。
+
+关于 MASSIVE 总量：[MMNLU-22 组织者报告 §4.1/4.2.1](https://arxiv.org/html/2212.06346)说明常规划分之外，另有每语言3,000条人工改写的竞赛留出集。因此19,521与这里三split实数16,521属于不同口径；本次仅审计固定HF转换版本的常规三split，未下载竞赛holdout，也未验证原始tarball字节。

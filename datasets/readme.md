@@ -7,3 +7,6 @@
 - [WOS](wos46985/readme.md)
 
 Only citations, provenance and download links are distributed. Internal datasets, embeddings and caches must stay outside the public checkout.
+
+- [MASSIVE zh-CN](massive_zh_cn/readme.md): pinned converted artifacts and observed split/overlap audit.
+- [Reproducible preparation](preparation.md): external-cache download, integrity checks and fair-comparison gates.

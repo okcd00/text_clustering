@@ -1,0 +1,55 @@
+{
+  "name": "MASSIVE zh-CN",
+  "source_url": "https://huggingface.co/datasets/AmazonScience/massive",
+  "revision": "ed58ac423a2f4121720918bf5301577edce4ffd3",
+  "upstream_metadata_revision": "ff6bd8e4b27c3543e4f8fe2108f32bb95a6f8740",
+  "upstream_github_revision": "f966f21846043aabef9b0f974fa7970027f43738",
+  "format": "Hugging Face converted Parquet; not original release tarball bytes",
+  "locale": "zh-CN",
+  "text_field": "utt",
+  "license": "CC-BY-4.0",
+  "license_url": "https://github.com/alexa/massive/blob/f966f21846043aabef9b0f974fa7970027f43738/NOTICE.md",
+  "notice_url": "https://github.com/alexa/massive/blob/f966f21846043aabef9b0f974fa7970027f43738/NOTICE.md",
+  "distribution": "source links and aggregate audit only; no payloads",
+  "files": [
+    {
+      "name": "train.parquet",
+      "split": "train",
+      "url": "https://huggingface.co/datasets/AmazonScience/massive/resolve/ed58ac423a2f4121720918bf5301577edce4ffd3/zh-CN/train/0000.parquet",
+      "sha256": "ff3f4ff65f2e7419ec8ee01f9e5e8f50b500fd1fdc4affcb29dc57e04aa7a6bf",
+      "bytes": 726913
+    },
+    {
+      "name": "validation.parquet",
+      "split": "validation",
+      "url": "https://huggingface.co/datasets/AmazonScience/massive/resolve/ed58ac423a2f4121720918bf5301577edce4ffd3/zh-CN/validation/0000.parquet",
+      "sha256": "582f45a93e7a5b8f8094746b585f12e5f98ba13be3ee1a42ee4d866f190d7506",
+      "bytes": 148247
+    },
+    {
+      "name": "test.parquet",
+      "split": "test",
+      "url": "https://huggingface.co/datasets/AmazonScience/massive/resolve/ed58ac423a2f4121720918bf5301577edce4ffd3/zh-CN/test/0000.parquet",
+      "sha256": "7eca92a47e6bffeec3fc7de751948b82904680353a42eef7e8c6fdbe89adb2db",
+      "bytes": 201108
+    }
+  ],
+  "expected_splits": {
+    "train": {
+      "rows": 11514,
+      "classes": 60,
+      "parents": 18
+    },
+    "validation": {
+      "rows": 2033,
+      "classes": 59,
+      "parents": 18
+    },
+    "test": {
+      "rows": 2974,
+      "classes": 59,
+      "parents": 18
+    }
+  },
+  "code_license": "Apache-2.0 (repository code only, not the dataset)"
+}

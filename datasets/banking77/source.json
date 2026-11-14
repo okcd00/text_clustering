@@ -21,5 +21,15 @@
       "sha256": "53261da888122daf2d120d925458631d9619e15d82e56052e7a42e535ce32b63",
       "bytes": 2036
     }
-  ]
+  ],
+  "expected_splits": {
+    "train": {
+      "rows": 10003,
+      "classes": 77
+    },
+    "test": {
+      "rows": 3080,
+      "classes": 77
+    }
+  }
 }
