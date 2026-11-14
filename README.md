@@ -2,7 +2,7 @@
 
 **从文本集合到可维护的类别体系：可切换的算法工具 + 同协议评测。**
 
-[打开能力与效果看板](https://dian.host/text_clustering/) · [API 与选型](docs/usage.md) · [评测口径](docs/protocols.md) · [参考文献](references/readme.md)
+[Survey：方法、数据与公平比较](survey/README.md) · [打开能力与效果看板](https://dian.host/text_clustering/) · [API 与选型](docs/usage.md) · [评测口径](docs/protocols.md) · [参考文献](references/readme.md)
 
 | 需求 | 起步方案 | 选择要点 |
 |---|---|---|
@@ -50,7 +50,8 @@ print(result.partition.labels)
 - `examples/`：无需网络或模型下载的最小端到端示例。
 - `docs/`：静态评测看板、逐种子公开结果、调用与评测说明。
 - `datasets/`：数据集出处、下载入口及引用，不附数据。
-- `references/`：83 篇参考工作的来源和 BibTeX，不附论文 PDF。
+- `survey/`：按任务组织的方法地图、数据集与公平比较协议、证据缺口和复现优先级。
+- `references/`：参考工作的原始来源和 BibTeX，不附论文 PDF；收录不等于已实现或复现。
 - `tests/`：公共 API 离线验收与看板浏览器回归。
 - `scripts/`：看板启动与发布审核。
 

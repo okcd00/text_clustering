@@ -2,6 +2,8 @@
 
 Upstream papers and citation records; PDFs are not bundled.
 
+Start with the [task-oriented survey](../survey/README.md), [dataset and fair-comparison guide](../survey/datasets.md), or [dated open-source snapshot](ecosystem_2026-11-13.md). Bibliographic inclusion does not establish reproduction.
+
 - [Supporting Clustering with Contrastive Learning](zhang2021sccl/readme.md)
 - [{ClusterLLM}: Large Language Models as a Guide for Text Clustering](zhang2023clusterllm/readme.md)
 - [IDAS: Intent Discovery with Abstractive Summarization](deraedt2023idas/readme.md)
