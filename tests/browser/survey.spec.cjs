@@ -16,6 +16,6 @@ test('survey navigation, search, recovery, deep links and narrow layout', async(
  expect(await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth)).toBeLessThanOrEqual(1);
  await page.getByRole('link',{name:'研究路线',exact:true}).click();await page.goBack();
  await expect(page.locator('#datasets')).toBeVisible();
- await page.getByRole('link',{name:'历史场景证据',exact:true}).click();await expect(page.locator('#task')).toBeVisible();
+ await page.locator('.quiet-archive summary').click();await page.getByRole('link',{name:'历史场景证据',exact:true}).click();await expect(page.locator('#task')).toBeVisible();
  expect(errors).toEqual([]);
 });

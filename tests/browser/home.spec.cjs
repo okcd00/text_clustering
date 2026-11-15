@@ -17,3 +17,18 @@ test('legacy index hashes still resolve',async({page})=>{
   await page.goto('/index.html#compare');await expect(page).toHaveURL(/survey.html#compare$/);
   await page.goto('/index.html#leaderboard');await expect(page).toHaveURL(/legacy.html#leaderboard$/);
 });
+test('scene first, evidence second, detail third',async({page})=>{
+ await page.goto('/index.html');
+ await page.locator('.primary-link').click();
+ await expect(page).toHaveURL(/index.html#scenes$/);
+ await expect(page.locator('.scene-card')).toHaveCount(4);
+ await page.reload();await expect(page.locator('#scene-title')).toBeVisible();
+ await page.locator('.scene-card a').first().click();
+ await expect(page).toHaveURL(/survey.html#compare$/);
+ await expect(page.locator('#compare')).toBeVisible();
+ await expect(page.locator('.page-links')).toHaveCount(0);
+ await page.getByRole('link',{name:'算法画像',exact:true}).click();
+ await expect(page.locator('#profiles')).toBeVisible();
+ await page.locator('.concept-map>summary').click();
+ await expect(page.locator('.fishbone')).toBeVisible();
+});

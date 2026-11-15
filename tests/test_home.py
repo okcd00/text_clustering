@@ -23,10 +23,11 @@ class Home(unittest.TestCase):
         self.assertEqual(icons_css.count('background-position:'),6)
         for i in p.icons:self.assertEqual(i['aria-hidden'],'true')
         for a in p.links:
-            if not a['href'].startswith('https:'):self.assertTrue((ROOT/'docs'/a['href'].split('#')[0]).is_file())
+            if a['href'].startswith('#'):self.assertIn(a['href'][1:],p.ids)
+            elif not a['href'].startswith('https:'):self.assertTrue((ROOT/'docs'/a['href'].split('#')[0]).is_file())
     def test_legacy_links_and_static_home(self):
         text=(ROOT/'docs/index.html').read_text()
-        self.assertIn('if(location.hash)',text)
+        self.assertIn("if(location.hash && !['scenes','pathway-title'].includes(location.hash.slice(1)))",text)
         self.assertIn("['selection','leaderboard','status']",text)
         self.assertIn('同一条主干，不同的分叉。',text)
         self.assertIn('prefers-reduced-motion',(ROOT/'docs/home.css').read_text())
