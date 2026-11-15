@@ -1,0 +1,14 @@
+{
+ "id":"massive-sibling-breadth-v1",
+ "status":"dataset_only_locked_before_preflight_no_model_scores",
+ "source":"same pinned official MASSIVE zh-CN artifacts as hierarchy-preflight-v1; reproduce full original preflight before accepting",
+ "eligibility":"same original cross-role/within-role normalized dedup; >=2 train, >=1 validation, >=1 test per leaf",
+ "parents":"all eligible parents with >=4 leaves; expected six, no semantic or performance filtering",
+ "allocation":"per parent sort leaf names by SHA256(massive-sibling-breadth-v1|role-allocation|leaf); first validation hidden, next two test hidden, remainder known",
+ "caps":{"support_per_known_leaf":20,"queries_per_eligible_role_leaf":8},
+ "ordering":"deterministic source-ID hash under this protocol namespace, followed by global query-role shuffle",
+ "privacy":"source IDs, text, scorer annotations stay external/private; publish only opaque leaf/parent count aggregates",
+ "scope":"exploratory schema split, NOT untouched confirmation; no model, rejection threshold, cluster assignments or performance",
+ "next_gate":"no scoring until separately frozen rejection/clustering protocol; validation has only one hidden leaf per parent and cannot tune sibling separation",
+ "alternate_not_executed":"3 parents with >=5 leaves; two validation hidden and two test hidden, remainder known; separate future protocol, not selected by test results"
+}

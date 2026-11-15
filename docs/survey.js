@@ -18,6 +18,7 @@
     panels.forEach(p => p.hidden = p !== active);
     tabs.forEach(a => { if (a.dataset.section === active.id) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current'); });
     filter();
+    if(id==='compare' && location.hash) document.getElementById('comparison-workbench').open=true;
     if (id.includes('-')) requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView());
   }
   input.addEventListener('input', filter);

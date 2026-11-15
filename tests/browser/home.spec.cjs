@@ -24,7 +24,8 @@ test('scene first, evidence second, detail third',async({page})=>{
  await expect(page.locator('.scene-card')).toHaveCount(4);
  await page.reload();await expect(page.locator('#scene-title')).toBeVisible();
  await page.locator('.scene-card > a').first().click();
- await expect(page).toHaveURL(/survey.html(?:\?[^#]+)?#compare$/);
+ await expect(page).toHaveURL(/reports\/unified-static-v1.html$/);
+ await page.getByRole('link',{name:'返回 Survey 证据',exact:true}).click();
  await expect(page.locator('#compare')).toBeVisible();
  await expect(page.locator('.page-links')).toHaveCount(0);
  await page.getByRole('link',{name:'算法画像',exact:true}).click();

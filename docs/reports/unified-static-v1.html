@@ -1,0 +1,19 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>同输入静态聚类 · Text Clustering Lab</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../report.css?v=b2a4f66e480d"></head><body><main><header><a href="index.html">← 实验报告目录</a><a href="../survey.html#compare">返回 Survey 证据</a></header><section class="report-lead"><p class="eyebrow">实测 / unified-static-v1</p><h1>同输入静态聚类</h1><p class="report-conclusion">BANKING77 的已知 K KMeans ARI 更高；未知 K 的质量与覆盖取舍随数据变化。</p><p class="report-limit">固定小样本与三个种子，不代表调参上限；不同算法的 K 预算差异不是配对 K 增益。</p><div class="report-actions"><a href="https://github.com/okcd00/text_clustering/blob/main/results/unified-static-v1/README.md">Markdown 原文 ↗</a><a href="https://github.com/okcd00/text_clustering/blob/main/experiments/unified-static-v1/README.md">复现说明 ↗</a></div></section><details class="report-provenance"><summary>ⓘ 摘要与原文来源</summary><p>上方为编辑摘要，来源于以下报告，不是新增实验。正文从仓库 Markdown 自动生成，不维护第二份结果。</p><p><code>results/unified-static-v1/README.md</code><br>源文件 SHA256：<code>4f5785df3bb2c032b560adf897093d29c4c4e4780e6ab0c9db4dea5dae49b6ca</code></p></details><details class="report-toc"><summary>报告目录</summary><a href="#section-1">已知 K：比较谁更好地划分给定数量的簇</a><a href="#section-2">未知 K：同时看全样本质量和覆盖率</a><a href="#section-3">路由：准确率的分母很重要</a></details><section class="report-body" aria-label="Markdown 报告正文"><p class="original-title">原报告：第一轮同输入实测：静态聚类与开放集路由</p><p><a href="https://dian.host/text_clustering/survey.html#compare">页面逐维度对照</a> · <a href="https://github.com/okcd00/text_clustering/blob/main/experiments/unified-static-v1/README.md">环境与算法配置</a> · <a href="https://github.com/okcd00/text_clustering/blob/main/results/unified-static-v1/results.json">静态逐种子结果</a> · <a href="routing-v2.html">路由结果与协议</a></p>
+<p>2026-11-14。两套公开数据（BANKING77 与 MASSIVE zh-CN），三个种子。静态聚类每套固定 512 条测试文本、同一批归一化的 384D E5 向量，五种算法共 30 次。路由用另一套带支持集和互斥留出类的任务协议，共 12 次，不与静态结果混排。分别运行后，再用 <code>scripts/evaluate_survey.sh</code> 一次跑齐；两次所有非时间/资源指标一致。详见<a href="https://github.com/okcd00/text_clustering/blob/main/results/unified-static-v1/reproducibility.json">重跑核验</a>。</p>
+<h2 id="section-1">已知 K：比较谁更好地划分给定数量的簇</h2>
+<div class="tablewrap" tabindex="0" aria-label="实验原表，可横向滚动"><table><thead><tr><th scope="col">数据</th><th scope="col">KMeans ARI</th><th scope="col">MiniBatchKMeans ARI</th></tr></thead><tbody>
+<tr><td>BANKING77</td><td>0.346</td><td>0.317</td></tr>
+<tr><td>MASSIVE 中文</td><td>0.313</td><td>0.318</td></tr>
+</tbody></table></div>
+<p>KMeans 在 BANKING77 分数较高；MASSIVE 的均值接近，不据此宣布普遍胜者。两者都使用测试样本中实际出现的类别数，这是信息上限，不和未知 K 比谁更好。</p>
+<h2 id="section-2">未知 K：同时看全样本质量和覆盖率</h2>
+<div class="tablewrap" tabindex="0" aria-label="实验原表，可横向滚动"><table><thead><tr><th scope="col">数据</th><th scope="col">HDBSCAN ARI / 覆盖</th><th scope="col">BERTopic 核心 ARI / 覆盖</th><th scope="col">EVoC ARI / 覆盖</th></tr></thead><tbody>
+<tr><td>BANKING77</td><td>0.010 / 36.7%</td><td>0.147 / 85.8%</td><td>0.117 / 77.9%</td></tr>
+<tr><td>MASSIVE 中文</td><td>0.033 / 47.7%</td><td>0.211 / 89.1%</td><td>0.232 / 79.0%</td></tr>
+</tbody></table></div>
+<p><strong>BANKING77：</strong>三个种子里，BERTopic 核心的全样本 ARI 和覆盖率都高于 EVoC；EVoC 的接收样本 ARI 则三个种子都更高。两者接收的是不同子集，后一个数字不能当作同一批文本上的比较。</p>
+<p><strong>MASSIVE 中文：</strong>EVoC 的全样本平均 ARI 较高，但优势不稳定。按种子 0/1/2 计算 EVoC 减 BERTopic 核心，差值为 +0.139、−0.066、−0.008；平均优势由种子 0 拉高，另外两个种子是 BERTopic 核心得分较高。EVoC 的平均覆盖率也更低。</p>
+<p>本轮 BERTopic 只包含降维与聚类，不评价主题词或完整产品；固定参数的结果不是各算法调到最佳后的上限。全样本 ARI 把噪声作为一类；三个种子反映这批样本上的运行差异，不是统计置信区间。</p>
+<h2 id="section-3">路由：准确率的分母很重要</h2>
+<p>原型路由在两套数据上正确接收的已知样本占比都更高，隐藏类误接收也略低。MASSIVE 上最近邻的「已接收样本准确率」更高（81.5% vs. 79.5%），但已知类覆盖更低（27.7% vs. 40.1%）。因此先看系统愿意接收多少，再看接收后有多准。此结论仅适用于本次带标签支持集和固定留出类划分。</p>
+<p>单线程耗时与 RSS 可在结果中查看；首次 JIT、缓存状态与进程导入影响口径，不能当稳态速度总榜。种子差异不等于抽样置信区间。层级、维护及真实时间流未纳入本轮，不用历史数据替代。</p></section><footer><a href="index.html">← 所有实验报告</a><a href="../survey.html#compare">返回对应证据 →</a></footer></main></body></html>

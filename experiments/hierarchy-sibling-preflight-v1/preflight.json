@@ -1,0 +1,447 @@
+{
+  "status": "preflight_only_no_model_or_algorithm_execution",
+  "protocol": "massive-sibling-breadth-v1",
+  "interpretation": "exploratory_new_schema_split_not_untouched_confirmation",
+  "selected_eligible_leaf_count": 31,
+  "source_leaf_count": 60,
+  "eligible_leaf_count": 58,
+  "excluded_leaf_count": 2,
+  "known_leaf_count": 13,
+  "validation_hidden_leaf_count": 6,
+  "test_hidden_leaf_count": 12,
+  "supported_parent_count": 6,
+  "excluded_parent_count": 12,
+  "cross_role_normalized_overlap": 0,
+  "unsupported_hidden_parents_after_caps": 0,
+  "split_fingerprint": "7c54b5db56e341cbc9433208519059a6969dd70dc64334d603dc7d066a63adae",
+  "limits": {
+    "support_per_leaf": 20,
+    "query_per_leaf": 8
+  },
+  "roles": {
+    "support": {
+      "rows": 256,
+      "leaves": 13,
+      "parents": 6,
+      "known_rows": 256,
+      "hidden_rows": 0
+    },
+    "validation": {
+      "rows": 143,
+      "leaves": 19,
+      "parents": 6,
+      "known_rows": 98,
+      "hidden_rows": 45
+    },
+    "test": {
+      "rows": 191,
+      "leaves": 25,
+      "parents": 6,
+      "known_rows": 99,
+      "hidden_rows": 92
+    }
+  },
+  "supported_parent_hidden_counts": {
+    "P005": {
+      "known_leaves": 1,
+      "validation_hidden_leaves": 1,
+      "test_hidden_leaves": 2
+    },
+    "P004": {
+      "known_leaves": 6,
+      "validation_hidden_leaves": 1,
+      "test_hidden_leaves": 2
+    },
+    "P002": {
+      "known_leaves": 1,
+      "validation_hidden_leaves": 1,
+      "test_hidden_leaves": 2
+    },
+    "P003": {
+      "known_leaves": 2,
+      "validation_hidden_leaves": 1,
+      "test_hidden_leaves": 2
+    },
+    "P000": {
+      "known_leaves": 2,
+      "validation_hidden_leaves": 1,
+      "test_hidden_leaves": 2
+    },
+    "P001": {
+      "known_leaves": 1,
+      "validation_hidden_leaves": 1,
+      "test_hidden_leaves": 2
+    }
+  },
+  "post_cap_leaf_counts": {
+    "support": [
+      {
+        "leaf_id": "L013",
+        "parent_id": "P005",
+        "is_known": true,
+        "rows": 20
+      },
+      {
+        "leaf_id": "L022",
+        "parent_id": "P004",
+        "is_known": true,
+        "rows": 20
+      },
+      {
+        "leaf_id": "L000",
+        "parent_id": "P004",
+        "is_known": true,
+        "rows": 20
+      },
+      {
+        "leaf_id": "L015",
+        "parent_id": "P004",
+        "is_known": true,
+        "rows": 20
+      },
+      {
+        "leaf_id": "L004",
+        "parent_id": "P004",
+        "is_known": true,
+        "rows": 20
+      },
+      {
+        "leaf_id": "L019",
+        "parent_id": "P004",
+        "is_known": true,
+        "rows": 16
+      },
+      {
+        "leaf_id": "L011",
+        "parent_id": "P004",
+        "is_known": true,
+        "rows": 20
+      },
+      {
+        "leaf_id": "L027",
+        "parent_id": "P002",
+        "is_known": true,
+        "rows": 20
+      },
+      {
+        "leaf_id": "L008",
+        "parent_id": "P003",
+        "is_known": true,
+        "rows": 20
+      },
+      {
+        "leaf_id": "L025",
+        "parent_id": "P003",
+        "is_known": true,
+        "rows": 20
+      },
+      {
+        "leaf_id": "L002",
+        "parent_id": "P000",
+        "is_known": true,
+        "rows": 20
+      },
+      {
+        "leaf_id": "L016",
+        "parent_id": "P000",
+        "is_known": true,
+        "rows": 20
+      },
+      {
+        "leaf_id": "L024",
+        "parent_id": "P001",
+        "is_known": true,
+        "rows": 20
+      }
+    ],
+    "validation": [
+      {
+        "leaf_id": "L010",
+        "parent_id": "P005",
+        "is_known": false,
+        "rows": 5
+      },
+      {
+        "leaf_id": "L013",
+        "parent_id": "P005",
+        "is_known": true,
+        "rows": 8
+      },
+      {
+        "leaf_id": "L022",
+        "parent_id": "P004",
+        "is_known": true,
+        "rows": 8
+      },
+      {
+        "leaf_id": "L000",
+        "parent_id": "P004",
+        "is_known": true,
+        "rows": 8
+      },
+      {
+        "leaf_id": "L015",
+        "parent_id": "P004",
+        "is_known": true,
+        "rows": 8
+      },
+      {
+        "leaf_id": "L004",
+        "parent_id": "P004",
+        "is_known": true,
+        "rows": 8
+      },
+      {
+        "leaf_id": "L018",
+        "parent_id": "P004",
+        "is_known": false,
+        "rows": 8
+      },
+      {
+        "leaf_id": "L019",
+        "parent_id": "P004",
+        "is_known": true,
+        "rows": 5
+      },
+      {
+        "leaf_id": "L011",
+        "parent_id": "P004",
+        "is_known": true,
+        "rows": 5
+      },
+      {
+        "leaf_id": "L027",
+        "parent_id": "P002",
+        "is_known": true,
+        "rows": 8
+      },
+      {
+        "leaf_id": "L021",
+        "parent_id": "P002",
+        "is_known": false,
+        "rows": 8
+      },
+      {
+        "leaf_id": "L026",
+        "parent_id": "P003",
+        "is_known": false,
+        "rows": 8
+      },
+      {
+        "leaf_id": "L008",
+        "parent_id": "P003",
+        "is_known": true,
+        "rows": 8
+      },
+      {
+        "leaf_id": "L025",
+        "parent_id": "P003",
+        "is_known": true,
+        "rows": 8
+      },
+      {
+        "leaf_id": "L002",
+        "parent_id": "P000",
+        "is_known": true,
+        "rows": 8
+      },
+      {
+        "leaf_id": "L023",
+        "parent_id": "P000",
+        "is_known": false,
+        "rows": 8
+      },
+      {
+        "leaf_id": "L016",
+        "parent_id": "P000",
+        "is_known": true,
+        "rows": 8
+      },
+      {
+        "leaf_id": "L024",
+        "parent_id": "P001",
+        "is_known": true,
+        "rows": 8
+      },
+      {
+        "leaf_id": "L014",
+        "parent_id": "P001",
+        "is_known": false,
+        "rows": 8
+      }
+    ],
+    "test": [
+      {
+        "leaf_id": "L029",
+        "parent_id": "P005",
+        "is_known": false,
+        "rows": 8
+      },
+      {
+        "leaf_id": "L013",
+        "parent_id": "P005",
+        "is_known": true,
+        "rows": 8
+      },
+      {
+        "leaf_id": "L030",
+        "parent_id": "P005",
+        "is_known": false,
+        "rows": 8
+      },
+      {
+        "leaf_id": "L022",
+        "parent_id": "P004",
+        "is_known": true,
+        "rows": 8
+      },
+      {
+        "leaf_id": "L000",
+        "parent_id": "P004",
+        "is_known": true,
+        "rows": 8
+      },
+      {
+        "leaf_id": "L015",
+        "parent_id": "P004",
+        "is_known": true,
+        "rows": 8
+      },
+      {
+        "leaf_id": "L004",
+        "parent_id": "P004",
+        "is_known": true,
+        "rows": 8
+      },
+      {
+        "leaf_id": "L019",
+        "parent_id": "P004",
+        "is_known": true,
+        "rows": 3
+      },
+      {
+        "leaf_id": "L007",
+        "parent_id": "P004",
+        "is_known": false,
+        "rows": 8
+      },
+      {
+        "leaf_id": "L003",
+        "parent_id": "P004",
+        "is_known": false,
+        "rows": 8
+      },
+      {
+        "leaf_id": "L011",
+        "parent_id": "P004",
+        "is_known": true,
+        "rows": 8
+      },
+      {
+        "leaf_id": "L028",
+        "parent_id": "P002",
+        "is_known": false,
+        "rows": 4
+      },
+      {
+        "leaf_id": "L001",
+        "parent_id": "P002",
+        "is_known": false,
+        "rows": 8
+      },
+      {
+        "leaf_id": "L027",
+        "parent_id": "P002",
+        "is_known": true,
+        "rows": 8
+      },
+      {
+        "leaf_id": "L008",
+        "parent_id": "P003",
+        "is_known": true,
+        "rows": 8
+      },
+      {
+        "leaf_id": "L006",
+        "parent_id": "P003",
+        "is_known": false,
+        "rows": 8
+      },
+      {
+        "leaf_id": "L009",
+        "parent_id": "P003",
+        "is_known": false,
+        "rows": 8
+      },
+      {
+        "leaf_id": "L025",
+        "parent_id": "P003",
+        "is_known": true,
+        "rows": 8
+      },
+      {
+        "leaf_id": "L002",
+        "parent_id": "P000",
+        "is_known": true,
+        "rows": 8
+      },
+      {
+        "leaf_id": "L017",
+        "parent_id": "P000",
+        "is_known": false,
+        "rows": 8
+      },
+      {
+        "leaf_id": "L005",
+        "parent_id": "P000",
+        "is_known": false,
+        "rows": 8
+      },
+      {
+        "leaf_id": "L016",
+        "parent_id": "P000",
+        "is_known": true,
+        "rows": 8
+      },
+      {
+        "leaf_id": "L012",
+        "parent_id": "P001",
+        "is_known": false,
+        "rows": 8
+      },
+      {
+        "leaf_id": "L024",
+        "parent_id": "P001",
+        "is_known": true,
+        "rows": 8
+      },
+      {
+        "leaf_id": "L020",
+        "parent_id": "P001",
+        "is_known": false,
+        "rows": 8
+      }
+    ]
+  },
+  "protocol_sha256": "0d27b1cdda4d27360af526417d8a9eca943f11114df52195aa395324d05a8bf4",
+  "source_revision": "ed58ac423a2f4121720918bf5301577edce4ffd3",
+  "artifacts": [
+    {
+      "name": "train.parquet",
+      "sha256": "ff3f4ff65f2e7419ec8ee01f9e5e8f50b500fd1fdc4affcb29dc57e04aa7a6bf",
+      "bytes": 726913
+    },
+    {
+      "name": "validation.parquet",
+      "sha256": "582f45a93e7a5b8f8094746b585f12e5f98ba13be3ee1a42ee4d866f190d7506",
+      "bytes": 148247
+    },
+    {
+      "name": "test.parquet",
+      "sha256": "7eca92a47e6bffeec3fc7de751948b82904680353a42eef7e8c6fdbe89adb2db",
+      "bytes": 201108
+    }
+  ],
+  "script_sha256": "9bb094955d9d637482f396c240e1b235378a1146e8db65b0651432c0086a98c0",
+  "original_preflight_verified": true
+}
