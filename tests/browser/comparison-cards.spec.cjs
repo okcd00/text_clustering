@@ -41,3 +41,14 @@ test('real published groups and routing remain independently selectable',async({
  await page.locator('.comparison-details>summary').click();await expect(page.locator('#comparison-runs')).toContainText('known=');
  await page.locator('#cohort').selectOption('static-0');await expect(page.locator('.interval-card')).toHaveCount(6);expect(await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth)).toBeLessThanOrEqual(1);
 });
+test('stable routing deep link survives reload, selection and Back',async({page})=>{
+ await page.goto('/survey.html?view=routing&dataset=massive_zh_cn#compare');
+ await expect(page.locator('.interval-card')).toHaveCount(5);
+ await expect(page.locator('#cohort-context')).toContainText('massive_zh_cn');
+ await page.reload();await expect(page.locator('.interval-card')).toHaveCount(5);
+ await page.locator('#cohort').selectOption({index:0});await expect(page).toHaveURL(/view=static/);
+ await page.goBack();await expect(page.locator('.interval-card')).toHaveCount(5);
+ await expect(page.locator('#cohort-context')).toContainText('massive_zh_cn');
+ await page.goto('/survey.html?view=routing&dataset=bad#compare');
+ await expect(page.locator('#compare-status')).toContainText('已显示默认组');
+});

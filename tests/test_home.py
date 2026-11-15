@@ -17,14 +17,14 @@ class Home(unittest.TestCase):
         self.assertEqual(len(branches),6)
         self.assertEqual(len(p.icons),6)
         for a in branches:
-            page,anchor=a['href'].split('#');self.assertEqual(page,'survey.html');self.assertIn(anchor,s.ids)
+            page,anchor=a['href'].split('#');self.assertEqual(page.split('?')[0],'survey.html');self.assertIn(anchor,s.ids)
         icons_css=(ROOT/'docs/home.css').read_text()
         self.assertEqual(icons_css.count('data:image/webp;base64,'),1)
         self.assertEqual(icons_css.count('background-position:'),6)
         for i in p.icons:self.assertEqual(i['aria-hidden'],'true')
         for a in p.links:
             if a['href'].startswith('#'):self.assertIn(a['href'][1:],p.ids)
-            elif not a['href'].startswith('https:'):self.assertTrue((ROOT/'docs'/a['href'].split('#')[0]).is_file())
+            elif not a['href'].startswith('https:'):self.assertTrue((ROOT/'docs'/a['href'].split('#')[0].split('?')[0]).is_file())
     def test_legacy_links_and_static_home(self):
         text=(ROOT/'docs/index.html').read_text()
         self.assertIn("if(location.hash && !['scenes','pathway-title'].includes(location.hash.slice(1)))",text)

@@ -6,7 +6,7 @@ class N{
  setAttribute(k,v){this.attrs[k]=v;} scrollIntoView(){}
 }
 const ids=['cohort','metric','comparison-chart','comparison-rows','comparison-runs','cohort-context','metric-protocol','compare-status','deferred-methods'];
-async function render(data){const nodes=Object.fromEntries(ids.map(id=>[id,new N(['cohort','metric'].includes(id)?'select':'div')]));vm.runInNewContext(fs.readFileSync('docs/unified.js','utf8'),{document:{getElementById:id=>nodes[id],createElement:tag=>new N(tag)},fetch:async()=>({ok:true,json:async()=>data})});await new Promise(r=>setImmediate(r));return nodes;}
+async function render(data,query=""){const location=new URL("https://example.org/survey.html"+query),listeners={};const nodes=Object.fromEntries(ids.map(id=>[id,new N(['cohort','metric'].includes(id)?'select':'div')]));vm.runInNewContext(fs.readFileSync('docs/unified.js','utf8'),{URL,URLSearchParams,location,history:{pushState:(_,__,url)=>{location.href=String(url)}},window:{addEventListener:(event,fn)=>listeners[event]=fn},document:{getElementById:id=>nodes[id],createElement:tag=>new N(tag)},fetch:async()=>({ok:true,json:async()=>data})});await new Promise(r=>setImmediate(r));nodes._location=location;nodes._listeners=listeners;return nodes;}
 const all=(n,p)=>[...(p(n)?[n]:[]),...n.children.flatMap(c=>all(c,p))];
 const cls=(n,c)=>all(n,x=>x.className.split(' ').includes(c));
 const txt=n=>n.textContent+' '+n.children.map(txt).join(' ');
@@ -24,5 +24,10 @@ const data=()=>JSON.parse(fs.readFileSync('docs/unified-results.json'));
  d=data();d.runs[0].metrics.ari_all_noise_as_one_cluster=null;n=await render(d);assert.equal(cls(n['comparison-chart'].children[0],'interval-mean').length,3);assert.equal(cls(n['comparison-chart'].children[1],'interval-mean').length,5);
  d=data();delete d.protocol;d.runs=d.runs.filter(r=>r.seed===0);n=await render(d);assert(txt(n['comparison-chart']).includes('单次运行，无重复区间'));
  d=data();d.runs.forEach(r=>r.metrics.coverage=1);n=await render(d);assert(txt(n['comparison-chart']).includes('各次同值'));
+ n=await render(data(),'?view=routing&dataset=massive_zh_cn#compare');assert.equal(n['comparison-chart'].children.length,5);assert(txt(n['cohort-context']).includes('massive_zh_cn'));
+ assert(txt(n['cohort-context']).includes('路由'));n.cohort.value=n.cohort.children[0].value;n.cohort.onchange();assert.equal(n._location.searchParams.get('view'),'static');assert(!n._location.search.includes('static-0'));
+ n._location.search='?view=routing&dataset=banking77';n._listeners.popstate();assert(txt(n['cohort-context']).includes('banking77'));assert.equal(n['comparison-chart'].children.length,5);
+ for(const q of ['?view=unknown&dataset=banking77','?view=routing','?view=routing&dataset=not-real']){n=await render(data(),q);assert.equal(n['comparison-chart'].children.length,6);assert(txt(n['compare-status']).includes('未匹配唯一比较组'));}
+ d=data();d.cohorts.reverse();n=await render(d,'?view=routing&dataset=massive_zh_cn');assert(txt(n['cohort-context']).includes('massive_zh_cn'));assert.equal(n['comparison-chart'].children.length,5);
  console.log('Comparison renderer: PASS (shared K axes, source-value parity, routing, missing/duplicate/null/failure, single/degenerate)');
 })();

@@ -1,11 +1,12 @@
 fetch('unified-results.json').then(r=>{if(!r.ok)throw Error('读取失败');return r.json()}).then(data=>{
  const $=id=>document.querySelector('#'+id);
  if(!['executed','partial'].includes(data.status))throw Error('没有实测结果');
- const sel=$('dataset'), names={'prototype':'Prototype · 类原型','class-max-1nn':'Class-max 1NN · 类内最近邻'};
+ const sel=$('dataset'), names={'prototype':'Prototype · 类原型','class-max-1nn':'Class-max 1NN · 类别最大近邻'};
  const keys=['known_coverage','known_accepted_accuracy','known_correct_acceptance','hidden_false_acceptance'];
  function render(){
   const cohort=data.cohorts.find(c=>c.dataset===sel.value&&c.scenario==='routing');
   if(!cohort)throw Error('没有实测结果');
+  const back=$('back-evidence');if(back)back.href='survey.html?view=routing&dataset='+encodeURIComponent(cohort.dataset)+'#compare';
   const all=data.runs.filter(r=>r.cohort_id===cohort.id),seeds=[...new Set(all.map(r=>r.seed))];
   const counts=all.find(r=>r.status==='ok')?.metrics;
   $('counts').textContent=counts?`相同测试样本：${cohort.n} 条，其中已知 ${counts.known_n} 条，隐藏 ${counts.hidden_n} 条。`:'尚无有效运行。';

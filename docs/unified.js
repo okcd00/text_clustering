@@ -1,5 +1,5 @@
 (() => {
- const $=id=>document.getElementById(id); let data, views;
+ const $=id=>document.getElementById(id); let data, views, invalidLink=false;
  const finite=x=>typeof x==='number'&&Number.isFinite(x);
  const mean=xs=>xs.reduce((a,b)=>a+b,0)/xs.length;
  const metricLists={static:[['ari_all_noise_as_one_cluster','全样本 ARI','↑ 越高越好'],['nmi_all_noise_as_one_cluster','全样本 NMI','↑ 越高越好'],['coverage','覆盖率','↑ 越高越好'],['ari_covered','接收样本 ARI','↑ 须配合覆盖率'],['fit_predict_seconds','聚类耗时','↓ 秒'],['process_peak_rss_bytes','进程峰值 RSS','↓ MiB']],routing:[['known_coverage','已知类覆盖率','↑ 全部已知样本'],['known_accepted_accuracy','接收准确率','↑ 已接收已知样本'],['known_correct_acceptance','正确接收率','↑ 全部已知样本'],['hidden_false_acceptance','隐藏类误接收率','↓ 全部隐藏样本'],['test_routing_seconds','测试路由耗时','↓ 秒']]};
@@ -88,15 +88,27 @@
   const metrics=choices(c);metrics.forEach(entry=>$('comparison-chart').append(metricCard(c,entry)));
   const ready=metrics.filter(([key])=>summaries(c,key).every(g=>g.comparable)).length;
   $('compare-status').className=ready<metrics.length||data.status==='partial'?'run-warning':'';
-  $('compare-status').textContent=`${ready} / ${metrics.length} 个维度完整可比较 · 填色是各次实际值的 min–max，点是均值，n 是有效运行数。不是置信区间，也不是总分。${ready<metrics.length?' 不完整维度暂停比较，原始状态仍保留。':''}${data.status==='partial'?' 本轮整体部分完成。':''}`;
+  $('compare-status').textContent=`${invalidLink?'链接未匹配唯一比较组，已显示默认组。 ':''}${ready} / ${metrics.length} 个维度完整可比较 · 填色是各次实际值的 min–max，点是均值，n 是有效运行数。不是置信区间，也不是总分。${ready<metrics.length?' 不完整维度暂停比较，原始状态仍保留。':''}${data.status==='partial'?' 本轮整体部分完成。':''}`;
   drawDetails(c);
  }
  function selectMetrics(){const c=views.find(x=>x.id===$('cohort').value);if(!c)return;const previous=$('metric').value;$('metric').replaceChildren();choices(c).forEach(([value,label,direction])=>{const o=text('option',`${label} · ${direction}`);o.value=value;$('metric').append(o)});$('metric').value=choices(c).some(x=>x[0]===previous)?previous:choices(c)[0][0];draw();}
+ function readViewLink(){
+  const q=new URLSearchParams(location.search),kind=q.get('view'),dataset=q.get('dataset');
+  const candidates=views.filter(c=>(kind==='routing'?c.scenario==='routing':kind==='static'&&c.scenario==='static-compare')&&c.dataset===dataset);
+  invalidLink=(q.has('view')||q.has('dataset'))&&candidates.length!==1;
+  $('cohort').value=candidates.length===1?candidates[0].id:views[0].id;
+  selectMetrics();
+ }
+ function writeViewLink(){
+  const c=views.find(x=>x.id===$('cohort').value),u=new URL(location.href);
+  u.searchParams.set('view',c.scenario==='routing'?'routing':'static');u.searchParams.set('dataset',c.dataset);
+  invalidLink=false;history.pushState(null,'',u);selectMetrics();
+ }
  fetch('unified-results.json').then(r=>{if(!r.ok)throw Error(r.status);return r.json()}).then(d=>{
   data=d;if(!['executed','partial'].includes(d.status)||!d.cohorts?.length){$('compare-status').textContent='本轮统一评估尚未完成。暂不展示历史数字替代实测。';return;}
   views=groupedViews(d.cohorts);
   views.forEach(c=>{const o=text('option',`${c.dataset} / ${c.representation} / ${c.scenario==='static-compare'?'已知 K + 未知 K 同轴':trackLabel(c)}`);o.value=c.id;$('cohort').append(o)});
   (d.deferred||[]).forEach(m=>$('deferred-methods').append(text('p',typeof m==='string'?m:JSON.stringify(m),'run-warning')));
-  $('cohort').onchange=selectMetrics;$('metric').onchange=()=>{drawDetails(views.find(c=>c.id===$('cohort').value));[...$('comparison-chart').children].find(card=>card.dataset.metric===$('metric').value)?.scrollIntoView({block:'start',behavior:'instant'});};selectMetrics();
+  $('cohort').onchange=writeViewLink;$('metric').onchange=()=>{drawDetails(views.find(c=>c.id===$('cohort').value));[...$('comparison-chart').children].find(card=>card.dataset.metric===$('metric').value)?.scrollIntoView({block:'start',behavior:'instant'});};window.addEventListener('popstate',readViewLink);readViewLink();
  }).catch(()=>{$('compare-status').textContent='统一评估结果暂时无法读取，请刷新或下载仓库中的结果；不会以历史数字替代。';});
 })();
