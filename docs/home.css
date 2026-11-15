@@ -31,3 +31,4 @@ body{background:#f5f8f4}main{max-width:1160px;padding:32px}.brand{font-weight:70
 .scene-card details.scene-limit{margin:12px 0 14px;padding:0;border:0}.scene-limit summary{font-size:11px;color:#647d6d;cursor:pointer}.scene-card .scene-limit p{font-size:11px;margin-top:7px;line-height:1.7}.scene-card>a{min-height:24px;align-items:center}
 
 .scene-card .method-ref{font-weight:720;color:#145e51;text-decoration:underline;text-decoration-color:#6aa38d;text-underline-offset:.18em}.scene-card .method-ref:hover{color:#123e34;text-decoration-thickness:2px}.scene-card .scene-metric{font-weight:750;color:#233e36}
+.scene-card .k-definition{margin-bottom:8px}.scene-card .k-option+.k-option{margin-top:9px}.scene-card .k-option>strong:first-child{color:#274e42}
