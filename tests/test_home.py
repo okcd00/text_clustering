@@ -9,7 +9,7 @@ class Page(HTMLParser):
         a=dict(attrs)
         if 'id' in a:self.ids.add(a['id'])
         if tag=='a':self.links.append(a)
-        if tag=='svg':self.icons.append(a)
+        if tag=='span' and 'branch-icon' in a.get('class','').split():self.icons.append(a)
 class Home(unittest.TestCase):
     def test_branches_and_targets(self):
         p=Page((ROOT/'docs/index.html').read_text());s=Page((ROOT/'docs/survey.html').read_text())
@@ -18,6 +18,9 @@ class Home(unittest.TestCase):
         self.assertEqual(len(p.icons),6)
         for a in branches:
             page,anchor=a['href'].split('#');self.assertEqual(page,'survey.html');self.assertIn(anchor,s.ids)
+        icons_css=(ROOT/'docs/home.css').read_text()
+        self.assertEqual(icons_css.count('data:image/webp;base64,'),1)
+        self.assertEqual(icons_css.count('background-position:'),6)
         for i in p.icons:self.assertEqual(i['aria-hidden'],'true')
         for a in p.links:
             if not a['href'].startswith('https:'):self.assertTrue((ROOT/'docs'/a['href'].split('#')[0]).is_file())
