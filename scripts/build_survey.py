@@ -59,7 +59,7 @@ def atlas():
     data=json.loads((ROOT/'survey/atlas.json').read_text())
     esc=html.escape
     branches=''.join(f'<details class="bone"><summary><span>{esc(x["title"])}</span><strong>{esc(x["subtitle"])}</strong><small>{esc(x["examples"])}</small></summary><p>{esc(x["note"])}</p></details>' for x in data['branches'])
-    cards=''.join(f'<article class="evidence-card method-card"><span class="method-track">{esc(x["track"])}</span><h3>{esc(x["name"])}</h3><p class="method-highlight">{esc(x["highlight"])}</p><dl><dt>信息预算</dt><dd>{esc(x["budget"])}</dd><dt>代价与边界</dt><dd>{esc(x["tradeoff"])}</dd></dl></article>' for x in data['methods'])
+    cards=''.join(f'<article class="evidence-card method-card" id="profiles-{esc(x["id"],quote=True)}"><span class="method-track">{esc(x["track"])}</span><h3>{esc(x["name"])}</h3><p class="method-highlight">{esc(x["highlight"])}</p><dl><dt>信息预算</dt><dd>{esc(x["budget"])}</dd><dt>代价与边界</dt><dd>{esc(x["tradeoff"])}</dd></dl></article>' for x in data['methods'])
     return '<details class="concept-map"><summary>展开方法脉络 · 六个设计问题</summary><section class="atlas-map" aria-labelledby="map-heading"><div class="map-heading"><div><p class="eyebrow">ONE WORKFLOW · DIFFERENT QUESTIONS</p><h2 id="map-heading">同一条主干，不同的分叉。</h2></div><details class="map-info"><summary aria-label="阅读方法地图">ⓘ</summary><p>鱼骨图表示方法设计维度，并非先后依赖或算法优劣。点击每个分叉查看比较时须控制的变量。</p></details></div><div class="fishbone">'+branches+'</div><div class="spine-label">文本 → 表示 → 成簇 / 归属 → 评估</div></section></details><section id="profiles" class="survey-panel" aria-label="算法画像"><h2>算法画像</h2><p>先了解设计取舍，再看同协议实测；下面不是性能排名。</p><div class="survey-grid">'+cards+'</div></section>'
 
 def comparison():

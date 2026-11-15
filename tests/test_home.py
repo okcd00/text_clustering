@@ -25,6 +25,23 @@ class Home(unittest.TestCase):
         for a in p.links:
             if a['href'].startswith('#'):self.assertIn(a['href'][1:],p.ids)
             elif not a['href'].startswith('https:'):self.assertTrue((ROOT/'docs'/a['href'].split('#')[0].split('?')[0]).is_file())
+    def test_method_links_and_icon_cascade(self):
+        source=(ROOT/'docs/index.html').read_text()
+        home=Page(source)
+        survey=Page((ROOT/'docs/survey.html').read_text())
+        methods=[a['href'] for a in home.links if a.get('class')=='method-ref']
+        self.assertEqual(len(methods),8)
+        for link in methods:
+            page,anchor=link.split('#')
+            self.assertEqual(page,'survey.html')
+            self.assertTrue(anchor.startswith('profiles-'))
+            self.assertIn(anchor,survey.ids)
+        self.assertGreaterEqual(source.count('class="scene-metric"'),9)
+        import re
+        css=(ROOT/'docs/home.css').read_text()
+        for rule in re.findall(r'[^{}]+\{[^{}]+\}',css):
+            if '.branch-icon' in rule.split('{')[0]:
+                self.assertNotRegex(rule, r'\bbackground\s*:')
     def test_legacy_links_and_static_home(self):
         text=(ROOT/'docs/index.html').read_text()
         self.assertIn("if(location.hash && !['scenes','pathway-title'].includes(location.hash.slice(1)))",text)
