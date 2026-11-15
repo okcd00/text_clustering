@@ -9,3 +9,14 @@
 @media(max-width:700px){.metric-card-grid{grid-template-columns:1fr;gap:14px}.interval-card{padding:20px 18px}.interval-heading h3{font-size:17px}.metric-direction{font-size:10px}.interval-heading{gap:8px}.comparison-details{padding:15px}.interval-legend{font-size:11px}.card-cohort{margin-bottom:16px}.interval-label{font-size:12px}}
 @media(prefers-reduced-motion:reduce){.interval-card{transition:none}}
 .interval-card{scroll-margin-top:85px}.interval-group{font-size:11px;font-weight:600;color:#527663;margin:15px 0 3px!important;display:flex;align-items:center;gap:7px}.interval-group:before{content:'';width:7px;height:7px;background:#1f634a;border:1px solid #1f634a;border-radius:2px}.interval-group[data-budget="known-k"]:before{background:#a86c27;border-color:#a86c27;border-radius:50%}.interval-method[data-budget="known-k"] .interval-mean{background:#a86c27;box-shadow:0 0 0 1px #a86c27}.interval-method[data-budget="known-k"] .interval-band{background:#e3c69f;border-color:#b88c50}.interval-method[data-budget="known-k"] .interval-label strong{color:#8b5c29}.interval-method[data-budget="unknown-k-fixed"] .interval-mean{border-radius:2px}
+
+/* Keep the expanded comparison details readable without horizontal scrolling on phones. */
+@media(max-width:640px){
+ .comparison-details .tablewrap{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+ .comparison-details table{min-width:0;width:100%;table-layout:fixed;white-space:normal;font-size:12px;line-height:1.45}
+ .comparison-details th,.comparison-details td{padding:8px 6px;white-space:normal;overflow-wrap:anywhere;vertical-align:top}
+ .comparison-details th:first-child{width:43%;font-size:12px;font-weight:650}
+ .comparison-details .tablewrap:nth-of-type(1) th:nth-child(3){width:25%}
+ .comparison-details .tablewrap:nth-of-type(2) th:nth-child(2){width:14%}
+ .comparison-details .tablewrap:nth-of-type(2) th:nth-child(4){width:25%}
+}
