@@ -2,7 +2,7 @@
 Run --check in CI to reject source/page drift. Supports this survey's MD subset.
 """
 from pathlib import Path
-import argparse, html, re, json
+import argparse, hashlib, html, re, json
 ROOT=Path(__file__).resolve().parents[1]
 BASE='https://github.com/okcd00/text_clustering/blob/main/'
 
@@ -70,6 +70,10 @@ def build():
     tabs='<a href="#compare" data-section="compare">统一实测</a><a href="#profiles" data-section="profiles">算法画像</a>'+''.join(f'<a href="#{key}" data-section="{key}">{label}</a>' for key,label,_ in sections)
     body=''.join(f'<section id="{key}" class="survey-panel" aria-label="{label}"><div class="section-heading"><span>RESEARCH NOTE / {idx+1:02}</span><a href="{BASE}survey/{file}">Markdown 原文 ↗</a></div>'+render(ROOT/'survey'/file,key)+'</section>' for idx,(key,label,file) in enumerate(sections))
     template=(ROOT/'scripts/survey_template.html').read_text()
+    # These assets and generated markup must refresh together on cached Pages clients.
+    for asset in ('survey.css', 'unified.js'):
+        digest=hashlib.sha256((ROOT/'docs'/asset).read_bytes()).hexdigest()[:12]
+        template=template.replace(f'"{asset}"',f'"{asset}?v={digest}"')
     return template.replace('{{TABS}}',tabs).replace('{{ATLAS}}',atlas()).replace('{{COMPARE}}',comparison()).replace('{{BODY}}',body)
 
 if __name__=='__main__':
