@@ -1,0 +1,103 @@
+{
+  "cross_day_topic_pair_threshold": 0.25,
+  "dev": {
+    "dated": 61,
+    "days": 23,
+    "documents": 65,
+    "duplicate_dated_text_rows": 0,
+    "event_gold_unaligned_rows": 0,
+    "event_gold_with_chains_rows": 61,
+    "manifest_sha256": "3ed972fad712d2160a4eafe5252cf0183e88f36b8234467b8785e8c70a3086c1",
+    "topics": 6
+  },
+  "dev_grid": [
+    {
+      "dev_f1": {
+        "daily_centroid": 0.19300991131977047,
+        "frozen_prototype": 0.22790697674418606
+      },
+      "threshold": 0.15
+    },
+    {
+      "dev_f1": {
+        "daily_centroid": 0.26550218340611353,
+        "frozen_prototype": 0.6832740213523132
+      },
+      "threshold": 0.25
+    },
+    {
+      "dev_f1": {
+        "daily_centroid": 0.3482142857142857,
+        "frozen_prototype": 0.29493087557603687
+      },
+      "threshold": 0.35
+    },
+    {
+      "dev_f1": {
+        "daily_centroid": 0.1407035175879397,
+        "frozen_prototype": 0.10256410256410256
+      },
+      "threshold": 0.45
+    },
+    {
+      "dev_f1": {
+        "daily_centroid": 0.08290155440414508,
+        "frozen_prototype": 0.08290155440414508
+      },
+      "threshold": 0.55
+    },
+    {
+      "dev_f1": {
+        "daily_centroid": 0.05263157894736842,
+        "frozen_prototype": 0.05263157894736842
+      },
+      "threshold": 0.65
+    }
+  ],
+  "exact_normalized_text_overlap": 0,
+  "source_commit": "46edefee5e82e0917b823abe0a18bf8c7770f15c",
+  "test": {
+    "dated": 184,
+    "days": 64,
+    "documents": 189,
+    "duplicate_dated_text_rows": 0,
+    "event_gold_unaligned_rows": 0,
+    "event_gold_with_chains_rows": 184,
+    "manifest_sha256": "8991adc0ce58602f11172f2e19fa3b1c8237ec4852d3fd3f3c69a070ce46141b",
+    "topics": 16
+  },
+  "test_results": {
+    "daily_centroid": {
+      "clusters": 9,
+      "confirmed_cross_day_event_link_pairs": {
+        "captured": 524,
+        "total": 589
+      },
+      "cross_day_topic_pairs": {
+        "f1": 0.07749667110519308,
+        "fn": 72,
+        "fp": 13784,
+        "precision": 0.04051232075734373,
+        "recall": 0.8899082568807339,
+        "tp": 582
+      },
+      "largest_cluster_rows": 172
+    },
+    "frozen_prototype": {
+      "clusters": 62,
+      "confirmed_cross_day_event_link_pairs": {
+        "captured": 163,
+        "total": 589
+      },
+      "cross_day_topic_pairs": {
+        "f1": 0.36958817317845827,
+        "fn": 479,
+        "fp": 118,
+        "precision": 0.5972696245733788,
+        "recall": 0.26758409785932724,
+        "tp": 175
+      },
+      "largest_cluster_rows": 14
+    }
+  }
+}

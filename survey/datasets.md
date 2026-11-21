@@ -16,7 +16,9 @@
 
 **BANKING77 与 MASSIVE zh-CN 已实测。** 两者都有[全量官方 test 词面基线](../results/lexical-v1/README.md)、[同样本词面与 E5 小对照](../results/semantic-pilot-v1/README.md)、[统一静态评估](../results/unified-static-v1/README.md)和[开放集路由](../results/routing-v2/README.md)。全量词面、512 条静态语义与带标签支持集的路由是不同协议，不能直接混排；这两套数据均未用于真实时间流评估。CLINC 和 WOS 的历史结果不动。
 
-**UCI 时间回放完成数据校验，尚未跑算法。** [预检与复跑命令](../experiments/calendar-preflight-v1/README.md)固定了官方包的 SHA-256、UTC 热身和七个评分日期，审计了重复标题与跨窗同故事。原始新闻标题和 URL 不入库。
+**UCI 已完成数据预检与算法回放。** [数据预检](../experiments/calendar-preflight-v1/README.md)固定了官方包的 SHA-256、UTC 热身与首批评分日期；[calendar-paired-v1](../results/calendar-paired-v1/README.md)和[延长窗口的 v2](../results/calendar-paired-v2/README.md)已有独立算法结果。原始标题与 URL 不入库。
+
+**ESC v1.0 已做独立跨日小对照。** [固定协议](../experiments/esc-crossday-v1/README.md)与[结果](../results/esc-crossday-v1/README.md)：英文 CAT-XML，官方仓 CC BY 3.0；测试 189 篇中 184 篇按创建日可回放，16 个主题。单列主题链接与人工标注事件共指正例，不与 UCI 银标自然时间回放合并。
 
 ## 2. 暂不承诺开箱可复现的覆盖候选
 
