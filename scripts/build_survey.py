@@ -70,7 +70,7 @@ def roadmap_summary(source):
     from build_reports import entries
     reports={x['id']:x for x in entries()}
     chunks=re.split(r'(?=<h2 id="roadmap-)',render(source,'roadmap'))
-    mapping={4:['calendar-paired-v1'],5:['calendar-paired-v2','calendar-gc-diagnostic-v1'],6:['hierarchy-e5-v1']}
+    mapping={4:['calendar-paired-v1'],5:['calendar-paired-v2','calendar-gc-diagnostic-v1','esc-crossday-v1'],6:['hierarchy-e5-v1']}
     out=[]
     for chunk in chunks:
         m=re.match(r'<h2 id="roadmap-(\d+)".*?</h2>',chunk)

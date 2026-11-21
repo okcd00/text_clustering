@@ -13,7 +13,7 @@ class Links(HTMLParser):
             if k in a:self.links.append(a[k])
 class Reports(unittest.TestCase):
     def test_coverage_parity_provenance(self):
-        items=build_reports.entries();self.assertEqual(len(items),9)
+        items=build_reports.entries();self.assertEqual(len(items),len({x['id'] for x in items}))
         self.assertEqual({x['source'] for x in items if x['source'].startswith('results/')},{p.relative_to(ROOT).as_posix() for p in (ROOT/'results').glob('*/README.md')})
         for name,s in build_reports.build_all().items():
             self.assertEqual(s,(ROOT/'docs/reports'/name).read_text())
@@ -41,6 +41,17 @@ class Reports(unittest.TestCase):
         self.assertNotIn('69.31 / 68.50 MiB',s)
         self.assertNotIn('id="comparison-workbench" class="comparison-workbench" open',s)
         self.assertIn('id="comparison-chart"',s)
+    def test_esc_report_and_current_dataset_status(self):
+        survey=(ROOT/'docs/survey.html').read_text()
+        stream=survey.split('id="roadmap-5"',1)[1].split('id="roadmap-6"',1)[0]
+        self.assertIn('href="reports/esc-crossday-v1.html"',stream)
+        self.assertNotIn('尚未跑算法',survey)
+        index=(ROOT/'docs/reports/index.html').read_text()
+        self.assertIn('href="esc-crossday-v1.html"',index)
+        report=(ROOT/'docs/reports/esc-crossday-v1.html').read_text()
+        self.assertIn('href="../survey.html#roadmap-5"',report)
+        self.assertIn(build_reports.BASE+'results/esc-crossday-v1/results.json',report)
+        self.assertIn('<table>',report)
     def test_markdown_tables_code_and_links(self):
         body,_=build_reports.markdown(ROOT/'results/routing-v2/README.md')
         self.assertIn('<table>',body);self.assertIn('<pre><code>',body)

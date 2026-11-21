@@ -72,6 +72,6 @@ def write(check=False):
         if check:
             if not p.exists() or p.read_text()!=s:raise SystemExit('Stale report: '+name)
         else:dest.mkdir(exist_ok=True);p.write_text(s)
-    print('Report source/page parity: PASS' if check else 'Built 9 reports and directory')
+    print('Report source/page parity: PASS' if check else f'Built {len(out) - 1} reports and directory')
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--check',action='store_true');write(p.parse_args().check)

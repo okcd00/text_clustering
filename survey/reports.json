@@ -60,6 +60,16 @@
     "anchor": "roadmap-5"
   },
   {
+    "id": "esc-crossday-v1",
+    "title": "ESC 跨日故事延续",
+    "status": "实测",
+    "conclusion": "同阈值每日更新提高跨日同主题召回（26.8% → 89.0%），但 F1 由 0.370 降至 0.077。",
+    "limit": "184 篇预选新闻、词法基线；最大簇 172 篇。人工事件共指仅核查正例捕获。",
+    "source": "results/esc-crossday-v1/README.md",
+    "reproduction": "experiments/esc-crossday-v1/README.md",
+    "anchor": "roadmap-5"
+  },
+  {
     "id": "hierarchy-e5-v1",
     "title": "支持父级下的层级归属",
     "status": "实测",
